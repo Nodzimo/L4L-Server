@@ -1,1 +1,5 @@
-SteamCMD
+SteamCMD/*
+!SteamCMD/steamcmd.zip
+!SteamCMD/steamcmd.exe
+
+Servers
