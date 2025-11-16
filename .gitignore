@@ -3,6 +3,10 @@ SteamCMD/*
 !SteamCMD/steamcmd.exe
 
 Servers
-Source
 Keys
 Windows/*
+
+Source/**
+!Source/Mods/
+!Source/Mods/Metamod Source/
+!Source/Mods/Metamod Source/**
