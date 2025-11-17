@@ -1,1 +1,51 @@
-# Left 4 Legend
+# Left 4 Legend <sup>v2 alpha</sub>
+> [!WARNING]
+> В работе!
+
+## Документация
+
+### Установка сервера
+- [Source Dedicated Server](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server)
+- [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD)
+   - `force_install_dir`
+   - `login anonymous`
+   - `app_update 222860 validate`
+   - `quit`
+- Решение проблемы с установкой сервера на линукс: [Invalid platform SteamCMD errors for L4D2](https://github.com/ValveSoftware/steam-for-linux/issues/11522)
+- `status`
+- `exit`
+
+### Моды
+1. [Metamod:Source 1.12.0-dev+1219](https://www.metamodsource.net/downloads.php?branch=stable)
+   - `meta version`
+   - `meta list`
+2. [SourceMod 1.12.0.7219](https://www.sourcemod.net/downloads.php?branch=stable)
+   - Установка SourceMod: [Installing SourceMod](https://wiki.alliedmods.net/Installing_SourceMod)
+   - Добавление админов: [Adding Admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
+   - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
+   - `sm version`
+
+### SourceMod расширения
+`sm exts list`
+1. [Accelerator (2.6.0-manual): SRCDS Crash Handler](https://forums.alliedmods.net/showthread.php?t=277703)
+   - [Throttle dashboard](https://crash.limetech.org/dashboard)
+   - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
+
+### SourceMod плагины
+`sm plugins list`
+1. [[L4D2] Custom admin commands (1.3.9e) by honorcode23, Shadowysn (improvements)](https://forums.alliedmods.net/showpost.php?p=2704580&postcount=483)
+2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
+3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
+
+### V-скрипты
+[Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
+
+### Карты
+- [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
+
+### Консольные команды
+- [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
+
+### Онлайн-инструменты
+- [Steam ID Finder](https://steamid.pro)
+- [STEAMID I/O - lookup and convert your steamID, steamID3, steamID64, customURL and community id](https://steamid.io)
