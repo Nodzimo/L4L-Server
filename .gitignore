@@ -9,5 +9,6 @@ Windows/*
 Source/**
 !Source/Mods/
 !Source/Mods/SourceMod/
-!Source/Mods/SourceMod/Windows
-!Source/Mods/SourceMod/Windows/**
+!Source/Mods/SourceMod/Linux
+!Source/Mods/SourceMod/Linux/**
+Source/Mods/SourceMod/Linux/sourcemod-1.12.0-git7219-linux.tar.gz
