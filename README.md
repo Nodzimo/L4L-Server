@@ -46,7 +46,16 @@
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
 
 ### Карты
+- [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
+- [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
+   - Для проверки: первая карта (но это не точно) часто крашилась на Nightmare сборке
 - [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
+   - Для проверки: первая карта крашилась на старом L4L
+- [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
+- [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
+- [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
+   - Для проверки: первая карта сильно лагала на старом L4L
+- [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)

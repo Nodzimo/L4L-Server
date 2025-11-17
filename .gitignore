@@ -9,3 +9,5 @@ Platform/Windows/SteamCMD/**
 !Platform/Windows/SteamCMD/steamcmd.exe
 
 Keys
+Source/Maps
+Setup/6. Maps
