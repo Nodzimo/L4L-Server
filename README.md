@@ -12,16 +12,21 @@
    - `app_update 222860 validate`
    - `quit`
 - Решение проблемы с установкой сервера на линукс: [Invalid platform SteamCMD errors for L4D2](https://github.com/ValveSoftware/steam-for-linux/issues/11522)
+- [Command line options](https://developer.valvesoftware.com/wiki/Command_line_options)
+- [Host Dedicated Steam Game Servers with Linux - Palworld, CS2, SteamCMD!](https://www.youtube.com/watch?v=frp-bNoqjzc)
 - `status`
 - `exit`
 
 ### Моды
 1. [Metamod:Source 1.12.0-dev+1219](https://www.metamodsource.net/downloads.php?branch=stable)
+   - Документация: [Metamod:Source documentation](https://wiki.alliedmods.net/Category:Metamod:Source_Documentation)
+   - Консольные команды: [Console commands (Metamod:Source)](https://wiki.alliedmods.net/Console_Commands_(Metamod:Source))
    - `meta version`
    - `meta list`
 2. [SourceMod 1.12.0.7219](https://www.sourcemod.net/downloads.php?branch=stable)
+   - Документация: [SourceMod documentation](https://wiki.alliedmods.net/index.php/Category:SourceMod_Documentation)
    - Установка SourceMod: [Installing SourceMod](https://wiki.alliedmods.net/Installing_SourceMod)
-   - Добавление админов: [Adding Admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
+   - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
    - `sm version`
 
