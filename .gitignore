@@ -1,7 +1,11 @@
-SteamCMD/*
-!SteamCMD/steamcmd.zip
-!SteamCMD/steamcmd.exe
+Platform/**
+!Platform/Linux
+!Platform/Linux/**
+!Platform/Windows
+!Platform/Windows/**
+Platform/Windows/Servers
+Platform/Windows/SteamCMD/**
+!Platform/Windows/SteamCMD/steamcmd.zip
+!Platform/Windows/SteamCMD/steamcmd.exe
 
-Servers
 Keys
-Windows/*
