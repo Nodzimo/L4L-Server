@@ -39,8 +39,11 @@
 ### SourceMod плагины
 `sm plugins list`
 1. [[L4D2] Custom admin commands (1.3.9e) by honorcode23, Shadowysn (improvements)](https://forums.alliedmods.net/showpost.php?p=2704580&postcount=483)
+   - Добавляет в меню `sm_admin` дополнительные команды, например: ноуклип, телепорт, инкап и т. п.
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
+   - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и т. д.
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
+   - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
@@ -48,7 +51,7 @@
 ### Карты
 - [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
 - [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
-   - Для проверки: первая карта (но это не точно) часто крашилась на Nightmare сборке
+   - Для проверки: первая карта (но это не точно) часто крашилась на сборке Nightmare
 - [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
    - Для проверки: первая карта крашилась на старом L4L
 - [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
