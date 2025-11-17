@@ -6,8 +6,5 @@ Servers
 Keys
 Windows/*
 
-Source/**
-!Source/Mods/
-!Source/Mods/SourceMod/
-!Source/Mods/SourceMod/Linux
-!Source/Mods/SourceMod/Linux/**
+Source/*
+!Source/Extensions
