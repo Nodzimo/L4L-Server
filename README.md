@@ -59,6 +59,8 @@
 - [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
    - Для проверки: первая карта сильно лагала на старом L4L
 - [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
+- [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+- [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
