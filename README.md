@@ -49,11 +49,13 @@
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
 
 ### Карты
+[Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
+
 - [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
 - [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
    - Для проверки: первая карта (но это не точно) часто крашилась на сборке Nightmare
 
-#### Снежные/новогодние
+#### Снежные, зимние, новогодние
 - [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
    - Для проверки: первая карта крашилась на старом L4L
 - [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
