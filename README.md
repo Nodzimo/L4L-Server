@@ -95,18 +95,18 @@
 
 - [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
 - [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
-   > [!CAUTION]
-   > Проверить: первая карта (но это не точно) часто крашилась на сборке Nightmare
+> [!CAUTION]
+> Проверить: первая карта (но это не точно) часто крашилась на сборке Nightmare
 
 #### Снежные, зимние, новогодние
 - [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
-   > [!CAUTION]
-   > Проверить: первая карта крашилась на старом L4L
+> [!CAUTION]
+> Проверить: первая карта крашилась на старом L4L
 - [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
 - [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
 - [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
-   > [!CAUTION]
-   > Проверить: первая карта сильно лагала на старом L4L
+> [!CAUTION]
+> Проверить: первая карта сильно лагала на старом L4L
 - [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 - [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 - [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
