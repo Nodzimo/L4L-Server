@@ -13,6 +13,7 @@
 - [Онлайн-инструменты](#онлайн-инструменты)
 - [Клиент](#клиент)
 - [Репозиторий](#репозиторий)
+- [Steam](#steam)
 
 ## Документация
 
@@ -62,11 +63,15 @@
    - Автор практически забил на плагин, но время от времени вливает изменения в [экспериментальную ветку](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver/tree/experimental)
 - [Репозиторий форка](https://github.com/Emana202/L4D2-Survivor-Bot-AI-Improver)
    - Обновляется гораздо чаще оригинала и медленно, но верно поддерживается. Изменения из форка время от времени вливаются в оригинальный репозиторий и наоборот.
+   - [Тема на форуме](https://forums.alliedmods.net/showthread.php?t=342872)
 
 #### Репозитории плагинов
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
 - [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins)
 - [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
+- [fdxx / l4d2_plugins](https://github.com/fdxx/l4d2_plugins)
+- [wyxls / SourceModPlugins-L4D2](https://github.com/wyxls/SourceModPlugins-L4D2)
+- [A1oneR / L4D2_DRDK_Plugins](https://github.com/A1oneR/L4D2_DRDK_Plugins)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
@@ -90,15 +95,18 @@
 
 - [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
 - [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
-   - Для проверки: первая карта (но это не точно) часто крашилась на сборке Nightmare
+   > [!CAUTION]
+   > Проверить: первая карта (но это не точно) часто крашилась на сборке Nightmare
 
 #### Снежные, зимние, новогодние
 - [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
-   - Для проверки: первая карта крашилась на старом L4L
+   > [!CAUTION]
+   > Проверить: первая карта крашилась на старом L4L
 - [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
 - [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
 - [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
-   - Для проверки: первая карта сильно лагала на старом L4L
+   > [!CAUTION]
+   > Проверить: первая карта сильно лагала на старом L4L
 - [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 - [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 - [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
@@ -125,3 +133,8 @@
       ```
 - Максимальный размер коммита для GitHub репозитория: **30 мегабайт** (но это не точно)
 - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+### Steam
+- `An error occurred while attempting to download a file from the UGC server!`
+   - Временная проблема на стороне Steam, обычно исправляют в течении нескольких дней
+- [Как передать управление группой](https://steamcommunity.com/discussions/forum/26/1291817837640449310)
