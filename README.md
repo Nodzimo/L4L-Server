@@ -2,6 +2,18 @@
 > [!WARNING]
 > В работе!
 
+## Оглавление
+- [Установка сервера](#установка-сервера)
+- [Моды](#моды)
+- [SourceMod расширения](#sourcemod-расширения)
+- [SourceMod плагины](#sourcemod-плагины)
+- [V-скрипты](#v-скрипты)
+- [Карты](#карты)
+- [Консольные команды](#консольные-команды)
+- [Онлайн-инструменты](#онлайн-инструменты)
+- [Клиент](#клиент)
+- [Репозиторий](#репозиторий)
+
 ## Документация
 
 ### Установка сервера
@@ -101,3 +113,15 @@
 ### Клиент
 - [Left 4 Dead 2 Complete Launch Options](https://steamcommunity.com/sharedfiles/filedetails/?id=3543870520)
 - [Ultimate L4D2 Config](https://github.com/theletterjwithadot/Ultimate-Config-for-L4D2)
+
+### Репозиторий
+- `git rm --cached -r`
+   - Удалить файл из репозитория, если он уже туда попал, но оставить его локально на тачке
+   - После этой команды нужно закоммитить и запушить изменения в репозиторий
+   - Пример:
+      ```
+      git rm --cached -r "Platform/Windows/SteamCMD"
+      git commit -m "Stop tracking SteamCMD runtime files"
+      ```
+- Максимальный размер коммита для GitHub репозитория: **30 мегабайт** (но это не точно)
+- [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
