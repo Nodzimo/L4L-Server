@@ -6,9 +6,9 @@ Platform/**
 Platform/Windows/Servers
 Platform/Windows/SteamCMD/**
 !Platform/Windows/SteamCMD/steamcmd.zip
-!Platform/Windows/SteamCMD/steamcmd.exe
 
 Keys
 Source/Maps
 Setup/6. Maps
-Client
+Client/**
+!Client/L4D2.bat

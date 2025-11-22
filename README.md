@@ -45,6 +45,17 @@
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 
+#### L4D2 Survivor Bot AI Improver
+- [Репозиторий оригинала](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver)
+   - Автор практически забил на плагин, но время от времени вливает изменения в [экспериментальную ветку](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver/tree/experimental)
+- [Репозиторий форка](https://github.com/Emana202/L4D2-Survivor-Bot-AI-Improver)
+   - Обновляется гораздо чаще оригинала и медленно, но верно поддерживается. Изменения из форка время от времени вливаются в оригинальный репозиторий и наоборот.
+
+#### Репозитории плагинов
+- [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
+- [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins)
+- [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
+
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
 
@@ -86,3 +97,7 @@
 ### Онлайн-инструменты
 - [Steam ID Finder](https://steamid.pro)
 - [STEAMID I/O - lookup and convert your steamID, steamID3, steamID64, customURL and community id](https://steamid.io)
+
+### Клиент
+- [Left 4 Dead 2 Complete Launch Options](https://steamcommunity.com/sharedfiles/filedetails/?id=3543870520)
+- [Ultimate L4D2 Config](https://github.com/theletterjwithadot/Ultimate-Config-for-L4D2)
