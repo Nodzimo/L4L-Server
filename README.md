@@ -3,18 +3,28 @@
 > В работе!
 
 ## Оглавление
-- [Установка сервера](#установка-сервера)
-- [Конфигурация](#конфигурация)
-- [Моды](#моды)
-- [SourceMod расширения](#sourcemod-расширения)
-- [SourceMod плагины](#sourcemod-плагины)
-- [V-скрипты](#v-скрипты)
-- [Карты](#карты)
-- [Консольные команды](#консольные-команды)
-- [Онлайн-инструменты](#онлайн-инструменты)
-- [Клиент](#клиент)
-- [Репозиторий](#репозиторий)
-- [Steam](#steam)
+- [Left 4 Legend v2 alpha](#left-4-legend-v2-alpha)
+  - [Оглавление](#оглавление)
+  - [Документация](#документация)
+    - [Установка сервера](#установка-сервера)
+    - [Конфигурация](#конфигурация)
+    - [Моды](#моды)
+    - [SourceMod расширения](#sourcemod-расширения)
+    - [SourceMod плагины](#sourcemod-плагины)
+      - [Зависимости](#зависимости)
+      - [Плагины для разработки и тестирования](#плагины-для-разработки-и-тестирования)
+      - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
+      - [Репозитории плагинов](#репозитории-плагинов)
+    - [V-скрипты](#v-скрипты)
+    - [Карты](#карты)
+      - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
+    - [Консольные команды](#консольные-команды)
+    - [Онлайн-инструменты](#онлайн-инструменты)
+    - [Клиент](#клиент)
+      - [Мастерская](#мастерская)
+      - [Программы](#программы)
+    - [Репозиторий](#репозиторий)
+    - [Steam](#steam)
 
 ## Документация
 
@@ -78,16 +88,16 @@
 9. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
 10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix" (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
-   - Зависимость: **ThirdPersonShoulder Detect**
+    - Зависимость: **ThirdPersonShoulder Detect**
 11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
-   - Требуется для **ThirdPersonShoulder Shotgun Sound Fix**
+    - Требуется для **ThirdPersonShoulder Shotgun Sound Fix**
 12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
-   - Зависимость: **Multi Colors**
+    - Зависимость: **Multi Colors**
 13. [Steam Works Group Manager [a.k.a SWGM]](https://github.com/SomethingFromSomewhere/SWGM)
-   - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
-   - Зависимость: **SteamWorks**
+    - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
+    - Зависимость: **SteamWorks**
 14. [SteamWorks](https://forums.alliedmods.net/showthread.php?t=229556)
-   - Требуется для **Steam Works Group Manager**
+    - Требуется для **Steam Works Group Manager**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
