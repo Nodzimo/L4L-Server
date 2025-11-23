@@ -126,6 +126,10 @@
 - [Dosergen / Stuff](https://github.com/Dosergen/Stuff)
 - [garamond13 SourcePawn repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
 - [Hatsune-Imagine / l4d2-plugins](https://github.com/Hatsune-Imagine/l4d2-plugins)
+- [PaaNChaN / L4D2_Plugins](https://github.com/PaaNChaN/L4D2_Plugins)
+- [Target5150 / MoYu_Server_Stupid_Plugins](https://github.com/Target5150/MoYu_Server_Stupid_Plugins)
+- [SirPlease / L4D2-Competitive-Rework](https://github.com/SirPlease/L4D2-Competitive-Rework)
+- [Tabbernaut / L4D2-Plugins](https://github.com/Tabbernaut/L4D2-Plugins)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
