@@ -78,9 +78,14 @@
 10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix" (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
    - Зависимость: **ThirdPersonShoulder Detect**
 11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
-   - Обязателен для **ThirdPersonShoulder Shotgun Sound Fix**
+   - Требуется для **ThirdPersonShoulder Shotgun Sound Fix**
 12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
    - Зависимость: **Multi Colors**
+13. [Steam Works Group Manager [a.k.a SWGM]](https://github.com/SomethingFromSomewhere/SWGM)
+   - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
+   - Зависимость: **SteamWorks**
+14. [SteamWorks](https://forums.alliedmods.net/showthread.php?t=229556)
+   - Требуется для **Steam Works Group Manager**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
