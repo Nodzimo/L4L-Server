@@ -123,6 +123,9 @@
 - [fdxx / l4d2_plugins](https://github.com/fdxx/l4d2_plugins)
 - [wyxls / SourceModPlugins-L4D2](https://github.com/wyxls/SourceModPlugins-L4D2)
 - [A1oneR / L4D2_DRDK_Plugins](https://github.com/A1oneR/L4D2_DRDK_Plugins)
+- [Dosergen / Stuff](https://github.com/Dosergen/Stuff)
+- [garamond13 SourcePawn repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
+- [Hatsune-Imagine / l4d2-plugins](https://github.com/Hatsune-Imagine/l4d2-plugins)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
