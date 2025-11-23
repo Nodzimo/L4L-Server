@@ -79,6 +79,12 @@
    - Зависимость: **ThirdPersonShoulder Detect**
 11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
    - Обязателен для **ThirdPersonShoulder Shotgun Sound Fix**
+12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
+   - Зависимость: **Multi Colors**
+
+#### Зависимости
+1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
+   - Общая зависимость для плагинов, которые используют цвета в сообщениях игрового чата
 
 #### Плагины для разработки и тестирования
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
