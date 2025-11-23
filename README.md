@@ -47,6 +47,8 @@
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
    - `sm version`
+   - [SourceMod 1.11 build 6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
+      - Для компиляции плагинов на старом синтаксисе **SourcePawn**
 
 ### SourceMod расширения
 `sm exts list`
