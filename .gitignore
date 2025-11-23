@@ -13,3 +13,5 @@ Source/Test
 Setup/6. Maps
 Client/**
 !Client/L4D2.bat
+!Client/Workshop
+!Client/Workshop/**
