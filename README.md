@@ -4,6 +4,7 @@
 
 ## Оглавление
 - [Установка сервера](#установка-сервера)
+- [Конфигурация](#конфигурация)
 - [Моды](#моды)
 - [SourceMod расширения](#sourcemod-расширения)
 - [SourceMod плагины](#sourcemod-плагины)
@@ -30,6 +31,10 @@
 - `status`
 - `exit`
 
+### Конфигурация
+- `Unknown command "mat_bloom_scalefactor_scalar"`
+   - Закомментировать команду в `left4dead2/cfg/modsettings.cfg`
+
 ### Моды
 1. [Metamod:Source 1.12.0-dev+1219](https://www.metamodsource.net/downloads.php?branch=stable)
    - Документация: [Metamod:Source documentation](https://wiki.alliedmods.net/Category:Metamod:Source_Documentation)
@@ -52,9 +57,9 @@
 ### SourceMod плагины
 `sm plugins list`
 1. [[L4D2] Custom admin commands (1.3.9e) by honorcode23, Shadowysn (improvements)](https://forums.alliedmods.net/showpost.php?p=2704580&postcount=483)
-   - Добавляет в меню `sm_admin` дополнительные команды, например: ноуклип, телепорт, инкап и т. п.
+   - Добавляет в меню `sm_admin` дополнительные команды, например: неуязвимость, телепорт, инкап и тому подобные.
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
-   - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и т. д.
+   - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и так далее.
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 
@@ -138,3 +143,4 @@
 - `An error occurred while attempting to download a file from the UGC server!`
    - Временная проблема на стороне Steam, обычно исправляют в течении нескольких дней
 - [Как передать управление группой](https://steamcommunity.com/discussions/forum/26/1291817837640449310)
+- **Branding image** в Steam-коллекции поддерживает следующие форматы: **JPEG**, **GIF**, **PNG**.
