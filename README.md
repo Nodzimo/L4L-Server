@@ -66,6 +66,7 @@
    - Добавляет в админку спавн оружия и заражённых
 5. [[ANY] Restart Empty Server (or Map) (2.9) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=315367)
    - Автоматический перезапуск пустого сервера, чтобы он не оставался с кастомной картой
+6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 
 #### Плагины для разработки и тестирования
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
