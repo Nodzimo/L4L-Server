@@ -15,6 +15,11 @@ Client/**
 !Client/L4D2.bat
 !Client/Workshop
 !Client/Workshop/**
+!Client/Soft
+!Client/Soft/**
+Client/Soft/SCMD Workshop Downloader 2
+Client/Soft/Source Admin Tool (HLSW Alternative)/**
+!Client/Soft/Source Admin Tool (HLSW Alternative)/SAT-win-c79998d.zip
 !Client/Configs
 !Client/Configs/**
 !Client/Configs/custom

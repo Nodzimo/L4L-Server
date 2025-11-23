@@ -144,6 +144,10 @@
 - [Rayman1103's Mutation Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=121070254)
    - Для корректного переключения мутаций во время игры через плагин **Vote Mode**
 
+#### Программы
+- [Source Admin Tool (HLSW Alternative)](https://forums.alliedmods.net/showthread.php?t=289370)
+   - Мониторинг серверов с чатом и RCON
+
 ### Репозиторий
 - `git rm --cached -r`
    - Удалить файл из репозитория, если он уже туда попал, но оставить его локально на тачке
