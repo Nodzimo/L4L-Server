@@ -62,6 +62,8 @@
    - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и так далее.
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
+4. [[L4D2] WeaponZombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
+   - Добавляет в админку спавн оружия и заражённых
 
 #### Плагины для разработки и тестирования
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

@@ -9,6 +9,7 @@ Platform/Windows/SteamCMD/**
 
 Keys
 Source/Maps
+Source/Test
 Setup/6. Maps
 Client/**
 !Client/L4D2.bat
