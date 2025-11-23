@@ -185,7 +185,7 @@
       git rm --cached -r "Platform/Windows/SteamCMD"
       git commit -m "Stop tracking SteamCMD runtime files"
       ```
-- Максимальный размер коммита для GitHub репозитория: **30 мегабайт** (но это не точно)
+- Максимальный размер коммита для GitHub репозитория: **65 мегабайт** (но это не точно)
 - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ### Steam
