@@ -15,3 +15,8 @@ Client/**
 !Client/L4D2.bat
 !Client/Workshop
 !Client/Workshop/**
+!Client/Configs
+!Client/Configs/**
+!Client/Configs/custom
+!Client/Configs/custom/**
+Client/Configs/custom/private.cfg
