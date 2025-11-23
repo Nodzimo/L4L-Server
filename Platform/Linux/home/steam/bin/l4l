@@ -1,0 +1,153 @@
+#!/bin/bash
+
+SCREEN="screen -dmS"
+GAME="-game left4dead2"
+DEFAULT_MAP="+map c1m2_streets"
+
+BASE_DIR="./servers/"
+SERVER_BIN="/srcds_run"
+VANILLA_DIR="${BASE_DIR}l4l1${SERVER_BIN}"
+
+TAG="L4L2"
+LOG_TAG="[L4L]"
+
+ids() {
+        echo 1 2 3 4 5 6 7
+}
+
+run_server() {
+        id="$1"
+	PORT="-port 2703${id}"
+        SESSION_NAME="l4l${id}"
+
+	VANILLA_NAME="Vanillin++"
+	VANILLA_HOSTNAME="${TAG} #${id} $VANILLA_NAME"
+
+        case "$id" in
+                1)
+                        echo "$LOG_TAG #$id $VANILLA_NAME"
+                        $SCREEN $SESSION_NAME $VANILLA_DIR $GAME $DEFAULT_MAP $PORT +hostname "\"$VANILLA_HOSTNAME\""
+                        ;;
+                2)
+                        echo "$LOG_TAG #$id $VANILLA_NAME"
+                        $SCREEN $SESSION_NAME $VANILLA_DIR $GAME $DEFAULT_MAP $PORT +hostname "\"$VANILLA_HOSTNAME\""
+                        ;;
+                3)
+                        echo "$LOG_TAG #$id $VANILLA_NAME"
+                        $SCREEN $SESSION_NAME $VANILLA_DIR $GAME $DEFAULT_MAP $PORT +hostname "\"$VANILLA_HOSTNAME\""
+                        ;;
+                4)
+                        echo "$LOG_TAG #$id $VANILLA_NAME"
+                        $SCREEN $SESSION_NAME $VANILLA_DIR $GAME $DEFAULT_MAP $PORT +hostname "\"$VANILLA_HOSTNAME\""
+                        ;;
+                5)
+                        echo "$LOG_TAG #$id $VANILLA_NAME"
+                        $SCREEN $SESSION_NAME $VANILLA_DIR $GAME $DEFAULT_MAP $PORT +hostname "\"$VANILLA_HOSTNAME\""
+                        ;;
+		6)
+			echo "$LOG_TAG #$id Oldcore"
+                        $SCREEN $SESSION_NAME ${BASE_DIR}l4l2${SERVER_BIN} $GAME $DEFAULT_MAP $PORT +hostname "\"${TAG} #${id} Oldcore\""
+                        ;;
+		7)
+			echo "$LOG_TAG #$id LMBX"
+			$SCREEN $SESSION_NAME ${BASE_DIR}l4l3${SERVER_BIN} $GAME $DEFAULT_MAP $PORT +hostname "\"${TAG} #${id} LMBX\""
+			;;
+                *)
+                        echo "Unknown server ID: $id"
+                        ;;
+        esac
+}
+
+run() {
+	id="$1"
+
+	if [[ -z "$id" ]]; then
+		for server_id in $(ids); do
+			run_server "$server_id"
+		done
+	else
+		run_server "$id"
+	fi
+}
+
+stop_server() {
+	id="$1"
+	SERVER_NAME="l4l${id}"
+
+	echo "$LOG_TAG Stopping server #$id"
+	screen -S $SERVER_NAME -X quit
+}
+
+stop() {
+	id="$1"
+
+	if [[ -z "$id" ]]; then
+		for server_id in $(ids); do
+			stop_server "$server_id"
+		done
+	else
+		stop_server "$id"
+	fi
+}
+
+restart_server() {
+	id="$1"
+
+	echo "$LOG_TAG Restarting server #$id"
+	stop_server "$id"
+	run "$id"
+}
+
+restart() {
+	id="$1"
+
+	if [[ -z "$id" ]]; then
+		for server_id in $(ids); do
+			restart_server "$server_id"
+		done
+	else
+		restart_server "$id"
+	fi
+}
+
+server_status() {
+	id="$1"
+
+	SERVER_NAME="l4l${id}"
+
+	if screen -ls | grep -q "[.]${SERVER_NAME}"; then
+		echo "$LOG_TAG Server #$id: RUNNING"
+	else
+		echo "$LOG_TAG Server #$id: STOPPED"
+	fi
+}
+
+status() {
+	id="$1"
+
+	if [[ -z "$id" ]]; then
+		for server_id in $(ids); do
+			server_status "$server_id"
+		done
+	else
+		server_status "$id"
+	fi
+}
+
+case "$1" in
+	run)
+		run "$2"
+		;;
+	stop)
+		stop "$2"
+		;;
+	restart)
+		restart "$2"
+		;;
+	status)
+		status "$2"
+		;;
+	*)
+		echo "Usage: $0 <run|stop|restart|status> [ID]"
+		;;
+esac
