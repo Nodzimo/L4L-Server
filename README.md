@@ -94,7 +94,7 @@
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
 
-[Коллекция всех V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608129891)
+[Коллекция серверных V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608129891)
 
 - [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
 - [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
@@ -141,6 +141,8 @@
 - [Ultimate L4D2 Config](https://github.com/theletterjwithadot/Ultimate-Config-for-L4D2)
 
 #### Мастерская
+[Коллекция клиентских V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3610995671)
+
 - [Rayman1103's Mutation Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=121070254)
    - Для корректного переключения мутаций во время игры через плагин **Vote Mode**
 
