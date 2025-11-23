@@ -130,6 +130,7 @@
 - [Target5150 / MoYu_Server_Stupid_Plugins](https://github.com/Target5150/MoYu_Server_Stupid_Plugins)
 - [SirPlease / L4D2-Competitive-Rework](https://github.com/SirPlease/L4D2-Competitive-Rework)
 - [Tabbernaut / L4D2-Plugins](https://github.com/Tabbernaut/L4D2-Plugins)
+- [Stabbath / L4D2-Stuff](https://github.com/Stabbath/L4D2-Stuff)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
