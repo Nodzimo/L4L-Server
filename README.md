@@ -65,6 +65,8 @@
 1. [Accelerator (2.6.0-manual): SRCDS Crash Handler](https://forums.alliedmods.net/showthread.php?t=277703)
    - [Throttle dashboard](https://crash.limetech.org/dashboard)
    - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
+2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
+   - Требуется для плагина **Steam Works Group Manager**
 
 ### SourceMod плагины
 `sm plugins list`
@@ -82,22 +84,20 @@
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 7. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
 8. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
-   - Опционально: **Mission and Weapons - Info Editor** для загрузки корректной карты при смене режимов Survival/Scavenge
-   - Опционально: **Rayman1103's Mutation Mod** кастомные мутации для клиента, чтобы можно было переключаться на них во время игры
+   - Опционально: плагин **Mission and Weapons - Info Editor** для загрузки корректной карты при смене режимов Survival/Scavenge
+   - Опционально: клиентский V-скрипт **Rayman1103's Mutation Mod** - кастомные мутации, чтобы можно было переключаться на них во время игры
    - `sm_votemode`
 9. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
-10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix" (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
-    - Зависимость: **ThirdPersonShoulder Detect**
+10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
+    - Зависимость: плагин **ThirdPersonShoulder Detect**
 11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
-    - Требуется для **ThirdPersonShoulder Shotgun Sound Fix**
+    - Требуется для плагина **ThirdPersonShoulder Shotgun Sound Fix**
 12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
-    - Зависимость: **Multi Colors**
-13. [Steam Works Group Manager [a.k.a SWGM]](https://github.com/SomethingFromSomewhere/SWGM)
+    - Зависимость: скрипты **Multi Colors** для компиляции плагина
+13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
-    - Зависимость: **SteamWorks**
-14. [SteamWorks](https://forums.alliedmods.net/showthread.php?t=229556)
-    - Требуется для **Steam Works Group Manager**
+    - Зависимость: расширение **SteamWorks**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
