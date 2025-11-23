@@ -47,7 +47,7 @@
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
    - `sm version`
-   - [SourceMod 1.11 build 6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
+   - [SourceMod 1.11.0.6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
       - Для компиляции плагинов на старом синтаксисе **SourcePawn**
 
 ### SourceMod расширения
@@ -185,7 +185,7 @@
       git rm --cached -r "Platform/Windows/SteamCMD"
       git commit -m "Stop tracking SteamCMD runtime files"
       ```
-- Максимальный размер коммита для GitHub репозитория: **65 мегабайт** (но это не точно)
+- Максимальный размер коммита для GitHub репозитория: **150 мегабайт** (но это не точно)
 - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ### Steam

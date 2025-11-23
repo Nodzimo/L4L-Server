@@ -26,4 +26,5 @@ Client/Soft/Source Admin Tool (HLSW Alternative)/**
 !Client/Configs/custom/**
 Client/Configs/custom/private.cfg
 
-Source/Mods/SourceMod/Windows/Stable 1.11
+Source/Mods/SourceMod/Windows/Stable 1.11/**
+!Source/Mods/SourceMod/Windows/Stable 1.11/sourcemod-1.11.0-git6970-windows.zip
