@@ -75,6 +75,10 @@
    - `sm_votemode`
 9. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
+10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix" (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
+   - Зависимость: **ThirdPersonShoulder Detect**
+11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
+   - Обязателен для **ThirdPersonShoulder Shotgun Sound Fix**
 
 #### Плагины для разработки и тестирования
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -143,6 +147,7 @@
 ### Онлайн-инструменты
 - [Steam ID Finder](https://steamid.pro)
 - [STEAMID I/O - lookup and convert your steamID, steamID3, steamID64, customURL and community id](https://steamid.io)
+- [GitHub Repository Downloader](https://sauravhathi.github.io/github-repository-downloader)
 
 ### Клиент
 - [Left 4 Dead 2 Complete Launch Options](https://steamcommunity.com/sharedfiles/filedetails/?id=3543870520)
