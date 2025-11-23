@@ -63,6 +63,12 @@
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 
+#### Плагины для разработки и тестирования
+- [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
+   - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
+- [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
+   - Горячая перезагрузка плагина при его компиляции или удалении
+
 #### L4D2 Survivor Bot AI Improver
 - [Репозиторий оригинала](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver)
    - Автор практически забил на плагин, но время от времени вливает изменения в [экспериментальную ветку](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver/tree/experimental)
