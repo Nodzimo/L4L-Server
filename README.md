@@ -60,6 +60,7 @@
    - Добавляет в меню `sm_admin` дополнительные команды, например: неуязвимость, телепорт, инкап и тому подобные.
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
    - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и так далее.
+   - `sm_maps`
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 4. [[L4D2] WeaponZombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
@@ -69,6 +70,11 @@
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 7. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
 8. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
+   - Опционально: **Mission and Weapons - Info Editor** для загрузки корректной карты при смене режимов Survival/Scavenge
+   - Опционально: **Rayman1103's Mutation Mod** кастомные мутации для клиента, чтобы можно было переключаться на них во время игры
+   - `sm_votemode`
+9. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
+   - Опционально: для плагина **Vote Mode**
 
 #### Плагины для разработки и тестирования
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -106,6 +112,8 @@
 - [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
 - [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
 - [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
+> [!CAUTION]
+> Проверить: не работает в соревновательных режимах?
 - [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
 
 ### Карты
