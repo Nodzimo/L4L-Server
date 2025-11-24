@@ -111,6 +111,11 @@
    - Горячая перезагрузка плагина при его компиляции или удалении
 
 #### L4D2 Survivor Bot AI Improver
+> [!CAUTION]
+> С этим плагином было много проблем на старом L4L: ошибки, лаги, краши.
+
+На форуме убедительно доказывают, что он работает стабильно и не лагает, даже если смешать его с другими плагинами про ботов и V-скриптом **Left 4 Bots 2**.
+
 - [Репозиторий оригинала](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver)
    - Автор практически забил на плагин, но время от времени вливает изменения в [экспериментальную ветку](https://github.com/Kerouha/L4D2-Survivor-Bot-AI-Improver/tree/experimental)
 - [Репозиторий форка](https://github.com/Emana202/L4D2-Survivor-Bot-AI-Improver)
@@ -121,15 +126,18 @@
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
 - [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins)
 - [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
+   - Один из самых активных разработчиков в сообществе: самостоятельно пишет плагины, публичные и приватные за деньги, реворкает/ремейкает чужие и заброшенные. Выкладывает всё в свой репозиторий и хорошо поддерживает его.
 - [fdxx / l4d2_plugins](https://github.com/fdxx/l4d2_plugins)
 - [wyxls / SourceModPlugins-L4D2](https://github.com/wyxls/SourceModPlugins-L4D2)
 - [A1oneR / L4D2_DRDK_Plugins](https://github.com/A1oneR/L4D2_DRDK_Plugins)
 - [Dosergen / Stuff](https://github.com/Dosergen/Stuff)
+   - Активный админ кастомных L4D1-2 серверов: берёт оригинальные плагины, фиксит, что может, подгоняет их под свои нужды и добавляет поддержку первой Left 4 Dead.
 - [garamond13 SourcePawn repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
 - [Hatsune-Imagine / l4d2-plugins](https://github.com/Hatsune-Imagine/l4d2-plugins)
 - [PaaNChaN / L4D2_Plugins](https://github.com/PaaNChaN/L4D2_Plugins)
 - [Target5150 / MoYu_Server_Stupid_Plugins](https://github.com/Target5150/MoYu_Server_Stupid_Plugins)
 - [SirPlease / L4D2-Competitive-Rework](https://github.com/SirPlease/L4D2-Competitive-Rework)
+   - Набор соревновательных плагинов с хорошей поддержкой.
 - [Tabbernaut / L4D2-Plugins](https://github.com/Tabbernaut/L4D2-Plugins)
 - [Stabbath / L4D2-Stuff](https://github.com/Stabbath/L4D2-Stuff)
 
