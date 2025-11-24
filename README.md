@@ -42,9 +42,21 @@
 - `exit`
 
 ### Конфигурация
+- `Unknown command ","`
+   - В конфигах нельзя писать комментарии на кириллице
 - `Unknown command "mat_bloom_scalefactor_scalar"`
    - Закомментировать команду в `left4dead2/cfg/modsettings.cfg`
-
+- `sb_all_bot_game 1` (по умолчанию 0)
+   - Пробуждает сервер из гибернации, даже если он пустой: `Server waking up from hibernation`
+   - Сервер не выключится через 5 минут, если все игроки ушли в АФК: `Sending 'crash'... Reason: Empty Server`
+   - Игроков не выкинет с сервера через 5 минут бездействия:
+      ```
+      Disconnected
+      The server shut down because all players were idle.
+      ```
+   - Сервер будет работать без игроков, не уходя в гибернацию: `not hibernating`
+- `allow_all_bot_survivor_team 1` (по умолчанию 0)
+   - Если все игроки умерли, то боты продолжают играть дальше и идти вперёд.
 ### Моды
 1. [Metamod:Source 1.12.0-dev+1219](https://www.metamodsource.net/downloads.php?branch=stable)
    - Документация: [Metamod:Source documentation](https://wiki.alliedmods.net/Category:Metamod:Source_Documentation)
