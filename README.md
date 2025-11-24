@@ -124,8 +124,7 @@
 
 #### Репозитории плагинов
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
-- [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins)
-- [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
+- [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins), [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
    - Один из самых активных разработчиков в сообществе: самостоятельно пишет плагины, публичные и приватные за деньги, реворкает/ремейкает чужие и заброшенные. Выкладывает всё в свой репозиторий и хорошо поддерживает его.
 - [fdxx / l4d2_plugins](https://github.com/fdxx/l4d2_plugins)
 - [wyxls / SourceModPlugins-L4D2](https://github.com/wyxls/SourceModPlugins-L4D2)
