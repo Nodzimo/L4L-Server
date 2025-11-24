@@ -56,9 +56,10 @@
    - Установка SourceMod: [Installing SourceMod](https://wiki.alliedmods.net/Installing_SourceMod)
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
-   - `sm version`
    - [SourceMod 1.11.0.6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
       - Для компиляции плагинов на старом синтаксисе **SourcePawn**
+   - `sm version`
+   - `sm_admin`
 
 ### SourceMod расширения
 `sm exts list`
@@ -71,13 +72,13 @@
 ### SourceMod плагины
 `sm plugins list`
 1. [[L4D2] Custom admin commands (1.3.9e) by honorcode23, Shadowysn (improvements)](https://forums.alliedmods.net/showpost.php?p=2704580&postcount=483)
-   - Добавляет в меню `sm_admin` дополнительные команды, например: неуязвимость, телепорт, инкап и тому подобные.
+   - Добавляет в админку дополнительные команды, например: неуязвимость, телепорт, инкап и тому подобные.
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
-   - Мультикомбайн: автоматическое добавление новых карт в меню `sm_maps`, рейтинг карт, настройка смены кампании после финала и так далее.
+   - Мультикомбайн: автоматическое добавление новых карт в меню, рейтинг карт, настройка смены кампании после финала и так далее.
    - `sm_maps`
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
-4. [[L4D2] WeaponZombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
+4. [[L4D2] Weapon/Zombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
    - Добавляет в админку спавн оружия и заражённых
 5. [[ANY] Restart Empty Server (or Map) (2.9) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=315367)
    - Автоматический перезапуск пустого сервера, чтобы он не оставался с кастомной картой
