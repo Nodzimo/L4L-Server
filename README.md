@@ -18,6 +18,7 @@
     - [V-скрипты](#v-скрипты)
     - [Карты](#карты)
       - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
+    - [Dev-сборка](#dev-сборка)
     - [Консольные команды](#консольные-команды)
     - [Онлайн-инструменты](#онлайн-инструменты)
     - [Клиент](#клиент)
@@ -191,6 +192,9 @@
 - [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 - [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 - [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+
+### Dev-сборка
+После рестарта пустого сервера загружается случайная официальная кампания со второй карты
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
