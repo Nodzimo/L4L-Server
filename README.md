@@ -116,6 +116,16 @@
     - `Failed to auto generate config for SWGM.smx, make sure the directory has write permission.`
          - Для автоматической генерации конфига нужно вручную создать для него конечную папку: `left4dead2/cfg/sourcemod/swgm`
          - Точный путь конфига можно узнать в исходнике: `AutoExecConfig(true, "swgm", "sourcemod/swgm");`
+   - Форк: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
+14. [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
+   - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
+15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
+   - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
+   - Зависимость: **Left 4 DHooks Direct**
+16. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
+   - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
+> [!IMPORTANT]
+> Надо форкать, потому что плагин позволяет выкидывать все предметы, оставляя игрока в А-позе, либо блокирует возможность выбрасывать всё второстепенное оружие.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
