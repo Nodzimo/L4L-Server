@@ -113,6 +113,9 @@
 13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
     - Зависимость: расширение **SteamWorks**
+    - `Failed to auto generate config for SWGM.smx, make sure the directory has write permission.`
+         - Для автоматической генерации конфига нужно вручную создать для него конечную папку: `left4dead2/cfg/sourcemod/swgm`
+         - Точный путь конфига можно узнать в исходнике: `AutoExecConfig(true, "swgm", "sourcemod/swgm");`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
