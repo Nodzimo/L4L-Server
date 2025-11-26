@@ -100,6 +100,7 @@
    - Автоматический перезапуск пустого сервера, чтобы он не оставался с кастомной картой
 > [!IMPORTANT]
 > Нужно настроить время до рестарта сервера, после выхода с него последнего игрока.
+>
 > Сейчас это происходит моментально, без возможности быстро перезайти на сервер при необходимости.
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 7. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
@@ -153,7 +154,9 @@
 #### L4D2 Survivor Bot AI Improver
 > [!CAUTION]
 > С этим плагином было много проблем на старом L4L: ошибки, лаги, краши.
+>
 > Поэтому в сборке его нет и возможно не будет **(!)**
+>
 > Вместо него надо попробовать **Left 4 Bots 2** из мастерской, который активно поддерживается и обновляется.
 
 На форуме убедительно доказывают, что он работает стабильно и не лагает, даже если смешать его с другими плагинами про ботов и V-скриптом **Left 4 Bots 2**.
@@ -199,6 +202,7 @@
 - [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
+>
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
 - [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
 
