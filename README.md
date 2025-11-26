@@ -78,7 +78,7 @@
 ### SourceMod расширения
 `sm exts list`
 1. [Accelerator (2.6.0-manual): SRCDS Crash Handler](https://forums.alliedmods.net/showthread.php?t=277703)
-   - [Throttle dashboard](https://crash.limetech.org/dashboard)
+   - Расширение для автоматической загрузки краш-репортов на [Throttle dashboard](https://crash.limetech.org/dashboard)
    - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
    - Требуется для плагина **Steam Works Group Manager**
@@ -90,15 +90,22 @@
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
    - Мультикомбайн: автоматическое добавление новых карт в меню, рейтинг карт, настройка смены кампании после финала и так далее.
    - `sm_maps`
+> [!IMPORTANT]
+> - Нужно в меню переименовать раздел с кастомными картами
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
    - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 4. [[L4D2] Weapon/Zombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
    - Добавляет в админку спавн оружия и заражённых
 5. [[ANY] Restart Empty Server (or Map) (2.9) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=315367)
    - Автоматический перезапуск пустого сервера, чтобы он не оставался с кастомной картой
+> [!IMPORTANT]
+> Нужно настроить время до рестарта сервера, после выхода с него последнего игрока.
+> Сейчас это происходит моментально, без возможности быстро перезайти на сервер при необходимости.
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 7. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
+   - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
 8. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
+   - Смена режима во время игры: мутации, кооперативные и соревновательные режимы, и многие другие.
    - Опционально: плагин **Mission and Weapons - Info Editor** для загрузки корректной карты при смене режимов Survival/Scavenge
    - Опционально: клиентский V-скрипт **Rayman1103's Mutation Mod** - кастомные мутации, чтобы можно было переключаться на них во время игры
    - `sm_votemode`
@@ -109,21 +116,27 @@
 11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
     - Требуется для плагина **ThirdPersonShoulder Shotgun Sound Fix**
 12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
+    - Оповестительные сообщения в чате при входе/выходе игроков
+    - Для рядовых игроков показывается краткая информация: страна и причина отключения
+    - Для админов выводятся подробности: страна, регион, город, причина отключения, Steam ID, IP.
     - Зависимость: скрипты **Multi Colors** для компиляции плагина
 13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
-    - Интеграция Steam Works Group Manager для проверки подписан ли игрок на Steam группу
+    - Библиотека с интеграцией **SteamWorks** для проверки подписки/прав игрока в Steam группе
     - Зависимость: расширение **SteamWorks**
     - `Failed to auto generate config for SWGM.smx, make sure the directory has write permission.`
          - Для автоматической генерации конфига нужно вручную создать для него конечную папку: `left4dead2/cfg/sourcemod/swgm`
          - Точный путь конфига можно узнать в исходнике: `AutoExecConfig(true, "swgm", "sourcemod/swgm");`
-   - Форк: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
+    - Форкнул: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
+> [!IMPORTANT]
+> Надо написать плагин с приветственными/информационными сообщениями для игроков, которые не подписаны на группу.
 14. [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
-   - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
+    - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
-   - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
-   - Зависимость: **Left 4 DHooks Direct**
+    - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
+    - Зависимость: **Left 4 DHooks Direct**
 16. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
-   - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
+    - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
+    - Пока нет форка: стоит блокировка на дроп всего второстепенного оружия
 > [!IMPORTANT]
 > Надо форкать, потому что плагин позволяет выкидывать все предметы, оставляя игрока в А-позе, либо блокирует возможность выбрасывать всё второстепенное оружие.
 
@@ -135,11 +148,13 @@
 - [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
 - [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
-   - Горячая перезагрузка плагина при его компиляции или удалении
+   - Горячая перезагрузка плагина при его добавлении/компиляции/удалении
 
 #### L4D2 Survivor Bot AI Improver
 > [!CAUTION]
 > С этим плагином было много проблем на старом L4L: ошибки, лаги, краши.
+> Поэтому в сборке его нет и возможно не будет **(!)**
+> Вместо него надо попробовать **Left 4 Bots 2** из мастерской, который активно поддерживается и обновляется.
 
 На форуме убедительно доказывают, что он работает стабильно и не лагает, даже если смешать его с другими плагинами про ботов и V-скриптом **Left 4 Bots 2**.
 
@@ -163,7 +178,7 @@
 - [PaaNChaN / L4D2_Plugins](https://github.com/PaaNChaN/L4D2_Plugins)
 - [Target5150 / MoYu_Server_Stupid_Plugins](https://github.com/Target5150/MoYu_Server_Stupid_Plugins)
 - [SirPlease / L4D2-Competitive-Rework](https://github.com/SirPlease/L4D2-Competitive-Rework)
-   - Набор соревновательных плагинов с хорошей поддержкой.
+   - Набор соревновательных плагинов, часть из которых подходит и для кооператива, с хорошей поддержкой репозитория.
 - [Tabbernaut / L4D2-Plugins](https://github.com/Tabbernaut/L4D2-Plugins)
 - [Stabbath / L4D2-Stuff](https://github.com/Stabbath/L4D2-Stuff)
 
@@ -184,6 +199,7 @@
 - [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
+> Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
 - [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
 
 ### Карты
