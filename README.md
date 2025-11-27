@@ -91,9 +91,10 @@
    - Мультикомбайн: автоматическое добавление новых карт в меню, рейтинг карт, настройка смены кампании после финала и так далее.
    - `sm_maps`
 > [!IMPORTANT]
-> - Нужно в меню переименовать раздел с кастомными картами
+> Нужно в меню переименовать раздел с кастомными картами
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
-   - Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
+> [!CAUTION]
+> Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
 4. [[L4D2] Weapon/Zombie Spawner (1.3c) by Zuko & McFlurry, Zheldorg](https://forums.alliedmods.net/showpost.php?p=2732571&postcount=491)
    - Добавляет в админку спавн оружия и заражённых
 5. [[ANY] Restart Empty Server (or Map) (2.9) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=315367)
