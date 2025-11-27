@@ -148,6 +148,9 @@
 18. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
    - Голосование за рестарт сервера
    - `sm_restart`
+19. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
+   - Даёт возможность прикладить выживших и настраивать права на это действие
+   - `Shove + Use`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
