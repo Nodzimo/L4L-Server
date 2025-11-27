@@ -1,0 +1,112 @@
+/*
+	Special thanks to:
+	
+	 - MicroLeo - for CreateSurvivorBot extension.
+	 
+	ChangeLog:
+	
+	Fork by Dragokas:
+
+	2.0 (15-Apr-2020) - based on 1.9.5 from Crasher
+	
+	 - Made respawned player not losing its scores anymore (thanks to Silvers for explaining me opcodes, tools, his patch samples and a lot of patience).
+	 - code optimization, checking trace handle for validity, closing config handle etc...
+	 - New ConVar "l4d_sm_respawn_showaction". Default: 1. Control, whether to display chat message and to do LogAction.
+	 - New ConVar "l4d_sm_respawn_adminmenu". Default: 1. Control, whether to add "Respawn item" in top admin menu under "Player commands" (sm_admin)
+	(so, no need to manually add it to "configs/adminmenu_custom.txt" anymore).
+	 - Added native for developers: SM_Respawn - see details in l4d_sm_respawn.inc.
+	 - Allowing respawn several clients using admin menu without need to re-open that menu each time + save pagination, very helpful when server has > 7 players.
+	 - TraceRay is supplied with TraceHull for better detection of non-collide spawn end point.
+	 - Set target angle according to your eyes angle.
+	 - Command "sm_respawn" (without arguments) is now opens menu to select players for respawning at your crosshair.
+	 - Added teleport at crosshair for spawned infected in "Versus" mode (same as for survivors), because sometimes ghost getting stuck.
+	 - Support translation (currently: English, Russian).
+	 
+	2.1 (17-Apr-2020)
+	 - Fixed that strange code for clearing player's dead body after respawn in L4D2.
+	 - Added Hungarian translation (thanks to KasperH).
+	 - Added Spanish translation (thanks to SkiPlix).
+	 - Added Swedish translation (thanks to Enzyoo).
+	 
+	2.2 (28-Feb-2021)
+	 - Nothing new, just changed filename of GameData to prevent the conflicts.
+
+	2.3 (10-Mar-2021)
+	 - Added ConVar "l4d_sm_respawn_position" - Where to respawn? 0 - at crosshair, 1 - next to alive player.
+	 - Added translations: traditional Chinese and Simplified Chinese (thanks to HarryPotter).
+	 
+	2.4 (11-Mar-2021)
+	 - Fixed missing ConVar.
+	 - Added translations: Brazil and Portugal (thanks to Marttt).
+	
+	3.0 (15-Apr-2021)
+	 - Lot of improvements on more accurate trace calculations to find a spawn position: 
+		* Prevented client stuck when aimed under the ceiling and in tight spaces inside buildings.
+		* Fixed player size is incorrectly detected when he is dead or spectator.
+		* Added ability to spawn player in "Duck" (crouching) state, like inside the transport / duct with limited height of space.
+	 - Added ConVar "l4d_sm_respawn_teams" - What teams to display in respawn menu? (2 - Spectators, 4 - Survivors, 8 - Infected, 16 - Dead only, 32 - No survivor bots, 64 - No infected bots. You can combine values)
+	 - Added ConVar "l4d_sm_respawn_accessflag" - Admin flag required to use the respawn command.
+	 - Added ConVar "l4d_sm_respawn_ghost" - Respawn infected player as ghost? (1 - Yes, No - instant respawn).
+	 - Fixed bug: other player become frozen if you force a respawn while he tries to revive or heal you (or vice versa).
+	 - Fixed conflict with AdminCheats plugin (thanks to Silvers for report and code).
+	 - Added compatibility (in L4D1) to be able to re-spawn an infected player.
+	 - Added compatibility with "Heartbeat (Revive Fix - Post Revive Options)" plugin by Silvers.
+	 - Added ability to respawn player who is in Spectator team, even if there are no bots to takeover (thanks to MicroLeo and Shadowysn for some code and signatures):
+	  * if you want this feature at first will try to takeover own (or free) bot instead of respawning, you must set "l4d_sm_respawn_position" ConVar to 32+X.
+	 - Added marks "(spectator)" and "(dead)" in the players list menu. Translation file is updated.
+	 - Added a new sub-menu to select the team you want to respawn the spectator in.
+	 - Native "SM_Respawn" is appended with the new fields:
+	  * iOverrideTeam - (optional) Specify it to force assigning player to a specific team.
+	  * eOverridePosition - (optional) Specify it to use a specific teleport rule - see enum "SPAWN_POSITION" in .inc file for details.
+ 	 - SPAWN_POSITION_ORIGIN flag with 0 (non-valid client) is now selects a REALLY random player to get spawn point next to him.
+ 	 - Added ability to respawn with changing team via Native or via new sm_respawnex command.
+	 - Added command "sm_respawnex". Its arguments are identical to SM_Respawn() native. Enum parameters should be passed as numeric.
+	 
+	 Note for users: 
+	  - "l4d_sm_respawn_position" ConVar old values meaning is changed. See the new description in the first post.
+	  - it is recommended to change your ConVar values according to new default values for the best experience (see the 1st forum post).
+	  - if you want to change position of "Respawn Player" item in admin menu items list, 1st forum post is updated with related configs for you.
+	 
+	 Note for devs: v3.x breaks "SM_Respawn()" native compatibility!
+	  - Please, update your plugins if you used 3rd argument (vector) of the previous version of this native.
+	  - Arguments order is changed. Full example of calling (with optional fields) can be found in: l4d_sm_respawn.inc and test plugin \examples\l4d_native_usage_sample.sp
+	
+	3.1 (19-Apr-2021)
+	 - Fixed mixed up values of SPAWN_POSITION_ORIGIN and SPAWN_POSITION_CROSSHAIR in file: l4d_sm_respawn.inc.
+	 - Fixed "sm_respawnex" command doesn't allow to accept 0 value for client (command issuer).
+	
+	3.2 (27-Jun-2021)
+	 - Wildcarded signature for "SurvivorBot::SetHumanSpectator" (L4D2).
+	 - Updated Hungarian translation (thanks to KasperH).
+	
+	3.3 (27-Jul-2021)
+	 - Wildcarded signature for "RoundRespawn" (L4D1 Windows) to protect against detour.
+	 - Removed some debugging leftover in chat (thanks to Silvers for letting me know).
+	
+	3.4 (03-Aug-2021)
+	 - Added additional check for NetClass "SurvivorBot" before retrieving "m_humanSpectatorUserID" prop, because team 2 + IsFakeClient wasn't enough. What kind of bot is that?
+	
+	3.5 (14-Oct-2021)
+	 - sm_respawn is now targets players from the same team (excepting, when you are a spectator).
+	
+	3.6 (04-Jan-2022)
+	 - Preserve character and model whenewer you try to respawn alive survivor.
+	
+	3.7 (04-Apr-2022)
+	 - Removed non-essential safe checks and added other.
+	 - Fixed mixed up player index when preserving character id on respawning alive player.
+	 - Added listen servers support.
+	
+	3.8 (26-Jun-2022)
+	 - Update for native option "SPAWN_POSITION_CROSSHAIR": If client is not defined, the random player of same team will be used.
+	 - Updated for SM 1.11.
+	 
+	3.9 (03-Sep-2023)
+	 - Updated for SM 1.12.
+	
+	
+	// TODO ?
+	
+	SetEntPropEnt(target, Prop_Send, "m_carryAttacker", -1);
+	SetEntPropEnt(target, Prop_Send, "m_carryVictim", -1);
+*/

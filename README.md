@@ -154,18 +154,21 @@
     - Если на сервере запущена игра, то в его имени выводится: название, номер, сборка, режим игры и сложность (если режим поддерживает разные уровни сложности).
     - Если сервер пустой, то в его имени выводится название, номер и сборка: **Vanilla**, **Legacy**, **LMBX**, **Test**, **Dev**.
 18. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
-   - Голосование за рестарт сервера
-   - `sm_restart`
+    - Голосование за рестарт сервера
+    - `sm_restart`
 19. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
-   - Даёт возможность прикладить выживших и настраивать права на это действие
-   - `Shove + Use`
+    - Даёт возможность прикладить выживших и настраивать права на это действие
+    - `Shove + Use`
 20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
-   - Апгрейды патронов 1 раз полностью восполняют амуницию оружия
+    - Апгрейды патронов 1 раз полностью восполняют амуницию оружия
 21. [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
-   - Блокирует голосование за кик админа, оповещая об этом в чате.
-   - Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
-   - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
-   - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
+    - Блокирует голосование за кик админа, оповещая об этом в чате.
+    - Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
+    - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
+    - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
+22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
+    - Добавляет в админку респавн персонажей по прицелу
+    - Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
