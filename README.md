@@ -58,6 +58,14 @@
    - Сервер будет работать без игроков, не уходя в гибернацию: `not hibernating`
 - `allow_all_bot_survivor_team 1` (по умолчанию 0)
    - Если все игроки умерли, то боты продолжают играть дальше и идти вперёд.
+- ```
+   Disconnected
+
+   Server is enforcing consistency for this file:
+   addons\2891062323.vpk
+   ```
+   - `sv_consistency 0`
+
 ### Моды
 1. [Metamod:Source 1.12.0-dev+1219](https://www.metamodsource.net/downloads.php?branch=stable)
    - Документация: [Metamod:Source documentation](https://wiki.alliedmods.net/Category:Metamod:Source_Documentation)
