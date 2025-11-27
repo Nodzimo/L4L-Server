@@ -90,6 +90,8 @@
    - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
    - Требуется для плагина **Steam Works Group Manager**
+3. [Actions (3.9.2) by BHaType](https://forums.alliedmods.net/showthread.php?t=336374)
+   - Требуется для плагина **Shove Direction Fix**
 
 ### SourceMod плагины
 `sm plugins list`
@@ -160,7 +162,7 @@
     - Даёт возможность прикладить выживших и настраивать права на это действие
     - `Shove + Use`
 20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
-    - Апгрейды патронов 1 раз полностью восполняют амуницию оружия
+    - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
 21. [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
     - Блокирует голосование за кик админа, оповещая об этом в чате.
     - Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
@@ -169,6 +171,12 @@
 22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
     - Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
+23. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
+    - Кидает зомби в сторону удара прикладом
+    - Зависимость: расширение **Actions**
+24. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
+    - Телепортирует всех ботов разом к игроку
+    - `sm_warpbots`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
