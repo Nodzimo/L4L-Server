@@ -151,6 +151,8 @@
 19. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
    - Даёт возможность прикладить выживших и настраивать права на это действие
    - `Shove + Use`
+20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
+   - Апгрейды патронов 1 раз полностью восполняют амуницию оружия
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -277,6 +279,6 @@
 
 ### Steam
 - `An error occurred while attempting to download a file from the UGC server!`
-   - Временная проблема на стороне Steam, обычно исправляют в течении нескольких дней
+   - Временная проблема на стороне Steam, обычно исправляют в течение нескольких дней
 - [Как передать управление группой](https://steamcommunity.com/discussions/forum/26/1291817837640449310)
 - **Branding image** в Steam-коллекции поддерживает следующие форматы: **JPEG**, **GIF**, **PNG**.
