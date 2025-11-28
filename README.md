@@ -278,7 +278,8 @@
 9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
 
 ### Dev-сборка
-После рестарта пустого сервера загружается случайная официальная кампания со второй карты
+- После рестарта пустого сервера загружается случайная официальная кампания со второй карты
+- Включены отладочные логи в расширении **Actions**
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
