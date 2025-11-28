@@ -53,6 +53,7 @@
    - Игроков не выкинет с сервера через 5 минут бездействия:
       ```
       Disconnected
+
       The server shut down because all players were idle.
       ```
    - Сервер будет работать без игроков, не уходя в гибернацию: `not hibernating`
@@ -165,12 +166,14 @@
     - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
 21. [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
     - Блокирует голосование за кик админа, оповещая об этом в чате.
-    - Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
     - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
     - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
+> [!IMPORTANT]
+> Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
 22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
-    - Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
+> [!CAUTION]
+> Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
 23. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
     - Кидает зомби в сторону удара прикладом
     - Зависимость: расширение **Actions**
@@ -183,9 +186,9 @@
    - Общая зависимость для плагинов, которые используют цвета в сообщениях игрового чата
 
 #### Плагины для разработки и тестирования
-- [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
+1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
-- [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
+2. [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
    - Горячая перезагрузка плагина при его добавлении/компиляции/удалении
 
 #### L4D2 Survivor Bot AI Improver
@@ -227,42 +230,42 @@
 
 [Коллекция серверных V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608129891)
 
-- [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
-- [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
-- [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
-- [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
-- [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
-- [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
-- [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
-- [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
-- [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
-- [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
+1. [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
+2. [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
+3. [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
+4. [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
+5. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
+6. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
+7. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
+8. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
+9. [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
+10. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
-- [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
+11. [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
 
-- [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
-- [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
+1. [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
+2. [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
 > [!CAUTION]
 > Проверить: первая карта (но это не точно) часто крашилась на сборке Nightmare
 
 #### Снежные, зимние, новогодние
-- [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
+3 [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
 > [!CAUTION]
 > Проверить: первая карта крашилась на старом L4L
-- [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
-- [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
-- [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
+4. [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
+5. [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
+6. [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
 > [!CAUTION]
 > Проверить: первая карта сильно лагала на старом L4L
-- [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
-- [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
-- [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+7. [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
+8. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
+9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
 
 ### Dev-сборка
 После рестарта пустого сервера загружается случайная официальная кампания со второй карты
@@ -304,5 +307,7 @@
 ### Steam
 - `An error occurred while attempting to download a file from the UGC server!`
    - Временная проблема на стороне Steam, обычно исправляют в течение нескольких дней
+   - Некоторым помогают стандартные процедуры: чистка кэша загрузок в Steam, инвалидация/переустановка игры, сброс облачной синхронизации файлов игры и тому подобное.
+   - Также может помочь переключение Steam клиента с бета версии на стабильную, потому что эта ошибка обычно прилетает с обновлениями, которые сначала раскатывают на бета версию, а затем на стабильную. Словив ошибку на бета версии, можно переключиться на стабильную, на которой обновления с ошибкой ещё нет.  
 - [Как передать управление группой](https://steamcommunity.com/discussions/forum/26/1291817837640449310)
 - **Branding image** в Steam-коллекции поддерживает следующие форматы: **JPEG**, **GIF**, **PNG**.
