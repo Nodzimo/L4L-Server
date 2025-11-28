@@ -101,8 +101,6 @@
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
    - Мультикомбайн: автоматическое добавление новых карт в меню, рейтинг карт, настройка смены кампании после финала и так далее.
    - `sm_maps`
-> [!IMPORTANT]
-> Нужно в меню переименовать раздел с кастомными картами
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
 > [!CAUTION]
 > Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L
@@ -133,6 +131,7 @@
     - Для рядовых игроков показывается краткая информация: страна и причина отключения
     - Для админов выводятся подробности: страна, регион, город, причина отключения, Steam ID, IP.
     - Зависимость: скрипты **Multi Colors** для компиляции плагина
+    - `sm_geolist`
 13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Библиотека с интеграцией **SteamWorks** для проверки подписки/прав игрока в Steam группе
     - Зависимость: расширение **SteamWorks**
@@ -245,6 +244,14 @@
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
 11. [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
+12. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
+  - Зависимости:
+      - **Left 4 Lib**
+      - **NavFixes**
+13. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
+   - Требуется для **Left 4 Bots 2**
+14. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
+   - Требуется для **Left 4 Bots 2**
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
