@@ -47,23 +47,24 @@
    - В конфигах нельзя писать комментарии на кириллице
 - `Unknown command "mat_bloom_scalefactor_scalar"`
    - Закомментировать команду в `left4dead2/cfg/modsettings.cfg`
-- `sb_all_bot_game 1` (по умолчанию 0)
-   - Пробуждает сервер из гибернации, даже если он пустой: `Server waking up from hibernation`
-   - Сервер не выключится через 5 минут, если все игроки ушли в АФК: `Sending 'crash'... Reason: Empty Server`
-   - Игроков не выкинет с сервера через 5 минут бездействия:
-      ```
-      Disconnected
+- Настройками ботов управляет V-скрипт **Left 4 Bots 2**, поэтому если он установлен, то не рекомендуется трогать квары ниже! 
+    - `sb_all_bot_game 1` (по умолчанию 0)
+        - Пробуждает сервер из гибернации, даже если он пустой: `Server waking up from hibernation`
+        - Сервер не выключится через 5 минут, если все игроки ушли в АФК: `Sending 'crash'... Reason: Empty Server`
+        - Игроков не выкинет с сервера через 5 минут бездействия:
+          ```
+          Disconnected
 
-      The server shut down because all players were idle.
-      ```
-   - Сервер будет работать без игроков, не уходя в гибернацию: `not hibernating`
-- `allow_all_bot_survivor_team 1` (по умолчанию 0)
-   - Если все игроки умерли, то боты продолжают играть дальше и идти вперёд.
+          The server shut down because all players were idle.
+          ```
+         - Сервер будет работать без игроков, не уходя в гибернацию: `not hibernating`
+  - `allow_all_bot_survivor_team 1` (по умолчанию 0)
+     - Если все игроки умерли, то боты продолжают играть дальше и идти вперёд.
 - ```
-   Disconnected
+  Disconnected
 
-   Server is enforcing consistency for this file:
-   addons\2891062323.vpk
+  Server is enforcing consistency for this file:
+  addons\2891062323.vpk
    ```
    - `sv_consistency 0`
 
@@ -309,8 +310,8 @@
    - После этой команды нужно закоммитить и запушить изменения в репозиторий
    - Пример:
       ```
-      git rm --cached -r "Platform/Windows/SteamCMD"
-      git commit -m "Stop tracking SteamCMD runtime files"
+     git rm --cached -r "Platform/Windows/SteamCMD"
+     git commit -m "Stop tracking SteamCMD runtime files"
       ```
 - Максимальный размер коммита для GitHub репозитория: **150 мегабайт** (но это не точно)
 - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
