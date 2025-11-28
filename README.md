@@ -245,6 +245,8 @@
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
 9. [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
 10. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
+    - [L4B2 commands](https://github.com/smilz0/Left4Bots/blob/main/COMMANDS.md)
+    - [Настройки конфига](https://github.com/smilz0/Left4Bots/blob/main/root/scripts/vscripts/left4bots_settings.nut)
     - Зависимости:
       - **Left 4 Lib**
       - **NavFixes**
