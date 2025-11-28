@@ -42,11 +42,8 @@
 	}
 	"Test_maps"
 	{
-		"en"		"Test maps"
-		"ru"		"Тестовые карты"
-		"ua"		"Тестові карти"
-		"zho"		"測試地圖"
-		"chi"		"测试地图"
+		"en"		"Custom maps"
+		"ru"		"Кастомные карты"
 	}
 	"All_maps"
 	{
