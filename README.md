@@ -252,6 +252,9 @@
    - Требуется для **Left 4 Bots 2**
 14. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
    - Требуется для **Left 4 Bots 2**
+15. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
+16. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
+17. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
