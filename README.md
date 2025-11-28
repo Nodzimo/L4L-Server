@@ -16,6 +16,7 @@
       - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
       - [Репозитории плагинов](#репозитории-плагинов)
     - [V-скрипты](#v-скрипты)
+      - [Неактуально](#неактуально)
     - [Карты](#карты)
       - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
     - [Dev-сборка](#dev-сборка)
@@ -233,29 +234,32 @@
 1. [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
 2. [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
 3. [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
-4. [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
-5. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
-6. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
-7. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
-8. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
-9. [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
-10. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
+4. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
+5. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
+6. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
+7. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
+8. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
-11. [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
-12. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
+9. [No Active Camera Damage VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3323149700)
+10. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
   - Зависимости:
       - **Left 4 Lib**
       - **NavFixes**
-13. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
+11. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
     - Требуется для **Left 4 Bots 2**
-14. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
+12. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
     - Требуется для **Left 4 Bots 2**
-15. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
-16. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
-17. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
+13. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
+14. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
+15. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
+
+#### Неактуально
+- Заменены V-скриптом **Zero's Behavior Patches**
+  - [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
+  - [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
