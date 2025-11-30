@@ -219,8 +219,8 @@
     - `sm_warpbots`
 25. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
     - Позволяет админу ставить онлайн-игру на паузу
-    - `sm_forcepause`
     - Зависимость: **Multi Colors**
+    - `sm_forcepause`
 26. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
     - Контролирует использование медикаментов ботами
     - Зависимости:
@@ -232,6 +232,7 @@
       - Расширение **Actions**
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
+    - Рекомендуется для плагина **VS Auto-spectate on AFK**
     - Основные команды:
       - `sm_afk`
       - `sm_join`
@@ -254,6 +255,7 @@
     - Зависимость: расширение **Source Scramble**
 33. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
+34. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
