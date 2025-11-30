@@ -4,6 +4,7 @@ SCREEN="screen -dmS"
 GAME="-game left4dead2"
 MAP='+map "c1m2_streets realism"'
 
+SERVERS_DIR="$HOME/servers/"
 BASE_DIR="./servers/"
 SERVER_BIN="/srcds_run"
 
@@ -11,12 +12,131 @@ VANILLA="${BASE_DIR}l4l1${SERVER_BIN}"
 LEGACY="${BASE_DIR}l4l2${SERVER_BIN}"
 LMBX="${BASE_DIR}l4l3${SERVER_BIN}"
 
+PARAMS="-ignoresigint"
+DEBUG="-debug -gdb gdb"
+
 LOG_TAG="[L4L]"
 VANILLA_NAME="Vanilla"
 LMBX_NAME="LMBX"
 
 ids() {
         echo 1 2 3 4 5 6 7
+}
+
+install_server() {
+	id="$1"
+	SERVER="${SERVERS_DIR}l4l$id"
+	
+	case "$id" in
+		"")
+			echo "$LOG_TAG Installing L4D2"
+			;;
+		1)
+			echo "$LOG_TAG Installing Vanilla"
+			;;
+                2)
+                        echo "$LOG_TAG Installing Legacy"
+			;;
+                3)
+                        echo "$LOG_TAG Installing LMBX"
+			;;
+		*)
+                        echo "Unknown server ID: $id"
+			return 1
+                        ;;
+        esac
+
+	mkdir -p $SERVER
+
+	steamcmd +force_install_dir "$SERVER" +login Sefo_Noshimo2 +app_update 222860 validate +quit
+}
+
+install(){
+	id="$1"
+
+	install_server "$id"
+}
+
+
+
+delete_server() {
+        id="$1"
+        SERVER="${BASE_DIR}l4l$id"
+
+        case "$id" in
+                "")
+                        echo "$LOG_TAG Deleting L4D2"
+                        ;;
+                1)
+                        echo "$LOG_TAG Deleting Vanilla"
+                        ;;
+                2)
+                        echo "$LOG_TAG Deleting Legacy"
+                        ;;
+                3)
+                        echo "$LOG_TAG Deleting LMBX"
+                        ;;
+                *)
+                        echo "Unknown server ID: $id"
+                        return 1
+                        ;;
+        esac
+
+	read -r -p "$LOG_TAG My}|{uk, are you sure? Delete server: $SERVER [y/N]: " answer
+
+        case "$answer" in
+                [yY]|[yY][eE][sS])
+                        rm -rf "$SERVER"
+                        echo "$LOG_TAG Deleted: $SERVER"
+                        ;;
+                *)
+                        echo "$LOG_TAG Delete cancelled"
+                        return 1
+                        ;;
+        esac
+}
+
+delete(){
+        id="$1"
+
+        delete_server "$id"
+}
+
+maps_server() {
+        id="$1"
+
+        SERVER="${SERVERS_DIR}l4l$id"
+        MAPS="$SERVER/left4dead2/addons/"
+
+        case "$id" in
+                1)
+                        echo "$LOG_TAG Linking maps for Vanilla (l4l1)"
+                        ;;
+                2)
+                        echo "$LOG_TAG Linking maps for Legacy (l4l2)"
+                        ;;
+                3)
+                        echo "$LOG_TAG Linking maps for LMBX (l4l3)"
+                        ;;
+                *)
+                        echo "$LOG_TAG Unknown server ID: $id"
+                        return 1
+                        ;;
+        esac
+
+        ln -sf /home/steam/maps/* "$MAPS"
+}
+
+maps() {
+        id="$1"
+
+        if [[ -z "$id" ]]; then
+                for server_id in 1 2 3; do
+                        maps_server "$server_id"
+                done
+        else
+                maps_server "$id"
+        fi
 }
 
 run_server() {
@@ -31,31 +151,31 @@ run_server() {
         case "$id" in
                 1)
                         echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $CONFIG
+                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
                         ;;
                 2)
                         echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $CONFIG
+                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
                         ;;
                 3)
                         echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $CONFIG
+                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
                         ;;
                 4)
                         echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $CONFIG
+                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
                         ;;
                 5)
                         echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $CONFIG
+                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
                         ;;
 		6)
 			echo "$LOG_TAG #$id Legacy"
-                        $SCREEN $SESSION $LEGACY $GAME $MAP $PORT
+                        $SCREEN $SESSION $LEGACY $GAME $MAP $PORT $PARAMS $DEBUG
                         ;;
 		7)
 			echo "$LOG_TAG #$id $LMBX_NAME"
-			$SCREEN $SESSION $LMBX $GAME $MAP $PORT $CONFIG $LMBX_HOSTNAME
+			$SCREEN $SESSION $LMBX $GAME $MAP $PORT $PARAMS $DEBUG $LMBX_HOSTNAME
 			;;
                 *)
                         echo "Unknown server ID: $id"
@@ -139,7 +259,36 @@ status() {
 	fi
 }
 
+server_screen() {
+        id="$1"
+
+        SESSION="l4l${id}"
+
+        echo "$LOG_TAG Attaching to screen session: $SESSION"
+        screen -r "$SESSION"
+}
+
+screen_cmd() {
+        id="$1"
+
+        if [[ -z "$id" ]]; then
+                echo "$LOG_TAG Available screen sessions:"
+                screen -ls
+        else
+                server_screen "$id"
+        fi
+}
+
 case "$1" in
+	install)
+		install "$2"
+		;;
+	delete)
+		delete "$2"
+		;;
+	maps)
+		maps "$2"
+		;;
 	run)
 		run "$2"
 		;;
@@ -152,7 +301,10 @@ case "$1" in
 	status)
 		status "$2"
 		;;
+	screen)
+		screen_cmd "$2"
+		;;
 	*)
-		echo "Usage: $0 <run|stop|restart|status> [ID]"
+		echo "Usage: $0 <install|delete|maps|run|stop|restart|status|screen> [ID]"
 		;;
 esac
