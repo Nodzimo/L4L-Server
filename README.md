@@ -207,6 +207,7 @@
     - Телепортирует всех ботов разом к игроку
     - `sm_warpbots`
 25. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
+    - Позволяет админу ставить онлайн-игру на паузу
     - `sm_forcepause`
     - Зависимость: **Multi Colors**
 
