@@ -252,6 +252,8 @@
 32. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
     - Фикс бага, когда гром не может пробиться сквозь толпу выживших и останавливается из-за этого
     - Зависимость: расширение **Source Scramble**
+33. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
+    - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -305,6 +307,8 @@
 - [Dreasye791 / my-multi-Infected-plugins](https://github.com/Dreasye791/my-multi-Infected-plugins)
 - [rikka0w0 / rikkal4d2](https://github.com/rikka0w0/rikkal4d2)
 - [devilesk / rl4d2l-plugins](https://github.com/devilesk/rl4d2l-plugins)
+- [LuxLuma / Left-4-fix](https://github.com/LuxLuma/Left-4-fix)
+  - Репозиторий с набором фиксов от сообщества
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
