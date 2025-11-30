@@ -240,6 +240,7 @@
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
+      - Плагин **AFK and Join Team Commands Improved**, потому что без него будет закидывать в наблюдателей без возможности вернуться в игру, командой **!join**.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
