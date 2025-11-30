@@ -124,7 +124,9 @@
      - **Bot Healing Values**
      - **AFK and Join Team Commands Improved**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
-   - Требуется для плагина **Bot Healing Values**
+   - Требуется для следующих плагинов:
+     -  **Bot Healing Values**
+     -  **Charger Collision Patch**
 
 ### SourceMod плагины
 `sm plugins list`
@@ -240,7 +242,16 @@
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
-      - Плагин **AFK and Join Team Commands Improved**, потому что без него будет закидывать в наблюдателей без возможности вернуться в игру, командой **!join**.
+      - Плагин **AFK and Join Team Commands Improved**, потому что без него будет закидывать в наблюдателей без возможности вернуться в игру, командой **sm_join**.
+29. [[L4D & L4D2] Witch fixes [Left 4 Fix]](https://forums.alliedmods.net/showthread.php?p=2647014)
+    - Набор фиксов ведьмы в одном комплекте, примеры: не теряет случайно цель, не теряет цель в убежище, не триггерится дважды и так далее.
+30. [Witch Pipebomb exploit fix & Death Optmizer (1.0) by Lux](https://forums.alliedmods.net/showthread.php?t=342000)
+    - Фикс бага, когда ведьма исчезает от взрыва пайпы в толпе обычных заражённых.
+31. [l4d witch realism door fix (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_realism_door_fix)
+    - Фикс бага, когда ведьма не может разбить дверь
+32. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
+    - Фикс бага, когда гром не может пробиться сквозь толпу выживших и останавливается из-за этого
+    - Зависимость: расширение **Source Scramble**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
