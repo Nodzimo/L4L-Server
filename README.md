@@ -8,7 +8,6 @@
   - [Дорожная карта](#дорожная-карта)
   - [Документация](#документация)
     - [Установка сервера](#установка-сервера)
-    - [Конфигурация](#конфигурация)
     - [Моды](#моды)
     - [SourceMod расширения](#sourcemod-расширения)
     - [SourceMod плагины](#sourcemod-плагины)
@@ -64,6 +63,18 @@
 - [Command line options](https://developer.valvesoftware.com/wiki/Command_line_options)
 - [servercfgfile](https://developer.valvesoftware.com/wiki/Servercfgfile)
 - [Host Dedicated Steam Game Servers with Linux - Palworld, CS2, SteamCMD!](https://www.youtube.com/watch?v=frp-bNoqjzc)
+- ```
+  [S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running instance of Steam.
+  dlopen failed trying to load:
+  /home/steam/.steam/sdk32/steamclient.so
+  with error:
+  /home/steam/.steam/sdk32/steamclient.so: cannot open shared object file: No such file or directory
+  [S_API] SteamAPI_Init(): Sys_LoadModule failed to load: /home/steam/.steam/sdk32/steamclient.so
+  ```
+  - [How to fix 'steamclient.so not found' error](https://www.youtube.com/live/frp-bNoqjzc?t=895s)
+  - Эта ошибка на линуксе исправляется симлинками:
+    - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux32" "$HOME/.steam/sdk32"`
+    - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux64" "$HOME/.steam/sdk64"`
 - `status`
 - `exit`
 
@@ -105,7 +116,6 @@
    - Рекомендации для нескольких экземпляров одного сервера: [Multiple or Forked Servers (SourceMod)](https://wiki.alliedmods.net/Multiple_or_Forked_Servers_(SourceMod))
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
-   - [Spider - SourcePawn Compiler](https://spider.limetech.io/)
    - [SourceMod 1.11.0.6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
       - Для компиляции плагинов на старом синтаксисе **SourcePawn**
    - `sm version`
@@ -396,6 +406,7 @@
 - [Steam ID Finder](https://steamid.pro)
 - [STEAMID I/O - lookup and convert your steamID, steamID3, steamID64, customURL and community id](https://steamid.io)
 - [GitHub Repository Downloader](https://sauravhathi.github.io/github-repository-downloader)
+- [Spider - SourcePawn Compiler](https://spider.limetech.io)
 
 ### Клиент
 - [Left 4 Dead 2 Complete Launch Options](https://steamcommunity.com/sharedfiles/filedetails/?id=3543870520)

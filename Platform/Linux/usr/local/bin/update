@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if (
+	sudo apt update \
+	&& sudo apt -y upgrade \
+	&& sudo apt -y full-upgrade \
+	&& sudo apt -y autoremove --purge \
+	&& sudo apt -y autoclean \
+	&& sudo apt -y clean \
+	&& sudo apt -y install --fix-broken \
+	&& sudo dpkg --configure -a
+); then
+	echo "System maintenance completed successfully"
+else
+	echo "System maintenance encountered an error"
+fi
