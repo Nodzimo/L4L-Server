@@ -39,8 +39,10 @@
 - Q4 2025 - Q1 2026
   1. Перезапуск сайта: [L4L.su](https://l4l.su)
   2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
-  3. Переосмысление Legacy-сборки
-  4. Переосмысление и декомпозиция **Left 4 Legend: Plugin** с публикацией в опенсорс и на форум
+  3. Релиз ваниллы
+- Q2 2026
+  1. Переосмысление Legacy-сборки
+  2. Переосмысление и декомпозиция **Left 4 Legend: Plugin** с публикацией в опенсорс и на форум
 - Когда-нибудь
   1. SourceTV
      - [Поддержка SourceTV](https://github.com/shqke/sourcetvsupport)
