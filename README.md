@@ -119,7 +119,11 @@
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
    - Требуется для плагина **Steam Works Group Manager**
 3. [Actions (3.9.2) by BHaType](https://forums.alliedmods.net/showthread.php?t=336374)
-   - Требуется для плагина **Shove Direction Fix**
+   - Требуется для плагинов:
+     - **Shove Direction Fix**
+     - **Bot Healing Values**
+4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
+   - Требуется для плагина **Bot Healing Values**
 
 ### SourceMod плагины
 `sm plugins list`
@@ -210,6 +214,11 @@
     - Позволяет админу ставить онлайн-игру на паузу
     - `sm_forcepause`
     - Зависимость: **Multi Colors**
+26. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
+    - Контролирует использование медикаментов ботами
+    - Зависимости:
+      - Рекомендуемо: расширение **Source Scramble**
+      - Опционально: расширение **Actions**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
