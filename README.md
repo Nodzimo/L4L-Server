@@ -257,6 +257,7 @@
 13. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
 14. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 15. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
+16. [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
 
 #### Неактуально
 - Заменены V-скриптом **Zero's Behavior Patches**
