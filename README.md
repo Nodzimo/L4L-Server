@@ -206,6 +206,9 @@
 24. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
     - Телепортирует всех ботов разом к игроку
     - `sm_warpbots`
+25. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
+    - `sm_forcepause`
+    - Зависимость: **Multi Colors**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -349,6 +352,11 @@
 
 - [Rayman1103's Mutation Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=121070254)
    - Для корректного переключения мутаций во время игры через плагин **Vote Mode**
+
+[Коллекция клиентских V-скриптов для разработки и отладки](https://steamcommunity.com/sharedfiles/filedetails/?id=3615308395)
+
+- [Director Intensity Graph Enabler (Default HUD)](https://steamcommunity.com/sharedfiles/filedetails/?id=3145769266)
+   - Работает на выделенном сервере
 
 #### Программы
 - [Source Admin Tool (HLSW Alternative)](https://forums.alliedmods.net/showthread.php?t=289370)
