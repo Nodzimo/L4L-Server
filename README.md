@@ -286,6 +286,14 @@
 14. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 15. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
 16. [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
+17. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
+18. [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
+19. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+20. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+21. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+    - Зависимость: **Manacat Common Library** 
+22. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+    - Требуется для **[Improved] Headshot Feedback Effect**
 
 #### Неактуально
 - Заменены V-скриптом **Zero's Behavior Patches**
