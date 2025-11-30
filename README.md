@@ -5,6 +5,7 @@
 ## Оглавление
 - [Left 4 Legend v2 alpha](#left-4-legend-v2-alpha)
   - [Оглавление](#оглавление)
+  - [Дорожная карта](#дорожная-карта)
   - [Документация](#документация)
     - [Установка сервера](#установка-сервера)
     - [Конфигурация](#конфигурация)
@@ -19,6 +20,7 @@
       - [Неактуально](#неактуально)
     - [Карты](#карты)
       - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
+    - [Краши](#краши)
     - [Dev-сборка](#dev-сборка)
     - [Консольные команды](#консольные-команды)
     - [Онлайн-инструменты](#онлайн-инструменты)
@@ -27,6 +29,25 @@
       - [Программы](#программы)
     - [Репозиторий](#репозиторий)
     - [Steam](#steam)
+
+## Дорожная карта
+- До 16 декабря 2025 года
+  1. Переезд на VPS с возможностью интеграции Discord
+  2. Ванильная сборка, которая послужит ядром для остальных сборок.
+  3. Интеграция Discord
+  4. Сорс банс
+- Q4 2025 - Q1 2026
+  1. Перезапуск сайта: [L4L.su](https://l4l.su)
+  2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
+  3. Переосмысление Legacy-сборки
+  4. Переосмысление и декомпозиция **Left 4 Legend: Plugin** с публикацией в опенсорс и на форум
+- Когда-нибудь
+  1. SourceTV
+     - [Поддержка SourceTV](https://github.com/shqke/sourcetvsupport)
+     - [Документация SourceTV](https://developer.valvesoftware.com/wiki/SourceTV)
+  2. Статистика с графиками и отчётами на сайте
+     - [HLstatsX v2](https://github.com/SnipeZilla/HLstatsX-v2)
+     - [HLstatsX: Community Edition](https://github.com/A1mDev/hlstatsx-community-edition)
 
 ## Документация
 
@@ -39,6 +60,7 @@
    - `quit`
 - Решение проблемы с установкой сервера на линукс: [Invalid platform SteamCMD errors for L4D2](https://github.com/ValveSoftware/steam-for-linux/issues/11522)
 - [Command line options](https://developer.valvesoftware.com/wiki/Command_line_options)
+- [servercfgfile](https://developer.valvesoftware.com/wiki/Servercfgfile)
 - [Host Dedicated Steam Game Servers with Linux - Palworld, CS2, SteamCMD!](https://www.youtube.com/watch?v=frp-bNoqjzc)
 - `status`
 - `exit`
@@ -81,6 +103,7 @@
    - Рекомендации для нескольких экземпляров одного сервера: [Multiple or Forked Servers (SourceMod)](https://wiki.alliedmods.net/Multiple_or_Forked_Servers_(SourceMod))
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
+   - [Spider - SourcePawn Compiler](https://spider.limetech.io/)
    - [SourceMod 1.11.0.6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
       - Для компиляции плагинов на старом синтаксисе **SourcePawn**
    - `sm version`
@@ -225,6 +248,10 @@
    - Набор соревновательных плагинов, часть из которых подходит и для кооператива, с хорошей поддержкой репозитория.
 - [Tabbernaut / L4D2-Plugins](https://github.com/Tabbernaut/L4D2-Plugins)
 - [Stabbath / L4D2-Stuff](https://github.com/Stabbath/L4D2-Stuff)
+- [HayaseYuukaSAMA / L4D2-MSF-Server-Plugins](https://github.com/HayaseYuukaSAMA/L4D2-MSF-Server-Plugins)
+- [Dreasye791 / my-multi-Infected-plugins](https://github.com/Dreasye791/my-multi-Infected-plugins)
+- [rikka0w0 / rikkal4d2](https://github.com/rikka0w0/rikkal4d2)
+- [devilesk / rl4d2l-plugins](https://github.com/devilesk/rl4d2l-plugins)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
@@ -247,6 +274,7 @@
 10. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
     - [L4B2 commands](https://github.com/smilz0/Left4Bots/blob/main/COMMANDS.md)
     - [Настройки конфига](https://github.com/smilz0/Left4Bots/blob/main/root/scripts/vscripts/left4bots_settings.nut)
+    - [Addon customization](https://steamcommunity.com/workshop/filedetails/discussion/3022416274/3825299103410056029)
     - Зависимости:
       - **Left 4 Lib**
       - **NavFixes**
@@ -284,6 +312,11 @@
 7. [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 8. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+
+### Краши
+- [CUtlRBTree overflow!](https://crash.limetech.org/xqtbyrgkbhyy)
+   - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
+   - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
 
 ### Dev-сборка
 - После рестарта пустого сервера загружается случайная официальная кампания со второй карты
