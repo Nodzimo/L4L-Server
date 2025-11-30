@@ -68,7 +68,7 @@
 - `exit`
 
 ### Конфигурация
-- `Unknown command ","`
+- `Unknown command ","` / `Unknown command "."`
    - В конфигах нельзя писать комментарии на кириллице
 - `Unknown command "mat_bloom_scalefactor_scalar"`
    - Закомментировать команду в `left4dead2/cfg/modsettings.cfg`
@@ -122,6 +122,7 @@
    - Требуется для плагинов:
      - **Shove Direction Fix**
      - **Bot Healing Values**
+     - **AFK and Join Team Commands Improved**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для плагина **Bot Healing Values**
 
@@ -174,6 +175,10 @@
 > Надо написать плагин с приветственными/информационными сообщениями для игроков, которые не подписаны на группу.
 14. [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
     - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
+    - Требуется для следующих плагинов:
+      - **Drop Secondary**
+      - **AFK and Join Team Commands Improved**
+      - **VS Auto-spectate on AFK**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: **Left 4 DHooks Direct**
@@ -219,10 +224,31 @@
     - Зависимости:
       - Рекомендуемо: расширение **Source Scramble**
       - Опционально: расширение **Actions**
+27. [[L4D(2)] AFK and Join Team Commands Improved (5.5-2025/1/3) by MasterMe & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_afk_commands)
+    - Мультикомбайн: всё (и не только), что связано с АФК, сменой команды и абьюзом бездействия.
+    - Зависимости:
+      - Расширение **Actions**
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Multi Colors**
+    - Основные команды:
+      - `sm_afk`
+      - `sm_join`
+      - `sm_zs`
+        - Суицид выжившего, например: если он где-то застрянет в безвыходной ситуации.
+28. [[L4D1/2] VS Auto-spectate on AFK (2.6-2025/2/12) by djromero (SkyDavid, David Romero) & Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/L4DVSAutoSpectateOnAFK)
+    - Закидывает в наблюдателей игрока, который бездействует, а затем кикает его по истечению установленного времени.
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Multi Colors**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
    - Общая зависимость для плагинов, которые используют цветные сообщения в игровом чате
+   - Требуется для следующих плагинов:
+     - **Connect Announce**
+     - **Admin Force Pause**
+     - **AFK and Join Team Commands Improved**
+     - **VS Auto-spectate on AFK**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
