@@ -137,6 +137,8 @@
    - Требуется для следующих плагинов:
      -  **Bot Healing Values**
      -  **Charger Collision Patch**
+5. [SMJansson (2.6.0/1): JSON parser/writer](https://github.com/davenonymous/SMJansson)
+   - Требуется для плагина **Discord API**
 
 ### SourceMod плагины
 `sm plugins list`
@@ -266,6 +268,11 @@
 33. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
 34. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
+35. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
+    - Зависимость: расширение **SMJansson**
+    - Требуется для плагина **Discord Utilities**
+36. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
+    - Зависимость: плагин **Discord API** 
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
