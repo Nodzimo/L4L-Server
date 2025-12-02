@@ -66,6 +66,7 @@
 - [Command line options](https://developer.valvesoftware.com/wiki/Command_line_options)
 - [servercfgfile](https://developer.valvesoftware.com/wiki/Servercfgfile)
 - [Host Dedicated Steam Game Servers with Linux - Palworld, CS2, SteamCMD!](https://www.youtube.com/watch?v=frp-bNoqjzc)
+- [Left 4 Dead 2 Dedicated Server Guide (Detailed)](https://steamcommunity.com/sharedfiles/filedetails/?id=276173458)
 - ```
   [S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running instance of Steam.
   dlopen failed trying to load:
