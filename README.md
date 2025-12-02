@@ -435,7 +435,7 @@
 8. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
 10. [Whispers of Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=1643520526)
-   - Рекомендуется: **Informal Skyboxes**
+    - Рекомендуется: **Informal Skyboxes**
 > [!CAUTION]
 > Проверить: в комментариях жалуются на частые краши, особенно после **Deluxe Update**.
 11. [Cold Front](https://steamcommunity.com/workshop/filedetails/?id=3135470026)
