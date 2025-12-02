@@ -20,6 +20,7 @@
     - [Карты](#карты)
       - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
     - [Краши](#краши)
+    - [Отладка](#отладка)
     - [Dev-сборка](#dev-сборка)
     - [Консольные команды](#консольные-команды)
     - [Онлайн-инструменты](#онлайн-инструменты)
@@ -49,10 +50,12 @@
   2. Статистика с графиками и отчётами на сайте
      - [HLstatsX v2](https://github.com/SnipeZilla/HLstatsX-v2)
      - [HLstatsX: Community Edition](https://github.com/A1mDev/hlstatsx-community-edition)
+     - [DragoStats Coop](https://forums.alliedmods.net/showthread.php?t=320247)
 
 ## Документация
 
 ### Установка сервера
+- [Required Ports for Steam](https://help.steampowered.com/en/faqs/view/2EA8-4D75-DA21-31EB)
 - [Source Dedicated Server](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server)
 - [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD)
    - `force_install_dir`
@@ -71,14 +74,19 @@
   /home/steam/.steam/sdk32/steamclient.so: cannot open shared object file: No such file or directory
   [S_API] SteamAPI_Init(): Sys_LoadModule failed to load: /home/steam/.steam/sdk32/steamclient.so
   ```
+  - [steamclient.so [РЕШЕНО]](https://c-s.net.ua/forum/topic87157.html)
+  - ['steamclient.so' No such file or directory](https://forums.alliedmods.net/showthread.php?t=344121)
+  - [steamclient.so: cannot open shared object file: No such file or directory](https://github.com/CM2Walki/steamcmd/issues/16)
   - [How to fix 'steamclient.so not found' error](https://www.youtube.com/live/frp-bNoqjzc?t=895s)
   - Эта ошибка на линуксе исправляется симлинками:
     - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux32" "$HOME/.steam/sdk32"`
     - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux64" "$HOME/.steam/sdk64"`
+- [Steam Web API Key](https://steamcommunity.com/dev/apikey)
 - `status`
 - `exit`
 
 ### Конфигурация
+- [Всё о sv_steamgroup и видимости сервера в меню игры [L4D2]](https://forum.myarena.ru/index.php?/topic/45110-vse-o-sv-steamgroup-i-vidimosti-servera-v-meniu-igry-l4d2)
 - `Unknown command ","` / `Unknown command "."`
    - В конфигах нельзя писать комментарии на кириллице
 - `Unknown command "mat_bloom_scalefactor_scalar"`
@@ -114,6 +122,11 @@
    - Документация: [SourceMod documentation](https://wiki.alliedmods.net/index.php/Category:SourceMod_Documentation)
    - Установка SourceMod: [Installing SourceMod](https://wiki.alliedmods.net/Installing_SourceMod)
    - Рекомендации для нескольких экземпляров одного сервера: [Multiple or Forked Servers (SourceMod)](https://wiki.alliedmods.net/Multiple_or_Forked_Servers_(SourceMod))
+   - [SourceMod Configuration](https://wiki.alliedmods.net/SourceMod_Configuration)
+   - Порядок исполнения конфигов:
+     1. Один раз во время запуска сервера исполняется `autoexec.cfg`, **ДО** загрузки **SourceMod** и его плагинов.
+     2. На каждой смене карты (`mapchange`) исполняется `server.cfg`, **ПОСЛЕ** загрузки **SourceMod**, но **ДО** исполнения конфигов SourceMod-плагинов.
+     3. На каждой смене карты исполняются конфиги SourceMod-плагинов, **ПОСЛЕ** исполнения `server.cfg`. 
    - Добавление админов: [Adding admins (SourceMod)](https://wiki.alliedmods.net/Adding_Admins_(SourceMod))
    - Админские команды: [Admin commands (SourceMod)](https://wiki.alliedmods.net/Admin_Commands_(SourceMod))
    - [SourceMod 1.11.0.6970](https://www.sourcemod.net/downloads.php?branch=1.11-dev)
@@ -127,7 +140,10 @@
    - Расширение для автоматической загрузки краш-репортов на [Throttle dashboard](https://crash.limetech.org/dashboard)
    - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
-   - Требуется для плагина **Steam Works Group Manager**
+   - Требуется для следующих плагинов:
+     - **Steam Works Group Manager**
+     - **Discord API**
+     - **Discord Utilities**
 3. [Actions (3.9.2) by BHaType](https://forums.alliedmods.net/showthread.php?t=336374)
    - Требуется для плагинов:
      - **Shove Direction Fix**
@@ -135,12 +151,16 @@
      - **AFK and Join Team Commands Improved**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
-     -  **Bot Healing Values**
-     -  **Charger Collision Patch**
+     - **Bot Healing Values**
+     - **Charger Collision Patch**
 5. [SMJansson (2.6.0/1): JSON parser/writer](https://github.com/davenonymous/SMJansson)
-   - Требуется для плагина **Discord API**
+   - Требуется для следующих плагинов:
+     - **Discord API**
+     - **Discord Utilities**
 
 ### SourceMod плагины
+[Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
+
 `sm plugins list`
 1. [[L4D2] Custom admin commands (1.3.9e) by honorcode23, Shadowysn (improvements)](https://forums.alliedmods.net/showpost.php?p=2704580&postcount=483)
    - Добавляет в админку дополнительные команды, например: неуязвимость, телепорт, инкап и тому подобные.
@@ -269,10 +289,22 @@
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
 34. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
 35. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
-    - Зависимость: расширение **SMJansson**
+    - Зависимости:
+      - Расширение **SMJansson**
+      - Расширение **SteamWorks**
     - Требуется для плагина **Discord Utilities**
 36. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
-    - Зависимость: плагин **Discord API** 
+    - Документация:
+      - [Installation](https://github.com/Cruze03/discord-utilities/wiki/Installation)
+      - [Collect Required Things](https://github.com/Cruze03/discord-utilities/wiki/Collect-Required-Things)
+      - [Setting Up a BOT Account](https://github.com/Cruze03/discord-utilities/wiki/Setting-Up-a-BOT-Account)
+      - [Troubleshoot](https://github.com/Cruze03/discord-utilities/wiki/Troubleshoot)
+      - [Документация (с картинками) оригинального, неактуального плагина](https://github.com/Deathknife/sourcemod-discord/wiki/Setting-up-a-Bot-Account)
+    - Зависимости:
+      - Плагин **Discord API**
+      - Расширение **SMJansson**
+      - Расширение **SteamWorks**
+    - Опционально: **SourceBans++**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -402,6 +434,10 @@
    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
    - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
 
+### Отладка
+- [Debugging under Linux](https://developer.valvesoftware.com/wiki/Debugging_under_Linux)
+- [New commands for server debugging](https://forums.alliedmods.net/showthread.php?t=327850)
+
 ### Dev-сборка
 - После рестарта пустого сервера загружается случайная официальная кампания со второй карты
 - Включены отладочные логи в расширении **Actions**
@@ -414,6 +450,7 @@
 - [STEAMID I/O - lookup and convert your steamID, steamID3, steamID64, customURL and community id](https://steamid.io)
 - [GitHub Repository Downloader](https://sauravhathi.github.io/github-repository-downloader)
 - [Spider - SourcePawn Compiler](https://spider.limetech.io)
+- [Lysis Decompiler](https://headlinedev.xyz/lysis)
 
 ### Клиент
 - [Left 4 Dead 2 Complete Launch Options](https://steamcommunity.com/sharedfiles/filedetails/?id=3543870520)
