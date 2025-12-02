@@ -15,6 +15,7 @@ Client/**
 !Client/L4D2.bat
 !Client/Workshop
 !Client/Workshop/**
+Client/Workshop/User/Informal Skyboxes
 !Client/Soft
 !Client/Soft/**
 Client/Soft/SCMD Workshop Downloader 2

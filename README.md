@@ -58,11 +58,11 @@
 - [Required Ports for Steam](https://help.steampowered.com/en/faqs/view/2EA8-4D75-DA21-31EB)
 - [Source Dedicated Server](https://developer.valvesoftware.com/wiki/Source_Dedicated_Server)
 - [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD)
+   - [Invalid platform SteamCMD errors for L4D2](https://github.com/ValveSoftware/steam-for-linux/issues/11522)
    - `force_install_dir`
    - `login anonymous`
    - `app_update 222860 validate`
    - `quit`
-- Решение проблемы с установкой сервера на линукс: [Invalid platform SteamCMD errors for L4D2](https://github.com/ValveSoftware/steam-for-linux/issues/11522)
 - [Command line options](https://developer.valvesoftware.com/wiki/Command_line_options)
 - [servercfgfile](https://developer.valvesoftware.com/wiki/Servercfgfile)
 - [Host Dedicated Steam Game Servers with Linux - Palworld, CS2, SteamCMD!](https://www.youtube.com/watch?v=frp-bNoqjzc)
@@ -196,7 +196,9 @@
     - Оповестительные сообщения в чате при входе/выходе игроков
     - Для рядовых игроков показывается краткая информация: страна и причина отключения
     - Для админов выводятся подробности: страна, регион, город, причина отключения, Steam ID, IP.
-    - Зависимость: скрипты **Multi Colors** для компиляции плагина
+    - Зависимости:
+      - Скрипты **Multi Colors** для компиляции плагина
+      - База геоданных **GeoIP2 GeoLite2**
     - `sm_geolist`
 13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Библиотека с интеграцией **SteamWorks** для проверки подписки/прав игрока в Steam группе
@@ -314,6 +316,13 @@
      - **Admin Force Pause**
      - **AFK and Join Team Commands Improved**
      - **VS Auto-spectate on AFK**
+2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
+   - База геоданных для определения страны, региона, города и тому подобного.
+   - В свежих версиях SourceMod поставляется в комплекте
+   - Обслуживание:
+     - `Your database is older than 90 days. You should consider downloading a newer version from e.g. https://dev.maxmind.com/geoip/geolite2-free-geolocation-data`
+     - Надо обновлять минимум раз в 90 дней, иначе будет сыпать предупреждение в консоль сервера
+   - Требуется для плагина **Connect Announce**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -402,6 +411,7 @@
     - Зависимость: **Manacat Common Library** 
 22. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для **[Improved] Headshot Feedback Effect**
+23. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
 
 #### Неактуально
 - Заменены V-скриптом **Zero's Behavior Patches**
@@ -413,13 +423,9 @@
 
 1. [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
 2. [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
-> [!CAUTION]
-> Проверить: первая карта (но это не точно) часто крашилась на сборке Nightmare
 
 #### Снежные, зимние, новогодние
-3 [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
-> [!CAUTION]
-> Проверить: первая карта крашилась на старом L4L
+3. [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
 4. [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
 5. [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
 6. [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
@@ -428,6 +434,11 @@
 7. [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
 8. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
 9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+10. [Whispers of Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=1643520526)
+   - Рекомендуется: **Informal Skyboxes**
+> [!CAUTION]
+> Проверить: в комментариях жалуются на частые краши, особенно после **Deluxe Update**.
+11. [Cold Front](https://steamcommunity.com/workshop/filedetails/?id=3135470026)
 
 ### Краши
 - [CUtlRBTree overflow!](https://crash.limetech.org/xqtbyrgkbhyy)
@@ -440,7 +451,6 @@
 
 ### Dev-сборка
 - После рестарта пустого сервера загружается случайная официальная кампания со второй карты
-- Включены отладочные логи в расширении **Actions**
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
@@ -459,8 +469,11 @@
 #### Мастерская
 [Коллекция клиентских V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3610995671)
 
-- [Rayman1103's Mutation Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=121070254)
+1. [Rayman1103's Mutation Mod](https://steamcommunity.com/sharedfiles/filedetails/?id=121070254)
    - Для корректного переключения мутаций во время игры через плагин **Vote Mode**
+2. [Informal Skyboxes](https://steamcommunity.com/workshop/filedetails/?id=121090376)
+   - Рекомендуется к следующим картам:
+     - **Whispers of Winter**
 
 [Коллекция клиентских V-скриптов для разработки и отладки](https://steamcommunity.com/sharedfiles/filedetails/?id=3615308395)
 
