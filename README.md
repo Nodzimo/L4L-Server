@@ -6,6 +6,7 @@
 - [Left 4 Legend v2 alpha](#left-4-legend-v2-alpha)
   - [Оглавление](#оглавление)
   - [Дорожная карта](#дорожная-карта)
+  - [Хостинг](#хостинг)
   - [Документация](#документация)
     - [Установка сервера](#установка-сервера)
     - [Моды](#моды)
@@ -35,7 +36,7 @@
   1. Переезд на VPS с возможностью интеграции Discord
   2. Ванильная сборка, которая послужит ядром для остальных сборок.
   3. Интеграция Discord
-  4. Сорс банс
+  4. [SourceBans++](https://sbpp.github.io)
 - Q4 2025 - Q1 2026
   1. Перезапуск сайта: [L4L.su](https://l4l.su)
   2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
@@ -51,6 +52,52 @@
      - [HLstatsX v2](https://github.com/SnipeZilla/HLstatsX-v2)
      - [HLstatsX: Community Edition](https://github.com/A1mDev/hlstatsx-community-edition)
      - [DragoStats Coop](https://forums.alliedmods.net/showthread.php?t=320247)
+
+## Хостинг
+1. Локальный
+   - Тип: **DS**
+   - DC: **Балашиха**
+   - CPU: **Intel Core i5-7200U**
+   - Core: **x4 @ 2.50** GHz
+   - RAM: **8**
+   - SSD: **500** GB Samsung 870 EVO
+   - OS: **Ubuntu 24.04.3 LTS**
+   - Нагрузка:
+     - Idle: **≈50%**
+     - Peak: **≈70%**
+2. [Джино](https://jino.ru/vps)
+   - Тип: **VPS**
+   - Тариф: **Гамма Плюс +**
+   - DC: **Москва**
+   - CPU: **Intel Xeon E5-2678 v3**
+   - Core: **x3 @ 2.0** GHz (заявлено)
+   - Core: **x3 @ 2.50** GHz (по мониторингу)
+   - RAM: **10**
+   - SSD: **70**
+   - OS: **Ubuntu 24.04.3 LTS**
+   - IP: в тариф не входит и докупается отдельно
+   - Нагрузка:
+     - Idle: **≈50%**
+     - Peak: **≈70%**
+3. [UFO.Hosting](https://ufo.hosting/vps-vds)
+   - Тип: **VPS**
+   - Тариф: **Diadem**
+   - DC: **Алматы**
+   - CPU: **Intel Xeon E5-2697A v4**
+   - Core: **vCore x4 @ 2.40** GHz (заявлено)
+   - Core: **x4 @ 2.60** GHz (по мониторингу)
+   - RAM: **8**
+   - SSD: **90** NVMe
+   - OS: **Ubuntu 24.04.3 LTS**
+   - IP: **1** публичный IPv4-адрес включён в тариф
+   - Порт: **2 Gbps** интернет-канала (заявлено)
+   - Порт: в среднем около **200 Mbit** (фактическое ограничение канала от поставщика в Казахстане, на которое не может повлиять хостинг)
+   - Трафик: **безлимитный** (заявлено)
+   - Трафик: **232 TB** ежемесячно на всех серверах (по FUP - Fair Use Policy)
+   - Ограничения: единственный лимит, если сервер будет создавать нагрузку свыше 85% более 6 часов подряд.
+   - Обзоры:
+     - [Обзор UFO Hosting (VDS)](https://telecomlife.ru/obzor-ufo_hosting-vds)
+     - [Обзор UFO Hosting (Hi-CPU)](https://telecomlife.ru/obzor-ufo_hosting-hi-cpu)
 
 ## Документация
 
