@@ -57,8 +57,6 @@ install(){
 	install_server "$id"
 }
 
-
-
 delete_server() {
         id="$1"
         SERVER="${BASE_DIR}l4l$id"
