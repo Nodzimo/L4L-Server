@@ -1,0 +1,517 @@
+"Phrases"
+{
+	"CurrentMapField"
+	{
+		"en"		"Current Map:"
+		"pt"		"Mapa Ataul:"
+		"hu"		"Jelenlegi pálya:"
+		"fr"		"Carte actuelle:"
+		"nl"		"Huidige Map:"
+		"lv"		"Šobrīd Mape:"
+		"ru"		"Текущая карта:"
+		"ro"		"Mapa curentă:"
+	}
+	
+	"PlayersOnlineField"
+	{
+		"en"		"Players Online:"
+		"pt"		"Players Online:"
+		"hu"		"Elérhető Játékosok:"
+		"fr"		"Joueurs en ligne:"
+		"nl"		"Spelers Online:"
+		"lv"		"Spēlētāji Online:"
+		"ru"		"Игроки онлайн:"
+		"ro"		"Playeri Online:"
+	}
+	
+	"DirectConnectField"
+	{
+		"en"		"Direct Connect:"
+		"pt"		"Conexão Direta:"
+		"hu"		"Csatlakozás:"
+		"fr"		"Connexion directe:"
+		"nl"		"Direct Verbinden:"
+		"lv"		"Tiešā savienošana:"
+		"ru"		"Прямое соединение:"
+		"ro"		"Conectare Directă:"
+	}
+	
+	"ChatRelayFormat"
+	{
+		"#format"	"{1:s},{2:s},{3:s}"		//1 = Username | 2 = Discriminator | 3 = Message
+		"en"		"{orange}{1}#{2}{default}: {3}"
+	}
+	
+	"AdminChatRelayFormat"
+	{
+		"#format"	"{1:s},{2:s},{3:s}"		//1 = Username | 2 = Discriminator | 3 = Message
+		"en"		"Admin: {orange}{1}#{2}{default}: {3}"
+	}
+	
+	"TryAgainLater"
+	{
+		"en"		"Please wait. Your member status hasn't been fetched yet."
+		"pt"		"Por favor, aguarde. Seu status de membro ainda não foi obtido."
+		"hu"		"Kérlek várj egy picit! A tagságod még lekérés alatt."
+	}
+	
+	"DiscordRevoked"
+	{
+		"en"		"You are no longer in our discord server therefore your discord member status has been revoked!"
+		"pt"		"Você não está mais em nosso servidor discord, portanto, seu status de membro discord foi revogado!"
+		"ro"        "Numai faci parte din server-ul nostru de discord, rolul tău de membru a fost sters!"
+	}
+	
+	"DiscordMissingParameters"
+	{
+		"#format"	"{1:s}"
+		"en"		"<@{1}> You need to provide an ID for this command!"
+		"pt"		"<@{1}> Você precisa fornecer um ID para este comando!"
+		"hu"		"<@{1}> Kérlek adj meg egy azonosítót a parancs használatához!"
+		"fr"		"<@{1}> Vous devez fournir un identifiant pour cette commande!"
+		"nl"		"<@{1}> U moet een ID opgeven voor deze opdracht!"
+		"lv"		"<@{1}> Jums ir jānorāda šīs komandas ID!"
+		"ru"		"<@{1}> Вам необходимо указать идентификатор для этой команды!"
+		"ro"		"<@{1}> Trebuie să furnizați un ID pentru această comandă!"
+	}
+	
+	"DiscordInvalidID"
+	{
+		"#format"	"{1:s},{2:s}"
+		"en"		"<@{1}> This ID is not valid, please type {2} in-game and try again!"
+		"pt"		"<@{1}> Este ID não é válido, digite {2} no jogo e tente novamente!"
+		"hu"		"<@{1}> Az általad megadott azonosító nem létezik. Használd a {2} parancsot a szerveren és próbáld újra!"
+		"fr"		"<@{1}> Cet identifiant n'est pas valide, veuillez saisir {2} dans le jeu et réessayer!"
+		"nl"		"<@{1}> Deze ID is niet geldig. Typ {2} in de game en probeer het opnieuw!"
+		"lv"		"<@{1}> Šis ID nav derīgs. Lūdzu, ierakstiet {2} spēlē un mēģiniet vēlreiz!"
+		"ru"		"<@{1}> Этот идентификатор недействителен, введите в игре {2} и повторите попытку!"
+		"ro"		"<@{1}> Acest ID nu este valid, te rog sa tastezi {2} în joc să incerci din nou!"
+	}
+	
+	"DiscordInvalid"
+	{
+		"#format"	"{1:s}"
+		"en"		"<@{1}> There is no client with this ID, ensure you are connected to the game server and check your ID again!"
+		"pt"		"<@{1}> Não há nenhum cliente com este ID, certifique-se de estar conectado ao servidor do jogo e verifique seu ID novamente!"
+		"hu"		"<@{1}> Nem található kliens ezzel az azonosítóval. Kérlek csatlakozz a szerverre és próbáld újra!"
+		"fr"		"<@{1}> Il n'y a pas de client avec cet identifiant, assurez-vous d'être connecté au serveur de jeu et vérifiez à nouveau votre identifiant!"
+		"nl"		"<@{1}> Er is geen client met deze ID, zorg ervoor dat je verbonden bent met de spelserver en controleer je ID opnieuw!"
+		"lv"		"<@{1}> Nav neviena klienta ar šo ID, pārliecinieties, vai esat izveidojis savienojumu ar spēles serveri, un pārbaudiet savu ID vēlreiz!"
+		"ru"		"<@{1}> Нет клиента с таким идентификатором, убедитесь, что вы подключены к игровому серверу, и еще раз проверьте свой идентификатор!"
+		"ro"		"<@{1}> Nu există niciun client cu acest ID, fii sigur că ești conectat la joc si verifică ID din nou!"
+	}
+	
+	"DiscordInfo"
+	{
+		"#format"	"{1:s},{2:s}"
+		"en"		"<@{1}> This channel is being used for account linking!\nUsage: {2} <verification code>"
+		"pt"		"<@{1}> Este canal está sendo usado para vinculação de contas!\nUse: {2} <verification code>"
+		"hu"		"<@{1}> Ezt a szobát a fiókok megerősítésére használjuk!\nHasználat: {2} <azonosítód>"
+		"fr"		"<@{1}> Ce canal est utilisé pour la liason de compte!\nUtilisation: {2} <code de vérification>"
+		"nl"		"<@{1}> Dit kanaal wordt gebruikt om je account te koppelen!\nGebruik: {2} <verificatie code>"
+		"lv"		"<@{1}> Šis kanāls tiek lietots profilu savienošanas!\nPielietojums: {2} <verifikācijas kods>"
+		"ru"		"<@{1}> Этот канал используется для привязки аккаунта!\nИспользование: {2} <код подтверждения>"
+		"ro"		"<@{1}> Acest canal este folosit pentru a-ți verifica contul!\nFolosește: {2} <cod de verificare>"
+	}
+	
+	"DiscordVerified"
+	{
+		"#format"	"{1:s},{2:s}"
+		"en"		"You have verified your account. ({green}{1}#{2}{default})"
+		"pt"		"Você verificou sua conta. ({green}{1}#{2}{default})"
+		"hu"		"Sikeresen megerősítetted a fiókodat! ({green}{1}#{2}{default})"
+		"fr"		"Vous avez validé votre compte. ({green}{1}#{2}{default})"
+		"nl"		"Je hebt je account geverifieerd. ({green}{1}#{2}{default})"
+		"lv"		"Jūs verificējāt savu profilu. ({green}{1}#{2}{default})"
+		"ru"		"Вы подтвердили свой аккаунт. ({green}{1}#{2}{default})"
+		"ro"		"Ti-a verificat contul tău. ({green}{1}#{2}{default})"
+	}
+	
+	"DiscordLinked"
+	{
+		"#format"	"{1:s}"
+		"en"		"<@{1}> You've linked your account! ✅"
+		"pt"		"<@{1}> Você vinculou sua conta! ✅"
+		"hu"		"<@{1}> Sikeresen megerősítetted a fiókodat! ✅"
+		"fr"		"<@{1}> Vous avez lié votre compte! ✅"
+		"nl"		"<@{1}> Je hebt je account gekoppeld! ✅"
+		"lv"		"<@{1}> Tu savienoji savu profilu! ✅"
+		"ru"		"<@{1}> Вы связали свой аккаунт! ✅"
+		"ro"		"<@{1}> Ti-a asociat contul cu succes! ✅"
+	}
+	
+	"DiscordAlreadyLinked"
+	{
+		"#format"	"{1:s}"
+		"en"		"<@{1}> This discord account is already linked! ❌"
+		"pt"		"<@{1}> Esta conta discord já está vinculada! ❌"
+		"hu"		"<@{1}> Ez a discord fiók már társítva van! ❌"
+		"fr"		"<@{1}> Ce compte Discord est déjà lié! ❌"
+		"nl"		"<@{1}> Dit Discord account is al gekoppeld! ❌"
+		"lv"		"<@{1}> Jūsu discord profils jau ir savienots! ❌"
+		"ru"		"<@{1}> Эта учетная запись уже связана! ❌"
+		"ro"		"<@{1}> Acest cont de discord este deja asociat! ❌"
+	}
+	
+	"ChatRelayPrivateToAdmins"
+	{
+		"en"		"Private To Admins: "
+		"hu"		"Üzenet Adminoknak: "
+		"nl"		"Prive naar Admins: "
+		"lv"		"Privāti adminiem: "
+		"ru"		"Приват для администраторов: "
+		"ro"		"Privat către Admini: "
+	}
+	
+	"ChatRelayAllChat"
+	{
+		"en"		"All Chat: "
+		"hu"		"Mindenkinek: "
+		"nl"		"Openbare Chat: "
+		"lv"		"Visu Čats: "
+		"ru"		"весь чат: "
+		"ro"		"General Chat: "
+	}
+	
+	"AdminLogFormat"
+	{
+		"#format"	"{1:s},{2:s},{3:s},{4:s}"		//1 = TimeStamp | 2 = ServerName | 3 = MapName | 4 = Message
+		"en"		"{1}`{2}|{3}` => {4}"
+	}
+	
+	"AdminChatFormat"
+	{
+		"#format"	"{1:s},{2:s},{3:s},{4:s}"		//1 = TimeStamp | 2 = ServerName | 3 = PrivateToAdmins/Blank | 4 = Message
+		"en"		"{1}`{2}` => {3}{4}"
+	}
+	
+	"LinkYourID"
+	{
+		"#format"	"{1:s}"
+		"en" 		"Your ID: {grey}{1}"
+		"pt" 		"Seu ID: {grey}{1}"
+		"hu" 		"Azonosítód: {grey}{1}"
+		"fr"		"Identifiant: {grey}{1}"
+		"nl" 		"Jouw ID: {grey}{1}"
+		"lv"		"Tavs ID: {grey}{1}"
+		"ru"		"Ваш ID: {grey}{1}"
+		"ro"		"ID-ul tău: {grey}{1}"
+	}
+	
+	"LinkConnect"
+	{
+		"en"		"Join our discord server:"
+		"pt"		"Junte-se ao nosso servidor Discord:"
+		"hu"		"Csatlakozz a Discord szerverünkhöz:"
+	}
+	
+	"LinkUsage"
+	{
+		"#format"	"{1:s},{2:s},{3:s}"
+		"en"		"Type {lime}{1} {2} {default}in {orange}#{3}"
+		"pt"		"Digite {lime}{1} {2} {default}no {orange}#{3}"
+		"hu"		"Használd a {lime}{1} {2} {default}parancsot a {orange}#{3} {default}szobában"
+	}
+	
+	"CopyPasteFromConsole"
+	{
+		"en"		"You can also {lime}copy-paste{default} from {orange}console{default} :)"
+		"pt"		"Você também pode {lime}copiar e colar {default}do console {orange}{default} :)"
+		"hu"		"Ki is {lime}másolhatod {default}a {orange}konzolból{default} :)"
+	}
+	
+	"CallAdminReportHandledTitle"
+	{
+		"en"		"CallAdmin Report is being handled!"
+		"hu"		"Egy jelentést éppen kezelnek!"
+		"nl"		"De CallAdmin Report wordt behandelt!"
+		"lv"		"CallAdmin Ziņojums tiek izskatīts!"
+		"ru"		"CallAdmin Репорт обрабатывается!"
+		"ro"		"CallAdmin Report se gestionează!"
+	}
+	
+	"CallAdminReportHandlerName"
+	{
+		"en"		"Handler Name:"
+		"hu"		"Admin:"
+		"nl"		"Naam van de Handelaar:"
+		"lv"		"Ziņu izskatījā:"
+		"ru"		"Имя обработчика:"
+		"ro"		"Nume de legătură:"
+	}
+	
+	"CallAdminReportIDField"
+	{
+		"en"		"Report ID:"
+		"hu"		"Jelentés azonosító:"
+		"nl"		"Report ID:"
+		"lv"		"Ziņojuma ID:"
+		"ru"		"Репорт ID:"
+		"ro"		"Report ID:"
+	}
+	
+	"ServerField"
+	{
+		"#format"	"{1:s}"
+		"en"		"Server: {1}"
+		"hu"		"Szerver: {1}"
+		"nl"		"Server: {1}"
+		"lv"		"Server: {1}"
+		"ru"		"Сервер: {1}"
+		"ro"		"Server: {1}"
+	}
+	
+	"CallAdminReportTitle"
+	{
+		"en"		"New CallAdmin Report!"
+		"hu"		"Új jelentés érkezett!"
+		"lv"		"Jauns CallAdmin Ziņojums!"
+		"nl"		"Nieuwe CallAdmin Report!"
+		"ru"		"Новый CallAdmin Репорт!"
+		"ro"		"Nou Report CallAdmin!"
+	}
+	
+	"CONSOLE"
+	{
+		"en"		"CONSOLE"
+		"pt"		"CONSOLE"
+		"hu"		"KONZOL"
+		"nl"		"CONSOLE"
+		"lv"		"CONSOLE"
+		"ru"		"CONSOLE"
+		"ro"		"CONSOLE"
+	}
+	
+	"SERVER"
+	{
+		"en"		"SERVER"
+		"hu"		"SZERVER"
+		"nl"		"SERVER"
+		"lv"		"SERVER"
+		"ru"		"SERVER"
+		"ro"		"SERVER"
+	}
+	
+	"ReporterField"
+	{
+		"en"		"Reporter:"
+		"hu"		"Jelentő:"
+		"nl"		"Raporteerder:"
+		"lv"		"Ziņotājs:"
+		"ru"		"Репортер:"
+		"ro"		"Reporter:"
+	}
+	
+	"TargetField"
+	{
+		"en"		"Target:"
+		"hu"		"Jelentett:"
+		"lv"		"Ziņo par:"
+		"nl"		"Doel:"
+		"ru"		"Цель:"
+		"ro"		"Target:"
+	}
+	
+	"ReasonField"
+	{
+		"en"		"Reason:"
+		"pt"		"Motivo:"
+		"hu"		"Indok:"
+		"nl"		"Reden:"
+		"lv"		"Iemesls:"
+		"ru"		"Причина:" 
+		"ro"		"Motiv:"
+	}
+	
+	"BugReportTitle"
+	{
+		"en"		"New Bug Report!"
+		"hu"		"Egy új hibajelentés érkezett!"
+		"nl"		"Nieuwe Fout Gerapporteerd!"
+		"lv"		"Jauns kļūdas ziņojums!"
+		"ru"		"Новая  Буг Репорт!"
+		"ro"		"Nou Bug Report!"
+	}
+	
+	"MapField"
+	{
+		"en"		"Map:"
+		"pt"		"Mapa:"
+		"hu"		"Pálya:"
+		"nl"		"Map:"
+		"lv"		"Mape:"
+		"ru"		"Карта:"
+		"ro"		"Mapă:"
+	}
+	
+	"NoReasonSpecified"
+	{
+		"en"		"No reason specified."
+		"hu"		"Nincs indok megadva."
+		"nl"		"Geen reden gespecificeerd."
+		"lv"		"iemesls nav norādīts."
+		"ru"		"Причина не указана."
+		"ro"		"Niciun motiv specificat."
+	}
+	
+	"SourceBansTitle"
+	{
+		"en"		"New Player Server Banned!"
+		"hu"		"Új Játékos Kitiltás!"
+		"lv"		"Jauns spēlētājs ir saņēmis banu!"
+		"nl"		"Nieuwe Speler Server Geband!"
+		"ru"		"Новый игрок Сервер Banned!"
+		"ro"		"Jucător nou banat!"
+	}
+	"AdminField"
+	{
+		"en"		"ADMIN:"
+		"hu"		"ADMIN:"
+		"fr"		"ADMIN:"
+		"nl"		"ADMIN:"
+		"lv"		"ADMIN:"
+		"ru"		"ADMIN:"
+		"ro"		"ADMIN:"
+	}
+	
+	"PlayerField"
+	{
+		"en"		"PLAYER:"
+		"hu"		"JÁTÉKOS:"
+		"fr"		"PLAYER:"
+		"nl"		"SPELER:"
+		"lv"		"PLAYER:"
+		"ru"		"ИГРОК:"
+		"ro"		"PLAYER:"
+	}
+	
+	"TEMPORARY"
+	{
+		"en"		"TEMPORARY"
+		"hu"		"IDEIGLENES"
+		"fr"		"TEMPORAIRE"
+		"nl"		"TIJDELIJK"
+		"lv"		"PAGAIDU"
+		"ru"		"ВРЕМЕННОЕ"
+		"ro"		"TEMPORAR"
+	}
+	
+	"MINUTE"
+	{
+		"en"		"minute"
+		"hu"		"perc"
+		"fr"		"minute"
+		"nl"		"minuut"
+		"lv"		"minūte"
+		"ru"		"минут"
+		"ro"		"minut"
+	}
+	
+	"MINUTES"
+	{
+		"en"		"minutes"
+		"hu"		"perc"
+		"fr"		"minutes"
+		"nl"		"minuten"
+		"lv"		"minūtes"
+		"ru"		"минут"
+		"ro"		"minute"
+	}
+	
+	"PERMANENT"
+	{
+		"en"		"PERMANENT"
+		"hu"		"VÉGLEGES"
+		"fr"		"PERMANENT"
+		"nl"		"PERMANENT"
+		"lv"		"MŪŽĪGS"
+		"ru"		"ПОСТОЯННАЯ"
+		"ro"		"PERMANENT"
+	}
+	
+	"LengthField"
+	{
+		"en"		"LENGTH"
+		"hu"		"IDŐTARTAM"
+		"fr"		"DURÉE"
+		"nl"		"LENGTE"
+		"lv"		"ILGUMS"
+		"ru"		"ДЛИНА"
+		"ro"		"DURATĂ"
+	}
+	
+	"SourceBansReportTitle"
+	{
+		"en"		"New Report!"
+		"hu"		"Új jelentés!"
+		"nl"		"Nieuwe Report!"
+		"lv"		"Jauns Ziņojums!"
+		"ru"		"Новый Репорт!"
+		"ro"		"Report nou!"
+	}
+	
+	"SourceCommsTitle"
+	{
+		"en"		"New Player Comm-Banned!"
+		"hu"		"Új Játékos Némítás!"
+		"nl"		"Nieuwe Speler Comm-Banned!"
+		"lv"		"New Player Comm-Banned!"
+		"ru"		"Новый игрок Comm-Banned!"
+		"ro"		"Jucător nou Comm-banat"
+	}
+	
+	"MUTE"
+	{
+		"en"		"MUTE"
+		"hu"		"HANG-TILTÁS"
+		"nl"		"MUTE"
+		"lv"		"MUTE"
+		"ru"		"МУТЕ"
+		"ro"		"MUTE"
+	}
+	
+	"GAG"
+	{
+		"en"		"GAG"
+		"hu"		"ÍRÁS-TILTÁS"
+		"nl"		"GAG"
+		"lv"		"GAG"
+		"ru"		"ГАГ"
+		"ro"		"GAG"
+	}
+	
+	"SILENCE"
+	{
+		"en"		"SILENCE"
+		"hu"		"TELJES NÉMÍTÁS"
+		"nl"		"SILENCE"
+		"lv"		"SILENCE"
+		"ru"		"МОЛЧАНИЕ"
+		"ro"		"SILENCE"
+	}
+	
+	"TypeField"
+	{
+		"en"		"TYPE"
+		"en"		"TYPE"
+		"hu"		"TIPUS"
+		"fr"		"TYPE"
+		"nl"		"TYPE"
+		"lv"		"VEIDS"
+		"ru"		"ТИП"
+		"ro"		"TIP"
+	}
+	
+	"MustVerify"
+	{
+		"#format"	"{1:s}"
+		"en"		"You have to verify your {lightblue}Discord {default}account! Type {orange}{1}"
+		"pt"		"Você tem que verificar sua conta {lightblue}Discord{default}! Digite {orange}{1}"
+		"hu"		"Meg kell erősítened a {lightblue}Discord {default}fiókodat! Írd be, hogy {orange}{1}"
+		"fr"		"Vous devez vérifier votre {lightblue}Discord {default}account! Ecrit {orange}{1}"
+		"nl"		"Je moet je {lightblue}Discord {default}account verifieren! Type {orange}{1}"
+		"lv"		"Verificē savu {lightblue}Discord {default}profilu! Raksti {orange}{1}"
+		"ru"		"Вы должны подтвердить свой {lightblue}Discord {default}учетная запись! Тип {orange}{1}"
+		"ro"		"Trebuie să îti asociezi Discord-ul tău! Tastează {orange}{1}"
+	}
+}
