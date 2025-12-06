@@ -277,6 +277,7 @@
     - Если сервер пустой, то в его имени выводится название, номер и сборка: **Vanilla**, **Legacy**, **LMBX**, **Test**, **Dev**.
 18. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
     - Голосование за рестарт сервера
+    - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_restart`
 19. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
     - Даёт возможность прикладить выживших и настраивать права на это действие
@@ -370,7 +371,9 @@
    - Обслуживание:
      - `Your database is older than 90 days. You should consider downloading a newer version from e.g. https://dev.maxmind.com/geoip/geolite2-free-geolocation-data`
      - Надо обновлять минимум раз в 90 дней, иначе будет сыпать предупреждение в консоль сервера
-   - Требуется для плагина **Connect Announce**
+   - Требуется для следующих плагинов:
+     - **Connect Announce**
+     - **Vote server restart**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
