@@ -1,0 +1,86 @@
+/*
+	Following named colors are supported:
+	 - {white}	(use instead of \x01 )
+	 - {cyan}	(use instead of \x03 )
+	 - {orange}	(use instead of \x04 )
+	 - {green}	(use instead of \x05 )
+*/
+
+"Phrases"
+{
+	"Yes"
+	{
+		"en"		"Yes"
+		"ru"		"Да"
+	}
+	"No"
+	{
+		"en"		"No"
+		"ru"		"Нет"
+	}
+	"access_denied"
+	{
+		"en"		"{orange}You have no access to this vote!"
+		"ru"		"{orange}У вас нет доступа к этому голосованию!"
+	}
+	"other_vote"
+	{
+		"en"		"{orange}Other vote is still not over!"
+		"ru"		"{orange}Другое голосование ещё не закончилось!"
+	}
+	"veto"
+	{
+		"en"		"{orange}Current vote is vetoed by {green}%N"
+		"ru"		"{green}%N {orange}наложил вето на голосование"
+	}
+	"votepass"
+	{
+		"en"		"{cyan}Current vote is passed by {green}%N"
+		"ru"		"{green}%N {cyan}принудительно продвинул голосование"
+	}
+	"vote_failed"
+	{
+		"en"		"{cyan}Vote for restarting the server {orange}is failed."
+		"ru"		"{cyan}Голосование за перезагрузку сервера {orange}провалилось."
+	}
+	"vote_success"
+	{
+		"en"		"{orange}Server is being restarted..."
+		"ru"		"{orange}Сервер перезагружается..."
+	}
+	"vote_started"
+	{
+		"en"		"{green}%N {orange}is started vote for restarting the server"
+		"ru"		"{green}%N {orange}начал голосование за перезагрузку сервера"
+	}
+	"vote_started_announce"
+	{
+		"en"		"Restart the server ?"
+		"ru"		"Перезапустить сервер ?"
+	}
+	"Restart_Hint"
+	{
+		"en"		"RESTARTING THE SERVER ... %i"
+		"ru"		"ПЕРЕЗАГРУЗКА СЕРВЕРА ... %i"
+	}
+	"Restart_Msg_Chat"
+	{
+		"en"		"Server Restarts. Come back to us soon."
+		"ru"		"Сервер перезагружается. Возвращайтесь к нам по-скорее."
+	}
+	"Restart_Msg_Console"
+	{
+		"en"		"Server Restarts. Come back to us soon."
+		"ru"		"Сервер перезагружается. Возвращайтесь к нам по-скорее."
+	}
+	"Restart_Msg_Hint"
+	{
+		"en"		"Rebooting started..."
+		"ru"		"Начата перезагрузка..."
+	}
+	"Kick_Msg"
+	{
+		"en"		"Server Restarts"
+		"ru"		"Перезагрузка сервера"
+	}
+}
