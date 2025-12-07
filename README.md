@@ -215,6 +215,8 @@
 2. [[L4D] Map Changer (3.8) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=311161)
    - Мультикомбайн: автоматическое добавление новых карт в меню, рейтинг карт, настройка смены кампании после финала и так далее.
    - `sm_maps`
+> [!CAUTION]
+> Баг: голосование за возврат в лобби - загружает следующую карту, поэтому временно используется фикс от **3ipka\***
 3. [[L4D2] Incapped Crawling with Animation (2.9) by SilverShot, mod by Lux](https://forums.alliedmods.net/showthread.php?t=137381)
 > [!CAUTION]
 > Проверить: модельки персонажей (особенно Ро) переворачивались и колбасились в инкапе на старом L4L

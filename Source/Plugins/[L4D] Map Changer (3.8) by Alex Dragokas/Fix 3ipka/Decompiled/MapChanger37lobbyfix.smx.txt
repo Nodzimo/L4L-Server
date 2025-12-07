@@ -1,0 +1,3476 @@
+void:GetFirstMap_Standard(String:_arg0[], String:_arg1[], _arg2)
+{
+	GetFirstMapEx(g_kvdef, _arg0[0], _arg1[0], _arg2);
+	return 0;
+}
+
+void:GetFirstMap_Custom(String:_arg0[], String:_arg1[], _arg2)
+{
+	GetFirstMapEx(g_kv, _arg0[0], _arg1[0], _arg2);
+	return 0;
+}
+
+bool:IsFinaleMap(String:_arg0[])
+{
+	decl String:sCampaign[256];
+	new iIndexMap;
+	new iTotalMaps;
+	GetCampaignDisplay(_arg0[0], sCampaign, 64, false, 0, true);
+	GetMapNumber(sCampaign, _arg0[0], iIndexMap, iTotalMaps);
+	return iTotalMaps == iIndexMap;
+}
+
+bool:IsBlackListedCycleMap(String:_arg0[])
+{
+	return ArrayList.FindString(g_hArrayCycleBlock, _arg0[0]) != -1;
+}
+
+bool:InDenyFile(_arg0, ArrayList:_arg1)
+{
+	static String:sSteam[256];
+	static String:str[512];
+	static String:sName[512];
+	GetClientAuthId(_arg0, 1, sSteam, 64, true);
+	GetClientName(_arg0, sName, 128);
+	new i;
+	while (i < ArrayList.Length.get(_arg1))
+	{
+		ArrayList.GetString(_arg1, i, str, 128);
+		if (strncmp(str, "STEAM_", 6, false) == 0)
+		{
+			if (strcmp(sSteam, str, false) == 0)
+			{
+				return 1;
+			}
+		}
+		else
+		{
+			if (StrContains(str, "*", true))
+			{
+				ReplaceString(str, 128, "*", "", true);
+				if (StrContains(sName, str, false) != -1)
+				{
+					return 1;
+				}
+			}
+			if (strcmp(sName, str, false) == 0)
+			{
+				return 1;
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+bool:CanVote(_arg0, bool:_arg1)
+{
+	if (InDenyFile(_arg0, g_hArrayVoteBlock))
+	{
+		return 0;
+	}
+	new iUserFlag = GetUserFlagBits(_arg0);
+	if (iUserFlag & 16384 != 0)
+	{
+		return 1;
+	}
+	static String:sReq[128];
+	if (_arg1)
+	{
+		ConVar.GetString(g_hCvarMapVoteAccessCustom, sReq, 32);
+	}
+	else
+	{
+		ConVar.GetString(g_hCvarMapVoteAccessDef, sReq, 32);
+	}
+	if (sReq[0] != '\x00')
+	{
+
+/* ERROR! unknown load SysReq */
+ function "CanVote" (number 5)
+bool:HasVetoAccessFlag(_arg0)
+{
+	new iUserFlag = GetUserFlagBits(_arg0);
+	if (iUserFlag & 16384 != 0)
+	{
+		return 1;
+	}
+	decl String:sReq[128];
+	ConVar.GetString(g_hCvarVetoFlag, sReq, 32);
+	if (strlen(sReq) == 0)
+	{
+		return 1;
+	}
+
+/* ERROR! unknown load SysReq */
+ function "HasVetoAccessFlag" (number 6)
+bool:HasVoteRatingAccess(_arg0)
+{
+	new iUserFlag = GetUserFlagBits(_arg0);
+	if (iUserFlag & 16384 != 0)
+	{
+		return 1;
+	}
+	decl String:sReq[128];
+	ConVar.GetString(g_hCvarVoteMarkFlag, sReq, 32);
+	if (strlen(sReq) == 0)
+	{
+		return 1;
+	}
+
+/* ERROR! unknown load SysReq */
+ function "HasVoteRatingAccess" (number 7)
+void:Loc_WriteIndexFile()
+{
+	decl String:name[512];
+	decl String:str[512];
+	new iStamp;
+	new File:hFile = 3248;
+	new File:hFile = OpenFile(LC_RESOURCE_INDEX_FILE, "wt", false, hFile);
+	if (hFile)
+	{
+		new StringMapSnapshot:hSnap = StringMap.Snapshot(g_hMapLcStamp);
+		if (hSnap)
+		{
+			new i;
+			while (i < StringMapSnapshot.Length.get(hSnap))
+			{
+				StringMapSnapshot.GetKey(hSnap, i, name, 128);
+				StringMap.GetValue(g_hMapLcStamp, name, iStamp);
+				FormatEx(str, 128, "%s|%i", name, iStamp);
+				File.WriteLine(hFile, str);
+				i++;
+			}
+			CloseHandle(hSnap);
+			hSnap = 0;
+		}
+		File.Close(hFile);
+	}
+	return 0;
+}
+
+bool:HasRemoveRatingAccess(_arg0)
+{
+	new iUserFlag = GetUserFlagBits(_arg0);
+	if (iUserFlag & 16384 != 0)
+	{
+		return 1;
+	}
+	decl String:sReq[128];
+	ConVar.GetString(g_hCvarRemoveMarkFlag, sReq, 32);
+	if (strlen(sReq) == 0)
+	{
+		return 1;
+	}
+
+/* ERROR! unknown load SysReq */
+ function "HasRemoveRatingAccess" (number 9)
+iGetListenServerHost(_arg0, bool:_arg1)
+{
+	if (_arg0 == 0)
+	{
+		if (!_arg1)
+		{
+			new iManager = 47860;
+			new iManager = FindEntityByClassname(-1, iManager);
+			if (iManager != -1)
+			{
+				if (IsValidEntity(iManager))
+				{
+					new iHostOffset = FindSendPropInfo("CTerrorPlayerResource", "m_listenServerHost", 0, 0, 0, 0);
+					if (iHostOffset != -1)
+					{
+						decl bool:bHost[66];
+						GetEntDataArray(iManager, iHostOffset, bHost, 66, 1);
+						new iPlayer = 1;
+						while (iPlayer < 66)
+						{
+							if (bHost[iPlayer])
+							{
+								return iPlayer;
+							}
+							iPlayer++;
+						}
+					}
+				}
+			}
+		}
+	}
+	return _arg0;
+}
+
+void:Loc_GetPhraseFiles(String:_arg0[])
+{
+	new DirectoryListing:hDir;
+	decl String:sFile[256];
+	decl String:prefix[128];
+	decl String:guess[256];
+	new iCount;
+	new iLen;
+	new n;
+	new FileType:fileType;
+	new StringMap:hUniqPrefix = StringMap.StringMap();
+	hDir = OpenDirectory(LC_RESOURCE_ENCODED_DIR, true, "GAME");
+	if (hDir)
+	{
+		while (DirectoryListing.GetNext(hDir, sFile, 64, fileType))
+		{
+			if (fileType == 2)
+			{
+
+/* ERROR! unknown load SysReq */
+ function "Loc_GetPhraseFiles" (number 11)
+void:Loc_StackProcessingDecode(LC_OP_FLAG:_arg0)
+{
+	new Float:time = 0.0;
+	new bool:bUpdated;
+	new iFileSize;
+	static String:sFile[256];
+	static max_size;
+	static total_file_size;
+	static iCount;
+	static Float:max_time;
+	static Float:total_time;
+	g_bLcDecodeInProgress = true;
+	if (_arg0 & 1)
+	{
+		total_time = 0.0;
+		max_time = 0.0;
+		iCount = 0;
+		total_file_size = 0;
+		max_size = 0;
+	}
+	if (_arg0 & 2)
+	{
+		CreateTimer(0.1, 335, 0, 0);
+		return 0;
+	}
+	while (time < 0.3)
+	{
+		if (ArrayStack.Empty.get(g_hLcStackEncoded))
+		{
+			Loc_StackProcessingCache(3);
+			return 0;
+		}
+		ArrayStack.PopString(g_hLcStackEncoded, sFile, 64, 0);
+		Profiler.Start(g_hLcProf);
+		bUpdated = Loc_DecodeFile(sFile, iFileSize);
+		ArrayStack.PushString(g_hLcStackCache, sFile);
+		Profiler.Stop(g_hLcProf);
+		time += Profiler.Time.get(g_hLcProf);
+		if (max_time < Profiler.Time.get(g_hLcProf))
+		{
+			max_time = Profiler.Time.get(g_hLcProf);
+		}
+		if (bUpdated)
+		{
+			total_file_size = iFileSize + total_file_size;
+			if (max_size < iFileSize)
+			{
+				max_size = iFileSize;
+			}
+			total_time = total_time + Profiler.Time.get(g_hLcProf);
+			iCount += 1;
+		}
+	}
+	CreateTimer(0.1, 335, 0, 0);
+	return 0;
+}
+
+void:Loc_StackProcessingCache(LC_OP_FLAG:_arg0)
+{
+	new Float:time = 0.0;
+	new bool:bUpdated;
+	new iFileSize;
+	static String:sFile[256];
+	static max_size;
+	static total_file_size;
+	static iCount;
+	static Float:max_time;
+	static Float:total_time;
+	if (_arg0 & 1)
+	{
+		total_time = 0.0;
+		max_time = 0.0;
+		total_file_size = 0;
+		max_size = 0;
+		iCount = 0;
+	}
+	if (_arg0 & 2)
+	{
+		CreateTimer(0.1, 333, 0, 0);
+		return 0;
+	}
+	while (time < 0.3)
+	{
+		if (ArrayStack.Empty.get(g_hLcStackCache))
+		{
+			g_bLcDecodeInProgress = false;
+			if (ArrayStack.Empty.get(g_hLcStackEncoded))
+			{
+				if (g_iLcInstallMode & 1)
+				{
+					if (SQL_Loc_InsertBatch(0, "", "", false, true))
+					{
+					}
+					else
+					{
+						OnPhrasesProcessingCompleted_CallDelayed();
+					}
+				}
+				if (g_iLcInstallMode & 2)
+				{
+					Forward_OnPhrasesProcessingCompleted();
+				}
+				if (g_iLcInstallMode & 4)
+				{
+					Loc_LoadTranslations();
+					Forward_OnPhrasesProcessingCompleted();
+				}
+			}
+			else
+			{
+				Loc_StackProcessingDecode(2);
+			}
+			return 0;
+		}
+		ArrayStack.PopString(g_hLcStackCache, sFile, 64, 0);
+		Profiler.Start(g_hLcProf);
+		bUpdated = Loc_CacheFile(sFile, iFileSize);
+		Profiler.Stop(g_hLcProf);
+		time += Profiler.Time.get(g_hLcProf);
+		if (max_time < Profiler.Time.get(g_hLcProf))
+		{
+			max_time = Profiler.Time.get(g_hLcProf);
+		}
+		if (bUpdated)
+		{
+			total_time = total_time + Profiler.Time.get(g_hLcProf);
+			total_file_size = iFileSize + total_file_size;
+			if (max_size < iFileSize)
+			{
+				max_size = iFileSize;
+			}
+			iCount += 1;
+		}
+	}
+	CreateTimer(0.1, 333, 0, 0);
+	return 0;
+}
+
+bool:Loc_CacheFile(String:_arg0[], &_arg1)
+{
+	new bool:shouldParse;
+	new iOldSize;
+	new value;
+	decl String:sourceFile[316];
+	FormatEx(sourceFile, 79, "%s/%s", LC_RESOURCE_DECODED_DIR, _arg0[0]);
+	_arg1 = FileSize(sourceFile, false, "GAME");
+	switch (g_iLcInstallMode)
+	{
+		case 1:
+		{
+			iOldSize = SQL_Loc_GetIndex(_arg0[0]);
+			if (_arg1 != iOldSize)
+			{
+				shouldParse = true;
+			}
+		}
+		case 2:
+		{
+			shouldParse = true;
+		}
+		case 4:
+		{
+		}
+		default:
+		{
+		}
+	}
+	if (shouldParse)
+	{
+
+/* ERROR! unknown load SysReq */
+ function "Loc_CacheFile" (number 14)
+void:Loc_ParseFile(String:_arg0[], bool:_arg1)
+{
+	new pa;
+	new pr;
+	new pc;
+	new ps = -1;
+	new tok;
+	new qts;
+	decl p[2];
+	decl p_len[2];
+	new iLangIndex = -1;
+	decl String:str[12288];
+	new File:hr = 3248;
+	new File:hr = OpenFile(_arg0[0], "rt", false, hr);
+	if (hr)
+	{
+		while (File.EndOfFile(hr))
+		{
+			if (File.ReadLine(hr, str, 3072))
+			{
+				pa = 0;
+				ps = -1;
+				p[0] = -1;
+				p[1] = -1;
+				qts = 0;
+				tok = 0;
+				while ((pr = FindCharInString(pa + str, '"', false)) != -1)
+				{
+					pc = pr + pa;
+					if (ps == -1)
+					{
+						ps = pc + 1;
+					}
+					if (qts)
+					{
+						if (str[pc - 1] != '\')
+						{
+							str[pc] = 0;
+							p[tok] = ps;
+							p_len[tok] = pc - ps;
+							if (!(tok == 1))
+							{
+								qts = 0;
+								ps = -1;
+								tok++;
+							}
+							if (p[0] != -1)
+							{
+								if (p[1] != -1)
+								{
+									if (str[p[0]] != '\x00')
+									{
+										if (str[p[1]] != '\x00')
+										{
+											if (p_len[1] == 1)
+											{
+												if (!(str[p[1]] == ' '))
+												{
+												}
+											}
+											if (Loc_OnProcessKeyValue(p[0] + str, p[1] + str, MAP_GROUP_ANY, _arg1) == 4)
+											{
+												PrintToServer("[Localizer] [WARN] File %s is skipped. Reason: language name is not recognized.", _arg0[0]);
+												CloseHandle(hr);
+												hr = 0;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						qts = 1;
+					}
+					pa = pr + 1 + pa;
+				}
+				if (p[0] != -1)
+				{
+					if (p[1] != -1)
+					{
+						if (str[p[0]] != '\x00')
+						{
+							if (str[p[1]] != '\x00')
+							{
+								if (p_len[1] == 1)
+								{
+									if (!(str[p[1]] == ' '))
+									{
+									}
+								}
+								if (Loc_OnProcessKeyValue(p[0] + str, p[1] + str, MAP_GROUP_ANY, _arg1) == 4)
+								{
+									PrintToServer("[Localizer] [WARN] File %s is skipped. Reason: language name is not recognized.", _arg0[0]);
+									CloseHandle(hr);
+									hr = 0;
+								}
+							}
+						}
+					}
+				}
+			}
+			CloseHandle(hr);
+			hr = 0;
+		}
+		CloseHandle(hr);
+		hr = 0;
+	}
+	return 0;
+}
+
+Action:Loc_OnProcessKeyValue(String:_arg0[], String:_arg1[], &_arg2, bool:_arg3)
+{
+	new indent;
+	new bool:isFallback;
+	if (_arg0[0] == '[')
+	{
+		if (_arg3)
+		{
+			indent = 9;
+			isFallback = true;
+		}
+		return 0;
+	}
+	if (_arg2 == -1)
+	{
+		if (strcmp(_arg0[0], LC_LANGUAGE_KEY, true) == 0)
+		{
+			_arg2 = GetLanguageByName(_arg1[0]);
+			if (_arg2 == -1)
+			{
+				return 4;
+			}
+		}
+	}
+	else
+	{
+		if (_arg0[0][indent + 0] == '#')
+		{
+			new var1;
+			if (isFallback)
+			{
+				var1 = 0;
+			}
+			else
+			{
+				var1 = _arg2;
+			}
+			Loc_AddPhrase(var1, indent + 1 + _arg0[0], _arg1[0], false, true, true);
+		}
+		new var2;
+		if (isFallback)
+		{
+			var2 = 0;
+		}
+		else
+		{
+			var2 = _arg2;
+		}
+		Loc_AddPhrase(var2, indent + 0 + _arg0[0], _arg1[0], false, true, true);
+	}
+	return 0;
+}
+
+void:Loc_AddPhrase(_arg0, String:_arg1[], String:_arg2[], bool:_arg3, bool:_arg4, bool:_arg5)
+{
+	if (g_iLcInstallMode & 1)
+	{
+		if (_arg5)
+		{
+			SQL_Loc_InsertBatch(_arg0, _arg1[0], _arg2[0], _arg3, false);
+		}
+		else
+		{
+			SQL_Loc_Insert(_arg0, _arg1[0], _arg2[0], _arg3, _arg4);
+		}
+	}
+	else
+	{
+		if (g_iLcInstallMode & 2)
+		{
+			StringMap.SetString(g_hMapLcPhrase[_arg0], _arg1[0], _arg2[0], _arg3);
+		}
+		if (g_iLcInstallMode & 4)
+		{
+		}
+	}
+	return 0;
+}
+
+bool:Loc_DecodeFile(String:_arg0[], &_arg1)
+{
+	decl String:targetFile[316];
+	decl String:sourceFile[296];
+	FormatEx(sourceFile, 74, "%s/%s", LC_RESOURCE_ENCODED_DIR, _arg0[0]);
+	FormatEx(targetFile, 79, "%s/%s", LC_RESOURCE_DECODED_DIR, _arg0[0]);
+	new iOldSize;
+	_arg1 = FileSize(sourceFile, true, "GAME");
+	StringMap.GetValue(g_hMapLcStamp, _arg0[0], iOldSize);
+	if (!(iOldSize != _arg1))
+	{
+		if (FileExists(targetFile, false, "GAME"))
+		{
+			_arg1 = 0;
+			return 0;
+		}
+	}
+	Loc_ConvertFile_UTF16LE_UTF8(sourceFile, targetFile);
+	StringMap.SetValue(g_hMapLcStamp, _arg0[0], _arg1, true);
+	g_bLcIndexChanged = true;
+	return 1;
+}
+
+bool:Loc_ConvertFile_UTF16LE_UTF8(String:_arg0[], String:_arg1[])
+{
+	new File:hr = 3248;
+	new File:hr = OpenFile(_arg0[0], "rb", !g_iLcEngine == 12/* ERROR unknown load Unary */, hr);
+	if (!hr)
+	{
+		if (g_iLcEngine == 12)
+		{
+			new n = 1;
+			new n = FindCharInString(_arg0[0], '/', n);
+			if (n != -1)
+			{
+				Format(_arg0[0], 74, "%s/%s", LC_RESOURCE_ENCODED_PL_DIR, n + 1 + _arg0[0]);
+				hr = OpenFile(_arg0[0], "rb", false, "GAME");
+			}
+		}
+	}
+	if (hr)
+	{
+		new File:hw = 3248;
+		new File:hw = OpenFile(_arg1[0], "wb", false, hw);
+		if (hw)
+		{
+			new bytesRead;
+			new bytesWrite;
+			decl buff[512];
+			decl out[1536];
+			while (File.EndOfFile(hr))
+			{
+				bytesRead = File.Read(hr, buff, 512, 2);
+				Loc_WideCharToMultiByte(buff, bytesRead, out, bytesWrite);
+				File.Write(hw, out, bytesWrite, 1);
+			}
+			CloseHandle(hw);
+			hw = 0;
+		}
+		CloseHandle(hr);
+		hr = 0;
+	}
+	return 1;
+}
+
+void:Loc_WideCharToMultiByte(_arg0[], _arg1, _arg2[], &_arg3)
+{
+	static high_surrogate;
+	static n;
+	static i;
+	n = 0;
+	high_surrogate = 0;
+	i = 0;
+	while (i < _arg1)
+	{
+		if (high_surrogate)
+		{
+			new data = _arg0[0][i] - 56320 + high_surrogate - 55296 << 10 + 65536;
+			n += 1;
+			_arg2[0][n] = data >>> 18 & 7 | 240;
+			n += 1;
+			_arg2[0][n] = data >>> 12 & 63 | 128;
+			n += 1;
+			_arg2[0][n] = data >>> 6 & 63 | 128;
+			n += 1;
+			_arg2[0][n] = data & 63 | 128;
+			high_surrogate = 0;
+		}
+		else
+		{
+			if (_arg0[0][i] < 128)
+			{
+				n += 1;
+				_arg2[0][n] = _arg0[0][i];
+			}
+			if (_arg0[0][i] < 2048)
+			{
+				n += 1;
+				_arg2[0][n] = _arg0[0][i] >>> 6 & 31 | 192;
+				n += 1;
+				_arg2[0][n] = _arg0[0][i] & 63 | 128;
+			}
+			if (_arg0[0][i] <= 65535)
+			{
+				if (55296 <= _arg0[0][i] <= 57343)
+				{
+					high_surrogate = _arg0[0][i];
+				}
+				n += 1;
+				_arg2[0][n] = _arg0[0][i] >>> 12 & 15 | 224;
+				n += 1;
+				_arg2[0][n] = _arg0[0][i] >>> 6 & 63 | 128;
+				n += 1;
+				_arg2[0][n] = _arg0[0][i] & 63 | 128;
+			}
+		}
+		i += 1;
+	}
+	_arg3 = n;
+	return 0;
+}
+
+Loc_GetLanguageNum(_arg0, String:_arg1[], String:_arg2[])
+{
+	new lang_num;
+	if (_arg1[0])
+	{
+		lang_num = GetLanguageByName(_arg1[0]);
+	}
+	else
+	{
+		if (_arg2[0])
+		{
+			lang_num = GetLanguageByCode(_arg2[0]);
+		}
+		new var1;
+		if (_arg0 == 0)
+		{
+			var1 = GetServerLanguage();
+		}
+		else
+		{
+			var1 = GetClientLanguage(_arg0);
+		}
+		lang_num = var1;
+	}
+	return lang_num;
+}
+
+void:Loc_ReplacePhrases(String:_arg0[], _arg1, _arg2)
+{
+	if (_arg2 == -1)
+	{
+		return 0;
+	}
+	static String:translation[12288];
+	static String:phrase[512];
+	new matches = Regex.MatchAll(g_rLcCaptures, _arg0[0], 0);
+	if (matches)
+	{
+		new i = matches - 1;
+		while (i >= 0)
+		{
+			Regex.GetSubString(g_rLcCaptures, 0, phrase, 128, i);
+			if (Loc_GetPhrase(_arg2, 3704 + 1, translation, 3072, true, true))
+			{
+				ReplaceStringEx(_arg0[0], _arg1, phrase, translation, -1, -1, true);
+			}
+			i--;
+		}
+	}
+	return 0;
+}
+
+bool:Loc_GetPhrase(_arg0, String:_arg1[], String:_arg2[], _arg3, bool:_arg4, bool:_arg5)
+{
+	static String:tr_def[12288];
+	static String:tr[12288];
+	new var1;
+	if (_arg5 || g_iLcInstallMode & 2)
+	{
+		if (StringMap.GetString(g_hMapLcPhrase[_arg0], _arg1[0], _arg2[0], _arg3, 0))
+		{
+			return 1;
+		}
+	}
+	if (g_iLcInstallMode & 1)
+	{
+		if (SQL_Loc_Query(_arg0, _arg1[0], _arg2[0], _arg3))
+		{
+			if (_arg5)
+			{
+				StringMap.SetString(g_hMapLcPhrase[_arg0], _arg1[0], _arg2[0], true);
+				if (_arg0 == 0)
+				{
+					strcopy(tr_def, 3072, _arg2[0]);
+				}
+				else
+				{
+					Loc_GetPhrase(0, _arg1[0], tr_def, 3072, false, true);
+				}
+				new i;
+				while (i < GetLanguageCount())
+				{
+					if (_arg0 != i)
+					{
+						if (SQL_Loc_Query(i, _arg1[0], tr, 3072))
+						{
+							StringMap.SetString(g_hMapLcPhrase[i], _arg1[0], tr, true);
+						}
+						StringMap.SetString(g_hMapLcPhrase[i], _arg1[0], tr_def, true);
+					}
+					i++;
+				}
+			}
+			return 1;
+		}
+		if (_arg4)
+		{
+			return Loc_GetPhrase(0, _arg1[0], _arg2[0], _arg3, false, true);
+		}
+	}
+	else
+	{
+		if (g_iLcInstallMode & 2)
+		{
+			if (_arg4)
+			{
+				if (_arg0 != 0)
+				{
+					if (StringMap.GetString(g_hMapLcPhrase[0], _arg1[0], _arg2[0], _arg3, 0))
+					{
+						return 1;
+					}
+				}
+			}
+		}
+	}
+	_arg2[0] = '\x00';
+	return 0;
+}
+
+bool:Loc_LoadTranslations()
+{
+	decl String:dstFile[1024];
+	BuildPath(0, dstFile, 256, "translations/%s", 2500);
+	if (FileExists(dstFile, false, "GAME"))
+	{
+		Profiler.Start(g_hLcProf);
+		LoadTranslations(LC_TRANSLATION_FILE);
+		InsertServerCommand("sm_reload_translations");
+		ServerExecute();
+		Profiler.Stop(g_hLcProf);
+		return 1;
+	}
+	LogError("Attempt to load translation file without dumping first: %s", dstFile);
+	return 0;
+}
+
+String:Loc_InstallMode_ToString(_arg0)
+{
+	decl String:str[128];
+	new var1;
+	if (g_iLcInstallMode == 1)
+	{
+		var1 = 13180;
+	}
+	else
+	{
+		if (g_iLcInstallMode == 2)
+		{
+			var1 = 13192;
+		}
+		if (g_iLcInstallMode == 4)
+		{
+			var1 = 13204;
+		}
+		if (g_iLcInstallMode == 8)
+		{
+			var1 = 13220;
+		}
+		var1 = 13228;
+	}
+	return str;
+}
+
+void:SQL_Loc_DB_Connect(bool:_arg0)
+{
+	decl String:error[1024];
+	if (g_hLcDB)
+	{
+		SQL_Loc_OnDBConnect(g_hLcDB, "", _arg0);
+	}
+	else
+	{
+		g_hLcDB = SQLite_UseDatabase("sourcemod-local", error, 256);
+		SQL_Loc_OnDBConnect(g_hLcDB, error, _arg0);
+	}
+	g_iLcQueueTx = 0;
+	return 0;
+}
+
+void:Loc_CreateTables()
+{
+	decl String:query[2560];
+	FormatEx(query, 640, "CREATE TABLE IF NOT EXISTS `localizer_phrases` (`lang` INTEGER UNSIGNED NOT NULL default 0, `phrase` VARCHAR(%i) NOT NULL, `translation` VARCHAR(%i) NOT NULL, PRIMARY KEY (lang, phrase) );", 128, 3072);
+	Database.Query(g_hLcDB, 317, query, 0, 1);
+	return 0;
+}
+
+bool:SQL_Loc_InsertBatch(_arg0, String:_arg1[], String:_arg2[], bool:_arg3, bool:_arg4)
+{
+	static queries;
+	static Transaction:tx;
+	if (_arg4)
+	{
+		if (queries)
+		{
+			g_iLcQueueTx += 1;
+			Database.Execute(g_hLcDB, tx, 325, 323, 0, 1);
+			queries = 0;
+			return 1;
+		}
+		return 0;
+	}
+	if (!queries)
+	{
+		tx = Transaction.Transaction();
+	}
+	static String:query[26404];
+	if (_arg3)
+	{
+		Database.Format(g_hLcDB, query, 6601, "REPLACE INTO `localizer_phrases` (lang, phrase, translation) VALUES (%i, '%s', '%s');", _arg0, _arg1[0], _arg2[0]);
+	}
+	else
+	{
+		Database.Format(g_hLcDB, query, 6601, "INSERT INTO `localizer_phrases` (lang, phrase, translation) VALUES (%i, '%s', '%s') ON CONFLICT DO NOTHING;", _arg0, _arg1[0], _arg2[0]);
+	}
+	Transaction.AddQuery(tx, query, 0);
+	queries += 1;
+	if (queries >= 1000)
+	{
+		g_iLcQueueTx += 1;
+		Database.Execute(g_hLcDB, tx, 325, 323, 0, 1);
+		queries = 0;
+		return 1;
+	}
+	return 0;
+}
+
+void:SQL_Loc_Insert(_arg0, String:_arg1[], String:_arg2[], bool:_arg3, bool:_arg4)
+{
+	static String:query[26404];
+	if (_arg3)
+	{
+		Database.Format(g_hLcDB, query, 6601, "REPLACE INTO `localizer_phrases` (lang, phrase, translation) VALUES (%i, '%s', '%s');", _arg0, _arg1[0], _arg2[0]);
+	}
+	else
+	{
+		Database.Format(g_hLcDB, query, 6601, "INSERT INTO `localizer_phrases` (lang, phrase, translation) VALUES (%i, '%s', '%s') ON CONFLICT DO NOTHING;", _arg0, _arg1[0], _arg2[0]);
+	}
+	if (_arg4)
+	{
+		Database.Query(g_hLcDB, 63, query, 0, 1);
+	}
+	else
+	{
+		SQL_LockDatabase(g_hLcDB);
+		new DBResultSet:hQuery = -1;
+		new DBResultSet:hQuery = SQL_Query(g_hLcDB, query, hQuery);
+		SQL_UnlockDatabase(g_hLcDB);
+		CloseHandle(hQuery);
+		hQuery = 0;
+	}
+	return 0;
+}
+
+void:SQL_Loc_RemoveTable()
+{
+	if (g_hLcDB)
+	{
+		decl String:query[400];
+		FormatEx(query, 100, "DROP TABLE IF EXISTS `localizer_phrases`;");
+		Database.Query(g_hLcDB, 63, query, 0, 1);
+	}
+	else
+	{
+		SQL_Loc_DB_Connect(true);
+	}
+	return 0;
+}
+
+void:SQL_Loc_Callback(Database:_arg0, DBResultSet:_arg1, String:_arg2[], any:_arg3)
+{
+	if (_arg0)
+	{
+		if (_arg1)
+		{
+			return 0;
+		}
+	}
+	LogError(_arg2[0]);
+	return 0;
+}
+
+SQL_Loc_GetIndex(String:_arg0[])
+{
+	decl String:str[64];
+	if (SQL_Loc_Query(0, _arg0[0], str, 16))
+	{
+		return StringToInt(str, 10);
+	}
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "SQL_Loc_SetIndex" (number 33)
+bool:!=(Float:_arg0, _arg1)
+{
+	return _arg0 != float(_arg1);
+}
+
+void:SetNativeVotesCvars()
+{
+	new var1;
+	if (ConVar.BoolValue.get(g_hCvarNativeVoteChangeMissionAllow) || ConVar.BoolValue.get(g_hCvarNativeVoteChangeChapterAllow))
+	{
+		var2[0] = 38784;
+	}
+	else
+	{
+		var2[0] = 38788;
+	}
+	SetCvarSilent(FindConVar("sv_vote_issue_change_map_now_allowed"), var2);
+	new var3;
+	if (bChangeMapAllow)
+	{
+		var3[0] = 38832;
+	}
+	else
+	{
+		var3[0] = 38836;
+	}
+	SetCvarSilent(FindConVar("sv_vote_issue_change_map_later_allowed"), var3);
+	new var4;
+	if (bChangeMapAllow)
+	{
+		var4[0] = 38880;
+	}
+	else
+	{
+		var4[0] = 38884;
+	}
+	SetCvarSilent(FindConVar("sv_vote_issue_change_mission_allowed"), var4);
+	new var5;
+	if (ConVar.BoolValue.get(g_hCvarNativeVoteRestartGameAllow))
+	{
+		var5[0] = 38928;
+	}
+	else
+	{
+		var5[0] = 38932;
+	}
+	SetCvarSilent(FindConVar("sv_vote_issue_restart_game_allowed"), var5);
+	return 0;
+}
+
+FindCharInString(String:_arg0[], String:_arg1, bool:_arg2)
+{
+	new var1 = strlen(_arg0[0]);
+	if (_arg2)
+	{
+		new i = var1 - 1;
+		while (i >= 0)
+		{
+			if (_arg1 == _arg0[0][i])
+			{
+				return i;
+			}
+			i--;
+		}
+	}
+	else
+	{
+		new i;
+		while (i < var1)
+		{
+			if (_arg1 == _arg0[0][i])
+			{
+				return i;
+			}
+			i++;
+		}
+	}
+	return -1;
+}
+
+void:SetCvarSilent(ConVar:_arg0, String:_arg1[])
+{
+	new var1 = _arg0;
+	ConVar.Flags.set(var1, ConVar.Flags.get(var1) & -257);
+	ConVar.SetString(_arg0, _arg1[0], false, false);
+
+/* ERROR! unknown load SysReq */
+ function "SetCvarSilent" (number 37)
+void:PrecachePhrasesKV(KeyValues:_arg0)
+{
+	KeyValues.Rewind(_arg0);
+	if (KeyValues.GotoFirstSubKey(_arg0, true))
+	{
+		RequestFrame(79, _arg0);
+		g_iAsyncAwaitCount += 1;
+	}
+	return 0;
+}
+
+void:PrecachePhrasesKV_Frame(KeyValues:_arg0)
+{
+	decl String:sCampaign[256];
+	decl String:DisplayName[256];
+	KeyValues.GetSectionName(_arg0, sCampaign, 64);
+	if (sCampaign == '#')
+	{
+		Localizer.PrecachePhrase(loc, sCampaign);
+	}
+	if (KeyValues.GotoFirstSubKey(_arg0, true))
+	{
+		do {
+			if (KeyValues.GotoFirstSubKey(_arg0, true))
+			{
+				KeyValues.GetString(_arg0, "DisplayName", DisplayName, 64, "");
+				while (DisplayName == '#')
+				{
+					Localizer.PrecachePhrase(loc, DisplayName);
+					if (!(KeyValues.GotoNextKey(_arg0, true)))
+					{
+						KeyValues.GoBack(_arg0);
+					}
+				}
+				if (!(KeyValues.GotoNextKey(_arg0, true)))
+				{
+					KeyValues.GoBack(_arg0);
+				}
+			}
+		} while (KeyValues.GotoNextKey(_arg0, true));
+		KeyValues.GoBack(_arg0);
+		if (KeyValues.GotoNextKey(_arg0, true))
+		{
+			RequestFrame(79, _arg0);
+		}
+		else
+		{
+			g_iAsyncAwaitCount -= 1;
+		}
+	}
+	else
+	{
+		g_iAsyncAwaitCount -= 1;
+	}
+	return 0;
+}
+
+void:HookUserMessageCredits()
+{
+	if (ConVar.IntValue.get(g_hCvarFinaleChangeType) & 4)
+	{
+		g_bUMHooked = true;
+		HookUserMessage(StatsCrawlMsgId, 305, false, -1);
+	}
+	return 0;
+}
+
+void:FinaleMapChange_Frame()
+{
+	RequestFrame(185, 0);
+	return 0;
+}
+
+void:ReadFileToArrayList(String:_arg0[], ArrayList:_arg1)
+{
+	static String:str[512];
+	new File:hFile = 3248;
+	new File:hFile = OpenFile(_arg0[0], "r", false, hFile);
+	if (hFile == 0)
+	{
+		SetFailState("Failed to open file: \"%s\". You are missing at installing!", _arg0[0]);
+	}
+	else
+	{
+		ArrayList.Clear(_arg1);
+		while (File.EndOfFile(hFile))
+		{
+			if (File.ReadLine(hFile, str, 128))
+			{
+				TrimString(str);
+				if (str[0] != '/')
+				{
+					ArrayList.PushString(_arg1, str);
+				}
+			}
+			CloseHandle(hFile);
+			hFile = 0;
+		}
+		CloseHandle(hFile);
+		hFile = 0;
+	}
+	return 0;
+}
+
+void:File.Close(File:_arg0)
+{
+	CloseHandle(_arg0);
+	return 0;
+}
+
+Database:SQLite_UseDatabase(String:_arg0[], String:_arg1[], _arg2)
+{
+	new KeyValues:kv = 2276;
+	new KeyValues:kv = KeyValues.KeyValues("", "", kv);
+	KeyValues.SetString(kv, "driver", "sqlite");
+	KeyValues.SetString(kv, "database", _arg0[0]);
+	new Database:db;
+	CloseHandle(kv);
+	kv = 0;
+
+/* ERROR! unknown load SysReq */
+ function "SQLite_UseDatabase" (number 44)
+void:GetGameType()
+{
+	ConVar.GetString(g_hConVarGameMode, g_sGameMode, 32);
+	if (strcmp(g_sGameMode, "coop", false) == 0)
+	{
+		g_eGameType = 0;
+	}
+	else
+	{
+		if (strcmp(g_sGameMode, "versus", false) == 0)
+		{
+			g_eGameType = 1;
+		}
+		if (strcmp(g_sGameMode, "survival", false) == 0)
+		{
+			g_eGameType = 2;
+		}
+	}
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "ReloadMaps" (number 46)
+
+/* ERROR! null */
+ function "IsAddonChanged" (number 47)
+
+/* ERROR! null */
+ function "Actualize_MapChangerInfo" (number 48)
+bool:CommandExists(String:_arg0[])
+{
+	return GetCommandFlags(_arg0[0]) != -1;
+}
+
+bool:Menu.DisplayVoteToAll(Menu:_arg0, _arg1, _arg2)
+{
+	new total;
+	new players[MaxClients];
+	new i = 1;
+	while (i <= MaxClients)
+	{
+		if (IsClientInGame(i))
+		{
+			if (!(IsFakeClient(i)))
+			{
+				total++;
+				players[0][total] = i;
+				i++;
+			}
+		}
+		i++;
+	}
+	return Menu.DisplayVote(_arg0, players[0], total, _arg1, _arg2);
+}
+
+
+/* ERROR! null */
+ function "Translate" (number 51)
+
+/* ERROR! null */
+ function "Menu_ChooseMap" (number 52)
+ByteCountToCells(_arg0)
+{
+	if (_arg0)
+	{
+		return _arg0 + 3 / 4;
+	}
+	return 1;
+}
+
+void:GetEntDataArray(_arg0, _arg1, any:_arg2[], _arg3, _arg4)
+{
+	new i;
+	while (i < _arg3)
+	{
+		_arg2[0][i] = GetEntData(_arg0, _arg4 * i + _arg1, _arg4);
+		i++;
+	}
+	return 0;
+}
+
+void:CreateMenuRating(_arg0)
+{
+	new Menu:menu = 28;
+	new Menu:menu = Menu.Menu(301, menu);
+	Menu.SetTitle(menu, "%T", "Rating_value_ask", _arg0);
+	Translate(_arg0, "%t", 40960);
+
+/* ERROR! Can't print expression: Heap */
+ function "CreateMenuRating" (number 55)
+Localizer:Localizer.Localizer(LC_INSTALL_MODE:_arg0)
+{
+	Loc_Init(_arg0);
+	return g_hLcProf;
+}
+
+void:Localizer.Delegate_InitCompleted(Localizer:_arg0, <typedef 0>:_arg1)
+{
+	PrivateForward.AddFunction(g_fwdLcOnPhrasesProcessingCompleted, GetMyHandle(), _arg1);
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "CreateMenuCampaigns" (number 58)
+bool:Localizer.IsReady(Localizer:_arg0)
+{
+	return g_bLcReady;
+}
+
+Localizer.Format(Localizer:_arg0, String:_arg1[], _arg2, String:_arg3[], any:_arg4)
+{
+	VFormat(_arg1[0], _arg2, _arg3[0], 5);
+	Loc_ReplacePhrases(_arg1[0], _arg2, g_iLcServerLanguage);
+	return strlen(_arg1[0]);
+}
+
+bool:Localizer.PhraseTranslateToLang(Localizer:_arg0, String:_arg1[], String:_arg2[], _arg3, _arg4, String:_arg5[], String:_arg6[], String:_arg7[])
+{
+	if (Loc_GetPhrase(Loc_GetLanguageNum(_arg4, _arg5[0], _arg6[0])/* ERROR unknown load Call */, _arg1[0] + 1, _arg2[0], _arg3, false, false))
+	{
+		return 1;
+	}
+	strcopy(_arg2[0], _arg3, _arg7[0]);
+	return 0;
+}
+
+bool:IsValidMapKv(KeyValues:_arg0)
+{
+	decl String:map[256];
+	new bool:bValid;
+	if (!(KeyValues.JumpToKey(_arg0, g_sGameMode, false)))
+	{
+		if (!(KeyValues.JumpToKey(_arg0, "coop", false)))
+		{
+			return 0;
+		}
+	}
+	if (KeyValues.GotoFirstSubKey(_arg0, true))
+	{
+		KeyValues.GetString(_arg0, "Map", map, 64, "@");
+		if (strcmp(map, "@", true) != 0)
+		{
+			if (IsMapValidEx(map))
+			{
+				bValid = true;
+			}
+		}
+		KeyValues.GoBack(_arg0);
+	}
+	KeyValues.GoBack(_arg0);
+	return bValid;
+}
+
+void:FillStandardCampaignOrder()
+{
+	decl String:map[256];
+	new bool:bFirstMap = 1;
+	if (!(KeyValues.JumpToKey(g_kvdef, g_sGameMode, false)))
+	{
+		if (!(KeyValues.JumpToKey(g_kvdef, "coop", false)))
+		{
+			return 0;
+		}
+	}
+	if (KeyValues.GotoFirstSubKey(g_kvdef, true))
+	{
+		do {
+			KeyValues.GetString(g_kvdef, "Map", map, 64, "@");
+			if (strcmp(map, "@", true) != 0)
+			{
+				if (IsMapValidEx(map))
+				{
+					ArrayList.PushString(g_aMapOrder, map);
+					if (bFirstMap)
+					{
+						bFirstMap = false;
+						if (!(IsBlackListedCycleMap(map)))
+						{
+							ArrayList.PushString(g_aMapStandardFirst, map);
+						}
+					}
+				}
+			}
+		} while (KeyValues.GotoNextKey(g_kvdef, true));
+		KeyValues.GoBack(g_kvdef);
+	}
+	KeyValues.GoBack(g_kvdef);
+	return 0;
+}
+
+void:FillCustomCampaignOrder()
+{
+	decl String:map[256];
+	new bool:bFirstMap = 1;
+	if (!(KeyValues.JumpToKey(g_kv, g_sGameMode, false)))
+	{
+		if (!(KeyValues.JumpToKey(g_kv, "coop", false)))
+		{
+			return 0;
+		}
+	}
+	if (KeyValues.GotoFirstSubKey(g_kv, true))
+	{
+		do {
+			KeyValues.GetString(g_kv, "Map", map, 64, "@");
+			if (strcmp(map, "@", true) != 0)
+			{
+				if (IsMapValidEx(map))
+				{
+					ArrayList.PushString(g_aMapCustomOrder, map);
+					if (bFirstMap)
+					{
+						bFirstMap = false;
+						if (!(IsBlackListedCycleMap(map)))
+						{
+							ArrayList.PushString(g_aMapCustomFirst, map);
+						}
+					}
+				}
+			}
+		} while (KeyValues.GotoNextKey(g_kv, true));
+		KeyValues.GoBack(g_kv);
+	}
+	KeyValues.GoBack(g_kv);
+	return 0;
+}
+
+bool:Localizer.PrecachePhrase(Localizer:_arg0, String:_arg1[])
+{
+	new lang_num = 2848;
+	decl String:translation[12288];
+	return Loc_GetPhrase(Loc_GetLanguageNum(0, "", lang_num)/* ERROR unknown load Call */, _arg1[0] + 1, translation, 3072, true, true);
+}
+
+String:StrRepeat(String:_arg0[], _arg1, _arg2, _arg3)
+{
+	new var1;
+	new i;
+	while (i < _arg1 * _arg2)
+	{
+		new j;
+		while (j < _arg1)
+		{
+			var1[j + i] = _arg0[0][j];
+			j++;
+		}
+		i = _arg1 + i;
+	}
+	if (_arg2 < 0)
+	{
+		var1 = 0;
+	}
+	else
+	{
+		var1[_arg1 * _arg2] = 0;
+	}
+	return var1;
+}
+
+void:CreateMenu_DefCampaign(_arg0, _arg1)
+{
+	static String:sCampaignTr[256];
+	static String:sCampaign[256];
+	new Menu:menu = 28;
+	new Menu:menu = Menu.Menu(289, menu);
+	Menu.SetTitle(menu, "%T", "Choose_campaign", _arg0);
+	KeyValues.Rewind(g_kvdef);
+	KeyValues.GotoFirstSubKey(g_kvdef, true);
+	do {
+		KeyValues.GetSectionName(g_kvdef, sCampaign, 64);
+		Localizer.PhraseTranslateToLang(loc, sCampaign, sCampaignTr, 64, _arg0, MAX_MAP_NAME, MAX_MAP_NAME, sCampaign);
+		NormalizeName(sCampaignTr);
+		Menu.AddItem(menu, sCampaign, sCampaignTr, 0);
+	} while (KeyValues.GotoNextKey(g_kvdef, true));
+	Menu.ExitBackButton.set(menu, true);
+	Menu.DisplayAt(menu, _arg0, _arg1, 0);
+	return 0;
+}
+
+void:CreateMenu_DefMaps(_arg0, String:_arg1[], String:_arg2[])
+{
+	KeyValues.Rewind(g_kvdef);
+	if (KeyValues.JumpToKey(g_kvdef, _arg1[0], false))
+	{
+		if (!(KeyValues.JumpToKey(g_kvdef, g_sGameMode, false)))
+		{
+			if (!(KeyValues.JumpToKey(g_kvdef, "coop", false)))
+			{
+				CPrintToChat(_arg0, "\x03[MapChanger]\x05 %T %s!", "no_maps_for_mode", _arg0, g_sGameMode);
+				return 0;
+			}
+		}
+		static String:DisplayName[256];
+		static String:map[256];
+		if (ConVar.BoolValue.get(g_hCvarChapterList))
+		{
+			new Menu:menu = 28;
+			new Menu:menu = Menu.Menu(291, menu);
+			Menu.SetTitle(menu, "- %T [%s] -", "Choose_map", _arg0, _arg2[0]);
+			KeyValues.GotoFirstSubKey(g_kvdef, true);
+			do {
+				KeyValues.GetString(g_kvdef, "Map", map, 64, "@");
+				if (strcmp(map, "@", true) != 0)
+				{
+					KeyValues.GetString(g_kvdef, "DisplayName", DisplayName, 64, "@");
+					if (strcmp(DisplayName, "@", true) != 0)
+					{
+						if (DisplayName[0] == '#')
+						{
+							Loc_Translate(_arg0, DisplayName);
+
+/* ERROR! Can't print expression: Heap */
+ function "CreateMenu_DefMaps" (number 68)
+
+/* ERROR! null */
+ function "Loc_Translate" (number 69)
+void:CreateMenuGroup(_arg0)
+{
+	new Menu:menu = 28;
+	new Menu:menu = Menu.Menu(293, menu);
+	Menu.SetTitle(menu, "- %T [%s] ? -", "choose_new_map_type", _arg0, g_Campaign[_arg0]);
+	Translate(_arg0, "%t", 42200);
+
+/* ERROR! Can't print expression: Heap */
+ function "CreateMenuGroup" (number 70)
+void:CreateMenuMark(_arg0)
+{
+	new Menu:menu = 28;
+	new Menu:menu = Menu.Menu(299, menu);
+	Menu.SetTitle(menu, "- %T [%s] -", "set_rating", _arg0, g_Campaign[_arg0]);
+	Translate(_arg0, "%t", 42304);
+
+/* ERROR! Can't print expression: Heap */
+ function "CreateMenuMark" (number 71)
+void:Loc_Init(LC_INSTALL_MODE:_arg0)
+{
+	g_iLcInstallMode = _arg0;
+	g_iLcEngine = GetEngineVersion();
+	g_hCvarLcState = FindConVar("sm_localizer_inc");
+	Loc_RegisterCommands();
+	if (g_hCvarLcState)
+	{
+		ConVar.SetInt(g_hCvarLcState, 1, false, false);
+	}
+	if (!(_arg0 & 8))
+	{
+		Loc_InitObjects();
+		if (g_hCvarLcState)
+		{
+			if (ConVar.IntValue.get(g_hCvarLcState) == 0)
+			{
+				ConVar.AddChangeHook(g_hCvarLcState, 285);
+				Loc_SetStateWatchDog();
+			}
+		}
+		if (!g_hCvarLcState)
+		{
+			decl String:value[16];
+			IntToString(0, value, 4);
+			g_hCvarLcState = CreateConVar("sm_localizer_inc", value, "Signal for other plugins to continue initialization", 131136, false, 0.0, false, 0.0);
+		}
+		Loc_StartProcessing();
+	}
+	return 0;
+}
+
+void:CreateCustomMapMenu(_arg0, String:_arg1[])
+{
+	KeyValues.Rewind(g_kv);
+	if (KeyValues.JumpToKey(g_kv, _arg1[0], false))
+	{
+		if (!(KeyValues.JumpToKey(g_kv, g_sGameMode, false)))
+		{
+			if (!(KeyValues.JumpToKey(g_kv, "coop", false)))
+			{
+				CPrintToChat(_arg0, "\x03[MapChanger]\x05 %T %s!", "no_maps_for_mode", _arg0, g_sGameMode);
+				return 0;
+			}
+		}
+		decl String:map[256];
+		decl String:DisplayName[256];
+		if (ConVar.BoolValue.get(g_hCvarChapterList))
+		{
+			new Menu:menu = 28;
+			new Menu:menu = Menu.Menu(295, menu);
+			Menu.SetTitle(menu, "- %T [%s] -", "Choose_map", _arg0, _arg1[0]);
+			KeyValues.GotoFirstSubKey(g_kv, true);
+			do {
+				KeyValues.GetString(g_kv, "Map", map, 64, "@");
+				if (strcmp(map, "@", true) != 0)
+				{
+					KeyValues.GetString(g_kv, "DisplayName", DisplayName, 64, "@");
+					if (strcmp(DisplayName, "@", true) != 0)
+					{
+						if (DisplayName == '#')
+						{
+							Loc_Translate(_arg0, DisplayName);
+
+/* ERROR! Can't print expression: Heap */
+ function "CreateCustomMapMenu" (number 73)
+GetRealClientCount()
+{
+	new cnt;
+	new i = 1;
+	while (i <= MaxClients)
+	{
+		if (IsClientInGame(i))
+		{
+			if (!(IsFakeClient(i)))
+			{
+				cnt++;
+			}
+		}
+		i++;
+	}
+	return cnt;
+}
+
+void:CheckVoteMap(_arg0, String:_arg1[], bool:_arg2)
+{
+	if (IsMapValidEx(_arg1[0]))
+	{
+		if (IsClientRootAdmin(_arg0))
+		{
+			if (GetRealClientCount() == 1)
+			{
+				strcopy(g_sVoteResult, 64, _arg1[0]);
+				Handler_PostVoteAction(true);
+				return 0;
+			}
+		}
+		if (CanVote(_arg0, _arg2))
+		{
+			new Float:fCurTime = GetEngineTime();
+			if (!=(g_fLastTime[_arg0], 0))
+			{
+				if (!(IsClientRootAdmin(_arg0)))
+				{
+					if (g_fLastTime[_arg0][ConVar.FloatValue.get(g_hCvarDelay)] > fCurTime)
+					{
+						PrintToChat(_arg0, "\x03[MapChanger]\x05 %t", 42944);
+						LogVoteAction(_arg0, "[DELAY] Attempt to vote too often. Time left: %i sec.", g_fLastTime[_arg0][ConVar.FloatValue.get(g_hCvarDelay)] - fCurTime);
+						return 0;
+					}
+				}
+			}
+			g_fLastTime[_arg0] = fCurTime;
+			StartVoteMap(_arg0, _arg1[0]);
+		}
+		else
+		{
+			PrintToChat(_arg0, "\x04%t", 43032);
+			LogVoteAction(_arg0, "[DENY] Change map");
+		}
+	}
+	else
+	{
+		if (_arg0)
+		{
+			PrintToChat(_arg0, "\x03[MapChanger]\x05 %t %s %t", "map", _arg1[0], "not_exist");
+		}
+		LogVoteAction(_arg0, "[DENY] Map is not exist.");
+	}
+	return 0;
+}
+
+bool:Loc_InitObjects()
+{
+	new i;
+
+/* ERROR! unknown load SysReq */
+ function "Loc_InitObjects" (number 76)
+void:StartVoteMap(_arg0, String:_arg1[])
+{
+	if (!g_bVoteInProgress)
+	{
+		if (!(IsVoteInProgress(0)))
+		{
+			strcopy(g_sVoteResult, 64, _arg1[0]);
+			g_bVotepass = false;
+			g_bVeto = false;
+			g_bVoteDisplayed = false;
+			LogVoteAction(_arg0, "[STARTED] Change map to: %s", _arg1[0]);
+			new Menu:menu = 514;
+			new Menu:menu = Menu.Menu(281, menu);
+			Menu.AddItem(menu, "", "Yes", 0);
+			Menu.AddItem(menu, "", "No", 0);
+			Menu.ExitButton.set(menu, false);
+			CreateTimer(ConVar.FloatValue.get(g_hCvarAnnounceDelay), 157, menu, 2);
+			decl String:campaign[256];
+			decl String:map_display[256];
+			decl String:display[512];
+			GetCampaignDisplay(_arg1[0], campaign, 64, true, _arg0, true);
+			GetMapDisplay(_arg1[0], map_display, 64, true, _arg0, true);
+			FormatEx(display, 128, "%s - %s", campaign, map_display);
+			CPrintHintTextToAll("%t", "vote_started_announce", display);
+			return 0;
+		}
+	}
+	PrintToChat(_arg0, "%t", 43136);
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "Timer_VoteDelayed" (number 78)
+void:ShowChangeLevelNotify(String:_arg0[])
+{
+	decl String:mapDisplay[256];
+	decl String:campaignDisplay[256];
+	decl String:sCampaign[256];
+	new iIndexMap;
+	new iTotalMaps;
+	GetCampaignDisplay(_arg0[0], sCampaign, 64, false, 0, true);
+	GetMapNumber(sCampaign, _arg0[0], iIndexMap, iTotalMaps);
+	new i = 1;
+	while (i <= MaxClients)
+	{
+		if (IsClientInGame(i))
+		{
+			if (!(IsFakeClient(i)))
+			{
+				GetCampaignDisplay(_arg0[0], campaignDisplay, 64, true, i, true);
+				GetMapDisplay(_arg0[0], mapDisplay, 64, true, i, true);
+				CPrintToChat(i, "%t", "vote_success", campaignDisplay, mapDisplay, iIndexMap, iTotalMaps);
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+void:Handler_PostVoteAction(bool:_arg0)
+{
+	if (_arg0)
+	{
+		LogVoteAction(-1, "[ACCEPTED] Vote for map: %s", 33340);
+		L4D_ChangeLevel(g_sVoteResult, false);
+	}
+	else
+	{
+		LogVoteAction(-1, "[NOT ACCEPTED] Vote for map.");
+		CPrintToChatAll("%t", 43364);
+	}
+	g_bVoteInProgress = false;
+	return 0;
+}
+
+void:StartVoteMark(_arg0, String:_arg1[])
+{
+	if (!g_bVoteInProgress)
+	{
+		if (!(IsVoteInProgress(0)))
+		{
+			new Float:fCurTime = GetEngineTime();
+			if (!=(g_fLastTimeMark[_arg0], 0))
+			{
+				if (!(HasRemoveRatingAccess(_arg0)))
+				{
+					if (g_fLastTimeMark[_arg0][ConVar.FloatValue.get(g_hCvarDelay)] > fCurTime)
+					{
+						PrintToChat(_arg0, "\x03[MapChanger]\x05 %t", 43404);
+						LogVoteAction(_arg0, "[DELAY] Attempt to vote too often. Time left: %i sec.", g_fLastTimeMark[_arg0][ConVar.FloatValue.get(g_hCvarDelay)] - fCurTime);
+						return 0;
+					}
+				}
+			}
+			g_fLastTimeMark[_arg0] = fCurTime;
+			new Menu:menu = 514;
+			new Menu:menu = Menu.Menu(283, menu);
+			Menu.AddItem(menu, _arg1[0], "Yes", 0);
+			Menu.AddItem(menu, "", "No", 0);
+			Menu.ExitButton.set(menu, false);
+			Menu.DisplayVoteToAll(menu, ConVar.IntValue.get(g_hCvarTimeout), 0);
+			g_bVotepass = false;
+			g_bVeto = false;
+			LogVoteAction(_arg0, "[STARTED] Vote for mark. Campaign: %s. Mark: %i", _arg1[0], g_iVoteMark);
+			return 0;
+		}
+	}
+	PrintToChat(_arg0, "%t", 43380);
+	return 0;
+}
+
+void:SetRating(String:_arg0[], _arg1)
+{
+	KeyValues.Rewind(g_kvinfo);
+	if (KeyValues.JumpToKey(g_kvinfo, _arg0[0], true))
+	{
+		KeyValues.SetNum(g_kvinfo, "mark", _arg1);
+	}
+	KeyValues.Rewind(g_kvinfo);
+	KeyValues.ExportToFile(g_kvinfo, g_sMapInfoPath);
+	return 0;
+}
+
+void:ReplaceColor(String:_arg0[], _arg1)
+{
+	ReplaceString(_arg0[0], _arg1, "{white}", "\x01", false);
+	ReplaceString(_arg0[0], _arg1, "{cyan}", "\x03", false);
+	ReplaceString(_arg0[0], _arg1, "{orange}", "\x04", false);
+	ReplaceString(_arg0[0], _arg1, "{green}", "\x05", false);
+	return 0;
+}
+
+void:CPrintToChat(_arg0, String:_arg1[], any:_arg2)
+{
+	static String:buffer[768];
+	SetGlobalTransTarget(_arg0);
+	VFormat(buffer, 192, _arg1[0], 3);
+	ReplaceColor(buffer, 192);
+	PrintToChat(_arg0, "\x01%s", 44064);
+	return 0;
+}
+
+void:CPrintToChatAll(String:_arg0[], any:_arg1)
+{
+	static String:buffer[768];
+	new i = 1;
+	while (i <= MaxClients)
+	{
+		if (IsClientInGame(i))
+		{
+			if (!(IsFakeClient(i)))
+			{
+				SetGlobalTransTarget(i);
+				VFormat(buffer, 192, _arg0[0], 2);
+				ReplaceColor(buffer, 192);
+				PrintToChat(i, "\x01%s", 44260);
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+void:CPrintHintTextToAll(String:_arg0[], any:_arg1)
+{
+	static String:buffer[768];
+	new i = 1;
+	while (i <= MaxClients)
+	{
+		if (IsClientInGame(i))
+		{
+			if (!(IsFakeClient(i)))
+			{
+				SetGlobalTransTarget(i);
+				VFormat(buffer, 192, _arg0[0], 2);
+				PrintHintText(i, buffer);
+			}
+		}
+		i++;
+	}
+	return 0;
+}
+
+void:Loc_RegisterCommands()
+{
+	static bool:IsListen;
+	if (!IsListen)
+	{
+		if (CommandExists("sm_localizer_list"))
+		{
+			AddCommandListener(255, "sm_localizer_list");
+		}
+		else
+		{
+			RegAdminCmd("sm_localizer_list", 259, 16384, "Lists plugin names that using Localizer API, show API version and installation mode", "", 0);
+		}
+		IsListen = true;
+	}
+	return 0;
+}
+
+bool:IsClientRootAdmin(_arg0)
+{
+	return GetUserFlagBits(_arg0) & 16384 != 0;
+}
+
+void:LogVoteAction(_arg0, String:_arg1[], any:_arg2)
+{
+	static String:buffer[1024];
+	static String:sName[512];
+	static String:sIP[128];
+	static String:sSteam[256];
+	VFormat(buffer, 256, _arg1[0], 3);
+	if (_arg0 != -1)
+	{
+		GetClientAuthId(_arg0, 1, sSteam, 64, true);
+		GetClientName(_arg0, sName, 128);
+		GetClientIP(_arg0, sIP, 32, true);
+		LogToFileEx(g_sLog, "%s %s (%s | %s). Current map is: %s", buffer, sName, sSteam, sIP, g_sCurMap);
+	}
+	else
+	{
+		LogToFileEx(g_sLog, buffer);
+	}
+	return 0;
+}
+
+Action:Timer_ChangeLevel(Handle:_arg0, DataPack:_arg1)
+{
+	decl String:sMapName[256];
+	DataPack.Reset(_arg1, false);
+	DataPack.ReadString(_arg1, sMapName, 64);
+	if (ConVar.BoolValue.get(g_hCvarServerPrintInfo))
+	{
+		PrintToServer("[MapChanger] Changing map to: %s ...", sMapName);
+	}
+	g_bMapStarted = false;
+	ForceChangeLevel(sMapName, "Map Vote");
+	return 0;
+}
+
+bool:L4D_ChangeLevel(String:_arg0[], bool:_arg1)
+{
+	if (g_bMapStarted)
+	{
+		if (IsMapValidEx(_arg0[0]))
+		{
+			if (_arg1)
+			{
+				g_bMapStarted = false;
+				ForceChangeLevel(_arg0[0], "Map Vote");
+				return 1;
+			}
+			ShowChangeLevelNotify(_arg0[0]);
+			new DataPack:dp = DataPack.DataPack();
+			DataPack.WriteString(dp, _arg0[0], false);
+			CreateTimer(ConVar.FloatValue.get(g_hCvarMapChangeNotifyTime), 181, dp, 2);
+			return 1;
+		}
+		RemoveBrokenMap(_arg0[0]);
+		if (!_arg1)
+		{
+			CPrintToChatAll("%t: %s", "invalid_map", _arg0[0]);
+		}
+		return 0;
+	}
+	if (!_arg1)
+	{
+		CPrintToChatAll("Cannot change the map when no map is started!");
+	}
+	return 0;
+}
+
+void:FinaleMapChange()
+{
+	GotoNextMap(false);
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "GotoNextMap" (number 93)
+void:Loc_ShowConsumer(_arg0)
+{
+	decl String:name[256];
+	GetPluginFilename(0, name, 64);
+	Loc_InstallMode_ToString();
+
+/* ERROR! Can't print expression: Heap */
+ function "Loc_ShowConsumer" (number 94)
+bool:GetRandomFirstMap_Custom(String:_arg0[], _arg1)
+{
+	static ArrayList:uniqMaps;
+	static String:firstMap[256];
+	if (g_bEmptyMapCycleCustom)
+	{
+		return 0;
+	}
+	if (!uniqMaps)
+	{
+		uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		CloseHandle(uniqMaps);
+		uniqMaps = 0;
+		uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		return 0;
+	}
+	GetFirstMap_Custom(g_sCurMap, firstMap, 64);
+	new idxFirst = 45308;
+	new idxFirst = ArrayList.FindString(uniqMaps, idxFirst);
+	if (idxFirst != -1)
+	{
+		ArrayList.Erase(uniqMaps, idxFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		CloseHandle(uniqMaps);
+		uniqMaps = 0;
+		uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+		idxFirst = ArrayList.FindString(uniqMaps, firstMap);
+		if (idxFirst != -1)
+		{
+			ArrayList.Erase(uniqMaps, idxFirst);
+			if (ArrayList.Length.get(uniqMaps) == 0)
+			{
+				CloseHandle(uniqMaps);
+				uniqMaps = 0;
+				uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+			}
+		}
+	}
+	if (ArrayList.Length.get(uniqMaps) != 0)
+	{
+		new idx = GetRandomInt(0, ArrayList.Length.get(uniqMaps) - 1);
+		ArrayList.GetString(uniqMaps, idx, _arg0[0], _arg1);
+		ArrayList.Erase(uniqMaps, idx);
+	}
+	return _arg0[0] != 0;
+}
+
+bool:GetRandomFirstMap_Standard(String:_arg0[], _arg1)
+{
+	static ArrayList:uniqMaps;
+	static String:firstMap[256];
+	if (!uniqMaps)
+	{
+		uniqMaps = ArrayList.Clone(g_aMapStandardFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		CloseHandle(uniqMaps);
+		uniqMaps = 0;
+		uniqMaps = ArrayList.Clone(g_aMapStandardFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		return 0;
+	}
+	GetFirstMap_Standard(g_sCurMap, firstMap, 64);
+	new idxFirst = 45376;
+	new idxFirst = ArrayList.FindString(uniqMaps, idxFirst);
+	if (idxFirst != -1)
+	{
+		ArrayList.Erase(uniqMaps, idxFirst);
+	}
+	if (ArrayList.Length.get(uniqMaps) == 0)
+	{
+		CloseHandle(uniqMaps);
+		uniqMaps = 0;
+		uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+		idxFirst = ArrayList.FindString(uniqMaps, firstMap);
+		if (idxFirst != -1)
+		{
+			ArrayList.Erase(uniqMaps, idxFirst);
+			if (ArrayList.Length.get(uniqMaps) == 0)
+			{
+				CloseHandle(uniqMaps);
+				uniqMaps = 0;
+				uniqMaps = ArrayList.Clone(g_aMapCustomFirst);
+			}
+		}
+	}
+	if (ArrayList.Length.get(uniqMaps) != 0)
+	{
+		new idx = GetRandomInt(0, ArrayList.Length.get(uniqMaps) - 1);
+		ArrayList.GetString(uniqMaps, idx, _arg0[0], _arg1);
+		ArrayList.Erase(uniqMaps, idx);
+	}
+	return _arg0[0] != 0;
+}
+
+void:RemoveBrokenMap(String:_arg0[])
+{
+	new idx = ArrayList.FindString(g_aMapOrder, _arg0[0]);
+	if (idx != -1)
+	{
+		ArrayList.Erase(g_aMapOrder, idx);
+	}
+	idx = ArrayList.FindString(g_aMapCustomOrder, _arg0[0]);
+	if (idx != -1)
+	{
+		ArrayList.Erase(g_aMapCustomOrder, idx);
+	}
+	idx = ArrayList.FindString(g_aMapCustomFirst, _arg0[0]);
+	if (idx != -1)
+	{
+		ArrayList.Erase(g_aMapCustomFirst, idx);
+	}
+	return 0;
+}
+
+bool:IsMapValidEx(String:_arg0[])
+{
+	if (_arg0[0] == '\x00')
+	{
+		return 0;
+	}
+	static String:path[1024];
+	return FindMap(_arg0[0], path, 256) == 0;
+}
+
+void:GetMissions()
+{
+	CloseHandle(g_kvdef);
+	g_kvdef = 0;
+	g_kvdef = KeyValues.KeyValues("campaigns", "", "");
+	StringMap.Clear(g_hNameByMap);
+	StringMap.Clear(g_hCampaignByMap);
+	ArrayList.Clear(g_aMapOrder);
+	if (g_bLeft4Dead2)
+	{
+		decl String:missionFile[256];
+		new FileType:fileType;
+		new DirectoryListing:hDir = 45712;
+		new DirectoryListing:hDir = OpenDirectory("missions", true, hDir);
+		if (hDir)
+		{
+			while (DirectoryListing.GetNext(hDir, missionFile, 256, fileType))
+			{
+				if (fileType == 2)
+				{
+					if (strncmp(missionFile, "campaign", 8, true) == 0)
+					{
+						Format(missionFile, 64, "missions/%s", missionFile);
+						ParseMissionFile(missionFile, false);
+					}
+				}
+			}
+			CloseHandle(hDir);
+			hDir = 0;
+		}
+	}
+	else
+	{
+		ParseMissionFile("missions/hospital.txt", false);
+		ParseMissionFile("missions/garage.txt", false);
+		ParseMissionFile("missions/smalltown.txt", false);
+		ParseMissionFile("missions/airport.txt", false);
+		ParseMissionFile("missions/farm.txt", false);
+		ParseMissionFile("missions/river.txt", false);
+		ParseMissionFile("missions/lighthouse.txt", false);
+	}
+	return 0;
+}
+
+void:GetAddonMissions()
+{
+	CloseHandle(g_kv);
+	g_kv = 0;
+	g_kv = KeyValues.KeyValues("campaigns", "", "");
+	decl String:missionFile[256];
+	new StringMap:hMapDef = StringMap.StringMap();
+	new FileType:fileType;
+	new DirectoryListing:hDir;
+	if (g_bLeft4Dead2)
+	{
+		new i = 1;
+		while (i <= 14)
+		{
+			FormatEx(missionFile, 64, "campaign%i.txt", i);
+			StringMap.SetValue(hMapDef, missionFile, 1, true);
+			i++;
+		}
+		new i = 1;
+		StringMap.SetValue(hMapDef, "credits.txt", 1, i);
+		new i = 1;
+		StringMap.SetValue(hMapDef, "holdoutchallenge.txt", 1, i);
+		new i = 1;
+		StringMap.SetValue(hMapDef, "holdouttraining.txt", 1, i);
+		new i = 1;
+		StringMap.SetValue(hMapDef, "parishdash.txt", 1, i);
+		new i = 1;
+		StringMap.SetValue(hMapDef, "shootzones.txt", 1, i);
+	}
+	else
+	{
+		hDir = OpenDirectory("missions", false, "GAME");
+		if (hDir)
+		{
+			while (DirectoryListing.GetNext(hDir, missionFile, 256, fileType))
+			{
+				if (fileType == 2)
+				{
+					StringMap.SetValue(hMapDef, missionFile, 1, true);
+				}
+			}
+			CloseHandle(hDir);
+			hDir = 0;
+		}
+	}
+	hDir = OpenDirectory("missions", true, ".");
+	if (hDir)
+	{
+		while (DirectoryListing.GetNext(hDir, missionFile, 256, fileType))
+		{
+			if (fileType == 2)
+			{
+				if (!(StringMap_KeyExists(hMapDef, missionFile)))
+				{
+					Format(missionFile, 64, "missions/%s", missionFile);
+					ParseMissionFile(missionFile, true);
+				}
+			}
+		}
+		CloseHandle(hDir);
+		hDir = 0;
+	}
+	CloseHandle(hMapDef);
+	hMapDef = 0;
+	return 0;
+}
+
+void:Loc_SetStateWatchDog()
+{
+	CloseHandle(g_hTimerLcState);
+	g_hTimerLcState = 0;
+	g_hTimerLcState = CreateTimer(60.0, 331, 0, 0);
+	return 0;
+}
+
+bool:StringMap_KeyExists(StringMap:_arg0, String:_arg1[])
+{
+	new v;
+	return StringMap.GetValue(_arg0, _arg1[0], v);
+}
+
+
+/* ERROR! class lysis.nodes.types.DJump cannot be cast to class lysis.nodes.types.DJumpCondition (lysis.nodes.types.DJump and lysis.nodes.types.DJumpCondition are in unnamed module of loader 'app') */
+ function "ParseMissionFile" (number 103)
+void:AddMapTemplate(bool:_arg0, String:_arg1[], GAME_TYPE:_arg2, String:_arg3[], String:_arg4[])
+{
+	if (_arg1[0] != '#')
+	{
+		ClearStringMB(_arg1[0]);
+		NormalizeName(_arg1[0]);
+	}
+	if (_arg4[0] != '#')
+	{
+		NormalizeName(_arg4[0]);
+	}
+	if (_arg0)
+	{
+		if (IsMapValidEx(_arg3[0]))
+		{
+			AddMapToKV(g_kv, _arg1[0], _arg2, _arg3[0], _arg4[0]);
+		}
+	}
+	else
+	{
+		if (_arg2 == g_eGameType)
+		{
+			if (IsMapValidEx(_arg3[0]))
+			{
+				AddMapToKV(g_kvdef, _arg1[0], _arg2, _arg3[0], _arg4[0]);
+				StringMap.SetString(g_hNameByMap, _arg3[0], _arg4[0], false);
+				StringMap.SetString(g_hCampaignByMap, _arg3[0], _arg1[0], false);
+			}
+		}
+	}
+	return 0;
+}
+
+void:Loc_StartProcessing()
+{
+	CreateDirectory(LC_RESOURCE_DECODED_DIR, 493, false, "DEFAULT_WRITE_PATH");
+	Loc_ReadIndexFile();
+	switch (g_iLcInstallMode)
+	{
+		case 1:
+		{
+			SQL_Loc_DB_Connect(false);
+		}
+		case 2:
+		{
+			Loc_GetPhraseFiles("");
+		}
+		case 4:
+		{
+			Loc_LoadTranslations();
+			Loc_GetPhraseFiles("");
+		}
+		default:
+		{
+		}
+	}
+	return 0;
+}
+
+void:AddMapToKV(KeyValues:_arg0, String:_arg1[], GAME_TYPE:_arg2, String:_arg3[], String:_arg4[])
+{
+	new num;
+	decl String:sKey[16];
+	KeyValues.Rewind(_arg0);
+	if (KeyValues.JumpToKey(_arg0, _arg1[0], true))
+	{
+		if (KeyValues.JumpToKey(_arg0, GAME_TYPE_STR[_arg2], true))
+		{
+			if (KeyValues.GotoFirstSubKey(_arg0, true))
+			{
+				do {
+					num++;
+				} while (KeyValues.GotoNextKey(_arg0, true));
+				KeyValues.GoBack(_arg0);
+			}
+			num++;
+			IntToString(num, sKey, 4);
+			if (KeyValues.JumpToKey(_arg0, sKey, true))
+			{
+				KeyValues.SetString(_arg0, "Map", _arg3[0]);
+				KeyValues.SetString(_arg0, "DisplayName", _arg4[0]);
+			}
+		}
+	}
+	return 0;
+}
+
+GAME_TYPE:KV_FindGameMode(String:_arg0[])
+{
+	if (KV_HasKey(_arg0[0], "coop"))
+	{
+		return 0;
+	}
+	if (KV_HasKey(_arg0[0], "versus"))
+	{
+		return 1;
+	}
+	if (KV_HasKey(_arg0[0], "survival"))
+	{
+		return 2;
+	}
+	return -1;
+}
+
+bool:KV_HasKey(String:_arg0[], String:_arg1[])
+{
+	new posKey;
+	new posComment;
+	decl String:substr[256];
+	FormatEx(substr, 64, "\"%s\"", _arg1[0]);
+	posKey = StrContains(_arg0[0], substr, false);
+	if (posKey != -1)
+	{
+		posComment = StrContains(_arg0[0], "//", true);
+		if (!(posComment == -1))
+		{
+			if (posComment > posKey)
+			{
+			}
+		}
+		new i;
+		while (i < posKey)
+		{
+			if (_arg0[0][i] != ' ')
+			{
+				if (_arg0[0][i] != '\x09')
+				{
+					return 0;
+				}
+			}
+			i++;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+bool:KV_GetValue(String:_arg0[], String:_arg1[], String:_arg2[256])
+{
+	_arg2[0] = '\x00';
+	new posKey;
+	new posComment;
+	new sizeKey;
+	decl String:substr[256];
+	FormatEx(substr, 64, "\"%s\"", _arg1[0]);
+	posKey = StrContains(_arg0[0], substr, false);
+	if (posKey != -1)
+	{
+		posComment = StrContains(_arg0[0], "//", true);
+		if (!(posComment == -1))
+		{
+			if (posComment > posKey)
+			{
+			}
+		}
+		sizeKey = strlen(substr);
+		UnQuote(sizeKey + posKey + _arg0[0]);
+		return 1;
+	}
+	return 0;
+}
+
+String:UnQuote(String:_arg0[], _arg1)
+{
+	new pos;
+	static String:buf[256];
+	strcopy(buf, 64, _arg0[0]);
+	TrimString(buf);
+	if (buf[0] == '"')
+	{
+		strcopy(buf, 64, 47176 + 1);
+	}
+	pos = FindCharInString(buf, '"', false);
+	if (pos != -1)
+	{
+		pos + 47176/* ERROR unknown load Binary */ = 0;
+	}
+	return 47176;
+}
+
+void:OnPhrasesProcessingCompleted_CallDelayed()
+{
+	CreateTimer(0.1, 329, 0, 0);
+	return 0;
+}
+
+void:ClearStringMB(String:_arg0[])
+{
+	if (_arg0[0] == '\x00')
+	{
+		return 0;
+	}
+	new i;
+	new j;
+	new bytes;
+	if (IsCharAlpha(_arg0[0][i]))
+	{
+	}
+	else
+	{
+		if (!(IsCharNumeric(_arg0[0][i])))
+		{
+			i++;
+		}
+	}
+	while (_arg0[0][i])
+	{
+		bytes = GetCharBytes(i + _arg0[0]);
+		if (bytes == 1)
+		{
+			if (_arg0[0][i] >= ' ')
+			{
+				if (j == 0)
+				{
+					if (!(IsCharAlpha(_arg0[0][i])))
+					{
+						if (!(IsCharNumeric(_arg0[0][i])))
+						{
+						}
+					}
+				}
+				j++;
+				_arg0[0][j] = _arg0[0][i];
+			}
+		}
+		else
+		{
+			if (bytes == 2)
+			{
+				if (!(_arg0[0][i] == 'Ð'))
+				{
+					if (_arg0[0][i] == 'Ñ')
+					{
+					}
+				}
+				j++;
+				i++;
+				_arg0[0][j] = _arg0[0][i];
+				j++;
+				_arg0[0][j] = _arg0[0][i];
+			}
+		}
+		i++;
+	}
+	_arg0[0][j] = '\x00';
+	return 0;
+}
+
+void:Forward_OnPhrasesProcessingCompleted()
+{
+	if (g_bLcIndexChanged)
+	{
+		Loc_WriteIndexFile();
+	}
+	if (g_iLcInstallMode == 1)
+	{
+		SQL_Loc_SetIndex("", 0, true);
+	}
+	else
+	{
+		if (g_iLcInstallMode == 4)
+		{
+		}
+	}
+	ConVar.SetInt(g_hCvarLcState, 1, false, false);
+	g_bLcReady = true;
+	RequestFrame(235, 0);
+	return 0;
+}
+
+void:ClearDisplayName(String:_arg0[], _arg1)
+{
+	new pos;
+	if (_arg1 > 3)
+	{
+		if (IsCharNumeric(_arg0[0]))
+		{
+			pos++;
+			if (IsCharNumeric(_arg0[0][pos]))
+			{
+				pos++;
+			}
+			if (!(IsCharAlpha(_arg0[0][pos])))
+			{
+				pos++;
+				if (_arg0[0][pos] == ' ')
+				{
+					pos++;
+				}
+			}
+			Format(_arg0[0], _arg1, pos + _arg0[0]);
+		}
+	}
+	return 0;
+}
+
+void:NormalizeName(String:_arg0[])
+{
+	if (_arg0[0])
+	{
+		UTF8CharToUpper(_arg0[0], 0, GetCharBytes(_arg0[0]));
+		new bytesToProcess;
+		new startByte = GetCharBytes(_arg0[0]);
+		new max_len = strlen(_arg0[0]);
+		new i = startByte;
+		while (i < max_len)
+		{
+			if (IsCharSpace(_arg0[0][i]))
+			{
+				if (bytesToProcess)
+				{
+					UTF8CharToLower(_arg0[0], startByte, bytesToProcess + startByte);
+				}
+				startByte = i + 1;
+				if (startByte < max_len)
+				{
+					startByte = GetCharBytes(i + 1 + _arg0[0]) + startByte;
+				}
+				bytesToProcess = 0;
+				i++;
+			}
+			else
+			{
+				bytesToProcess = GetCharBytes(i + _arg0[0]) + bytesToProcess;
+			}
+			i = GetCharBytes(i + _arg0[0]) + i;
+		}
+		if (bytesToProcess)
+		{
+			UTF8CharToLower(_arg0[0], startByte, bytesToProcess + startByte);
+		}
+		return 0;
+	}
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "UTF8CharToUpper" (number 116)
+void:Forward_OnPhrasesProcessingCompleted_Frame()
+{
+	new Action:result;
+	Call_StartForward(g_fwdLcOnPhrasesProcessingCompleted);
+	Call_Finish(result);
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "UTF8CharToLower" (number 118)
+void:Loc_ReadIndexFile()
+{
+	StringMap.Clear(g_hMapLcStamp);
+	new p;
+	new iStamp;
+	decl String:str[12288];
+	new File:hr = 3248;
+	new File:hr = OpenFile(LC_RESOURCE_INDEX_FILE, "rt", false, hr);
+	if (hr)
+	{
+		while (File.EndOfFile(hr))
+		{
+			if (File.ReadLine(hr, str, 3072))
+			{
+				if ((p = FindCharInString(str, '|', false)) != -1)
+				{
+					str[p] = 0;
+					iStamp = StringToInt(p + 1 + str, 10);
+					StringMap.SetValue(g_hMapLcStamp, str, iStamp, true);
+				}
+			}
+			File.Close(hr);
+		}
+		File.Close(hr);
+	}
+	return 0;
+}
+
+bool:GetCampaignDisplay(String:_arg0[], String:_arg1[], _arg2, bool:_arg3, _arg4, bool:_arg5)
+{
+	if (StringMap.GetString(g_hCampaignByMap, _arg0[0], _arg1[0], _arg2, 0))
+	{
+		if (_arg3)
+		{
+			Loc_Translate(_arg4, _arg1[0]);
+
+/* ERROR! Can't print expression: Heap */
+ function "GetCampaignDisplay" (number 120)
+bool:GetMapDisplay(String:_arg0[], String:_arg1[], _arg2, bool:_arg3, _arg4, bool:_arg5)
+{
+	if (StringMap.GetString(g_hNameByMap, _arg0[0], _arg1[0], _arg2, 0))
+	{
+		if (_arg3)
+		{
+			Loc_Translate(_arg4, _arg1[0]);
+
+/* ERROR! Can't print expression: Heap */
+ function "GetMapDisplay" (number 121)
+bool:GetMapNumber(String:_arg0[], String:_arg1[], &_arg2, &_arg3)
+{
+	if (GetMapNumberEx(g_kv, _arg0[0], _arg1[0], _arg2, _arg3))
+	{
+		return 1;
+	}
+	return GetMapNumberEx(g_kvdef, _arg0[0], _arg1[0], _arg2, _arg3);
+}
+
+bool:GetMapNumberEx(KeyValues:_arg0, String:_arg1[], String:_arg2[], &_arg3, &_arg4)
+{
+	static String:map[256];
+	_arg4 = 0;
+	_arg3 = 0;
+	KeyValues.Rewind(_arg0);
+	if (KeyValues.JumpToKey(_arg0, _arg1[0], false))
+	{
+		if (!(KeyValues.JumpToKey(_arg0, g_sGameMode, false)))
+		{
+			if (!(KeyValues.JumpToKey(_arg0, "coop", false)))
+			{
+				return 0;
+			}
+		}
+		KeyValues.GotoFirstSubKey(_arg0, true);
+		do {
+			KeyValues.GetString(_arg0, "Map", map, 64, "@");
+			if (strcmp(map, "@", true) != 0)
+			{
+				if (IsMapValidEx(map))
+				{
+					new var1 = _arg4;
+					var1++;
+					_arg4 = var1;
+					if (strcmp(map, _arg2[0], true) == 0)
+					{
+						_arg3 = _arg4;
+					}
+				}
+			}
+		} while (KeyValues.GotoNextKey(_arg0, true));
+	}
+	return _arg4 != 0;
+}
+
+void:GetFirstMapEx(KeyValues:_arg0, String:_arg1[], String:_arg2[], _arg3)
+{
+	static String:campaign[256];
+	_arg2[0] = '\x00';
+	if (GetCampaignDisplay(_arg1[0], campaign, 64, false, 0, true))
+	{
+		KeyValues.Rewind(_arg0);
+		if (KeyValues.JumpToKey(_arg0, campaign, false))
+		{
+			if (KeyValues.JumpToKey(_arg0, g_sGameMode, false))
+			{
+				KeyValues.GotoFirstSubKey(_arg0, true);
+				KeyValues.GetString(_arg0, "Map", _arg2[0], _arg3, "");
+			}
+		}
+	}
+	return 0;
+}
+
+public APLRes:AskPluginLoad2(Handle:_arg0, bool:_arg1, String:_arg2[], _arg3)
+{
+	new EngineVersion:test = GetEngineVersion();
+	if (test != 4)
+	{
+		if (test != 7)
+		{
+			strcopy(_arg2[0], _arg3, "Plugin only supports Left 4 Dead 1 & 2.");
+			return 2;
+		}
+	}
+	if (test == 7)
+	{
+		g_bLeft4Dead2 = true;
+	}
+	g_bLateload = _arg1;
+	g_bDedicated = IsDedicatedServer();
+	return 0;
+}
+
+public Action:CheckVote(_arg0, String:_arg1[], _arg2)
+{
+	static String:s[128];
+	if (_arg2 >= 2)
+	{
+		GetCmdArg(1, s, 32);
+		if (strcmp(s, "ChangeMission", false) == 0)
+		{
+			if (!(ConVar.BoolValue.get(g_hCvarNativeVoteChangeMissionAllow)))
+			{
+				Command_MapChoose(_arg0, 0);
+				return 4;
+			}
+		}
+		if (strcmp(s, "ChangeChapter", false) == 0)
+		{
+			if (!(ConVar.BoolValue.get(g_hCvarNativeVoteChangeChapterAllow)))
+			{
+				Command_MapChoose(_arg0, 0);
+				return 4;
+			}
+		}
+	}
+	if (_arg2 >= 1)
+	{
+		GetCmdArg(1, s, 32);
+		if (strcmp(s, "RestartGame", false) == 0)
+		{
+			if (!(ConVar.BoolValue.get(g_hCvarNativeVoteRestartGameAllow)))
+			{
+				Command_MapChoose(_arg0, 0);
+				return 4;
+			}
+		}
+		if (strcmp(s, "ReturnToLobby", false) == 0)
+		{
+			g_bIsReturnToLobbyVote = true;
+			if (!(ConVar.BoolValue.get(g_hCvarNativeVoteReturnLobbyAllow)))
+			{
+				Command_MapChoose(_arg0, 0);
+				return 4;
+			}
+		}
+	}
+	return 0;
+}
+
+public Action:CmdListener_Loc_List(_arg0, String:_arg1[], _arg2)
+{
+	Loc_ShowConsumer(_arg0);
+	return 0;
+}
+
+public Action:CmdNextMap(_arg0, _arg1)
+{
+	g_bMapStarted = true;
+	GotoNextMap(false);
+	return 3;
+}
+
+public Action:Cmd_Loc_List(_arg0, _arg1)
+{
+	Loc_ShowConsumer(_arg0);
+	return 3;
+}
+
+public Action:Command_MapChoose(_arg0, _arg1)
+{
+	Menu_ChooseMap(_arg0);
+	return 3;
+}
+
+public Action:Command_ReloadMaps(_arg0, _arg1)
+{
+	if (Localizer.IsReady(loc))
+	{
+		if (!g_iAsyncAwaitCount)
+		{
+			ReloadMaps(false);
+			ReplyToCommand(_arg0, "\x03[MapChanger]\x05 Maps reloaded.");
+			return 3;
+		}
+	}
+	ReplyToCommand(_arg0, "\x03[MapChanger]\x05 Sorry, database is not yet ready. Wait 1 minute more.");
+	return 3;
+}
+
+public Action:Command_Veto(_arg0, _arg1)
+{
+	if (g_bVoteInProgress)
+	{
+		_arg0 = iGetListenServerHost(_arg0, g_bDedicated);
+		if (HasVetoAccessFlag(_arg0))
+		{
+			g_bVeto = true;
+			CPrintToChatAll("%t", "veto", _arg0);
+			if (g_bVoteDisplayed)
+			{
+				CancelVote();
+			}
+			LogVoteAction(_arg0, "[VETO]");
+		}
+		ReplyToCommand(_arg0, "%t", 39556);
+		return 3;
+	}
+	return 3;
+}
+
+public Action:Command_Votepass(_arg0, _arg1)
+{
+	if (g_bVoteInProgress)
+	{
+		_arg0 = iGetListenServerHost(_arg0, g_bDedicated);
+		if (HasVetoAccessFlag(_arg0))
+		{
+			g_bVotepass = true;
+			CPrintToChatAll("%t", "votepass", _arg0);
+			if (g_bVoteDisplayed)
+			{
+				CancelVote();
+			}
+			LogVoteAction(_arg0, "[PASS]");
+		}
+		ReplyToCommand(_arg0, "%t", 39592);
+		return 3;
+	}
+	return 3;
+}
+
+public void:ConVarChanged_GameMode(ConVar:_arg0, String:_arg1[], String:_arg2[])
+{
+	if (strcmp(g_sGameMode, _arg2[0], false) != 0)
+	{
+		GetGameType();
+		ReloadMaps(true);
+		GetMissions();
+	}
+	return 0;
+}
+
+public void:ConVarChanged_ServerNameCustom(ConVar:_arg0, String:_arg1[], String:_arg2[])
+{
+	Timer_ChangeHostName(0);
+	return 0;
+}
+
+public void:ConVarHook_NativeVotes(ConVar:_arg0, String:_arg1[], String:_arg2[])
+{
+	SetNativeVotesCvars();
+	return 0;
+}
+
+public void:Event_FinaleWin(Event:_arg0, String:_arg1[], bool:_arg2)
+{
+	if (ConVar.IntValue.get(g_hCvarFinaleChangeType) & 2)
+	{
+		FinaleMapChange();
+	}
+	if (!g_bUMHooked)
+	{
+		HookUserMessageCredits();
+	}
+	return 0;
+}
+
+public void:Event_RoundStart(Event:_arg0, String:_arg1[], bool:_arg2)
+{
+	g_bIsReturnToLobbyVote = false;
+	if (ConVar.BoolValue.get(g_hCvarServerPrintInfo))
+	{
+		PrintToServer("[MapChanger] Current map is: %s (new round)", 33244);
+	}
+	return 0;
+}
+
+public void:Event_VehicleLeaving(Event:_arg0, String:_arg1[], bool:_arg2)
+{
+	if (ConVar.IntValue.get(g_hCvarFinaleChangeType) & 1)
+	{
+		FinaleMapChange();
+	}
+	if (!g_bUMHooked)
+	{
+		HookUserMessageCredits();
+	}
+	return 0;
+}
+
+
+/* ERROR! null */
+ function "Handle_VoteMapMenu" (number 140)
+
+/* ERROR! null */
+ function "Handle_VoteMarkMenu" (number 141)
+public void:Loc_StateChanged(ConVar:_arg0, String:_arg1[], String:_arg2[])
+{
+	if (ConVar.IntValue.get(_arg0) == 1)
+	{
+		CloseHandle(g_hTimerLcState);
+		g_hTimerLcState = 0;
+		ConVar.RemoveChangeHook(g_hCvarLcState, 285);
+		ConVar.SetInt(_arg0, 0, false, false);
+		Loc_StartProcessing();
+	}
+	else
+	{
+		Loc_SetStateWatchDog();
+	}
+	return 0;
+}
+
+public Menu_CampaignHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:campaign[256];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_CampaignHandler" (number 143)
+public Menu_DefCampaignHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:campaign_title[256];
+			static String:campaign[256];
+			Menu.GetItem(_arg0, _arg3, campaign, 64, 0, campaign_title, 64, 0);
+			CreateMenu_DefMaps(_arg2, campaign, campaign_title);
+			g_iMenuPage[_arg2] = Menu.Selection.get(_arg0);
+		}
+		case 8:
+		{
+			if (_arg3 == -6)
+			{
+				Menu_ChooseMap(_arg2);
+			}
+		}
+		case 16:
+		{
+			CloseHandle(_arg0);
+			_arg0 = 0;
+		}
+		default:
+		{
+		}
+	}
+	return 0;
+}
+
+public Menu_DefMapHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:map[256];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_DefMapHandler" (number 145)
+public Menu_GroupHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:sGroup[32];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_GroupHandler" (number 146)
+
+/* ERROR! null */
+ function "Menu_MapHandler" (number 147)
+public Menu_MapTypeHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:sgroup[128];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_MapTypeHandler" (number 148)
+public Menu_MarkHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:sMark[32];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_MarkHandler" (number 149)
+public Menu_RatingHandler(Menu:_arg0, MenuAction:_arg1, _arg2, _arg3)
+{
+	switch (_arg1)
+	{
+		case 4:
+		{
+			static String:sMark[32];
+
+/* ERROR! Can't print expression: Heap */
+ function "Menu_RatingHandler" (number 150)
+public void:OnAllPluginsLoaded()
+{
+	AddCommandListener(253, "callvote");
+	return 0;
+}
+
+public Action:OnCreditsScreen(UserMsg:_arg0, BfRead:_arg1, _arg2[], _arg3, bool:_arg4, bool:_arg5)
+{
+	UnhookUserMessage(StatsCrawlMsgId, 305, false);
+	g_bUMHooked = false;
+	FinaleMapChange_Frame();
+	return 0;
+}
+
+public Action:OnDisconnectToLobby(UserMsg:_arg0, BfRead:_arg1, _arg2[], _arg3, bool:_arg4, bool:_arg5)
+{
+	if (ConVar.IntValue.get(g_hCvarFinaleChangeType) & 8)
+	{
+		if (!g_bIsReturnToLobbyVote)
+		{
+			GotoNextMap(true);
+			return 3;
+		}
+	}
+	return 0;
+}
+
+public void:OnLibraryRemoved(String:_arg0[])
+{
+	return 0;
+}
+
+public void:OnMapStart()
+{
+	static ft_addonlist;
+	static ft_blackcycle;
+	static ft_block;
+	g_bMapStarted = true;
+	new ft = 2;
+	new ft = GetFileTime(g_sVoteBlockPath, ft);
+	if (ft_block != ft)
+	{
+		ft_block = ft;
+		ReadFileToArrayList(g_sVoteBlockPath, g_hArrayVoteBlock);
+	}
+	ft = GetFileTime(g_sCycleBlockPath, 2);
+	if (ft_blackcycle != ft)
+	{
+		ft_blackcycle = ft;
+		ReadFileToArrayList(g_sCycleBlockPath, g_hArrayCycleBlock);
+	}
+	new bool:bForceReload;
+	static bool:bFirstUpdate = 1;
+	if (FileExists("addonlist.txt", false, "GAME"))
+	{
+		ft = GetFileTime("addonlist.txt", 2);
+		if (ft_addonlist != ft)
+		{
+			ft_addonlist = ft;
+			if (!bFirstUpdate)
+			{
+				bForceReload = true;
+			}
+		}
+		bFirstUpdate = false;
+	}
+	ReloadMaps(bForceReload);
+	GetCurrentMap(g_sCurMap, 64);
+	if (ConVar.BoolValue.get(g_hCvarServerPrintInfo))
+	{
+		PrintToServer("[MapChanger] Current map is: %s", 33244);
+	}
+	CreateTimer(5.0, 327, 0, 2);
+	g_bUMHooked = false;
+	g_bIsFinale = IsFinaleMap(g_sCurMap);
+	return 0;
+}
+
+public void:OnPhrasesReady()
+{
+	PrecachePhrasesKV(g_kv);
+	PrecachePhrasesKV(g_kvdef);
+	return 0;
+}
+
+public void:OnPluginStart()
+{
+	LoadTranslations("MapChanger.phrases");
+	loc = Localizer.Localizer(1);
+	Localizer.Delegate_InitCompleted(loc, 313);
+	CreateConVar("mapchanger_version", "3.7", "MapChanger Version", 131328, false, 0.0, false, 0.0);
+	g_hCvarDelay = CreateConVar("l4d_mapchanger_delay", "60", "Minimum delay (in sec.) allowed between votes", 256, false, 0.0, false, 0.0);
+	g_hCvarTimeout = CreateConVar("l4d_mapchanger_timeout", "10", "How long (in sec.) does the vote last", 256, false, 0.0, false, 0.0);
+	g_hCvarAnnounceDelay = CreateConVar("l4d_mapchanger_announcedelay", "2.0", "Delay (in sec.) between announce and vote menu appearing", 256, false, 0.0, false, 0.0);
+	g_hCvarAllowDefault = CreateConVar("l4d_mapchanger_allow_default", "1", "Display standard maps menu items? (1 - Yes, 0 - No)", 256, false, 0.0, false, 0.0);
+	g_hCvarAllowCustom = CreateConVar("l4d_mapchanger_allow_custom", "1", "Display custom maps menu items? (1 - Yes, 0 - No)", 256, false, 0.0, false, 0.0);
+	g_hCvarServerNameShort = CreateConVar("l4d_mapchanger_servername_short", "", "Short name of your server (specify it, if you want custom campaign name will be prepended to it)", 256, false, 0.0, false, 0.0);
+	g_hCvarVoteMarkMinPlayers = CreateConVar("l4d_mapchanger_votemark_minplayers", "3", "Minimum number of players to allow starting the vote for mark (rating)", 256, false, 0.0, false, 0.0);
+	g_hCvarVoteMarkFlag = CreateConVar("l4d_mapchanger_votemark_access", "", "Flag(s) allowed to start the vote for mark (rating). Leave empty to allow everybody.", 256, false, 0.0, false, 0.0);
+	g_hCvarRemoveMarkFlag = CreateConVar("l4d_mapchanger_remove_mark_access", "z", "Flag(s) allowed to remove the mark (rating)", 256, false, 0.0, false, 0.0);
+	g_hCvarMapVoteAccessDef = CreateConVar("l4d_mapchanger_default_voteaccess", "kp", "Flag(s) allowed to access the vote for change to standard maps. Leave empty to allow everybody.", 256, false, 0.0, false, 0.0);
+	g_hCvarMapVoteAccessCustom = CreateConVar("l4d_mapchanger_custom_voteaccess", "k", "Flag(s) allowed to access the vote for change to custom maps. Leave empty to allow everybody.", 256, false, 0.0, false, 0.0);
+	g_hCvarMapVoteAccessVip = CreateConVar("l4d_mapchanger_vip_voteaccess", "1", "Allow VIP players to change the map? (1 - Yes, 0 - No)", 256, false, 0.0, false, 0.0);
+	g_hCvarVetoFlag = CreateConVar("l4d_mapchanger_vetoaccess", "d", "Flag(s) allowed to veto/votepass the vote", 256, false, 0.0, false, 0.0);
+	g_hCvarNextMapOnStandard = CreateConVar("l4d_mapchanger_nextmap_on_standard", "1", "Which next campaign to use (on finale chapter of standard campaign)? (0 - next standard, 1 - random standard)", 256, false, 0.0, false, 0.0);
+	g_hCvarNextMapOnCustom = CreateConVar("l4d_mapchanger_nextmap_on_custom", "3", "Which next campaign to use (on finale chapter of custom campaign)? (0 - next standard, 1 - random standard, 2 - next custom, 3 - random custom)", 256, false, 0.0, false, 0.0);
+	g_hCvarChapterList = CreateConVar("l4d_mapchanger_show_chapter_list", "1", "Show the list of chapters within campaign? (1 - Yes, 0 - No)", 256, false, 0.0, false, 0.0);
+	g_hCvarFinaleChangeType = CreateConVar("l4d_mapchanger_finale_change_type", "12", "0 - Don't change finale map (drop to lobby); 1 - instant on vehicle leaving; 2 - instant on finale win; 4 - Wait till credits screen appear; 8 - Wait till credits screen ends", 256, false, 0.0, false, 0.0);
+	g_hCvarServerPrintInfo = CreateConVar("l4d_mapchanger_server_print_info", "1", "Print map change info to server console? (1 - Yes, 0 - No)", 256, false, 0.0, false, 0.0);
+	g_hCvarMapChangeNotifyTime = CreateConVar("l4d_mapchanger_mapchange_notify_time", "2", "Number of seconds to display notify message before the actual change map", 256, false, 0.0, false, 0.0);
+	g_hCvarNativeVoteChangeMissionAllow = CreateConVar("l4d_native_vote_allow_change_mission", "0", "Allow to use native votes to change mission? (0 - No, replace by MapChanger menu; 1 - Yes). Disable it to improve security!", 256, false, 0.0, false, 0.0);
+	g_hCvarNativeVoteChangeChapterAllow = CreateConVar("l4d_native_vote_allow_change_chapter", "0", "Allow to use native votes to change chapter? (0 - No, replace by MapChanger menu; 1 - Yes). Disable it to improve security!", 256, false, 0.0, false, 0.0);
+	g_hCvarNativeVoteRestartGameAllow = CreateConVar("l4d_native_vote_allow_restart_game", "0", "Allow to use native votes to restart game? (0 - No, replace by MapChanger menu; 1 - Yes). Disable it to improve security!", 256, false, 0.0, false, 0.0);
+	g_hCvarNativeVoteReturnLobbyAllow = CreateConVar("l4d_native_vote_allow_return_lobby", "0", "Allow to use native votes to return to lobby? (0 - No, replace by MapChanger menu; 1 - Yes). Disable it to improve security!", 256, false, 0.0, false, 0.0);
+	if (g_bLateload)
+	{
+		g_bVipCoreLib = LibraryExists("vip_core");
+	}
+	AutoExecConfig(true, "l4d_mapchanger", "sourcemod");
+	SetNativeVotesCvars();
+	ConVar.AddChangeHook(g_hCvarNativeVoteChangeMissionAllow, 273);
+	ConVar.AddChangeHook(g_hCvarNativeVoteChangeChapterAllow, 273);
+	ConVar.AddChangeHook(g_hCvarNativeVoteRestartGameAllow, 273);
+	ConVar.AddChangeHook(g_hCvarNativeVoteReturnLobbyAllow, 273);
+	new var1;
+	if (g_bLeft4Dead2)
+	{
+		var1 = 43;
+	}
+	else
+	{
+		var1 = 39;
+	}
+	StatsCrawlMsgId = var1;
+	g_hConVarGameMode = FindConVar("mp_gamemode");
+	g_hConVarHostName = FindConVar("hostname");
+	ConVar.AddChangeHook(g_hConVarGameMode, 269);
+	GetGameType();
+	ConVar.AddChangeHook(g_hCvarServerNameShort, 271);
+	RegConsoleCmd("sm_maps", 261, "Show map list to begin vote for changelevel / set mark (rating) etc.", 0);
+	RegConsoleCmd("sm_veto", 265, "Allow admin to veto current vote.", 0);
+	RegConsoleCmd("sm_votepass", 267, "Allow admin to bypass current vote.", 0);
+	RegAdminCmd("sm_mapnext", 257, 16384, "Force change level to the next map", "", 0);
+	RegAdminCmd("sm_next", 257, 16384, "Force change level to the next map", "", 0);
+	RegAdminCmd("sm_maps_reload", 263, 16384, "Refresh the list of maps", "", 0);
+	HookEvent("round_start", 277, 2);
+	HookEvent("finale_win", 275, 2);
+	HookEvent("finale_vehicle_leaving", 279, 2);
+	new var2;
+	if (g_bLeft4Dead2)
+	{
+		var2 = 38588;
+	}
+	else
+	{
+		var2 = 38608;
+	}
+	BuildPath(0, g_sMapListPath, 256, "configs/%s", var2);
+	BuildPath(0, g_sMapInfoPath, 256, "configs/MapChanger_info.txt");
+	BuildPath(0, g_sVoteBlockPath, 256, "data/mapchanger_vote_block.txt");
+	BuildPath(0, g_sCycleBlockPath, 256, "data/mapchanger_black_cycle.txt");
+	BuildPath(0, g_sLog, 256, "logs/vote_map.log");
+	g_aMapOrder = ArrayList.ArrayList(ByteCountToCells(64), 0);
+	g_aMapCustomOrder = ArrayList.ArrayList(ByteCountToCells(64), 0);
+	g_aMapStandardFirst = ArrayList.ArrayList(ByteCountToCells(64), 0);
+	g_aMapCustomFirst = ArrayList.ArrayList(ByteCountToCells(64), 0);
+	g_hArrayVoteBlock = ArrayList.ArrayList(ByteCountToCells(128), 0);
+	g_hArrayCycleBlock = ArrayList.ArrayList(ByteCountToCells(64), 0);
+	g_hNameByMap = StringMap.StringMap();
+	g_hNameByMapCustom = StringMap.StringMap();
+	g_hCampaignByMap = StringMap.StringMap();
+	g_hCampaignByMapCustom = StringMap.StringMap();
+	g_hMapStamp = StringMap.StringMap();
+	GetMissions();
+	HookUserMessage(GetUserMessageId("DisconnectToLobby"), 307, true, -1);
+	HookUserMessage(GetUserMessageId("VoteFail"), 337, false, -1);
+	return 0;
+}
+
+public void:SQL_Loc_Callback_TableCreate(Database:_arg0, DBResultSet:_arg1, String:_arg2[], any:_arg3)
+{
+	if (_arg0)
+	{
+		if (_arg1)
+		{
+			Database.SetCharset(g_hLcDB, "utf8");
+			Loc_GetPhraseFiles("");
+			return 0;
+		}
+	}
+	LogError(_arg2[0]);
+	return 0;
+}
+
+public void:SQL_Loc_OnDBConnect(Database:_arg0, String:_arg1[], any:_arg2)
+{
+	if (!(_arg0 == 0))
+	{
+		if (!_arg1[0])
+		{
+			if (_arg2)
+			{
+				SQL_Loc_RemoveTable();
+			}
+			else
+			{
+				Loc_CreateTables();
+			}
+			return 0;
+		}
+	}
+	SetFailState("OnDBConnect: %s", _arg1[0]);
+	return 0;
+}
+
+public bool:SQL_Loc_Query(_arg0, String:_arg1[], String:_arg2[], _arg3)
+{
+	static DBStatement:hUserStmt;
+	if (hUserStmt == 0)
+	{
+		decl String:error[1020];
+		hUserStmt = SQL_PrepareQuery(g_hLcDB, "SELECT translation FROM `localizer_phrases` WHERE lang = ? AND UPPER(phrase) = UPPER(?);", error, 255);
+	}
+	SQL_BindParamInt(hUserStmt, 0, _arg0, true);
+	SQL_BindParamString(hUserStmt, 1, _arg1[0], false);
+	SQL_LockDatabase(g_hLcDB);
+	SQL_Execute(hUserStmt);
+	SQL_UnlockDatabase(g_hLcDB);
+	if (SQL_FetchRow(hUserStmt))
+	{
+		SQL_FetchString(hUserStmt, 0, _arg2[0], _arg3, 0);
+		return 1;
+	}
+	_arg2[0] = '\x00';
+	return 0;
+}
+
+public void:SQL_Loc_Tx_Failure(Database:_arg0, any:_arg1, _arg2, String:_arg3[], _arg4, any:_arg5[])
+{
+	g_iLcQueueTx -= 1;
+	LogError(_arg3[0]);
+	return 0;
+}
+
+public void:SQL_Loc_Tx_Success(Database:_arg0, any:_arg1, _arg2, DBResultSet:_arg3[], any:_arg4[])
+{
+	g_iLcQueueTx -= 1;
+	if (!g_bLcDecodeInProgress)
+	{
+		if (g_iLcQueueTx == 0)
+		{
+			OnPhrasesProcessingCompleted_CallDelayed();
+		}
+	}
+	return 0;
+}
+
+public Action:Timer_ChangeHostName(Handle:_arg0)
+{
+	static String:sShort[192];
+	static String:sSrv[256];
+	decl String:sCampaign[256];
+	decl String:sCampaignTr[256];
+	new bool:bCustom;
+	ConVar.GetString(g_hCvarServerNameShort, sShort, 48);
+	if (sShort[0] == '\x00')
+	{
+		return 4;
+	}
+	if (!(StringMap.GetString(g_hCampaignByMap, g_sCurMap, sCampaign, 64, 0)))
+	{
+		StringMap.GetString(g_hCampaignByMapCustom, g_sCurMap, sCampaignTr, 64, 0);
+		bCustom = true;
+	}
+	if (bCustom)
+	{
+		FormatEx(sSrv, 64, "%s | %s", sShort, sCampaignTr);
+	}
+	else
+	{
+		strcopy(sSrv, 64, sShort);
+	}
+	ConVar.SetString(g_hConVarHostName, sSrv, false, false);
+	return 0;
+}
+
+public Action:Timer_Loc_OnPhrasesProcessingCompleted(Handle:_arg0)
+{
+	Forward_OnPhrasesProcessingCompleted();
+	return 0;
+}
+
+public Action:Timer_Loc_SignalWatchDog(Handle:_arg0)
+{
+	PrintToServer("[Localizer] [h:%i] WatchDog raised !!!", GetMyHandle());
+	g_hTimerLcState = 0;
+	ConVar.SetInt(g_hCvarLcState, 1, false, false);
+	return 0;
+}
+
+public Action:Timer_Loc_StackProcessingCache(Handle:_arg0, LC_OP_FLAG:_arg1)
+{
+	Loc_StackProcessingCache(_arg1);
+	return 0;
+}
+
+public Action:Timer_Loc_StackProcessingDecode(Handle:_arg0, LC_OP_FLAG:_arg1)
+{
+	Loc_StackProcessingDecode(_arg1);
+	return 0;
+}
+
+public Action:VoteFail(UserMsg:_arg0, BfRead:_arg1, _arg2[], _arg3, bool:_arg4, bool:_arg5)
+{
+	g_bIsReturnToLobbyVote = false;
+	return 0;
+}
+
+public void:__ext_core_SetNTVOptional()
+{
+	MarkNativeAsOptional("GetFeatureStatus");
+	MarkNativeAsOptional("RequireFeature");
+	MarkNativeAsOptional("AddCommandListener");
+	MarkNativeAsOptional("RemoveCommandListener");
+	MarkNativeAsOptional("BfWriteBool");
+	MarkNativeAsOptional("BfWriteByte");
+	MarkNativeAsOptional("BfWriteChar");
+	MarkNativeAsOptional("BfWriteShort");
+	MarkNativeAsOptional("BfWriteWord");
+	MarkNativeAsOptional("BfWriteNum");
+	MarkNativeAsOptional("BfWriteFloat");
+	MarkNativeAsOptional("BfWriteString");
+	MarkNativeAsOptional("BfWriteEntity");
+	MarkNativeAsOptional("BfWriteAngle");
+	MarkNativeAsOptional("BfWriteCoord");
+	MarkNativeAsOptional("BfWriteVecCoord");
+	MarkNativeAsOptional("BfWriteVecNormal");
+	MarkNativeAsOptional("BfWriteAngles");
+	MarkNativeAsOptional("BfReadBool");
+	MarkNativeAsOptional("BfReadByte");
+	MarkNativeAsOptional("BfReadChar");
+	MarkNativeAsOptional("BfReadShort");
+	MarkNativeAsOptional("BfReadWord");
+	MarkNativeAsOptional("BfReadNum");
+	MarkNativeAsOptional("BfReadFloat");
+	MarkNativeAsOptional("BfReadString");
+	MarkNativeAsOptional("BfReadEntity");
+	MarkNativeAsOptional("BfReadAngle");
+	MarkNativeAsOptional("BfReadCoord");
+	MarkNativeAsOptional("BfReadVecCoord");
+	MarkNativeAsOptional("BfReadVecNormal");
+	MarkNativeAsOptional("BfReadAngles");
+	MarkNativeAsOptional("BfGetNumBytesLeft");
+	MarkNativeAsOptional("BfWrite.WriteBool");
+	MarkNativeAsOptional("BfWrite.WriteByte");
+	MarkNativeAsOptional("BfWrite.WriteChar");
+	MarkNativeAsOptional("BfWrite.WriteShort");
+	MarkNativeAsOptional("BfWrite.WriteWord");
+	MarkNativeAsOptional("BfWrite.WriteNum");
+	MarkNativeAsOptional("BfWrite.WriteFloat");
+	MarkNativeAsOptional("BfWrite.WriteString");
+	MarkNativeAsOptional("BfWrite.WriteEntity");
+	MarkNativeAsOptional("BfWrite.WriteAngle");
+	MarkNativeAsOptional("BfWrite.WriteCoord");
+	MarkNativeAsOptional("BfWrite.WriteVecCoord");
+	MarkNativeAsOptional("BfWrite.WriteVecNormal");
+	MarkNativeAsOptional("BfWrite.WriteAngles");
+	MarkNativeAsOptional("BfRead.ReadBool");
+	MarkNativeAsOptional("BfRead.ReadByte");
+	MarkNativeAsOptional("BfRead.ReadChar");
+	MarkNativeAsOptional("BfRead.ReadShort");
+	MarkNativeAsOptional("BfRead.ReadWord");
+	MarkNativeAsOptional("BfRead.ReadNum");
+	MarkNativeAsOptional("BfRead.ReadFloat");
+	MarkNativeAsOptional("BfRead.ReadString");
+	MarkNativeAsOptional("BfRead.ReadEntity");
+	MarkNativeAsOptional("BfRead.ReadAngle");
+	MarkNativeAsOptional("BfRead.ReadCoord");
+	MarkNativeAsOptional("BfRead.ReadVecCoord");
+	MarkNativeAsOptional("BfRead.ReadVecNormal");
+	MarkNativeAsOptional("BfRead.ReadAngles");
+	MarkNativeAsOptional("BfRead.BytesLeft.get");
+	MarkNativeAsOptional("PbReadInt");
+	MarkNativeAsOptional("PbReadFloat");
+	MarkNativeAsOptional("PbReadBool");
+	MarkNativeAsOptional("PbReadString");
+	MarkNativeAsOptional("PbReadColor");
+	MarkNativeAsOptional("PbReadAngle");
+	MarkNativeAsOptional("PbReadVector");
+	MarkNativeAsOptional("PbReadVector2D");
+	MarkNativeAsOptional("PbGetRepeatedFieldCount");
+	MarkNativeAsOptional("PbSetInt");
+	MarkNativeAsOptional("PbSetFloat");
+	MarkNativeAsOptional("PbSetBool");
+	MarkNativeAsOptional("PbSetString");
+	MarkNativeAsOptional("PbSetColor");
+	MarkNativeAsOptional("PbSetAngle");
+	MarkNativeAsOptional("PbSetVector");
+	MarkNativeAsOptional("PbSetVector2D");
+	MarkNativeAsOptional("PbAddInt");
+	MarkNativeAsOptional("PbAddFloat");
+	MarkNativeAsOptional("PbAddBool");
+	MarkNativeAsOptional("PbAddString");
+	MarkNativeAsOptional("PbAddColor");
+	MarkNativeAsOptional("PbAddAngle");
+	MarkNativeAsOptional("PbAddVector");
+	MarkNativeAsOptional("PbAddVector2D");
+	MarkNativeAsOptional("PbRemoveRepeatedFieldValue");
+	MarkNativeAsOptional("PbReadMessage");
+	MarkNativeAsOptional("PbReadRepeatedMessage");
+	MarkNativeAsOptional("PbAddMessage");
+	MarkNativeAsOptional("Protobuf.ReadInt");
+	MarkNativeAsOptional("Protobuf.ReadInt64");
+	MarkNativeAsOptional("Protobuf.ReadFloat");
+	MarkNativeAsOptional("Protobuf.ReadBool");
+	MarkNativeAsOptional("Protobuf.ReadString");
+	MarkNativeAsOptional("Protobuf.ReadColor");
+	MarkNativeAsOptional("Protobuf.ReadAngle");
+	MarkNativeAsOptional("Protobuf.ReadVector");
+	MarkNativeAsOptional("Protobuf.ReadVector2D");
+	MarkNativeAsOptional("Protobuf.GetRepeatedFieldCount");
+	MarkNativeAsOptional("Protobuf.SetInt");
+	MarkNativeAsOptional("Protobuf.SetInt64");
+	MarkNativeAsOptional("Protobuf.SetFloat");
+	MarkNativeAsOptional("Protobuf.SetBool");
+	MarkNativeAsOptional("Protobuf.SetString");
+	MarkNativeAsOptional("Protobuf.SetColor");
+	MarkNativeAsOptional("Protobuf.SetAngle");
+	MarkNativeAsOptional("Protobuf.SetVector");
+	MarkNativeAsOptional("Protobuf.SetVector2D");
+	MarkNativeAsOptional("Protobuf.AddInt");
+	MarkNativeAsOptional("Protobuf.AddInt64");
+	MarkNativeAsOptional("Protobuf.AddFloat");
+	MarkNativeAsOptional("Protobuf.AddBool");
+	MarkNativeAsOptional("Protobuf.AddString");
+	MarkNativeAsOptional("Protobuf.AddColor");
+	MarkNativeAsOptional("Protobuf.AddAngle");
+	MarkNativeAsOptional("Protobuf.AddVector");
+	MarkNativeAsOptional("Protobuf.AddVector2D");
+	MarkNativeAsOptional("Protobuf.RemoveRepeatedFieldValue");
+	MarkNativeAsOptional("Protobuf.ReadMessage");
+	MarkNativeAsOptional("Protobuf.ReadRepeatedMessage");
+	MarkNativeAsOptional("Protobuf.AddMessage");
+	VerifyCoreVersion();
+	return 0;
+}
+
