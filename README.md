@@ -295,6 +295,9 @@
     - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
 > [!IMPORTANT]
 > Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
+
+> [!WARNING]
+> Временно используется форк со старого L4L
 22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
 > [!CAUTION]
