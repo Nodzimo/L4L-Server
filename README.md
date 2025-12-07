@@ -364,6 +364,11 @@
     - `sm_viewid`
 37. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
     - [Quickstart](https://sbpp.github.io/docs/quickstart)
+    - ```
+      [sbpp_main.smx] plugins/basebans.smx was unloaded and moved to plugins/disabled/basebans.smx
+      [SM] Plugin Basic Ban Commands unloaded successfully.
+      ```
+      - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью
     - Опционально: плагин **Discord Utilities**
 
 #### Зависимости
