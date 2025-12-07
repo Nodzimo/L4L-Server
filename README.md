@@ -186,7 +186,7 @@
 `sm exts list`
 1. [Accelerator (2.6.0-manual): SRCDS Crash Handler](https://forums.alliedmods.net/showthread.php?t=277703)
    - Расширение для автоматической загрузки краш-репортов на [Throttle dashboard](https://crash.limetech.org/dashboard)
-   - Решение проблемы с расширением Accelerator на линуксе: [\<FAILED\> file "accelerator.ext.so": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
+   - Решение проблемы с расширением Accelerator на линуксе: [Unable to load extension "accelerator.ext": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
    - Требуется для следующих плагинов:
      - **Steam Works Group Manager**
