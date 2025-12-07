@@ -356,6 +356,7 @@
       - Расширение **SMJansson**
       - Расширение **SteamWorks**
     - Опционально: **SourceBans++**
+    - `sm_viewid`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
