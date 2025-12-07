@@ -362,6 +362,9 @@
       - Расширение **SteamWorks**
     - Опционально: **SourceBans++**
     - `sm_viewid`
+37. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
+    - [Quickstart](https://sbpp.github.io/docs/quickstart)
+    - Опционально: плагин **Discord Utilities**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
