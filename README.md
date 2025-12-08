@@ -131,6 +131,10 @@
     - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux64" "$HOME/.steam/sdk64"`
     - Для L4D2 достаточно будет первой, потому что она 32-битная
 - [Steam Web API Key](https://steamcommunity.com/dev/apikey)
+- Управление в Linux-утилите **screen**:
+  - Отсоединение от screen-сессии: **Ctrl + A, D**
+  - Скроллинг консоли: **Ctrl + A, Esc**
+  - Выход из скроллинга консоли: **Q** или **Esc**
 - `status`
 - `exit`
 
@@ -368,11 +372,13 @@
     - `sm_viewid`
 37. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
     - [Quickstart](https://sbpp.github.io/docs/quickstart)
+    - `<FAILED> file "dbi.mysql.ext.so": libz.so.1: cannot open shared object file: No such file or directory`
+      - Эта ошибка на Linux решается установкой пакета: `apt-get install lib32z1`
     - ```
       [sbpp_main.smx] plugins/basebans.smx was unloaded and moved to plugins/disabled/basebans.smx
       [SM] Plugin Basic Ban Commands unloaded successfully.
       ```
-      - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью
+      - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой: `Fatal error encountered parsing translation file "basebans.phrases.txt"`.
     - Опционально: плагин **Discord Utilities**
 
 #### Зависимости
