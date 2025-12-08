@@ -33,10 +33,10 @@
 
 ## Дорожная карта
 - До 16 декабря 2025 года
-  1. Переезд на VPS с возможностью интеграции Discord
+  1. ~~Переезд на VPS с возможностью интеграции Discord~~
   2. Ванильная сборка, которая послужит ядром для остальных сборок.
-  3. Интеграция Discord
-  4. [SourceBans++](https://sbpp.github.io)
+  3. ~~Интеграция Discord~~
+  4. ~~SourceBans++~~
 - Q4 2025 - Q1 2026
   1. Перезапуск сайта: [L4L.su](https://l4l.su)
   2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
@@ -129,6 +129,7 @@
   - Эта ошибка на линуксе исправляется симлинками:
     - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux32" "$HOME/.steam/sdk32"`
     - `ln -sfn "$HOME/.local/share/Steam/steamcmd/linux64" "$HOME/.steam/sdk64"`
+    - Для L4D2 достаточно будет первой, потому что она 32-битная
 - [Steam Web API Key](https://steamcommunity.com/dev/apikey)
 - `status`
 - `exit`
