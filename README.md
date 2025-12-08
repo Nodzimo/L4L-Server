@@ -562,6 +562,8 @@
      git rm --cached -r "Platform/Windows/SteamCMD"
      git commit -m "Stop tracking SteamCMD runtime files"
       ```
+- `git revert --no-commit ID`
+  - Вернуть изменённые файлы из коммита в состояние **Staged Changes** без коммита, не затрагивая все предыдущие и последующие коммиты в Git-истории.
 - Максимальный размер коммита для GitHub репозитория: **150 мегабайт** (но это не точно)
 - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
