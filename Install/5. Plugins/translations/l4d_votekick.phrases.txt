@@ -1,0 +1,210 @@
+/*
+	Following named colors are supported:
+	 - {white}	(use instead of \x01 )
+	 - {cyan}	(use instead of \x03 )
+	 - {orange}	(use instead of \x04 )
+	 - {green}	(use instead of \x05 )
+*/
+
+"Phrases"
+{
+	"Player To Kick"
+	{
+		"en"		"Select player to kick / un-kick:"		
+	}
+	"not_enough_players"
+	{
+		"#format"	"{1:i}"
+		"en"		"{orange}Not enough players to start the vote. {cyan}Required minimum: {1}"
+	}
+	"not_in_game"
+	{
+		"en"		"{orange}Player is already disconnected."
+	}
+	"no_access_specific"
+	{
+		"en"		"{cyan}%N {orange}tried to start a vote to kick {cyan}%s{orange}, but doesn't have access."
+	}
+	"no_access_specific_unkick"
+	{
+		"en"		"{cyan}%N {orange}tried to start a vote to un-kick {cyan}%s{orange}, but doesn't have access."
+	}
+	"no_access"
+	{
+		"en"		"No access."
+	}
+	"no_access_immunity"
+	{
+		"en"		"Target has higher immunity."
+	}
+	"other_vote"
+	{
+		"en"		"{orange}Anther vote is not over yet!"
+	}
+	"vote_started_announce"
+	{
+		"#format"	"{1:s}"
+		"en"		"Do you want to kick: {1} ?"
+	}
+	"vote_started_announce_unkick"
+	{
+		"#format"	"{1:s}"
+		"en"		"Do you want to remove the kick from: {1} ?"
+	}
+	"vote_started"
+	{
+		"en"		"{cyan}%N {white}started a vote to kick {cyan}%s\n"
+	}
+	"vote_started_anonymous_initiator"
+	{
+		"en"		"A vote to kick {cyan}%s{white} has been started.\n"
+	}
+	"vote_started_otherteam"
+	{
+		"en"		"The other team team started a vote to kick a team member.\n"
+	}
+	"vote_started_unkick"
+	{
+		"en"		"{cyan}%N {white}started a vote to un-kick: {cyan}%s"
+	}
+	"vote_started_unkick_anonymous_initiator"
+	{
+		"en"		"A vote to un-kick {cyan}%s{white} has been started.\n"
+	}
+	"vote_started_unkick_otherteam"
+	{
+		"en"		"The other team started a vote to un-kick: {cyan}%s"
+	}
+	"Yes"
+	{
+		"en"		"Yes"
+	}
+	"No"
+	{
+		"en"		"No"
+	}
+	"too_often"
+	{
+		"en"		"{orange}You can't vote too often!"
+	}
+	"veto"
+	{
+		"en"		"{orange}Current vote is vetoed by {cyan}%N"
+	}
+	"votepass"
+	{
+		"en"		"{green}Current vote is passed by {cyan}%N"
+	}
+	"vote_failed"
+	{
+		"en"		"The kick vote failed."
+	}
+	"vote_failed_otherteam"
+	{
+		"en"		"The kick vote by the other team failed."
+	}
+	"vote_failed_unkick"
+	{
+		"en"		"The vote to remove the ban failed."
+	}
+	"vote_success"
+	{
+		"#format"	"{1:s}"
+		"en"		"{cyan}{1} {white}is kicked out"
+	}
+	"vote_success_otherteam"
+	{
+		"#format"	"{1:s}"
+		"en"		"The other team kicked {1} by vote"
+	}
+	"vote_success_unkick"
+	{
+		"#format"	"{1:s}"
+		"en"		"{cyan}{1} {white}- ban is removed"
+	}
+	"kick_reason"
+	{
+		"en"		"You have been kicked from session"
+	}
+	"kick_for"
+	{
+		"en"		"Kicked for"
+	}
+	"time_left"
+	{
+		"#format"	"{1:i}"
+		"en"		"({1} min. left)"
+	}
+	"Reason_Menu"
+	{
+		"en"		"Reason"
+	}
+	"Reason"
+	{
+		"en"		"{white}Reason:{orange}"
+	}
+	"Bad language"
+	{
+		"en"		"Bad language"
+	}
+	"Cheater"
+	{
+		"en"		"Cheater"
+	}
+	"Rusher"
+	{
+		"en"		"Rusher"
+	}
+	"Friendly fire"
+	{
+		"en"		"Friendly fire"
+	}
+	"Griefing"
+	{
+		"en"		"Griefing"
+	}
+	"Microphone"
+	{
+		"en"		"Microphone issues"
+	}
+	"Microphone issues"
+	{
+		"en"		"Microphone issues"
+	}
+	"AFK"
+	{
+		"en"		"AFK"
+	}	
+	"Other"
+	{
+		"en"		"Other"
+	}
+	"Reason not specified"
+	{
+		"en"		"Reason not specified"
+	}
+	"detailed_vote_results"
+	{
+		"en"		"Vote ended.  ({green}Yes{white} - {orange}No{white} - Unanswered):  {green}%d{white} - {orange}%d{white} - %d"
+	}
+	"steamid_is_banned"
+	{
+		"en"		"STEAM UserID %s is banned"
+	}
+	"note_to_target_automatic_vote"
+	{
+		"en"		"{green}Note: Your vote against will be cast automatically"
+	}
+	"note_to_target_manual_vote"
+	{
+		"en"		"{orange}Since you are inactive, you need to vote manually against it"
+	}
+	"survivor"
+	{
+		"en"		"Survivor"
+	}
+	"infected"
+	{
+		"en"		"Infected"
+	}
+}

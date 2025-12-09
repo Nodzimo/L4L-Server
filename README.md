@@ -388,6 +388,10 @@
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vd`
+39. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
+    - Менеджер киков с оповещением админа, которого пытаются кикнуть.
+    - Зависимость: база геоданных **GeoIP2 GeoLite2**
+    - `sm_vk`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -407,6 +411,7 @@
      - **Connect Announce**
      - **Vote server restart**
      - **Vote difficulty**
+     - **Votekick**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
