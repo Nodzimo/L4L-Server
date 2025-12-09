@@ -381,6 +381,10 @@
     - Менеджер киков с оповещением админа, которого пытаются кикнуть.
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vk`
+39. [Bot Takeover (4.5) by little_froy](https://forums.alliedmods.net/showthread.php?t=346636)
+    - Позволяет после смерти взять свободного бота, нажатием кнопки действия: **E**
+40. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
+    - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
