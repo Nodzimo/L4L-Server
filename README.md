@@ -296,26 +296,26 @@
     - `Shove + Use`
 20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
     - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
-22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
+21. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
 > [!CAUTION]
 > Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
-23. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
+22. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
     - Кидает зомби в сторону удара прикладом
     - Зависимость: расширение **Actions**
-24. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
+23. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
     - Телепортирует всех ботов разом к игроку
     - `sm_warpbots`
-25. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
+24. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
     - Позволяет админу ставить онлайн-игру на паузу
     - Зависимость: **Multi Colors**
     - `sm_forcepause`
-26. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
+25. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
     - Контролирует использование медикаментов ботами
     - Зависимости:
       - Рекомендуемо: расширение **Source Scramble**
       - Опционально: расширение **Actions**
-27. [[L4D(2)] AFK and Join Team Commands Improved (5.5-2025/1/3) by MasterMe & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_afk_commands)
+26. [[L4D(2)] AFK and Join Team Commands Improved (5.5-2025/1/3) by MasterMe & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_afk_commands)
     - Мультикомбайн: всё (и не только), что связано с АФК, сменой команды и абьюзом бездействия.
     - Зависимости:
       - Расширение **Actions**
@@ -327,30 +327,30 @@
       - `sm_join`
       - `sm_zs`
         - Суицид выжившего, например: если он где-то застрянет в безвыходной ситуации.
-28. [[L4D1/2] VS Auto-spectate on AFK (2.6-2025/2/12) by djromero (SkyDavid, David Romero) & Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/L4DVSAutoSpectateOnAFK)
+27. [[L4D1/2] VS Auto-spectate on AFK (2.6-2025/2/12) by djromero (SkyDavid, David Romero) & Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/L4DVSAutoSpectateOnAFK)
     - Закидывает в наблюдателей игрока, который бездействует, а затем кикает его по истечению установленного времени.
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
       - Плагин **AFK and Join Team Commands Improved**, потому что без него будет закидывать в наблюдателей без возможности вернуться в игру, командой **sm_join**.
-29. [[L4D & L4D2] Witch fixes [Left 4 Fix]](https://forums.alliedmods.net/showthread.php?p=2647014)
+28. [[L4D & L4D2] Witch fixes [Left 4 Fix]](https://forums.alliedmods.net/showthread.php?p=2647014)
     - Набор фиксов ведьмы в одном комплекте, примеры: не теряет случайно цель, не теряет цель в убежище, не триггерится дважды и так далее.
-30. [Witch Pipebomb exploit fix & Death Optmizer (1.0) by Lux](https://forums.alliedmods.net/showthread.php?t=342000)
+29. [Witch Pipebomb exploit fix & Death Optmizer (1.0) by Lux](https://forums.alliedmods.net/showthread.php?t=342000)
     - Фикс бага, когда ведьма исчезает от взрыва пайпы в толпе обычных заражённых.
-31. [l4d witch realism door fix (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_realism_door_fix)
+30. [l4d witch realism door fix (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_realism_door_fix)
     - Фикс бага, когда ведьма не может разбить дверь
-32. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
+31. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
     - Фикс бага, когда гром не может пробиться сквозь толпу выживших и останавливается из-за этого
     - Зависимость: расширение **Source Scramble**
-33. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
+32. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
-34. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
-35. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
+33. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
+34. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
     - Зависимости:
       - Расширение **SMJansson**
       - Расширение **SteamWorks**
     - Требуется для плагина **Discord Utilities**
-36. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
+35. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
     - Документация:
       - [Installation](https://github.com/Cruze03/discord-utilities/wiki/Installation)
       - [Collect Required Things](https://github.com/Cruze03/discord-utilities/wiki/Collect-Required-Things)
@@ -363,7 +363,7 @@
       - Расширение **SteamWorks**
     - Опционально: **SourceBans++**
     - `sm_viewid`
-37. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
+36. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
     - [Quickstart](https://sbpp.github.io/docs/quickstart)
     - `<FAILED> file "dbi.mysql.ext.so": libz.so.1: cannot open shared object file: No such file or directory`
       - Эта ошибка на Linux решается установкой пакета: `apt-get install lib32z1`
@@ -373,11 +373,11 @@
       ```
       - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой: `Fatal error encountered parsing translation file "basebans.phrases.txt"`.
     - Опционально: плагин **Discord Utilities**
-38. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
+37. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vd`
-39. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
+38. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
     - Менеджер киков с оповещением админа, которого пытаются кикнуть.
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vk`
