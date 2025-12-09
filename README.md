@@ -212,7 +212,6 @@
      - **Discord Utilities**
 6. [NEO cURL Extension (2.0.1)](https://forums.alliedmods.net/showthread.php?t=343355)
    - Позволяет SourceMod-плагинам делать запросы в интернет
-   - Опционально: для плагина **Vote Blocker**
 
 ### SourceMod плагины
 [Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
@@ -297,16 +296,6 @@
     - `Shove + Use`
 20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
     - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
-21. [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
-    - Блокирует голосование за кик админа, оповещая об этом в чате.
-    - Опционально: расширение **NEO cURL** (для самообновления?)
-    - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
-    - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
-> [!IMPORTANT]
-> Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
-
-> [!WARNING]
-> Временно используется форк со старого L4L
 22. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
 > [!CAUTION]
@@ -503,6 +492,17 @@
 23. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
 
 #### Неактуально
+- Заменён плагином **Votekick**
+  - [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
+    - Блокирует голосование за кик админа, оповещая об этом в чате.
+    - Опционально: расширение **NEO cURL** (для самообновления?)
+    - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
+    - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
+> [!IMPORTANT]
+> Надо форкать форки, потому что на старом L4L сыпались ошибки и автор захардкодил себе иммунитет в плагине, а ещё добавил автоматическое обновление, которое перезаписывает изменения.
+
+> [!WARNING]
+> Временно используется форк со старого L4L
 - Заменены V-скриптом **Zero's Behavior Patches**
   - [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
   - [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
