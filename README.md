@@ -210,6 +210,9 @@
    - Требуется для следующих плагинов:
      - **Discord API**
      - **Discord Utilities**
+6. [NEO cURL Extension (2.0.1)](https://forums.alliedmods.net/showthread.php?t=343355)
+   - Позволяет SourceMod-плагинам делать запросы в интернет
+   - Опционально: для плагина **Vote Blocker**
 
 ### SourceMod плагины
 [Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
@@ -296,6 +299,7 @@
     - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
 21. [[L4D2] Vote Blocker v1.3.4](https://forums.alliedmods.net/showthread.php?t=232928)
     - Блокирует голосование за кик админа, оповещая об этом в чате.
+    - Опционально: расширение **NEO cURL** (для самообновления?)
     - [Предпоследний форк от valedar](https://forums.alliedmods.net/showpost.php?p=2779227&postcount=135)
     - [Последний форк от alasfourom](https://forums.alliedmods.net/showpost.php?p=2790340&postcount=137)
 > [!IMPORTANT]
@@ -380,6 +384,10 @@
       ```
       - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой: `Fatal error encountered parsing translation file "basebans.phrases.txt"`.
     - Опционально: плагин **Discord Utilities**
+38. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
+    - Голосование за смену сложности с возможностью добавления кастомных сложностей
+    - Зависимость: база геоданных **GeoIP2 GeoLite2**
+    - `sm_vd`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -398,6 +406,7 @@
    - Требуется для следующих плагинов:
      - **Connect Announce**
      - **Vote server restart**
+     - **Vote difficulty**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
