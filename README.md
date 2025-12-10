@@ -23,6 +23,7 @@
     - [Краши](#краши)
     - [Отладка](#отладка)
     - [Dev-сборка](#dev-сборка)
+    - [Обслуживание](#обслуживание)
     - [Консольные команды](#консольные-команды)
     - [Онлайн-инструменты](#онлайн-инструменты)
     - [Клиент](#клиент)
@@ -34,9 +35,14 @@
 ## Дорожная карта
 - До 16 декабря 2025 года
   1. ~~Переезд на VPS с возможностью интеграции Discord~~
-  2. Ванильная сборка, которая послужит ядром для остальных сборок.
+  2. ~~Ванильная сборка, которая послужит ядром для остальных сборок~~.
   3. ~~Интеграция Discord~~
   4. ~~SourceBans++~~
+  5. Поднять старый сайт с мониторингом серверов
+- В очереди:
+  1. **RCON** не работает на VPS
+  2. Не отправляются сообщения из Discord на сервер
+  3. Коллекции кастомных карт и автоматизация их установки на серверы
 - Q4 2025 - Q1 2026
   1. Перезапуск сайта: [L4L.su](https://l4l.su)
   2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
@@ -132,15 +138,18 @@
     - Для L4D2 достаточно будет первой, потому что она 32-битная
 - [Steam Web API Key](https://steamcommunity.com/dev/apikey)
 - Управление в Linux-утилите **screen**:
-  - Отсоединение от screen-сессии: **Ctrl + A, D**
-  - Скроллинг консоли: **Ctrl + A, Esc**
-  - Выход из скроллинга консоли: **Q** или **Esc**
+  - Отсоединение от screen-сессии: `Ctrl` + `A`, `D`
+  - Скроллинг консоли: `Ctrl` + `A`, `Esc`
+  - Выход из скроллинга консоли: `Q` или `Esc`
 - `status`
 - `exit`
 
 ### Конфигурация
 - [Всё о sv_steamgroup и видимости сервера в меню игры [L4D2]](https://forum.myarena.ru/index.php?/topic/45110-vse-o-sv-steamgroup-i-vidimosti-servera-v-meniu-igry-l4d2)
-- `Unknown command ","` / `Unknown command "."`
+- ```
+  Unknown command ","
+  Unknown command "."
+  ```
    - В конфигах нельзя писать комментарии на кириллице
 - `Unknown command "mat_bloom_scalefactor_scalar"`
    - Закомментировать команду в `left4dead2/cfg/modsettings.cfg`
@@ -192,6 +201,16 @@
 1. [Accelerator (2.6.0-manual): SRCDS Crash Handler](https://forums.alliedmods.net/showthread.php?t=277703)
    - Расширение для автоматической загрузки краш-репортов на [Throttle dashboard](https://crash.limetech.org/dashboard)
    - Решение проблемы с расширением Accelerator на линуксе: [Unable to load extension "accelerator.ext": bin/libstdc++.so.6: version `GLIBCXX_3.4.21' not found](https://forums.alliedmods.net/showpost.php?p=2636287&postcount=306)
+     1. Удалить `libstdc++.so.6` в директории сервера: `bin`
+     2. ``Failed to open dedicated_srv.so (bin/libgcc_s.so.1: version `GCC_7.0.0' not found (required by /lib/i386-linux-gnu/libstdc++.so.6))``
+        - Если появится эта ошибка, то удалить в той же директории: `libgcc_s.so.1`
+     3. Установить свежую либу:
+        ```
+        sudo dpkg --add-architecture i386
+        sudo apt install libstdc++6:i386
+        ```
+     4. Подгрузить новую либу в баш-скрипте, который запускает сервер, пример:
+        - `export LD_PRELOAD="/usr/lib/i386-linux-gnu/libstdc++.so.6.0.33"`
 2. [SteamWorks Extension (1.2.4) by Kyle Sanderson](https://github.com/hexa-core-eu/SteamWorks)
    - Требуется для следующих плагинов:
      - **Steam Works Group Manager**
@@ -365,13 +384,20 @@
     - `sm_viewid`
 36. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
     - [Quickstart](https://sbpp.github.io/docs/quickstart)
-    - `<FAILED> file "dbi.mysql.ext.so": libz.so.1: cannot open shared object file: No such file or directory`
-      - Эта ошибка на Linux решается установкой пакета: `apt-get install lib32z1`
+    - `[sbpp_main.smx] Verify Insert Query Failed: Column 'sid' cannot be null`
+      - Прописать в конфиг сервера его ID из [веб-панели SourceBans++](https://bans.l4l.su)
+    - ```
+      <FAILED> file "dbi.mysql.ext.so": libz.so.1: cannot open shared object file: No such file or directory
+
+      sbpp_checker.smx (SourceBans++: Bans Checker): Failed to connect to SourceBans DB, Could not find driver "mysql"
+      ```
+      - Эти ошибки на Linux решаются установкой пакета: `apt-get install lib32z1`
     - ```
       [sbpp_main.smx] plugins/basebans.smx was unloaded and moved to plugins/disabled/basebans.smx
       [SM] Plugin Basic Ban Commands unloaded successfully.
       ```
-      - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой: `Fatal error encountered parsing translation file "basebans.phrases.txt"`.
+      - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой:
+        - `Fatal error encountered parsing translation file "basebans.phrases.txt"`
     - Опционально: плагин **Discord Utilities**
 37. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
@@ -399,7 +425,7 @@
    - В свежих версиях SourceMod поставляется в комплекте
    - Обслуживание:
      - `Your database is older than 90 days. You should consider downloading a newer version from e.g. https://dev.maxmind.com/geoip/geolite2-free-geolocation-data`
-     - Надо обновлять минимум раз в 90 дней, иначе будет сыпать предупреждение в консоль сервера
+     - Надо обновлять минимум раз в 90 дней, иначе будет сыпать предупреждение в консоль сервера.
    - Требуется для следующих плагинов:
      - **Connect Announce**
      - **Vote server restart**
@@ -544,6 +570,20 @@
 
 ### Dev-сборка
 - После рестарта пустого сервера загружается случайная официальная кампания со второй карты
+
+### Обслуживание
+- [Краш репорты](https://crash.limetech.org/dashboard)
+- Логи: `left4dead2/addons/sm_basepath/logs`
+- [Мониторинг железа](https://glances.nodzimo.ru)
+- Если изменился порядок серверов, то нужно менять в конфигах их ID для [SourceBans++](https://bans.l4l.su) и **Discord Utilities**.
+- Если вышло обновление L4D2, то нужно обновлять сервера через **SteamCMD**, не забывая после этого редактировать автоматически загруженные файлы, например:
+  - Удалить:
+    - `bin/libstdc++.so.6`
+    - `bin/libgcc_s.so.1`
+  - Перезаписать: `left4dead2/cfg/modsettings.cfg`
+- Минимум раз в 90 дней обновлять базу геоданных [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
+- Обновлять кастомные карты и аддоны на серверах, если вышли обновления в мастерской.
+- Репортить ошибки плагинов и аддонов их авторам
 
 ### Консольные команды
 - [List of Left 4 Dead 2 console commands and variables](https://developer.valvesoftware.com/wiki/List_of_Left_4_Dead_2_console_commands_and_variables)
