@@ -216,6 +216,7 @@
      - **Steam Works Group Manager**
      - **Discord API**
      - **Discord Utilities**
+     - **SourceBans++ Discord Plugin**
 3. [Actions (3.9.2) by BHaType](https://forums.alliedmods.net/showthread.php?t=336374)
    - Требуется для плагинов:
      - **Shove Direction Fix**
@@ -229,6 +230,7 @@
    - Требуется для следующих плагинов:
      - **Discord API**
      - **Discord Utilities**
+     - **SourceBans++ Discord Plugin**
 6. [NEO cURL Extension (2.0.1)](https://forums.alliedmods.net/showthread.php?t=343355)
    - Позволяет SourceMod-плагинам делать запросы в интернет
 
@@ -398,7 +400,7 @@
       ```
       - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой:
         - `Fatal error encountered parsing translation file "basebans.phrases.txt"`
-    - Опционально: плагин **Discord Utilities**
+    - Опционально: плагин **SourceBans++ Discord Plugin**
 37. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
@@ -411,6 +413,11 @@
     - Позволяет после смерти взять свободного бота, нажатием кнопки действия: `E`
 40. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
     - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
+41. [SourceBans++ Discord Plugin (1.1.0) by RumbleFrog, SourceBans++ Dev Team](https://sbpp.github.io/docs/discord_forward_setup)
+    - Отправляет в **Discord** уведомления о банах и жалобах (можно в 2 разных канала)
+    - Зависимости:
+      - Расширение **SMJansson**
+      - Расширение **SteamWorks**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
