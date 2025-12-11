@@ -19,7 +19,11 @@
     - [V-скрипты](#v-скрипты)
       - [Неактуально](#неактуально)
     - [Карты](#карты)
-      - [Снежные, зимние, новогодние](#снежные-зимние-новогодние)
+      - [Основные](#основные)
+      - [Второстепенные](#второстепенные)
+      - [Зимние](#зимние)
+      - [Новогодние](#новогодние)
+      - [Тестовые](#тестовые)
     - [Краши](#краши)
     - [Отладка](#отладка)
     - [Dev-сборка](#dev-сборка)
@@ -547,24 +551,54 @@
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
 
-1. [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
-2. [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
+#### Основные
+[Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622048772)
 
-#### Снежные, зимние, новогодние
-3. [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
-4. [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
-5. [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
-6. [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
-> [!CAUTION]
-> Проверить: первая карта сильно лагала на старом L4L
-7. [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
-8. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
-9. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
-10. [Whispers of Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=1643520526)
+1. [Dead South](https://steamcommunity.com/sharedfiles/filedetails/?id=3378140391)
+2. [Diescraper Redux](https://steamcommunity.com/sharedfiles/filedetails/?id=121116980)
+   - Конфликтует с **Day Break**
+     > Rectus [author] 8 Nov, 2024 @ 11:41pm
+
+     > Yeah, from with I remember it conflicts with Daybreak. Diescraper has support for my custom weapons and will enable them if the melee scripts for them are avilalble, and Daybreak has the flamethrower weapon included as an easter egg. Unfortunately it will only load the script and not the model from other campaigns.
+3. [Questionable Ethics: Combined](https://steamcommunity.com/sharedfiles/filedetails/?id=2758492786)
+4. [Questionable Ethics](https://steamcommunity.com/sharedfiles/filedetails/?id=2783476025)
+5. [Questionable Ethics: Alpha test](https://steamcommunity.com/sharedfiles/filedetails/?id=2783484731)
+6. [Dark Wood (Extended)](https://steamcommunity.com/workshop/filedetails/?id=575682109)
+
+#### Второстепенные
+[Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622048321)
+
+1. [Day Break (Campaign)](https://steamcommunity.com/sharedfiles/filedetails/?id=180925247)
+   - Конфликтует с **Diescraper Redux**
+
+#### Зимние
+[Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622046591)
+
+1. [Snow Den 2.0, Holiday release (definitive version)](https://steamcommunity.com/sharedfiles/filedetails/?id=3396441138)
+2. [Winter Carnival](https://steamcommunity.com/sharedfiles/filedetails/?id=2891062323)
+3. [Winter Harvest Train](https://steamcommunity.com/sharedfiles/filedetails/?id=3427138500)
+4. [Death Toll Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=2884330969)
+5. [Whispers of Winter](https://steamcommunity.com/sharedfiles/filedetails/?id=1643520526)
     - Рекомендуется: **Informal Skyboxes**
 > [!CAUTION]
 > Проверить: в комментариях жалуются на частые краши, особенно после **Deluxe Update**.
-11. [Cold Front](https://steamcommunity.com/workshop/filedetails/?id=3135470026)
+6. [Cold Front](https://steamcommunity.com/workshop/filedetails/?id=3135470026)
+
+#### Новогодние
+[Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622045205)
+
+1. [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
+2. [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
+3. [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
+> [!CAUTION]
+> Проверить: первая карта сильно лагала на старом L4L
+4. [Deadly New Year](https://steamcommunity.com/sharedfiles/filedetails/?id=3404576339)
+
+#### Тестовые
+[Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622049670)
+
+1. [Whitaker's Weapons Range by danfs0 [RE-UPLOAD]](https://steamcommunity.com/sharedfiles/filedetails/?id=3001153036)
+2. [The Ultimate Mod Testing and Reviewing Area - Main Files](https://steamcommunity.com/sharedfiles/filedetails/?id=469986973)
 
 ### Краши
 - [CUtlRBTree overflow!](https://crash.limetech.org/xqtbyrgkbhyy)
