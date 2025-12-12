@@ -11,7 +11,7 @@ Keys
 Source/Maps
 Source/Test
 Setup/10. Maps
-Install/10. Shared/Maps
+Install/10. Share/shared/maps
 Client/**
 !Client/L4D2.bat
 !Client/Workshop
