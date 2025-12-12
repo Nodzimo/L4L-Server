@@ -523,8 +523,12 @@
     - Зависимость: **Manacat Common Library** 
 22. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для **[Improved] Headshot Feedback Effect**
+    - Опционально: аддон **Disable Manacat Weapon Skin RNG**
 23. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
 24. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+25. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+    - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
+    - Зависимость: аддон **Manacat Common Library**
 
 #### Неактуально
 - Заменён плагином **Votekick**
