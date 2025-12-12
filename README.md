@@ -529,6 +529,8 @@
 25. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
+26. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+- Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
 
 #### Неактуально
 - Заменён плагином **Votekick**
