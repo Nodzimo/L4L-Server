@@ -456,7 +456,7 @@
    - Горячая перезагрузка плагина при его добавлении/компиляции/удалении
 
 #### Сезонное
-- Рождество (ориентировочно с 1 декабря по 1 февраля)
+- **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
   1. [[L4D & L4D2] Christmas Tree (1.9) by SilverShot](https://forums.alliedmods.net/showthread.php?t=319552)
   2. [[L4D & L4D2] xMas (1.6) by raziEiL [disawar1], gratters by Electr000999](https://forums.alliedmods.net/showpost.php?p=2678402&postcount=31)
      - `/xmas Sefo "Merry Xmas"`
