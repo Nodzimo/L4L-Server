@@ -1,308 +1,709 @@
 #!/bin/bash
+LIBSTD32="/usr/lib/i386-linux-gnu/libstdc++.so.6.0.33"
+CMD="l4l"
 
 SCREEN="screen -dmS"
 GAME="-game left4dead2"
 MAP='+map "c1m2_streets realism"'
+CFG_DIR="l4l/"
+SM_BASE="+sm_basepath addons/sourcemod_"
+MAPSETS_DIR="$HOME/l4l/shared/maps"
+GEOIP_SHARED_DIR="$HOME/l4l/shared/geoip"
 
-SERVERS_DIR="$HOME/servers/"
-BASE_DIR="./servers/"
+LOG_TAG="[L4L]"
+
+log() {
+    echo "$LOG_TAG" "$@"
+}
+
+[[ -d "$MAPSETS_DIR" ]] || { log "MAPSETS_DIR not found: $MAPSETS_DIR (check user/home)"; exit 1; }
+
+SERVERS_DIR="$HOME/l4l/servers/"
 SERVER_BIN="/srcds_run"
 
-VANILLA="${BASE_DIR}l4l1${SERVER_BIN}"
-LEGACY="${BASE_DIR}l4l2${SERVER_BIN}"
-LMBX="${BASE_DIR}l4l3${SERVER_BIN}"
+L4D2_NAME="L4D2"
+TEST_NAME="Test"
+VANILLA_NAME="Vanilla"
+LEGACY_NAME="Legacy"
+LMBX_NAME="LMBX"
+
+L4D2_DIR="l4d2"
+TEST_DIR="test"
+VANILLA_DIR="vanilla"
+LEGACY_DIR="legacy"
+LMBX_DIR="lmbx"
 
 PARAMS="-ignoresigint"
 DEBUG="-debug -gdb gdb"
 
-LOG_TAG="[L4L]"
-VANILLA_NAME="Vanilla"
-LMBX_NAME="LMBX"
+require_vanilla_instance() {
+    local instance="$1"
+    
+    if [[ -z "$instance" ]] || (( instance < 1 || instance > 5 )); then
+        log "Invalid vanilla instance: ${instance:--} (must be 1-5)"
+        
+        return 1
+    fi
+    
+    return 0
+}
 
-ids() {
-        echo 1 2 3 4 5 6 7
+
+resolve_server() {
+    local id="$1"
+    
+    case "$id" in
+        ""|"$L4D2_DIR")
+            SERVER_NAME="$L4D2_NAME"
+            SERVER_DIR="$L4D2_DIR"
+        ;;
+        "$TEST_DIR")
+            SERVER_NAME="$TEST_NAME"
+            SERVER_DIR="$TEST_DIR"
+        ;;
+        "$VANILLA_DIR")
+            SERVER_NAME="$VANILLA_NAME"
+            SERVER_DIR="$VANILLA_DIR"
+        ;;
+        "$LEGACY_DIR")
+            SERVER_NAME="$LEGACY_NAME"
+            SERVER_DIR="$LEGACY_DIR"
+        ;;
+        "$LMBX_DIR")
+            SERVER_NAME="$LMBX_NAME"
+            SERVER_DIR="$LMBX_DIR"
+        ;;
+        *)
+            log "Unknown server ID: $id"
+            
+            return 1
+        ;;
+    esac
+    
+    SERVER_PATH="${SERVERS_DIR}${SERVER_DIR}"
+    
+    return 0
 }
 
 install_server() {
-	id="$1"
-	SERVER="${SERVERS_DIR}l4l$id"
-	
-	case "$id" in
-		"")
-			echo "$LOG_TAG Installing L4D2"
-			;;
-		1)
-			echo "$LOG_TAG Installing Vanilla"
-			;;
-                2)
-                        echo "$LOG_TAG Installing Legacy"
-			;;
-                3)
-                        echo "$LOG_TAG Installing LMBX"
-			;;
-		*)
-                        echo "Unknown server ID: $id"
-			return 1
-                        ;;
-        esac
-
-	mkdir -p $SERVER
-
-	steamcmd +force_install_dir "$SERVER" +login Sefo_Noshimo2 +app_update 222860 validate +quit
+    local id="$1"
+    
+    resolve_server "$id" || return 1
+    
+    log "Installing $SERVER_NAME"
+    
+    mkdir -p "$SERVER_PATH"
+    
+    steamcmd +force_install_dir "$SERVER_PATH" +login Sefo_Noshimo2 +app_update 222860 validate +quit
 }
 
-install(){
-	id="$1"
+install() {
+    local id="$1"
+    
+    install_server "$id"
+}
 
-	install_server "$id"
+confirm_action() {
+    local message="$1"
+    local answer
+    
+    read -r -p "$LOG_TAG My}|{uk, are you sure? $message [y/N]: " answer
+    
+    case "$answer" in
+        [yY]|[yY][eE][sS])
+            return 0
+        ;;
+        *)
+            log "Action cancelled"
+            
+            return 1
+        ;;
+    esac
 }
 
 delete_server() {
-        id="$1"
-        SERVER="${BASE_DIR}l4l$id"
-
-        case "$id" in
-                "")
-                        echo "$LOG_TAG Deleting L4D2"
-                        ;;
-                1)
-                        echo "$LOG_TAG Deleting Vanilla"
-                        ;;
-                2)
-                        echo "$LOG_TAG Deleting Legacy"
-                        ;;
-                3)
-                        echo "$LOG_TAG Deleting LMBX"
-                        ;;
-                *)
-                        echo "Unknown server ID: $id"
-                        return 1
-                        ;;
-        esac
-
-	read -r -p "$LOG_TAG My}|{uk, are you sure? Delete server: $SERVER [y/N]: " answer
-
-        case "$answer" in
-                [yY]|[yY][eE][sS])
-                        rm -rf "$SERVER"
-                        echo "$LOG_TAG Deleted: $SERVER"
-                        ;;
-                *)
-                        echo "$LOG_TAG Delete cancelled"
-                        return 1
-                        ;;
-        esac
+    local id="$1"
+    
+    resolve_server "$id" || return 1
+    
+    if ! confirm_action "Delete server: $SERVER_PATH"; then
+        return 1
+    fi
+    
+    [[ "$SERVER_PATH" == "$SERVERS_DIR"* ]] && rm -rf "$SERVER_PATH"
+    
+    log "Deleted: $SERVER_PATH"
 }
 
-delete(){
-        id="$1"
-
-        delete_server "$id"
+delete() {
+    local id="$1"
+    
+    delete_server "$id"
 }
 
-maps_server() {
-        id="$1"
+maps_link_set() {
+    local set="$1"
+    local server_id="$2"
+    
+    [[ "$set" != */* && "$set" != *".."* ]] || { log "Invalid map set name: '$set'"; return 1; }
+    
+    local set_dir="${MAPSETS_DIR}/${set}"
+    
+    [[ -d "$set_dir" ]] || { log "Map set not found: $set_dir"; return 1; }
+    
+    resolve_server "$server_id" || return 1
+    
+    local addons_dir="$SERVER_PATH/left4dead2/addons"
+    mkdir -p "$addons_dir"
+    
+    log "Linking map set '$set' -> $SERVER_NAME"
+    
+    shopt -s nullglob
+    local vpk_files=("${set_dir}"/*.vpk)
+    shopt -u nullglob
+    
+    ((${#vpk_files[@]} > 0)) || { log "No .vpk files in set: $set_dir"; return 1; }
+    
+    ln -sf -- "${vpk_files[@]}" "$addons_dir/"
+}
 
-        SERVER="${SERVERS_DIR}l4l$id"
-        MAPS="$SERVER/left4dead2/addons/"
-
-        case "$id" in
-                1)
-                        echo "$LOG_TAG Linking maps for Vanilla (l4l1)"
-                        ;;
-                2)
-                        echo "$LOG_TAG Linking maps for Legacy (l4l2)"
-                        ;;
-                3)
-                        echo "$LOG_TAG Linking maps for LMBX (l4l3)"
-                        ;;
-                *)
-                        echo "$LOG_TAG Unknown server ID: $id"
-                        return 1
-                        ;;
-        esac
-
-        ln -sf /home/steam/maps/* "$MAPS"
+maps_unlink_set() {
+    local set="$1"
+    local server_id="$2"
+    
+    [[ "$set" != */* && "$set" != *".."* ]] || { log "Invalid map set name: '$set'"; return 1; }
+    
+    local set_dir="${MAPSETS_DIR}/${set}"
+    
+    [[ -d "$set_dir" ]] || { log "Map set not found: $set_dir"; return 1; }
+    
+    resolve_server "$server_id" || return 1
+    
+    local addons_dir="$SERVER_PATH/left4dead2/addons"
+    
+    [[ -d "$addons_dir" ]] || { log "Addons dir not found: $addons_dir"; return 1; }
+    
+    log "Unlinking map set '$set' <- $SERVER_NAME"
+    
+    shopt -s nullglob
+    
+    local link_path resolved_target
+    for link_path in "$addons_dir"/*.vpk; do
+        [[ -L "$link_path" ]] || continue
+        
+        resolved_target="$(readlink -f -- "$link_path" 2>/dev/null || true)"
+        
+        [[ "$resolved_target" == "$set_dir/"* ]] && rm -f -- "$link_path"
+    done
+    
+    shopt -u nullglob
 }
 
 maps() {
-        id="$1"
+    local action="$1"
+    local set="$2"
+    local server_id="$3"
+    
+    [[ "$action" == "list" || ( -n "$set" && -n "$server_id" ) ]] || { log "Usage: $0 maps $action <set> <server>"; return 1; }
+    
+    case "$action" in
+        link)
+            maps_link_set "$set" "$server_id"
+        ;;
+        unlink)
+            maps_unlink_set "$set" "$server_id"
+        ;;
+        list)
+            ls -1 -- "$MAPSETS_DIR"
+        ;;
+        *)
+            log "Usage:"
+            log "  $0 maps link <set> <server>"
+            log "  $0 maps unlink <set> <server>"
+            log "  $0 maps list"
+            
+            return 1
+        ;;
+    esac
+}
 
-        if [[ -z "$id" ]]; then
-                for server_id in 1 2 3; do
-                        maps_server "$server_id"
-                done
-        else
-                maps_server "$id"
-        fi
+start_server() {
+    local session="$1"; shift
+    
+    $SCREEN "$session" env LD_PRELOAD_32="$LIBSTD32" "$@"
+}
+
+log_start() {
+    local session="$1"
+    local port_arg="$2"
+    
+    log "Starting $SERVER_NAME (type: $SERVER_DIR, session: $session, port: ${port_arg#-port })"
 }
 
 run_server() {
-        id="$1"
-
-	SESSION="l4l${id}"
-	PORT="-port 2703${id}"
-	CONFIG="+servercfgfile custom/server${id}"
-
-	LMBX_HOSTNAME="+hostname \"L4L2 #${id} ${LMBX_NAME}\""
-
-        case "$id" in
-                1)
-                        echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
-                        ;;
-                2)
-                        echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
-                        ;;
-                3)
-                        echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
-                        ;;
-                4)
-                        echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
-                        ;;
-                5)
-                        echo "$LOG_TAG #$id $VANILLA_NAME"
-                        $SCREEN $SESSION $VANILLA $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
-                        ;;
-		6)
-			echo "$LOG_TAG #$id Legacy"
-                        $SCREEN $SESSION $LEGACY $GAME $MAP $PORT $PARAMS $DEBUG
-                        ;;
-		7)
-			echo "$LOG_TAG #$id $LMBX_NAME"
-			$SCREEN $SESSION $LMBX $GAME $MAP $PORT $PARAMS $DEBUG $LMBX_HOSTNAME
-			;;
-                *)
-                        echo "Unknown server ID: $id"
-                        ;;
-        esac
+    local type="$1"
+    local instance="$2"
+    
+    resolve_server "$type" || return 1
+    
+    local BIN="${SERVER_PATH}${SERVER_BIN}"
+    local SESSION
+    local PORT
+    local CONFIG
+    
+    case "$SERVER_DIR" in
+        "$TEST_DIR")
+            SESSION="$SERVER_DIR"
+            PORT="-port 27021"
+            CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR} ${SM_BASE}${SERVER_DIR}"
+            
+            log_start "$SESSION" "$PORT"
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
+        ;;
+        "$VANILLA_DIR")
+            require_vanilla_instance "$instance" || return 1
+            
+            SESSION="${SERVER_DIR}${instance}"
+            PORT="-port 2703${instance}"
+            CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR}${instance} ${SM_BASE}${SERVER_DIR}${instance}"
+            
+            log_start "$SESSION" "$PORT"
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
+        ;;
+        "$LEGACY_DIR")
+            SESSION="$SERVER_DIR"
+            PORT="-port 27041"
+            
+            log_start "$SESSION" "$PORT"
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG
+        ;;
+        "$LMBX_DIR")
+            SESSION="$SERVER_DIR"
+            PORT="-port 27051"
+            CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR} ${SM_BASE}${SERVER_DIR}"
+            
+            log_start "$SESSION" "$PORT"
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
+        ;;
+        *)
+            log "Cannot start unknown server type: $SERVER_DIR"
+            
+            return 1
+        ;;
+    esac
 }
 
 run() {
-	id="$1"
-
-	if [[ -z "$id" ]]; then
-		for server_id in $(ids); do
-			run_server "$server_id"
-		done
-	else
-		run_server "$id"
-	fi
-}
-
-stop_server() {
-	id="$1"
-	SERVER_NAME="l4l${id}"
-
-	echo "$LOG_TAG Stopping server #$id"
-	screen -S $SERVER_NAME -X quit
+    local type="$1"
+    local instance="$2"
+    
+    if [[ -z "$type" ]]; then
+        log "Usage: $0 run <vanilla|test|legacy|lmbx> [instance]"
+        
+        return 1
+    fi
+    
+    case "$type" in
+        "$VANILLA_DIR")
+            if [[ -z "$instance" ]]; then
+                local i
+                
+                for i in 1 2 3 4 5; do
+                    run_server "$type" "$i"
+                done
+            else
+                run_server "$type" "$instance"
+            fi
+        ;;
+        "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+            if [[ -n "$instance" ]]; then
+                log "Type '$type' does not support instances, ignoring '$instance'"
+            fi
+            
+            run_server "$type"
+        ;;
+        *)
+            log "Unknown server type for run: $type"
+            
+            return 1
+        ;;
+    esac
 }
 
 stop() {
-	id="$1"
-
-	if [[ -z "$id" ]]; then
-		for server_id in $(ids); do
-			stop_server "$server_id"
-		done
-	else
-		stop_server "$id"
-	fi
+    local type="$1"
+    local instance="$2"
+    
+    if [[ -z "$type" ]]; then
+        local i
+        
+        for i in 1 2 3 4 5; do
+            stop_server "$VANILLA_DIR" "$i"
+        done
+        
+        stop_server "$TEST_DIR"
+        stop_server "$LEGACY_DIR"
+        stop_server "$LMBX_DIR"
+    else
+        case "$type" in
+            "$VANILLA_DIR")
+                if [[ -z "$instance" ]]; then
+                    local i
+                    
+                    for i in 1 2 3 4 5; do
+                        stop_server "$type" "$i"
+                    done
+                else
+                    stop_server "$type" "$instance"
+                fi
+            ;;
+            "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+                if [[ -n "$instance" ]]; then
+                    log "Type '$type' does not support instances, ignoring '$instance'"
+                fi
+                
+                stop_server "$type"
+            ;;
+            *)
+                log "Unknown server type for stop: $type"
+                
+                return 1
+            ;;
+        esac
+    fi
 }
 
-restart_server() {
-	id="$1"
-
-	echo "$LOG_TAG Restarting server #$id"
-	stop_server "$id"
-	run "$id"
+stop_server() {
+    local type="$1"
+    local instance="$2"
+    
+    resolve_server "$type" || return 1
+    
+    local SESSION
+    
+    case "$SERVER_DIR" in
+        "$VANILLA_DIR")
+            require_vanilla_instance "$instance" || return 1
+            
+            SESSION="${SERVER_DIR}${instance}"
+        ;;
+        "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+            SESSION="$SERVER_DIR"
+        ;;
+        *)
+            log "Cannot stop unknown server type: $SERVER_DIR"
+            
+            return 1
+        ;;
+    esac
+    
+    log "Stopping $SERVER_NAME (session: $SESSION)"
+    
+    screen -S "$SESSION" -X quit
 }
 
 restart() {
-	id="$1"
-
-	if [[ -z "$id" ]]; then
-		for server_id in $(ids); do
-			restart_server "$server_id"
-		done
-	else
-		restart_server "$id"
-	fi
+    local type="$1"
+    local instance="$2"
+    
+    if [[ -z "$type" ]]; then
+        local i
+        
+        for i in 1 2 3 4 5; do
+            restart_server "$VANILLA_DIR" "$i"
+        done
+        
+        restart_server "$TEST_DIR"
+        restart_server "$LEGACY_DIR"
+        restart_server "$LMBX_DIR"
+    else
+        case "$type" in
+            "$VANILLA_DIR")
+                if [[ -z "$instance" ]]; then
+                    local i
+                    
+                    for i in 1 2 3 4 5; do
+                        restart_server "$type" "$i"
+                    done
+                else
+                    restart_server "$type" "$instance"
+                fi
+            ;;
+            "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+                if [[ -n "$instance" ]]; then
+                    log "Type '$type' does not support instances, ignoring '$instance'"
+                fi
+                
+                restart_server "$type"
+            ;;
+            *)
+                log "Unknown server type for restart: $type"
+                
+                return 1
+            ;;
+        esac
+    fi
 }
 
 server_status() {
-	id="$1"
-
-	SERVER_NAME="l4l${id}"
-
-	if screen -ls | grep -q "[.]${SERVER_NAME}"; then
-		echo "$LOG_TAG Server #$id: RUNNING"
-	else
-		echo "$LOG_TAG Server #$id: STOPPED"
-	fi
+    local type="$1"
+    local instance="$2"
+    
+    resolve_server "$type" || return 1
+    
+    local SESSION
+    
+    case "$SERVER_DIR" in
+        "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+            SESSION="$SERVER_DIR"
+        ;;
+        "$VANILLA_DIR")
+            require_vanilla_instance "$instance" || return 1
+            
+            SESSION="${SERVER_DIR}${instance}"
+        ;;
+        *)
+            log "Cannot get status for unknown server type: $SERVER_DIR"
+            
+            return 1
+        ;;
+    esac
+    
+    if screen -S "$SESSION" -Q select . >/dev/null 2>&1; then
+        log "$SERVER_NAME ($SESSION): RUNNING"
+    else
+        log "$SERVER_NAME ($SESSION): STOPPED"
+    fi
 }
 
 status() {
-	id="$1"
+    local type="$1"
+    local instance="$2"
+    
+    if [[ -z "$type" ]]; then
+        local i
+        
+        for i in 1 2 3 4 5; do
+            server_status "$VANILLA_DIR" "$i"
+        done
+        
+        server_status "$TEST_DIR"
+        server_status "$LEGACY_DIR"
+        server_status "$LMBX_DIR"
+    else
+        case "$type" in
+            "$VANILLA_DIR")
+                if [[ -z "$instance" ]]; then
+                    local i
+                    
+                    for i in 1 2 3 4 5; do
+                        server_status "$type" "$i"
+                    done
+                else
+                    server_status "$type" "$instance"
+                fi
+            ;;
+            "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+                if [[ -n "$instance" ]]; then
+                    log "Type '$type' does not support instances, ignoring '$instance'"
+                fi
+                
+                server_status "$type"
+            ;;
+            *)
+                log "Unknown server type for status: $type"
+                
+                return 1
+            ;;
+        esac
+    fi
+}
 
-	if [[ -z "$id" ]]; then
-		for server_id in $(ids); do
-			server_status "$server_id"
-		done
-	else
-		server_status "$id"
-	fi
+restart_server() {
+    local type="$1"
+    local instance="$2"
+    
+    log "Restarting $type (instance: ${instance:--})"
+    
+    stop_server "$type" "$instance" || true
+    sleep 5
+    run_server "$type" "$instance"
 }
 
 server_screen() {
-        id="$1"
-
-        SESSION="l4l${id}"
-
-        echo "$LOG_TAG Attaching to screen session: $SESSION"
-        screen -r "$SESSION"
+    local type="$1"
+    local instance="$2"
+    
+    resolve_server "$type" || return 1
+    
+    local SESSION
+    
+    case "$SERVER_DIR" in
+        "$VANILLA_DIR")
+            require_vanilla_instance "$instance" || return 1
+            
+            SESSION="${SERVER_DIR}${instance}"
+        ;;
+        "$TEST_DIR" | "$LEGACY_DIR" | "$LMBX_DIR")
+            SESSION="$SERVER_DIR"
+        ;;
+        *)
+            log "Cannot attach to unknown server type: $SERVER_DIR"
+            
+            return 1
+        ;;
+    esac
+    
+    log "Attaching to screen session: $SESSION"
+    screen -r "$SESSION"
 }
 
 screen_cmd() {
-        id="$1"
+    local type="$1"
+    local instance="$2"
+    
+    if [[ -z "$type" ]]; then
+        log "Available screen sessions:"
+        screen -ls
+    else
+        server_screen "$type" "$instance"
+    fi
+}
 
-        if [[ -z "$id" ]]; then
-                echo "$LOG_TAG Available screen sessions:"
-                screen -ls
-        else
-                server_screen "$id"
-        fi
+server_geo() {
+    local server_id="$1"
+    local instance="$2"
+    
+    resolve_server "$server_id" || return 1
+    
+    local sm_dir_suffix
+    case "$SERVER_DIR" in
+        "$VANILLA_DIR")
+            sm_dir_suffix="${SERVER_DIR}${instance}"
+        ;;
+        "$TEST_DIR" | "$LMBX_DIR")
+            sm_dir_suffix="${SERVER_DIR}"
+        ;;
+        *)
+            log "geo: unsupported server type: $SERVER_DIR"
+            return 1
+        ;;
+    esac
+    
+    local target_geoip_dir="$SERVER_PATH/left4dead2/addons/sourcemod_${sm_dir_suffix}/configs/geoip"
+    mkdir -p "$target_geoip_dir"
+    
+    shopt -s nullglob
+    local geoip_files=("${GEOIP_SHARED_DIR}"/*)
+    shopt -u nullglob
+    
+    ((${#geoip_files[@]} > 0)) || { log "geo: no files in $GEOIP_SHARED_DIR"; return 1; }
+    
+    log "geo: linking -> $SERVER_NAME (sourcemod_${sm_dir_suffix})"
+    ln -sfn -- "${geoip_files[@]}" "$target_geoip_dir/"
+}
+
+geo() {
+    local server_id="$1"
+    
+    [[ -d "$GEOIP_SHARED_DIR" ]] || { log "GEOIP_SHARED_DIR not found: $GEOIP_SHARED_DIR"; return 1; }
+    
+    if [[ -z "$server_id" ]]; then
+        server_geo "$TEST_DIR"
+        server_geo "$LMBX_DIR"
+        
+        local i
+        for i in 1 2 3 4 5; do
+            server_geo "$VANILLA_DIR" "$i"
+        done
+    else
+        case "$server_id" in
+            "$VANILLA_DIR")
+                local i
+                for i in 1 2 3 4 5; do
+                    server_geo "$VANILLA_DIR" "$i"
+                done
+            ;;
+            *)
+                server_geo "$server_id"
+            ;;
+        esac
+    fi
+}
+
+server_clean() {
+    local server_id="$1"
+    
+    resolve_server "$server_id" || return 1
+    
+    local bin_dir="$SERVER_PATH/bin"
+    
+    log "clean: $SERVER_NAME -> $bin_dir"
+    
+    rm -f "$bin_dir/libstdc++.so.6" "$bin_dir/libgcc_s.so.1"
+}
+
+clean() {
+    local server_id="$1"
+    
+    if [[ -z "$server_id" ]]; then
+        server_clean "$TEST_DIR"
+        server_clean "$LMBX_DIR"
+        server_clean "$LEGACY_DIR"
+        server_clean "$VANILLA_DIR"
+    else
+        server_clean "$server_id"
+    fi
 }
 
 case "$1" in
-	install)
-		install "$2"
-		;;
-	delete)
-		delete "$2"
-		;;
-	maps)
-		maps "$2"
-		;;
-	run)
-		run "$2"
-		;;
-	stop)
-		stop "$2"
-		;;
-	restart)
-		restart "$2"
-		;;
-	status)
-		status "$2"
-		;;
-	screen)
-		screen_cmd "$2"
-		;;
-	*)
-		echo "Usage: $0 <install|delete|maps|run|stop|restart|status|screen> [ID]"
-		;;
+    install)
+        install "$2"
+    ;;
+    delete)
+        delete "$2"
+    ;;
+    maps)
+        maps "$2" "$3" "$4"
+    ;;
+    run)
+        run "$2" "$3"
+    ;;
+    stop)
+        stop "$2" "$3"
+    ;;
+    restart)
+        restart "$2" "$3"
+    ;;
+    status)
+        status "$2" "$3"
+    ;;
+    screen)
+        screen_cmd "$2" "$3"
+    ;;
+    geo)
+        geo "$2"
+    ;;
+    clean)
+        clean "$2"
+    ;;
+    
+    *)
+    cat <<EOF
+Usage:
+  $CMD install|delete <vanilla|test|legacy|lmbx>
+  $CMD run|stop|restart|status|screen <vanilla|test|legacy|lmbx> [instance]
+
+Maps:
+  $CMD maps link <set> <server>
+  $CMD maps unlink <set> <server>
+  $CMD maps list
+
+Geo:
+  $CMD geo [vanilla|test|lmbx]
+
+Clean:
+  $CMD clean [vanilla|test|legacy|lmbx]
+EOF
+    ;;
 esac
