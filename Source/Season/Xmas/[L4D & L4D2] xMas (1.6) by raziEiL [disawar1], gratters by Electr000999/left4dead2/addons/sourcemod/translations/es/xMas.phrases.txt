@@ -1,0 +1,81 @@
+//  = 0x01 (SOH) - Use normal color from this point forward
+//  = 0x02 (STX) - Use team color up to the end of the player name
+//  = 0x03 (ETX) - Use team color from this point forward
+//  = 0x04 (EOT) - Use location color from this point forward 
+//  = 0x05 (ENQ) - Use achievement color from this point forward
+
+"Phrases"
+{
+	"xMas1"
+	{
+		"es"		"Feliz %d para vos!"
+	}
+	"xMas2"
+	{
+		"es"		"Les deseo a todos un feliz año nuevo %d!"
+	}
+	"xMas3"
+	{
+		"es"		"Feliz año nuevo para vos!"
+	}
+	"xMas4"
+	{
+		"es"		"Feliz navidad y feliz año nuevo!" 
+	}	
+	"xMas5"
+	{
+		"es"		"Feliz navidad para vos!" 
+	}
+	"xMas6"
+	{
+		"es"		"Brillante y alegre navidad!" 
+	}
+	"xMas7"
+	{
+		"es"		"Felices fiestas y próspero año nuevo!" 
+	}	
+	"xMas8"
+	{
+		"es"		"Deseo a todos mis queridos amigos y sus amigos, un año de páz, felicidad y alegría..."
+	}	
+	"xMas9"
+	{
+		"es"		"Jo! Jo! Joo! :)"
+	}	
+	"xMas10"
+	{
+		"es"		"Feliz año nuevo Jugadores de L4D! - by raziEiL"
+	}
+	"xMas11"
+	{
+		"es"		"Estamos deseandote toda la alegría de esta época. Feliz navidad para vos y tu familia!"
+	}
+	"xMas12"
+	{
+		"es"		"Sé Feliz!"
+	}
+	"xMas Enable"
+	{
+		"es"		"Musica Activa."
+	}
+	"xMas Disable"
+	{
+		"es"		"Musica Inactiva."
+	}
+	"xMas Msg"
+	{
+		"es"		"Feliz navidad y feliz año nuevo para vos!"
+	}
+	"xMas Limit"
+	{
+		"es"		"Ya enviaste un saludo por las fiestas."
+	}
+	"zMas Help"
+	{
+		"es"		"/xmas Nombre \"Tu Mensaje\". Ej: /xmas silv \"Felicidades!\""
+	}
+	"zMas Msg"
+	{
+		"es"		"Oh, te saludó %N, tipea /xmas para responder."
+	}
+}

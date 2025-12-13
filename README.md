@@ -26,6 +26,7 @@
     - [SourceMod плагины](#sourcemod-плагины)
       - [Зависимости](#зависимости)
       - [Плагины для разработки и тестирования](#плагины-для-разработки-и-тестирования)
+      - [Сезонное](#сезонное)
       - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
       - [Репозитории плагинов](#репозитории-плагинов)
     - [V-скрипты](#v-скрипты)
@@ -453,6 +454,12 @@
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
 2. [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
    - Горячая перезагрузка плагина при его добавлении/компиляции/удалении
+
+#### Сезонное
+- Рождество (ориентировочно с 1 декабря по 1 февраля)
+  1. [[L4D & L4D2] Christmas Tree (1.9) by SilverShot](https://forums.alliedmods.net/showthread.php?t=319552)
+  2. [[L4D & L4D2] xMas (1.6) by raziEiL [disawar1], gratters by Electr000999](https://forums.alliedmods.net/showpost.php?p=2678402&postcount=31)
+     - `/xmas Sefo "Merry Xmas"`
 
 #### L4D2 Survivor Bot AI Improver
 > [!CAUTION]
