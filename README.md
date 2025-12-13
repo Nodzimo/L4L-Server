@@ -2,6 +2,18 @@
 > [!WARNING]
 > В работе!
 
+| №   | Сервер         | Адрес                                        | Карты              | sm_basepath        |
+| --- | -------------- | -------------------------------------------- | ------------------ | ------------------ |
+| 1   | L4L Vanilla #1 | [L4L.su:27031](steam://connect/L4L.su:27031) | main, winter, xmas | sourcemod_vanilla1 |
+| 2   | L4L Vanilla #2 | [L4L.su:27032](steam://connect/L4L.su:27032) | main, winter, xmas | sourcemod_vanilla2 |
+| 3   | L4L Vanilla #3 | [L4L.su:27033](steam://connect/L4L.su:27033) | main, winter, xmas | sourcemod_vanilla3 |
+| 4   | L4L Vanilla #4 | [L4L.su:27034](steam://connect/L4L.su:27034) | main, winter, xmas | sourcemod_vanilla4 |
+| 5   | L4L Vanilla #5 | [L4L.su:27035](steam://connect/L4L.su:27035) | main, winter, xmas | sourcemod_vanilla5 |
+| 6   | L4L Legacy     | [L4L.su:27041](steam://connect/L4L.su:27041) |                    | sourcemod_legacy   |
+| 7   | L4L LMBX       | [L4L.su:27051](steam://connect/L4L.su:27051) |                    | sourcemod_lmbx     |
+| 8   | L4L Test       | [L4L.su:27021](steam://connect/L4L.su:27021) | lab, second        | sourcemod_test     |
+| 9   | L4L Dev        | localhost:27020                              |                    | sourcemod_dev      |
+
 ## Оглавление
 - [Left 4 Legend v2 alpha](#left-4-legend-v2-alpha)
   - [Оглавление](#оглавление)
