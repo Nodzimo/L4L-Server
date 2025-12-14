@@ -11,7 +11,7 @@ int    g_iCvarDebug;
 
 public Plugin myinfo =
 {
-    name    = "L4L: Witch Spawn Mob",
+    name    = "L4L: Witch Scream Spawn Mob",
     author  = "Sefo",
     version = PLUGIN_VERSION,
     url     = "Sefo.su"
@@ -19,12 +19,12 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-    CreateConVar("l4l_witch_spawn_mob_version", PLUGIN_VERSION, "L4L: Witch Spawn Mob version", CVAR_FLAGS | FCVAR_DONTRECORD);
-    g_hCvarEnable = CreateConVar("l4l_witch_spawn_mob_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
-    g_hCvarDebug  = CreateConVar("l4l_witch_spawn_mob_debug", "0", "0 = Debug off, 1 = Debug on, 2 = Debug events, 3 = Debug sounds", CVAR_FLAGS, true, float(DISABLE), true, float(DEBUG_SOUNDS));
+    CreateConVar("l4l_witch_scream_spawn_mob_version", PLUGIN_VERSION, "L4L: Witch Scream Spawn Mob version", CVAR_FLAGS | FCVAR_DONTRECORD);
+    g_hCvarEnable = CreateConVar("l4l_witch_scream_spawn_mob_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
+    g_hCvarDebug  = CreateConVar("l4l_witch_scream_spawn_mob_debug", "0", "0 = Debug off, 1 = Debug on, 2 = Debug events, 3 = Debug sounds", CVAR_FLAGS, true, float(DISABLE), true, float(DEBUG_SOUNDS));
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
-    AutoExecConfig(true, "l4l_witch_spawn_mob", "sourcemod/l4l_plugins");
+    AutoExecConfig(true, "l4l_witch_scream_spawn_mob", "sourcemod/l4l_plugins");
 
     g_hCvarEnable.AddChangeHook(CvarChanged_Enable);
     g_hCvarDebug.AddChangeHook(CvarChanged_Cvars);
