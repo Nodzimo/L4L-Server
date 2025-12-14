@@ -452,23 +452,25 @@
      - **Votekick**
 
 #### Плагины L4L
-1. Fireproof Bots
+1. Exec Server Config
+   - Исполняет специфический для сервера конфиг в зависимости от квары
+2. Fireproof Bots
    - Скейлит в процентах (от 0 до 100) урон от огня по выжившим ботам
-2. Incap Spawn SI
+3. Incap Spawn SI
    - Инкап спавнит особых
    - `l4l_spawn_si`
-3. Car Alarm Spawn Tank
+4. Car Alarm Spawn Tank
    - Сигналка может заспавнить танка
    - Зависимость: плагин **Left 4 DHooks Direct**
    - `l4l_spawn_tank`
-4. Witch Spawn Mob
+5. Witch Spawn Mob
    - Крик ведьмы спавнит орду
-5. Survivor Death Spawn Mob
+6. Survivor Death Spawn Mob
    - Смерть выжившего спавнит орду
-6. SI Limit
+7. SI Limit
    - Контролирует лимит особых, которых спавнит режиссёр. 
    - `l4l_si_limit`
-7. Hide Kill Feed
+8. Hide Kill Feed
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
