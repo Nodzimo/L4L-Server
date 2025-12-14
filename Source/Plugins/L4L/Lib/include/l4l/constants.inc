@@ -10,10 +10,17 @@
 #define MAX_SI                      28
 #define DEBUG_TAG                   "\x04[\x05L4LP\x04] \x03Debug:\x01"
 #define DAMAGE_FIRE                 8
-#define L4L_PREFIX                  "l4l_"
 #define CVAR_FLAGS                  FCVAR_NOTIFY
 #define SPAWN_COMMAND_OLD           "z_spawn_old"
 #define SPAWN_ARGUMENT_AUTO         "auto"
 #define EVENT_PLAYER_INCAP          "player_incapacitated"
 #define EVENT_LEDGE_GRAB            "player_ledge_grab"
 #define SECOND_ARGUMENT             2
+#define MIN_CHANCE                  1
+#define MAX_CHANCE                  100
+#define PROP_CAR_ALARM              "prop_car_alarm"
+#define EVENT_CAR_ALARM             "OnCarAlarmStart"
+#define MIN_CLIENT                  1
+#define TANK_CLASS                  8
+#define PROP_SEND                   Prop_Send
+#define TEAM_INFECTED               3

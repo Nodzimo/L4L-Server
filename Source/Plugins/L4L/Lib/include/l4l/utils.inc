@@ -76,3 +76,52 @@ bool IsSurvivorBot(int client)
 {
     return IsClientInGame(client) && IsFakeClient(client) && GetClientTeam(client) == 2;
 }
+
+bool IsLucky(int chance)
+{
+    return GetRandom() <= chance;
+}
+
+int GetRandom()
+{
+    return GetRandomInt(MIN_CHANCE, MAX_CHANCE);
+}
+
+int GetAnyClient()
+{
+    for (int client = MIN_CLIENT; client <= MaxClients; client++)
+        if (IsClientInGame(client)) return client;
+
+    return CLIENT_NOT_FOUND;
+}
+
+bool HasTank()
+{
+    return GetTankCount() > 0;
+}
+
+int GetTankCount()
+{
+    int count;
+
+    for (int client = MIN_CLIENT; client <= MaxClients; client++)
+        if (IsClientInGame(client) && IsPlayerAlive(client) && IsInfected(client))
+            if (IsTank(client)) count++;
+
+    return count;
+}
+
+bool IsTank(int client)
+{
+    return GetInfectedClass(client) == TANK_CLASS;
+}
+
+int GetInfectedClass(int cilent)
+{
+    return GetEntProp(cilent, PROP_SEND, "m_zombieClass");
+}
+
+bool IsInfected(int client)
+{
+    return GetClientTeam(client) == TEAM_INFECTED;
+}

@@ -309,6 +309,7 @@
       - **Drop Secondary**
       - **AFK and Join Team Commands Improved**
       - **VS Auto-spectate on AFK**
+      - **L4L: Car Alarm Spawn Tank**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: **Left 4 DHooks Direct**
@@ -456,6 +457,10 @@
 2. Incap Spawn SI
    - Инкап спавнит особых
    - `l4l_spawn_si`
+3. Car Alarm Spawn Tank
+   - Сигналка может заспавнить танка
+   - Зависимость: плагин **Left 4 DHooks Direct**
+   - `l4l_spawn_tank`
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
