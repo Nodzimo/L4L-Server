@@ -458,18 +458,18 @@
    - Исполняет специфический для сервера конфиг в зависимости от квары
 2. Fireproof Bots
    - Скейлит в процентах (от 0 до 100) урон от огня по выжившим ботам
-3. Incap Spawn SI
+3. Survivor Incap Spawn SI
    - Инкап спавнит особых
    - `l4l_spawn_si`
 4. Car Alarm Spawn Tank
    - Сигналка может заспавнить танка
    - Зависимость: плагин **Left 4 DHooks Direct**
    - `l4l_spawn_tank`
-5. Witch Spawn Mob
+5. Witch Scream Spawn Mob
    - Крик ведьмы спавнит орду
 6. Survivor Death Spawn Mob
    - Смерть выжившего спавнит орду
-7. SI Limit
+7. Director Spawn SI Limit
    - Контролирует лимит особых, которых спавнит режиссёр. 
    - `l4l_si_limit`
 8. Hide Kill Feed
