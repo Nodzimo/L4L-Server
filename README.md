@@ -468,6 +468,7 @@
 6. SI Limit
    - Контролирует лимит особых, которых спавнит режиссёр. 
    - `l4l_si_limit`
+7. Hide Kill Feed
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

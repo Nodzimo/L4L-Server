@@ -27,3 +27,10 @@
 #define EVENT_WITCH_HARASSER        "witch_harasser_set"
 #define EVENT_PLAYER_DEATH          "player_death"
 #define DEFAULT_SI_LIMIT            6
+#define EVENT_DEFIB_USED            "defibrillator_used"
+#define EVENT_HEAL_SUCCESS          "heal_success"
+#define EVENT_REVIVE_SUCCESS        "revive_success"
+#define EVENT_SURVIVOR_RESCUED      "survivor_rescued"
+#define EVENT_AWARD_EARNED          "award_earned"
+#define EVENT_USER_MESSAGE          "PZDmgMsg"
+#define DEBUG_EVENTS                2
