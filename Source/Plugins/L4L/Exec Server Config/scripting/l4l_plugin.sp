@@ -3,7 +3,7 @@
 
 #include <sourcemod>
 
-ConVar g_Instance;
+ConVar g_Instance, g_DifficultyEx;
 
 public Plugin myinfo =
 {
@@ -20,6 +20,8 @@ public void OnPluginStart()
         "sm_l4l_server",
         "",
         "Server name");
+
+    g_DifficultyEx = FindConVar("z_difficulty_ex");
 }
 
 public void OnConfigsExecuted()
@@ -27,4 +29,12 @@ public void OnConfigsExecuted()
     char id[64];
     GetConVarString(g_Instance, id, sizeof(id));
     ServerCommand("exec \"sourcemod/l4l/%s.cfg\"", id);
+
+    char difficulty[32];
+    GetConVarString(g_DifficultyEx, difficulty, sizeof(difficulty));
+
+    if (StrEqual(difficulty, "Impossible+", false))
+    {
+        ServerCommand("exec \"server_expert+.cfg\"");
+    }
 }
