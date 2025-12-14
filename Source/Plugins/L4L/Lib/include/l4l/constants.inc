@@ -24,3 +24,4 @@
 #define TANK_CLASS                  8
 #define PROP_SEND                   Prop_Send
 #define TEAM_INFECTED               3
+#define EVENT_WITCH_HARASSER        "witch_harasser_set"

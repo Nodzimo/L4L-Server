@@ -125,3 +125,10 @@ bool IsInfected(int client)
 {
     return GetClientTeam(client) == TEAM_INFECTED;
 }
+
+void SpawnMob(int client, int g_iCvarDebug)
+{
+    if (g_iCvarDebug) PrintToChatAll("%s SpawnMob \x04%s", DEBUG_TAG, GetName(client));
+
+    ExecuteCheat(client, "z_spawn", "mob", g_iCvarDebug);
+}

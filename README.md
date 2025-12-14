@@ -461,6 +461,8 @@
    - Сигналка может заспавнить танка
    - Зависимость: плагин **Left 4 DHooks Direct**
    - `l4l_spawn_tank`
+4. Witch Spawn Mob
+   - Крик ведьмы спавнит орду
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

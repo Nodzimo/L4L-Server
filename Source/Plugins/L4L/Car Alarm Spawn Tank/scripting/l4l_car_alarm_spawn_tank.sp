@@ -20,7 +20,7 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-    CreateConVar("l4l_car_alarm_spawn_tank_version", PLUGIN_VERSION, "L4L: Car Alarm Spawn Tank", CVAR_FLAGS | FCVAR_DONTRECORD);
+    CreateConVar("l4l_car_alarm_spawn_tank_version", PLUGIN_VERSION, "L4L: Car Alarm Spawn Tank version", CVAR_FLAGS | FCVAR_DONTRECORD);
     g_hCvarEnable         = CreateConVar("l4l_car_alarm_spawn_tank_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
     g_hCvarDebug          = CreateConVar("l4l_car_alarm_spawn_tank_debug", "0", "0 = Debug off, 1 = Debug on, 2 = Debug events, 3 = Debug sounds", CVAR_FLAGS, true, float(DISABLE), true, float(DEBUG_SOUNDS));
     g_hCvarCarAlarmChance = CreateConVar("l4l_car_alarm_spawn_tank_chance", "50", "0 = Off, Car alarm: spawn tank chance", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_CHANCE));
