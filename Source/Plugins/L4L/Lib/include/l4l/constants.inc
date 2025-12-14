@@ -26,3 +26,4 @@
 #define TEAM_INFECTED               3
 #define EVENT_WITCH_HARASSER        "witch_harasser_set"
 #define EVENT_PLAYER_DEATH          "player_death"
+#define DEFAULT_SI_LIMIT            6

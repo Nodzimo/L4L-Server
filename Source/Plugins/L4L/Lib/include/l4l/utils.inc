@@ -132,3 +132,15 @@ void SpawnMob(int client, int g_iCvarDebug)
 
     ExecuteCheat(client, "z_spawn", "mob", g_iCvarDebug);
 }
+
+int GetInfectedLimit(int arguments, int g_iCvarInfectedLimit)
+{
+    if (arguments == FIRST_ARGUMENT)
+    {
+        int limit = GetArgumentInteger();
+
+        if (limit != g_iCvarInfectedLimit && limit >= DISABLE && limit <= MAX_SI) return limit;
+    }
+
+    return DEFAULT_SI_LIMIT;
+}
