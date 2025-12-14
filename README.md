@@ -451,8 +451,11 @@
      - **Votekick**
 
 #### Плагины L4L
-1. L4L: Fireproof Bots (0.0.1) by Sefo
+1. Fireproof Bots
    - Скейлит в процентах (от 0 до 100) урон от огня по выжившим ботам
+2. Incap Spawn SI
+   - Инкап спавнит особых
+   - `l4l_spawn_si`
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

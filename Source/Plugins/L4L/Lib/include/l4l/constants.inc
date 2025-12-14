@@ -1,0 +1,19 @@
+#define DISABLE                     0
+#define ENABLE                      1
+#define DEBUG_SOUNDS                3
+#define DEFAULT_SPAWN_COUNT         1
+#define FIRST_ARGUMENT              1
+#define CLIENT_NOT_FOUND            0
+#define MAX_ARGUMENT_INTEGER_LENGTH 11
+#define MAX_ARGUMENT_LENGTH         64
+#define TEAM_SURVIVORS              2
+#define MAX_SI                      28
+#define DEBUG_TAG                   "\x04[\x05L4LP\x04] \x03Debug:\x01"
+#define DAMAGE_FIRE                 8
+#define L4L_PREFIX                  "l4l_"
+#define CVAR_FLAGS                  FCVAR_NOTIFY
+#define SPAWN_COMMAND_OLD           "z_spawn_old"
+#define SPAWN_ARGUMENT_AUTO         "auto"
+#define EVENT_PLAYER_INCAP          "player_incapacitated"
+#define EVENT_LEDGE_GRAB            "player_ledge_grab"
+#define SECOND_ARGUMENT             2
