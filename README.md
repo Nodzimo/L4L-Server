@@ -1,6 +1,15 @@
-# Left 4 Legend <sup>v2 alpha</sub>
+# Left 4 Legend <sup>v2 beta</sub>
 > [!WARNING]
 > В работе!
+
+> [!TIP]
+> Сайт: [L4L.su](https://L4L.su)
+> 
+> Баны: [Bans.L4L.su](https://Bans.L4L.su)
+> 
+> Дискорд: [Discord.L4L.su](https://Discord.L4L.su)
+> 
+> Группа: [steamcommunity.com/groups/Left4Legend](https://steamcommunity.com/groups/Left4Legend)
 
 | №   | Сервер         | Адрес                                        | Карты              | sm_basepath        |
 | --- | -------------- | -------------------------------------------- | ------------------ | ------------------ |
@@ -15,7 +24,7 @@
 | 9   | L4L Dev        | localhost:27020                              |                    | sourcemod_dev      |
 
 ## Оглавление
-- [Left 4 Legend v2 alpha](#left-4-legend-v2-alpha)
+- [Left 4 Legend v2 beta](#left-4-legend-v2-beta)
   - [Оглавление](#оглавление)
   - [Дорожная карта](#дорожная-карта)
   - [Хостинг](#хостинг)
