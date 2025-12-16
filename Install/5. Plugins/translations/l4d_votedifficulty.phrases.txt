@@ -47,9 +47,9 @@
 	}
 	"Impossible+"
 	{
-		"en"		"Impossible +"
-		"ru"		"Эксперт +"
-		"chi"		"专家+"
+		"en"		"Hardcore"
+		"ru"		"Хардкор"
+		"chi"		"硬核"
 	}
 	"Yes"
 	{
