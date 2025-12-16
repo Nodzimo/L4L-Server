@@ -8,7 +8,7 @@ float  g_fCvarFireDamage;
 
 public Plugin myinfo =
 {
-    name        = "L4L: Fireproof Bots",
+    name        = "L4L: Survivor Bots Fire Damage",
     author      = "Sefo",
     description = "Overrides incoming fire damage for survivor bots",
     version     = PLUGIN_VERSION,
@@ -18,12 +18,12 @@ public Plugin myinfo =
 public void OnPluginStart()
 {
     g_hCvarFireDamage = CreateConVar(
-        "l4l_fireproof_bots_damage", "0.1",
+        "l4l_survivor_bots_fire_damage", "0.1",
         "Fixed fire damage applied to survivor bots (float)",
         FCVAR_NOTIFY, true, 0.0, true, 100.0);
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
-    AutoExecConfig(true, "l4l_fireproof_bots", "sourcemod/l4l_plugins");
+    AutoExecConfig(true, "l4l_survivor_bots_fire_damage", "sourcemod/l4l_plugins");
 
     g_fCvarFireDamage = g_hCvarFireDamage.FloatValue;
     g_hCvarFireDamage.AddChangeHook(OnCvarChanged);
