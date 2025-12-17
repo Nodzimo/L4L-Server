@@ -10,6 +10,7 @@
 #define MAX_SI                      28
 #define DEBUG_TAG                   "\x04[\x05L4LP\x04] \x03Debug:\x01"
 #define DAMAGE_FIRE                 8
+#define DAMAGE_TYPE_PUNCH           128
 #define CVAR_FLAGS                  FCVAR_NOTIFY
 #define SPAWN_COMMAND_OLD           "z_spawn_old"
 #define SPAWN_ARGUMENT_AUTO         "auto"

@@ -49,6 +49,11 @@ char[] GetName(int client)
     return name;
 }
 
+bool IsValidClient(int client)
+{
+    return (MIN_CLIENT <= client <= MaxClients) && IsClientInGame(client);
+}
+
 bool IsValidSurvivor(int client)
 {
     return IsValidEntity(client) && IsClient(client) && IsSurvivor(client);
@@ -74,7 +79,7 @@ int GetArgumentInteger()
 
 bool IsSurvivorBot(int client)
 {
-    return IsClientInGame(client) && IsFakeClient(client) && GetClientTeam(client) == 2;
+    return IsClientInGame(client) && IsFakeClient(client) && GetClientTeam(client) == TEAM_SURVIVORS;
 }
 
 bool IsLucky(int chance)

@@ -1,6 +1,8 @@
-# Left 4 Legend <sup>v2 beta</sub>
+# Left 4 Legend <sup>v2 beta/RC</sub>
 > [!WARNING]
 > В работе!
+>
+> Кодовое название: **2.0 Rebuild**
 
 > [!TIP]
 > Сайт: [L4L.su](https://L4L.su)
@@ -24,7 +26,7 @@
 | 9   | L4L Dev        | localhost:27020                              |                    | sourcemod_dev      |
 
 ## Оглавление
-- [Left 4 Legend v2 beta](#left-4-legend-v2-beta)
+- [Left 4 Legend v2 beta/RC](#left-4-legend-v2-betarc)
   - [Оглавление](#оглавление)
   - [Дорожная карта](#дорожная-карта)
   - [Хостинг](#хостинг)
@@ -484,6 +486,8 @@
    - Контролирует лимит особых, которых спавнит режиссёр. 
    - `l4l_si_limit`
 8. Hide Kill Feed
+9. Common Infected Damage
+   - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
