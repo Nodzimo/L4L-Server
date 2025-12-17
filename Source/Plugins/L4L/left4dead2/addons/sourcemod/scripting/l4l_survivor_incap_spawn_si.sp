@@ -33,7 +33,7 @@ public void OnPluginStart()
     CreateConVar("l4l_survivor_incap_spawn_si_version", PLUGIN_VERSION, "L4L: Survivor Incap Spawn SI version", CVAR_FLAGS | FCVAR_DONTRECORD);
     g_hCvarEnable        = CreateConVar("l4l_survivor_incap_spawn_si_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
     g_hCvarDebug         = CreateConVar("l4l_survivor_incap_spawn_si_debug", "0", "0 = Debug off, 1 = Debug on, 2 = Debug events, 3 = Debug sounds", CVAR_FLAGS, true, float(DISABLE), true, float(DEBUG_SOUNDS));
-    g_hCvarSurvivorIncap = CreateConVar("l4l_survivor_incap_spawn_si_count", "2", "0 = Off, Number of special infected spawned when a survivor is incapacitated", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
+    g_hCvarSurvivorIncap = CreateConVar("l4l_survivor_incap_spawn_si_count", "1", "0 = Off, Number of special infected spawned when a survivor is incapacitated", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
     AutoExecConfig(true, "l4l_survivor_incap_spawn_si", "sourcemod/l4l_plugins");

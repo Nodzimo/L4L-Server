@@ -23,7 +23,7 @@ public void OnPluginStart()
     CreateConVar("l4l_director_spawn_si_limit_version", PLUGIN_VERSION, "L4L: Director Spawn SI Limit version", CVAR_FLAGS | FCVAR_DONTRECORD);
     g_hCvarEnable        = CreateConVar("l4l_director_spawn_si_limit_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
     g_hCvarDebug         = CreateConVar("l4l_director_spawn_si_limit_debug", "0", "0 = Debug off, 1 = Debug on, 2 = Debug events, 3 = Debug sounds", CVAR_FLAGS, true, float(DISABLE), true, float(DEBUG_SOUNDS));
-    g_hCvarInfectedLimit = CreateConVar("l4l_director_spawn_si_limit_count", "6", "0 = Off, Limit of special infected alive (tanks & witches not included)", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
+    g_hCvarInfectedLimit = CreateConVar("l4l_director_spawn_si_limit_count", "4", "0 = Off, Limit of special infected alive (tanks & witches not included)", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
     AutoExecConfig(true, "l4l_director_spawn_si_limit", "sourcemod/l4l_plugins");
