@@ -251,6 +251,7 @@
      - **Shove Direction Fix**
      - **Bot Healing Values**
      - **AFK and Join Team Commands Improved**
+     - **AI: Hard SI**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
@@ -322,9 +323,11 @@
       - **AFK and Join Team Commands Improved**
       - **VS Auto-spectate on AFK**
       - **L4L: Car Alarm Spawn Tank**
+      - **AI: Hard SI**
+      - **Explosive Cars**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
-    - Зависимость: **Left 4 DHooks Direct**
+    - Зависимость: плагин **Left 4 DHooks Direct**
 16. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
     - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
     - Пока нет форка: стоит блокировка на дроп всего второстепенного оружия
@@ -500,7 +503,11 @@
    - [Последний форк от BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2836700&postcount=27) не компилируется и не работает, если принудительно его скомпилировать.
 2. [[L4D1 & L4D2] SI Doors Use (1.0.2) by Mart](https://forums.alliedmods.net/showthread.php?p=2774797)
 3. [[L4D1/L4D2] AI: Hard SI (2.5-2025/8/31) by Breezy & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/AI_HardSI)
+   - Зависимости:
+     - Плагин **Left 4 DHooks Direct**
+     - Расширение **Actions**
 4. [[L4D1/2] Explosive Cars (2.5-2024/11/11) by honorcode23, Fixed: kochiurun119, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_explosive_cars)
+   - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
