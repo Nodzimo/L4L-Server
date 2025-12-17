@@ -463,30 +463,34 @@
      - **Votekick**
 
 #### Плагины L4L
-0. SDK
+0. [SDK](https://github.com/Nodzimo/L4L-Server/tree/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l)
    - Пакет зависимостей для сборки и компиляции всех плагинов L4L из этого списка
-1. Exec Server Config
+   - Содержит в себе следующие зависимости:
+     1. [constants.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/constants.inc)
+     2. [lifecycle.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/lifecycle.inc)
+     3. [utils.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/utils.inc)
+1. [Exec Server Config](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_exec_server_config.sp)
    - Исполняет специфический для сервера конфиг в зависимости от квары
    - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
    - Если установлена кастомная сложность, то выводит её название в имени сервера
-2. Survivor Bots Fire Damage
+2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
    - Перезаписывает урон от огня по выжившим ботам, в соответствии с установленным значением в кваре.
-3. Survivor Incap Spawn SI
+3. [Survivor Incap Spawn SI](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_incap_spawn_si.sp)
    - Инкап спавнит особых
    - `l4l_spawn_si`
-4. Car Alarm Spawn Tank
+4. [Car Alarm Spawn Tank](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_car_alarm_spawn_tank.sp)
    - Сигналка может заспавнить танка
    - Зависимость: плагин **Left 4 DHooks Direct**
    - `l4l_spawn_tank`
-5. Witch Scream Spawn Mob
+5. [Witch Scream Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_witch_scream_spawn_mob.sp)
    - Крик ведьмы спавнит орду
-6. Survivor Death Spawn Mob
+6. [Survivor Death Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_death_spawn_mob.sp)
    - Смерть выжившего спавнит орду
-7. Director Spawn SI Limit
+7. [Director Spawn SI Limit](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_director_spawn_si_limit.sp)
    - Контролирует лимит особых, которых спавнит режиссёр. 
    - `l4l_si_limit`
-8. Hide Kill Feed
-9. Common Infected Damage
+8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
+9. [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
    - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
 
 #### Плагины для разработки и тестирования
