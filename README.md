@@ -37,6 +37,7 @@
     - [SourceMod плагины](#sourcemod-плагины)
       - [Зависимости](#зависимости)
       - [Плагины L4L](#плагины-l4l)
+      - [Хардкор](#хардкор)
       - [Плагины для разработки и тестирования](#плагины-для-разработки-и-тестирования)
       - [Сезонное](#сезонное)
       - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
@@ -441,6 +442,7 @@
     - Позволяет после смерти взять свободного бота, нажатием кнопки действия: `E`
 40. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
     - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
+41. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -487,11 +489,18 @@
 6. [Survivor Death Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_death_spawn_mob.sp)
    - Смерть выжившего спавнит орду
 7. [Director Spawn SI Limit](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_director_spawn_si_limit.sp)
-   - Контролирует лимит особых, которых спавнит режиссёр. 
+   - Контролирует лимит особых, которых спавнит режиссёр.
    - `l4l_si_limit`
 8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
 9. [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
    - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
+
+#### Хардкор
+1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
+   - [Последний форк от BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2836700&postcount=27) не компилируется и не работает, если принудительно его скомпилировать.
+2. [[L4D1 & L4D2] SI Doors Use (1.0.2) by Mart](https://forums.alliedmods.net/showthread.php?p=2774797)
+3. [[L4D1/L4D2] AI: Hard SI (2.5-2025/8/31) by Breezy & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/AI_HardSI)
+4. [[L4D1/2] Explosive Cars (2.5-2024/11/11) by honorcode23, Fixed: kochiurun119, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_explosive_cars)
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -532,6 +541,7 @@
    - Активный админ кастомных L4D1-2 серверов: берёт оригинальные плагины, фиксит, что может, подгоняет их под свои нужды и добавляет поддержку первой Left 4 Dead.
 - [garamond13 SourcePawn repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
 - [Hatsune-Imagine / l4d2-plugins](https://github.com/Hatsune-Imagine/l4d2-plugins)
+  - Фиксы популярных плагинов
 - [PaaNChaN / L4D2_Plugins](https://github.com/PaaNChaN/L4D2_Plugins)
 - [Target5150 / MoYu_Server_Stupid_Plugins](https://github.com/Target5150/MoYu_Server_Stupid_Plugins)
 - [SirPlease / L4D2-Competitive-Rework](https://github.com/SirPlease/L4D2-Competitive-Rework)
@@ -544,6 +554,7 @@
 - [devilesk / rl4d2l-plugins](https://github.com/devilesk/rl4d2l-plugins)
 - [LuxLuma / Left-4-fix](https://github.com/LuxLuma/Left-4-fix)
   - Репозиторий с набором фиксов от сообщества
+- [NanakaNeko / l4d2_plugins_coop](https://github.com/NanakaNeko/l4d2_plugins_coop)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
