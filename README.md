@@ -1,4 +1,4 @@
-# Left 4 Legend <sup>v2 beta/RC</sub>
+# Left 4 Legend <sup>v2 beta-rc</sub>
 > [!WARNING]
 > В работе!
 >
@@ -26,7 +26,7 @@
 | 9   | L4L Dev        | localhost:27020                              |                    | sourcemod_dev      |
 
 ## Оглавление
-- [Left 4 Legend v2 beta/RC](#left-4-legend-v2-betarc)
+- [Left 4 Legend v2 beta-rc](#left-4-legend-v2-beta-rc)
   - [Оглавление](#оглавление)
   - [Дорожная карта](#дорожная-карта)
   - [Хостинг](#хостинг)
