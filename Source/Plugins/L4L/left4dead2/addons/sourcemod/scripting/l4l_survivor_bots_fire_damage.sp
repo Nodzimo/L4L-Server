@@ -28,9 +28,9 @@ public void OnPluginStart()
     g_fCvarFireDamage = g_hCvarFireDamage.FloatValue;
     g_hCvarFireDamage.AddChangeHook(OnCvarChanged);
 
-    for (int client = 1; client <= MaxClients; client++)
+    for (int client = MIN_CLIENT; client <= MaxClients; client++)
     {
-        if (IsSurvivorBot(client))
+        if (IsClientInGame(client) && IsSurvivorBot(client))
         {
             // PrintToChatAll("OnPluginStart client: %d", client);
             HookDamage(client);
@@ -40,7 +40,7 @@ public void OnPluginStart()
 
 public void OnClientPutInServer(int client)
 {
-    if (IsSurvivorBot(client))
+    if (IsClientInGame(client) && IsFakeClient(client))
     {
         // PrintToChatAll("OnClientPutInServer client: %d", client);
         HookDamage(client);

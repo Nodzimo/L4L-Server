@@ -4,7 +4,7 @@ CMD="l4l"
 
 SCREEN="screen -dmS"
 GAME="-game left4dead2"
-MAP='+map "c1m2_streets realism"'
+MAP='+map "c8m1_apartment realism"'
 CFG_DIR="l4l/"
 SM_BASE="+sm_basepath addons/sourcemod_"
 MAPSETS_DIR="$HOME/l4l/shared/maps"
@@ -258,7 +258,7 @@ run_server() {
             CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR} ${SM_BASE}${SERVER_DIR}"
             
             log_start "$SESSION" "$PORT"
-            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
+            start_server "$SESSION" "$BIN" $GAME +map "c1m2_streets realism" $PORT $PARAMS $DEBUG $CONFIG
         ;;
         "$VANILLA_DIR")
             require_vanilla_instance "$instance" || return 1
