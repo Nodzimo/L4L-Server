@@ -4,12 +4,12 @@
 #include <l4l/utils>
 #include <l4l/lifecycle>
 #include <sdkhooks>
+#include <left4dhooks>
 
 #define PLUGIN_VERSION "0.0.1"
 
 ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarInfectedDamage;
 int    g_iCvarDebug;
-
 float  g_fCvarInfectedDamage;
 
 public Plugin myinfo =
@@ -99,25 +99,55 @@ Action OnTakeDamage(int victim, int &attacker, int &inflictor, float &damage, in
     }
 
     // Attacker is not a player AND damage type is common punch
-    if (attacker > MaxClients && (damagetype & DAMAGE_TYPE_PUNCH))
+    if (attacker <= MaxClients || !(damagetype & DAMAGE_TYPE_PUNCH))
     {
-        if (!IsValidEntity(attacker))
-        {
-            return Plugin_Continue;
-        }
-
-        char classname[16];
-        GetEntityClassname(attacker, classname, sizeof(classname));
-
-        // Common infected
-        if (StrEqual(classname, "infected"))
-        {
-            // PrintToChatAll("OnTakeDamage type: %d, victim: %d", damagetype, victim);
-            damage = g_fCvarInfectedDamage;
-
-            return Plugin_Changed;
-        }
+        return Plugin_Continue;
     }
 
-    return Plugin_Continue;
+    if (!IsValidEntity(attacker))
+    {
+        return Plugin_Continue;
+    }
+
+    char classname[16];
+    GetEntityClassname(attacker, classname, sizeof(classname));
+
+    // Common infected only
+    if (!StrEqual(classname, "infected"))
+    {
+        return Plugin_Continue;
+    }
+
+    // Skip special survivor states (engine uses different damage rules there)
+    if (GetEntProp(victim, Prop_Send, "m_isIncapacitated") || GetEntProp(victim, Prop_Send, "m_isHangingFromLedge"))
+    {
+        return Plugin_Continue;
+    }
+
+    int   clientHealth = GetClientHealth(victim);
+    float tempHealth   = L4D_GetTempHealth(victim);
+    float totalHealth  = float(clientHealth) + tempHealth;
+
+    // Guard: never make the hit lethal (preserve native incap logic)
+    if (g_fCvarInfectedDamage >= totalHealth)
+    {
+        if (g_iCvarDebug)
+        {
+            PrintToChatAll("[L4L CI DMG] SKIP lethal: %N old=%.1f new=%.1f hp=%d temp=%.1f total=%.1f (type=%d)",
+                           victim, damage, g_fCvarInfectedDamage, clientHealth, tempHealth, totalHealth, damagetype);
+        }
+
+        return Plugin_Continue;
+    }
+
+    float originalDamage = damage;
+    damage               = g_fCvarInfectedDamage;
+
+    if (g_iCvarDebug)
+    {
+        PrintToChatAll("[L4L CI DMG] APPLY: %N %.1f -> %.1f hp=%d temp=%.1f total=%.1f (type=%d)",
+                       victim, originalDamage, damage, clientHealth, tempHealth, totalHealth, damagetype);
+    }
+
+    return Plugin_Changed;
 }

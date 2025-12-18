@@ -323,6 +323,7 @@
       - **AFK and Join Team Commands Improved**
       - **VS Auto-spectate on AFK**
       - **L4L: Car Alarm Spawn Tank**
+      - **L4L: Common Infected Damage**
       - **AI: Hard SI**
       - **Explosive Cars**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
@@ -504,6 +505,7 @@
 8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
 9. [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
    - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
+   - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
