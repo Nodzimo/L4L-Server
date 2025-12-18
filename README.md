@@ -340,6 +340,7 @@
     - Динамически меняет имя сервера в зависимости от условий:
       1. Если сервер пустой, то в его имени выводится название, номер и сборка: `Vanilla`, `Legacy`, `LMBX`, `Test`, `Dev`.
       2. Если на сервере запущена игра, то в его имени выводится: название, номер, сборка, режим игры и сложность (если режим поддерживает разные уровни сложности).
+    - Опционален для плагина **L4L: Exec Server Config**
 18. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
     - Голосование за рестарт сервера
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
@@ -436,6 +437,7 @@
 37. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
+    - Опционален для плагина **L4L: Exec Server Config**
     - `sm_vd`
 38. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
     - Менеджер киков с оповещением админа, которого пытаются кикнуть.
@@ -478,6 +480,9 @@
    - Исполняет специфический для сервера конфиг в зависимости от квары
    - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
    - Если установлена кастомная сложность, то выводит её название в имени сервера
+   - Зависимости:
+     - Плагин **Server namer**
+     - Плагин **Vote difficulty**
 2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
    - Перезаписывает урон от огня по выжившим ботам, в соответствии с установленным значением в кваре.
 3. [Survivor Incap Spawn SI](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_incap_spawn_si.sp)

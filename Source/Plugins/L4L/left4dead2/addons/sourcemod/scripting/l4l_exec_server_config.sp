@@ -24,27 +24,26 @@ public void OnPluginStart()
         "l4l_exec_server_config",
         "",
         "Server instance config name (without .cfg), executed from cfg/sourcemod/l4l/");
+}
 
+public void OnAllPluginsLoaded()
+{
     g_hCvarDifficultyEx = FindConVar("z_difficulty_ex");
-    g_hCvarHostname     = FindConVar("hostname");
-    HookConVarChange(g_hCvarHostname, PatchHostname);
-    HookConVarChange(g_hCvarDifficultyEx, PatchHostname);
 
     if (g_hCvarDifficultyEx == null)
     {
-        LogError("ConVar 'z_difficulty_ex' not found");
+        SetFailState("Required dependency z_difficulty_ex not found");
     }
+
+    g_hCvarHostname = FindConVar("hostname");
+
+    HookConVarChange(g_hCvarHostname, PatchHostname);
+    HookConVarChange(g_hCvarDifficultyEx, PatchHostname);
 }
 
 public void OnConfigsExecuted()
 {
     ExecInstanceConfig();
-
-    if (g_hCvarDifficultyEx == null)
-    {
-        return;
-    }
-
     ExecDifficultyConfig();
 }
 
@@ -69,7 +68,7 @@ static void ExecDifficultyConfig()
 
 static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
 {
-    if (g_bHostnameGuard || g_hCvarHostname == null || g_hCvarDifficultyEx == null)
+    if (g_bHostnameGuard)
     {
         return;
     }
