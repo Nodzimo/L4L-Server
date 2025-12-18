@@ -517,6 +517,8 @@
      - Расширение **Actions**
 4. [[L4D1/2] Explosive Cars (2.5-2024/11/11) by honorcode23, Fixed: kochiurun119, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_explosive_cars)
    - Зависимость: плагин **Left 4 DHooks Direct**
+> [!IMPORTANT]
+> Используется мой форк, в котором удалено оповещение в чате о вызове орды.
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
