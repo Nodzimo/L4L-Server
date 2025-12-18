@@ -455,11 +455,12 @@
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
    - Общая зависимость для плагинов, которые используют цветные сообщения в игровом чате
-   - Требуется для следующих плагинов:
+   - Требуется для компиляции следующих плагинов:
      - **Connect Announce**
      - **Admin Force Pause**
      - **AFK and Join Team Commands Improved**
      - **VS Auto-spectate on AFK**
+     - **L4L: Exec Server Config**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -482,10 +483,12 @@
 1. [Exec Server Config](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_exec_server_config.sp)
    - Исполняет специфический для сервера конфиг в зависимости от квары
    - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
-   - Если установлена кастомная сложность, то выводит её название в имени сервера
+   - Если установлена кастомная сложность, то выводит её название в имени сервера.
+   - Если установлена кастомная сложность, то оповещает об этом игроков при подключении.
    - Зависимости:
      - Плагин **Server namer**
      - Плагин **Vote difficulty**
+     - Скрипты **Multi Colors** для компиляции плагина
 2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
    - Перезаписывает урон от огня по выжившим ботам, в соответствии с установленным значением в кваре.
 3. [Survivor Incap Spawn SI](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_incap_spawn_si.sp)

@@ -1,13 +1,17 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#include <l4l/utils>
+#include <multicolors>
+
 #define PLUGIN_VERSION  "0.0.1"
 #define EXPERT          "Expert"
 #define IMPOSSIBLE_PLUS "Impossible+"
 #define HARDCORE        "Hardcore"
 
-ConVar g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
-bool   g_bHostnameGuard;
+ConVar    g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
+bool      g_bHostnameGuard;
+StringMap g_smSeenAuthIds;
 
 public Plugin myinfo =
 {
@@ -20,10 +24,16 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
+    LoadTranslations("l4l_exec_server_config.phrases");
+
     g_hCvarServerConfig = CreateConVar(
         "l4l_exec_server_config",
         "",
         "Server instance config name (without .cfg), executed from cfg/sourcemod/l4l/");
+
+    g_smSeenAuthIds = new StringMap();
+
+    HookEvent("player_disconnect", OnPlayerDisconnect, EventHookMode_PostNoCopy);
 }
 
 public void OnAllPluginsLoaded()
@@ -97,4 +107,59 @@ static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
     g_bHostnameGuard = true;
     g_hCvarHostname.SetString(hostname, false, false);
     g_bHostnameGuard = false;
+}
+
+public void OnClientPostAdminCheck(int client)
+{
+    if (IsFakeClient(client))
+    {
+        return;
+    }
+
+    char difficultyEx[32];
+    g_hCvarDifficultyEx.GetString(difficultyEx, sizeof(difficultyEx));
+
+    if (!StrEqual(difficultyEx, IMPOSSIBLE_PLUS, false))
+    {
+        return;
+    }
+
+    char authId[MAX_AUTHID_LENGTH];
+    GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId));
+
+    if (!g_smSeenAuthIds.SetValue(authId, true, false))
+    {
+        return;
+    }
+
+    CreateTimer(
+        5.0,
+        Timer_ShowInfo,
+        GetClientUserId(client),
+        TIMER_FLAG_NO_MAPCHANGE);
+}
+
+static Action Timer_ShowInfo(Handle timer, int userId)
+{
+    int client = GetClientOfUserId(userId);
+
+    if (IsValidClient(client))
+    {
+        CPrintToChat(client, "%t", "Hardcore warning");
+        CPrintToChat(client, "%t", "Hardcore info");
+    }
+
+    return Plugin_Stop;
+}
+
+static void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcast)
+{
+    int client = GetClientOfUserId(event.GetInt("userid"));
+
+    if (client > 0)
+    {
+        char authId[MAX_AUTHID_LENGTH];
+        GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId));
+        g_smSeenAuthIds.Remove(authId);
+    }
 }
