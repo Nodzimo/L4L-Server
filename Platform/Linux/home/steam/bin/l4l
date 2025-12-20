@@ -34,7 +34,8 @@ LEGACY_DIR="legacy"
 LMBX_DIR="lmbx"
 
 PARAMS="-ignoresigint"
-DEBUG="-debug -gdb gdb -debuglog l4l_debug_log -norestart"
+DEBUG="-debug -gdb gdb -debuglog l4l_debug_log"
+# -norestart
 
 require_vanilla_instance() {
     local instance="$1"
