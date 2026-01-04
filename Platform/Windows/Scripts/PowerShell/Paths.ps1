@@ -26,11 +26,21 @@ function Get-Paths {
         Batch      = "$scriptsRoot\Batch"
     }
 
+    $privateRoot = $repos.Private
+
+    $private = [PSCustomObject]@{
+        Root       = $privateRoot
+        All        = "$privateRoot\01. All"
+        Specific   = "$privateRoot\02. Specific"
+        SmBasePath = "$privateRoot\03. sm_basepath"
+    }
+
     return [PSCustomObject]@{
         Root     = $root
         Repos    = $repos
         Platform = $platform
         Servers  = $servers
         Scripts  = $scripts
+        Private  = $private
     }
 }
