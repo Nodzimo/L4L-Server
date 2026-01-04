@@ -6,20 +6,24 @@ function Get-Paths {
         Private = "$root\L4L-Private"
     }
 
+    $windowsRoot = "$($repos.Server)\Platform\Windows"
+    $serversRoot = "$windowsRoot\Servers"
+    $scriptsRoot = "$windowsRoot\Scripts"
+
     $platform = [PSCustomObject]@{
-        Windows = "$($repos.Server)\Platform\Windows"
+        Windows = $windowsRoot
     }
 
     $servers = [PSCustomObject]@{
-        Root = "$($platform.Windows)\Servers"
-        L4D2 = "$($platform.Windows)\Servers\L4D2"
-        Dev  = "$($platform.Windows)\Servers\Dev"
+        Root = $serversRoot
+        L4D2 = "$serversRoot\L4D2"
+        Dev  = "$serversRoot\Dev"
     }
 
     $scripts = [PSCustomObject]@{
-        Root       = "$($platform.Windows)\Scripts"
-        PowerShell = "$($platform.Windows)\Scripts\PowerShell"
-        Batch      = "$($platform.Windows)\Scripts\Batch"
+        Root       = $scriptsRoot
+        PowerShell = "$scriptsRoot\PowerShell"
+        Batch      = "$scriptsRoot\Batch"
     }
 
     return [PSCustomObject]@{
