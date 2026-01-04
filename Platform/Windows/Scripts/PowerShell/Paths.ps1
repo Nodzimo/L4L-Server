@@ -36,7 +36,7 @@ function Get-Paths {
     }
 
     $setupRoot = "$($repos.Server)\Setup"
-    
+
     $coreRoot = "$setupRoot\01. Core"
     $sharedRoot = "$setupRoot\02. Shared"
     $hardcoreRoot = "$setupRoot\03. Hardcore"
@@ -89,6 +89,12 @@ function Get-Paths {
         }
     }
 
+    $game = [PSCustomObject]@{
+        GameDirName     = "left4dead2"
+        AddonsDirName   = "addons"
+        SourceModPrefix = "sourcemod_"
+    }
+
     return [PSCustomObject]@{
         Root     = $root
         Repos    = $repos
@@ -97,5 +103,64 @@ function Get-Paths {
         Scripts  = $scripts
         Private  = $private
         Setup    = $setup
+        Game     = $game
     }
+}
+
+function Get-ServerPaths {
+    param(
+        [Parameter(Mandatory)][string]$ServerFolderName
+    )
+
+    $paths = Get-Paths
+
+    $serverRoot = "$($paths.Servers.Root)\$ServerFolderName"
+    $left4Dead2 = "$serverRoot\$($paths.Game.GameDirName)"
+    $addons = "$left4Dead2\$($paths.Game.AddonsDirName)"
+
+    return [PSCustomObject]@{
+        Root       = $serverRoot
+        Left4Dead2 = $left4Dead2
+        Addons     = $addons
+    }
+}
+
+function Get-ServerInstancePaths {
+    param(
+        [Parameter(Mandatory)][string]$ServerFolderName,
+        [Parameter(Mandatory)][string]$InstanceTag
+    )
+
+    $paths = Get-Paths
+    $server = Get-ServerPaths -ServerFolderName $ServerFolderName
+
+    $sourceModInstanceRoot = "$($server.Addons)\$($paths.Game.SourceModPrefix)$InstanceTag"
+    $configs = "$sourceModInstanceRoot\configs"
+    $geoIp = "$configs\geoip"
+
+    return [PSCustomObject]@{
+        Server                = $server
+        InstanceTag           = $InstanceTag
+        SourceModInstanceRoot = $sourceModInstanceRoot
+        Configs               = $configs
+        GeoIP                 = $geoIp
+    }
+}
+
+function Get-SetupSpecificPath {
+    param(
+        [Parameter(Mandatory)][string]$BuildName
+    )
+
+    $paths = Get-Paths
+    return "$($paths.Setup.Core.Specific)\$BuildName"
+}
+
+function Get-PrivateSpecificPath {
+    param(
+        [Parameter(Mandatory)][string]$BuildName
+    )
+
+    $paths = Get-Paths
+    return "$($paths.Private.Specific)\$BuildName"
 }
