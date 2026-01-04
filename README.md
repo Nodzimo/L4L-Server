@@ -51,6 +51,7 @@
       - [Новогодние](#новогодние)
       - [Тестовые](#тестовые)
     - [Краши](#краши)
+    - [Баги](#баги)
     - [Отладка](#отладка)
     - [Dev-сборка](#dev-сборка)
     - [Обслуживание](#обслуживание)
@@ -759,6 +760,11 @@
 - [CUtlRBTree overflow!](https://crash.limetech.org/xqtbyrgkbhyy)
    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
    - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
+
+### Баги
+- После рестарта все мертвы или появляются "под землёй"
+  - Демонстрация бага и варианта как из него выбраться админу:
+    - [![Как выбраться из бага под землёй в Left 4 Dead 2](https://img.youtube.com/vi/EtwajuX5iLo/0.jpg)](https://www.youtube.com/watch?v=EtwajuX5iLo)
 
 ### Отладка
 - [Debugging under Linux](https://developer.valvesoftware.com/wiki/Debugging_under_Linux)
