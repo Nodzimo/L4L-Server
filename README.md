@@ -745,10 +745,13 @@
 
 1. [A Christmas Bridge](https://steamcommunity.com/sharedfiles/filedetails/?id=3385079215)
 2. [Dead Center: Christmas Edition (Part 1)](https://steamcommunity.com/sharedfiles/filedetails/?id=2668272749)
+> [!CAUTION]
+> Финал лагает: у игроков скачет пинг, зомби дёргаются
 3. [No Mercy Christmas Edition (Part 2)](https://steamcommunity.com/sharedfiles/filedetails/?id=3101550309)
 > [!CAUTION]
-> Проверить: первая карта сильно лагала на старом L4L
+> Вторая карта лагает: у игроков скачет пинг, зомби дёргаются
 4. [Deadly New Year](https://steamcommunity.com/sharedfiles/filedetails/?id=3404576339)
+5. [Ice Canyon](https://steamcommunity.com/sharedfiles/filedetails/?id=3634176047)
 
 #### Тестовые
 [Коллекция в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3622049670)
