@@ -1,0 +1,4 @@
+setlocal
+set "BASE_DIR=%~dp0../.."
+
+start "" "%BASE_DIR%/SteamCMD/steamcmd" +force_install_dir ../Servers/L4D2 +login anonymous +app_update 222860 validate +quit
