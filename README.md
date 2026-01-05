@@ -506,6 +506,9 @@
 40. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
     - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
 41. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
+42. [[ANY] ConVars Anomaly Fixer (1.14 beta) by Dragokas](https://forums.alliedmods.net/showthread.php?t=307804)
+    - Фиксит баг на линукс-сервере с большим количеством конфигов, из-за которого переменные сбрасываются на свои дефолтные значения, не зависимо от установленных значений в конфигах.
+    - Пример: у ванильного сервера одна установочная директория и много инстансов, которые ещё и на хардкорную сложность могут переключаться. Соответственно, в одной установочной директории появляется очень много конфигов, что *(на линуксе?)* приводит к *(рандомному?)* сбросу установленных значений кваров на их дефолт. Таким образом плагин **Restart Empty Server** игнорировал свой конфиг и моментально перезагружал пустой сервер, что в некоторых случаях заканчивалось крашем и некорректным сбросом карты.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -760,9 +763,18 @@
 2. [The Ultimate Mod Testing and Reviewing Area - Main Files](https://steamcommunity.com/sharedfiles/filedetails/?id=469986973)
 
 ### Краши
-- [CUtlRBTree overflow!](https://crash.limetech.org/xqtbyrgkbhyy)
-   - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
-   - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
+- [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/xqtbyrgkbhyy)
+  - `CUtlRBTree overflow!`
+    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
+    - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
+  - `ED_Alloc: no free edicts`
+    - [Solved [Help] L4D2 Linux server always auto crashed](https://forums.alliedmods.net/showthread.php?t=332505)
+- [linux-gate.so!__kernel_vsyscall + 0x9](https://crash.limetech.org/jlmme6wwlhrb)
+  - [Solved CSGO Server crash / linux-gate.so!__kernel_vsyscall + 0x9](https://forums.alliedmods.net/showthread.php?t=318745)
+  - [[ANY] SRCDS Server Crasher Exploit Patch [6/27/19]](https://forums.alliedmods.net/showthread.php?p=2656975)
+- [server_srv.so!CTerrorWeaponInfo::Reload() + 0x44](https://crash.limetech.org/g2mocvxlgujt)
+- [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7)
+  - `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
 
 ### Баги
 - После рестарта все мертвы или появляются "под землёй"
