@@ -16,8 +16,8 @@ function Get-Paths {
 
     $servers = [PSCustomObject]@{
         Root = $serversRoot
-        L4D2 = "$serversRoot\L4D2"
-        Dev  = "$serversRoot\Dev"
+        L4D2 = "$serversRoot\l4d2"
+        Dev  = "$serversRoot\dev"
     }
 
     $scripts = [PSCustomObject]@{
