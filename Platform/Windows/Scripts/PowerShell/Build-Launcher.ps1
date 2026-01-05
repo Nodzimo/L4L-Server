@@ -54,6 +54,8 @@ function Run([hashtable]$p) {
     Write-Host "[OK] Build completed."
 }
 
+$exitCode = 0
+
 try {
     $buildServerScript = Join-Path $PSScriptRoot "Build-Server.ps1"
     . $buildServerScript
@@ -121,8 +123,7 @@ try {
             }
         }
 
-        Read-Host "Press Enter to exit"
-        exit 0
+        return
     }
 
     # Wizard
@@ -152,8 +153,7 @@ try {
             IncludeXmas      = $IncludeXmas
         }
 
-        Read-Host "Press Enter to exit"
-        exit 0
+        return
     }
 
     # Multi: base + count -> generate 1..count
@@ -170,14 +170,14 @@ try {
         IncludeHardcore  = $IncludeHardcore
         IncludeXmas      = $IncludeXmas
     }
-
-    Read-Host "Press Enter to exit"
-    exit 0
 }
 catch {
+    $exitCode = 1
     Write-Host ""
     Write-Host ("[ERROR] " + $_.Exception.Message) -ForegroundColor Red
     Write-Host ""
-    Read-Host "Press Enter to exit"
-    exit 1
+}
+finally {
+    Read-Host "Press Enter to exit" | Out-Null
+    exit $exitCode
 }
