@@ -308,6 +308,7 @@
      - **Bot Healing Values**
      - **AFK and Join Team Commands Improved**
      - **AI: Hard SI**
+     - **Dynamic Common Infected Jump**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
@@ -598,7 +599,10 @@
 6. [[L4D & L4D2] Tank Rock Bounces (1.1) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343303)
    - Рикошет камней танка
    - Зависимость: плагин **Left 4 DHooks Direct**
-7. **Tank rock staggering (1.5a) by 3ipka**
+7. **Tank rock staggering (1.5a) by 3ipka\***
+8. [[L4D2] Common Infected Dynamic Jump (1.1) by BHaType](https://forums.alliedmods.net/showthread.php?t=343978)
+   - Зомби прыгают как в **World War Z**
+   - Зависимость: расширение **Actions**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
