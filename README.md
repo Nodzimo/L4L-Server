@@ -515,6 +515,8 @@
 43. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
     - Добавляет команду `sm_acvar`, которую можно использовать вместо `sm_cvar`, чтобы скрыть изменение кваров в игровом чате для всех.
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
+44. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
+    - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
