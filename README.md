@@ -692,6 +692,8 @@
 27. **Melee More Hitrays** by Lombaxtard
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
+28. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+    - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 
 #### Неактуально
 - Заменён плагином **Votekick**
