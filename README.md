@@ -1,4 +1,4 @@
-# Left 4 Legend <sup>v2 beta-rc</sub>
+# Left 4 Legend <sup>v2 release candidate</sub>
 > [!WARNING]
 > В работе!
 >
@@ -26,7 +26,7 @@
 | 9   | L4L Dev        | localhost:27020                              |                    | sourcemod_dev      |
 
 ## Оглавление
-- [Left 4 Legend v2 beta-rc](#left-4-legend-v2-beta-rc)
+- [Left 4 Legend v2 release candidate](#left-4-legend-v2-release-candidate)
   - [Оглавление](#оглавление)
   - [Дорожная карта](#дорожная-карта)
   - [Хостинг](#хостинг)
@@ -79,6 +79,7 @@
   1. Перезапуск сайта: [L4L.su](https://l4l.su)
   2. Перезапуск Steam-группы: [Left 4 Legend](https://steamcommunity.com/groups/Left4Legend)
   3. Релиз ваниллы
+  4. TeamSpeak сервер
 - Q2 2026
   1. Переосмысление Legacy-сборки
   2. Переосмысление и декомпозиция **Left 4 Legend: Plugin** с публикацией в опенсорс и на форум
