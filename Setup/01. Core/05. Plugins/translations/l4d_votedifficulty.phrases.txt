@@ -23,27 +23,26 @@
 	"Normal"
 	{
 		"en"		"Normal"
-		"ru"		"Нормально"
+		"ru"		"Средний"
 		"chi"		"普通"
 	}
 	"Hard"
 	{
-		"en"		"Hard"
+		"en"		"Advanced"
 		"ru"		"Мастер"
 		"chi"		"困难"
 	}
 	"Hard+"
 	{
-		"en"		"Hard +"
+		"en"		"Advanced +"
 		"ru"		"Мастер +"
 		"chi"		"困难+"
 	}
 	"Impossible"
 	{
-		"en"		"Impossible"
+		"en"		"Expert"
 		"ru"		"Эксперт"
 		"chi"		"专家"
-		
 	}
 	"Impossible+"
 	{
