@@ -570,9 +570,6 @@
    - Контролирует лимит особых, которых спавнит режиссёр.
    - `l4l_si_limit`
 8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
-9. [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
-   - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
-   - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
@@ -712,6 +709,13 @@
 - Заменены V-скриптом **Zero's Behavior Patches**
   - [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
   - [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
+- [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
+   - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
+   - Зависимость: плагин **Left 4 DHooks Direct**
+> [!CAUTION]
+> **Критический баг:** иногда удар зомби моментально убивает выжившего без ЧБ
+>
+> Точно [такой же баг происходит](https://forums.alliedmods.net/showpost.php?p=2774575&postcount=2), если менять урон со спины нативной кварой.
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
