@@ -585,6 +585,8 @@
    - Зависимость: плагин **Left 4 DHooks Direct**
 > [!IMPORTANT]
 > Используется мой форк, в котором удалено оповещение в чате о вызове орды.
+5. [[L4D & L4D2] Incapped Weapons Patch (1.41) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322859)
+   - Позволяет использовать оружие и утилиты в инкапе
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
