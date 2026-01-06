@@ -597,6 +597,7 @@
 6. [[L4D & L4D2] Tank Rock Bounces (1.1) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343303)
    - Рикошет камней танка
    - Зависимость: плагин **Left 4 DHooks Direct**
+7. **Tank rock staggering (1.5a) by 3ipka**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -701,7 +702,7 @@
     - Зависимость: аддон **Manacat Common Library**
 26. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-27. **Melee More Hitrays** by Lombaxtard
+27. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
 28. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
