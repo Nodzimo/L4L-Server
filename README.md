@@ -382,6 +382,7 @@
       - **AI: Hard SI**
       - **Explosive Cars**
       - **Incapped Weapons Patch**
+      - **Tank Rock Bounces**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -591,6 +592,9 @@
    - Зависимость: плагин **Left 4 DHooks Direct**
    - Рекомендуется: плагин [WeaponHandling API](https://forums.alliedmods.net/showthread.php?t=319947) для настройки скорострельности оружия в инкапе
    - `sm_incap`
+6. [[L4D & L4D2] Tank Rock Bounces (1.1) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343303)
+   - Рикошет камней танка
+   - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
