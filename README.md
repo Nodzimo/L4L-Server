@@ -381,6 +381,7 @@
       - **L4L: Common Infected Damage**
       - **AI: Hard SI**
       - **Explosive Cars**
+      - **Incapped Weapons Patch**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -587,6 +588,9 @@
 > Используется мой форк, в котором удалено оповещение в чате о вызове орды.
 5. [[L4D & L4D2] Incapped Weapons Patch (1.41) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322859)
    - Позволяет использовать оружие и утилиты в инкапе
+   - Зависимость: плагин **Left 4 DHooks Direct**
+   - Рекомендуется: плагин [WeaponHandling API](https://forums.alliedmods.net/showthread.php?t=319947) для настройки скорострельности оружия в инкапе
+   - `sm_incap`
 
 #### Плагины для разработки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
