@@ -689,6 +689,9 @@
     - Зависимость: аддон **Manacat Common Library**
 26. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
+27. **Melee More Hitrays** by Lombaxtard
+    - Увеличивает количество лучей у милишек
+    - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
 
 #### Неактуально
 - Заменён плагином **Votekick**
