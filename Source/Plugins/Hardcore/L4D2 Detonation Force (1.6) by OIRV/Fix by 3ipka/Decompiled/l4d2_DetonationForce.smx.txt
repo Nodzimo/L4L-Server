@@ -1,0 +1,514 @@
+public PlVers:__version =
+{
+	version = 5,
+	filevers = "1.8.0.6002",
+	date = "07/03/2017",
+	time = "22:54:11"
+};
+new Float:NULL_VECTOR[3];
+new String:NULL_STRING[4];
+public Extension:__ext_core =
+{
+	name = "Core",
+	file = "core",
+	autoload = 0,
+	required = 0,
+};
+new MaxClients;
+public Extension:__ext_sdkhooks =
+{
+	name = "SDKHooks",
+	file = "sdkhooks.ext",
+	autoload = 1,
+	required = 1,
+};
+public Extension:__ext_sdktools =
+{
+	name = "SDKTools",
+	file = "sdktools.ext",
+	autoload = 1,
+	required = 1,
+};
+new Handle:l4d2_detonation_scale_damage;
+new Handle:l4d2_grenade_detonation_force;
+new Handle:l4d2_pipe_detonation_force;
+new Handle:l4d2_barrel_detonation_force;
+new Handle:l4d2_bomb_detonation_force;
+new Handle:l4d2_detonation_force_immunity;
+new Handle:l4d2_detonation_force_ghost_mode;
+new Handle:l4d2_detonation_force_disable_gamemodes;
+new Handle:sdkCallPushPlayer;
+new Handle:GameConf;
+new bool:isl4d2;
+new bool:EnablePlugin;
+public Plugin:myinfo =
+{
+	name = "L4D2 Detonation Force",
+	description = "Explosions throws survivors and SI in the air",
+	author = "OIRV",
+	version = "1.6",
+	url = "https://forums.alliedmods.net/showthread.php?p=1759636"
+};
+public void:__ext_core_SetNTVOptional()
+{
+	MarkNativeAsOptional("GetFeatureStatus");
+	MarkNativeAsOptional("RequireFeature");
+	MarkNativeAsOptional("AddCommandListener");
+	MarkNativeAsOptional("RemoveCommandListener");
+	MarkNativeAsOptional("BfWriteBool");
+	MarkNativeAsOptional("BfWriteByte");
+	MarkNativeAsOptional("BfWriteChar");
+	MarkNativeAsOptional("BfWriteShort");
+	MarkNativeAsOptional("BfWriteWord");
+	MarkNativeAsOptional("BfWriteNum");
+	MarkNativeAsOptional("BfWriteFloat");
+	MarkNativeAsOptional("BfWriteString");
+	MarkNativeAsOptional("BfWriteEntity");
+	MarkNativeAsOptional("BfWriteAngle");
+	MarkNativeAsOptional("BfWriteCoord");
+	MarkNativeAsOptional("BfWriteVecCoord");
+	MarkNativeAsOptional("BfWriteVecNormal");
+	MarkNativeAsOptional("BfWriteAngles");
+	MarkNativeAsOptional("BfReadBool");
+	MarkNativeAsOptional("BfReadByte");
+	MarkNativeAsOptional("BfReadChar");
+	MarkNativeAsOptional("BfReadShort");
+	MarkNativeAsOptional("BfReadWord");
+	MarkNativeAsOptional("BfReadNum");
+	MarkNativeAsOptional("BfReadFloat");
+	MarkNativeAsOptional("BfReadString");
+	MarkNativeAsOptional("BfReadEntity");
+	MarkNativeAsOptional("BfReadAngle");
+	MarkNativeAsOptional("BfReadCoord");
+	MarkNativeAsOptional("BfReadVecCoord");
+	MarkNativeAsOptional("BfReadVecNormal");
+	MarkNativeAsOptional("BfReadAngles");
+	MarkNativeAsOptional("BfGetNumBytesLeft");
+	MarkNativeAsOptional("BfWrite.WriteBool");
+	MarkNativeAsOptional("BfWrite.WriteByte");
+	MarkNativeAsOptional("BfWrite.WriteChar");
+	MarkNativeAsOptional("BfWrite.WriteShort");
+	MarkNativeAsOptional("BfWrite.WriteWord");
+	MarkNativeAsOptional("BfWrite.WriteNum");
+	MarkNativeAsOptional("BfWrite.WriteFloat");
+	MarkNativeAsOptional("BfWrite.WriteString");
+	MarkNativeAsOptional("BfWrite.WriteEntity");
+	MarkNativeAsOptional("BfWrite.WriteAngle");
+	MarkNativeAsOptional("BfWrite.WriteCoord");
+	MarkNativeAsOptional("BfWrite.WriteVecCoord");
+	MarkNativeAsOptional("BfWrite.WriteVecNormal");
+	MarkNativeAsOptional("BfWrite.WriteAngles");
+	MarkNativeAsOptional("BfRead.ReadBool");
+	MarkNativeAsOptional("BfRead.ReadByte");
+	MarkNativeAsOptional("BfRead.ReadChar");
+	MarkNativeAsOptional("BfRead.ReadShort");
+	MarkNativeAsOptional("BfRead.ReadWord");
+	MarkNativeAsOptional("BfRead.ReadNum");
+	MarkNativeAsOptional("BfRead.ReadFloat");
+	MarkNativeAsOptional("BfRead.ReadString");
+	MarkNativeAsOptional("BfRead.ReadEntity");
+	MarkNativeAsOptional("BfRead.ReadAngle");
+	MarkNativeAsOptional("BfRead.ReadCoord");
+	MarkNativeAsOptional("BfRead.ReadVecCoord");
+	MarkNativeAsOptional("BfRead.ReadVecNormal");
+	MarkNativeAsOptional("BfRead.ReadAngles");
+	MarkNativeAsOptional("BfRead.GetNumBytesLeft");
+	MarkNativeAsOptional("PbReadInt");
+	MarkNativeAsOptional("PbReadFloat");
+	MarkNativeAsOptional("PbReadBool");
+	MarkNativeAsOptional("PbReadString");
+	MarkNativeAsOptional("PbReadColor");
+	MarkNativeAsOptional("PbReadAngle");
+	MarkNativeAsOptional("PbReadVector");
+	MarkNativeAsOptional("PbReadVector2D");
+	MarkNativeAsOptional("PbGetRepeatedFieldCount");
+	MarkNativeAsOptional("PbSetInt");
+	MarkNativeAsOptional("PbSetFloat");
+	MarkNativeAsOptional("PbSetBool");
+	MarkNativeAsOptional("PbSetString");
+	MarkNativeAsOptional("PbSetColor");
+	MarkNativeAsOptional("PbSetAngle");
+	MarkNativeAsOptional("PbSetVector");
+	MarkNativeAsOptional("PbSetVector2D");
+	MarkNativeAsOptional("PbAddInt");
+	MarkNativeAsOptional("PbAddFloat");
+	MarkNativeAsOptional("PbAddBool");
+	MarkNativeAsOptional("PbAddString");
+	MarkNativeAsOptional("PbAddColor");
+	MarkNativeAsOptional("PbAddAngle");
+	MarkNativeAsOptional("PbAddVector");
+	MarkNativeAsOptional("PbAddVector2D");
+	MarkNativeAsOptional("PbRemoveRepeatedFieldValue");
+	MarkNativeAsOptional("PbReadMessage");
+	MarkNativeAsOptional("PbReadRepeatedMessage");
+	MarkNativeAsOptional("PbAddMessage");
+	MarkNativeAsOptional("Protobuf.ReadInt");
+	MarkNativeAsOptional("Protobuf.ReadFloat");
+	MarkNativeAsOptional("Protobuf.ReadBool");
+	MarkNativeAsOptional("Protobuf.ReadString");
+	MarkNativeAsOptional("Protobuf.ReadColor");
+	MarkNativeAsOptional("Protobuf.ReadAngle");
+	MarkNativeAsOptional("Protobuf.ReadVector");
+	MarkNativeAsOptional("Protobuf.ReadVector2D");
+	MarkNativeAsOptional("Protobuf.GetRepeatedFieldCount");
+	MarkNativeAsOptional("Protobuf.SetInt");
+	MarkNativeAsOptional("Protobuf.SetFloat");
+	MarkNativeAsOptional("Protobuf.SetBool");
+	MarkNativeAsOptional("Protobuf.SetString");
+	MarkNativeAsOptional("Protobuf.SetColor");
+	MarkNativeAsOptional("Protobuf.SetAngle");
+	MarkNativeAsOptional("Protobuf.SetVector");
+	MarkNativeAsOptional("Protobuf.SetVector2D");
+	MarkNativeAsOptional("Protobuf.AddInt");
+	MarkNativeAsOptional("Protobuf.AddFloat");
+	MarkNativeAsOptional("Protobuf.AddBool");
+	MarkNativeAsOptional("Protobuf.AddString");
+	MarkNativeAsOptional("Protobuf.AddColor");
+	MarkNativeAsOptional("Protobuf.AddAngle");
+	MarkNativeAsOptional("Protobuf.AddVector");
+	MarkNativeAsOptional("Protobuf.AddVector2D");
+	MarkNativeAsOptional("Protobuf.RemoveRepeatedFieldValue");
+	MarkNativeAsOptional("Protobuf.ReadMessage");
+	MarkNativeAsOptional("Protobuf.ReadRepeatedMessage");
+	MarkNativeAsOptional("Protobuf.AddMessage");
+	VerifyCoreVersion();
+	return void:0;
+}
+
+Float:operator/(Float:,_:)(Float:oper1, oper2)
+{
+	return oper1 / float(oper2);
+}
+
+Float:operator/(Float:,_:)(Float:oper1, oper2)
+{
+	return oper1 / float(oper2);
+}
+
+bool:operator<(Float:,_:)(Float:oper1, oper2)
+{
+	return oper1 < float(oper2);
+}
+
+bool:operator<(Float:,_:)(Float:oper1, oper2)
+{
+	return oper1 < float(oper2);
+}
+
+Float:DegToRad(Float:angle)
+{
+	return angle * 3.1415927 / 180;
+}
+
+void:MakeVectorFromPoints(Float:pt1[3], Float:pt2[3], Float:output[3])
+{
+	output[0] = pt2[0] - pt1[0];
+	output[1] = pt2[1] - pt1[1];
+	output[2] = pt2[2] - pt1[2];
+	return void:0;
+}
+
+bool:StrEqual(String:str1[], String:str2[], bool:caseSensitive)
+{
+	return strcmp(str1, str2, caseSensitive) == 0;
+}
+
+ExplodeString(String:text[], String:split[], String:buffers[][], maxStrings, maxStringLength, bool:copyRemainder)
+{
+	new reloc_idx;
+	new idx;
+	new total;
+	new var1;
+	if (maxStrings < 1 || !split[0])
+	{
+		return 0;
+	}
+	while ((idx = SplitString(text[reloc_idx], split, buffers[total], maxStringLength)) != -1)
+	{
+		reloc_idx = idx + reloc_idx;
+		total++;
+		if (maxStrings == total)
+		{
+			if (copyRemainder)
+			{
+				strcopy(buffers[total + -1], maxStringLength, text[reloc_idx - idx]);
+			}
+			return total;
+		}
+	}
+	total++;
+	strcopy(buffers[total], maxStringLength, text[reloc_idx]);
+	return total;
+}
+
+public void:OnPluginStart()
+{
+	CreateConVar("l4d2_detonation_force_version", "1.6", "L4D2 Detonation Force Version", 139584, false, 0.0, false, 0.0);
+	l4d2_bomb_detonation_force = CreateConVar("l4d2_bomb_detonation_force", "250", "Sets bomb explosion power", 320, false, 0.0, false, 0.0);
+	l4d2_pipe_detonation_force = CreateConVar("l4d2_pipe_detonation_force", "300", "Sets pipe bomb explosion power", 320, false, 0.0, false, 0.0);
+	l4d2_barrel_detonation_force = CreateConVar("l4d2_barrel_detonation_force", "250", "Sets fuel barrel explosion power", 320, false, 0.0, false, 0.0);
+	l4d2_grenade_detonation_force = CreateConVar("l4d2_grenade_detonation_force", "50", "Sets grenade launcher explosion power", 320, false, 0.0, false, 0.0);
+	l4d2_detonation_scale_damage = CreateConVar("l4d2_detonation_scale_damage", "0.05", "% force as damage", 320, false, 0.0, false, 0.0);
+	l4d2_detonation_force_immunity = CreateConVar("l4d2_detonation_force_immunity", "0", "Entity immune to the explosion: 0 nobody, 1 survivors, 2 infected", 320, false, 0.0, false, 0.0);
+	l4d2_detonation_force_ghost_mode = CreateConVar("l4d2_detonation_force_ghost_mode", "0", "Enable/Disable knock back in infected ghost", 320, false, 0.0, false, 0.0);
+	l4d2_detonation_force_disable_gamemodes = CreateConVar("l4d2_detonation_force_disable_gamemodes", "empty", "Disable plugin in selected game modes", 320, false, 0.0, false, 0.0);
+	AutoExecConfig(true, "l4d2_detonation_force", "sourcemod");
+	decl String:sGame[256];
+	GetGameFolderName(sGame, 256);
+	if (StrEqual(sGame, "left4dead2", false))
+	{
+		isl4d2 = true;
+		GameConf = LoadGameConfigFile("l4d2_detonationforce");
+		if (!GameConf)
+		{
+			SetFailState("Couldn't find the offsets and signatures file. Please, check that it is installed correctly.");
+		}
+		StartPrepSDKCall(SDKCallType:2);
+		PrepSDKCall_SetFromConf(GameConf, SDKFuncConfSource:1, "CTerrorPlayer_Fling");
+		PrepSDKCall_AddParameter(SDKType:2, SDKPassMethod:3, 0, 0);
+		PrepSDKCall_AddParameter(SDKType:4, SDKPassMethod:1, 0, 0);
+		PrepSDKCall_AddParameter(SDKType:1, SDKPassMethod:0, 0, 0);
+		PrepSDKCall_AddParameter(SDKType:5, SDKPassMethod:1, 0, 0);
+		sdkCallPushPlayer = EndPrepSDKCall();
+		if (!sdkCallPushPlayer)
+		{
+			SetFailState("Unable to find the 'CTerrorPlayer_Fling' signature, check the file version!");
+		}
+		CloseHandle(GameConf);
+	}
+	else
+	{
+		if (StrEqual(sGame, "left4dead", false))
+		{
+			isl4d2 = false;
+		}
+		SetFailState("L4D2 Explosion Force supports L4D and L4D 2 only");
+	}
+	HookConVarChange(l4d2_detonation_force_disable_gamemodes, VarGameModesChange);
+	return void:0;
+}
+
+public LoadGameModes()
+{
+	new Handle:gamemode = FindConVar("mp_gamemode");
+	static String:currentGameMode[64];
+	GetConVarString(gamemode, currentGameMode, 64);
+	static String:gamemodes[32][32];
+	static String:buffer[512];
+	GetConVarString(l4d2_detonation_force_disable_gamemodes, buffer, 512);
+	ExplodeString(buffer, ",", gamemodes, 32, 32, false);
+	if (StrEqual(buffer, "*", false))
+	{
+		PrintToServer("l4d2_DetonationForce: Disabled for all game modes");
+		EnablePlugin = false;
+		return 0;
+	}
+	EnablePlugin = true;
+	new i;
+	while (i < 32)
+	{
+		if (StrEqual(currentGameMode, gamemodes[i], false))
+		{
+			EnablePlugin = false;
+			PrintToServer("l4d2_DetonationForce %s: Disabled", currentGameMode);
+			if (EnablePlugin == true)
+			{
+				PrintToServer("l4d2_DetonationForce %s: Enabled", currentGameMode);
+			}
+			return 0;
+		}
+		i++;
+	}
+	if (EnablePlugin == true)
+	{
+		PrintToServer("l4d2_DetonationForce %s: Enabled", currentGameMode);
+	}
+	return 0;
+}
+
+public void:OnMapStart()
+{
+	LoadGameModes();
+	return void:0;
+}
+
+public VarGameModesChange(Handle:convar, String:oldValue[], String:newValue[])
+{
+	LoadGameModes();
+	return 0;
+}
+
+public void:OnEntityDestroyed(entity)
+{
+	new var1;
+	if (EnablePlugin && entity <= 0 && !IsValidEntity(entity) && !IsValidEdict(entity))
+	{
+		return void:0;
+	}
+	decl String:EntityName[128];
+	if (!GetEdictClassname(entity, EntityName, 128))
+	{
+		return void:0;
+	}
+	new var2;
+	if (StrEqual(EntityName, "prop_fuel_barrel", false) || StrEqual(EntityName, "pipe_bomb_projectile", false) || StrEqual(EntityName, "grenade_launcher_projectile", false))
+	{
+		decl Float:force;
+		if (StrEqual(EntityName, "grenade_launcher_projectile", false))
+		{
+			force = float(GetConVarInt(l4d2_grenade_detonation_force));
+		}
+		else
+		{
+			if (StrEqual(EntityName, "prop_fuel_barrel", false))
+			{
+				force = float(GetConVarInt(l4d2_barrel_detonation_force));
+			}
+			if (GetEntityFlags(entity) == 1)
+			{
+				force = float(GetConVarInt(l4d2_pipe_detonation_force));
+			}
+			force = float(GetConVarInt(l4d2_bomb_detonation_force));
+		}
+		new client = 1;
+		while (client <= MaxClients)
+		{
+			Fly(entity, client, force);
+			client++;
+		}
+	}
+	return void:0;
+}
+
+public Fly(explosion, target, Float:power)
+{
+	new var1;
+	if (target <= 0 || !IsValidEntity(target) || !IsValidEdict(target))
+	{
+		return 0;
+	}
+	if (GetEntData(target, FindSendPropInfo("CTerrorPlayer", "m_isGhost", 0, 0, 0), 1) == 1)
+	{
+		if (!(GetConVarInt(l4d2_detonation_force_ghost_mode)))
+		{
+			return 0;
+		}
+	}
+	decl Float:targetPos[3];
+	decl Float:explosionPos[3];
+	decl Float:traceVec[3];
+	decl Float:resultingFling[3];
+	GetEntPropVector(target, PropType:1, "m_vecOrigin", targetPos, 0);
+	GetEntPropVector(explosion, PropType:1, "m_vecOrigin", explosionPos, 0);
+	power -= GetVectorDistance(targetPos, explosionPos, false);
+	if (power < 1.4E-45)
+	{
+		return 0;
+	}
+	MakeVectorFromPoints(explosionPos, targetPos, traceVec);
+	GetVectorAngles(traceVec, resultingFling);
+	resultingFling[0] = Cosine(DegToRad(resultingFling[1])) * power;
+	resultingFling[1] = Sine(DegToRad(resultingFling[1])) * power;
+	resultingFling[2] = power + power * 0.5;
+	if (!isl4d2)
+	{
+		if (GetClientTeam(target) == 2)
+		{
+			new var2;
+			if (GetConVarInt(l4d2_detonation_force_immunity) && GetConVarInt(l4d2_detonation_force_immunity) + 1 == 3)
+			{
+				DamageEffect(target, RoundToNearest(power * GetConVarFloat(l4d2_detonation_scale_damage)));
+				TeleportEntity(target, NULL_VECTOR, NULL_VECTOR, resultingFling);
+			}
+		}
+		else
+		{
+			if (GetClientTeam(target) == 3)
+			{
+				new var3;
+				if (GetConVarInt(l4d2_detonation_force_immunity) && GetConVarInt(l4d2_detonation_force_immunity) + 1 == 2)
+				{
+					DamageEffect(target, RoundToNearest(power * GetConVarFloat(l4d2_detonation_scale_damage)));
+					TeleportEntity(target, NULL_VECTOR, NULL_VECTOR, resultingFling);
+				}
+			}
+		}
+		return 0;
+	}
+	new var4;
+	if (GetClientTeam(target) == 2 && IsVisibleTo(explosionPos, targetPos))
+	{
+		new var5;
+		if (GetConVarInt(l4d2_detonation_force_immunity) && GetConVarInt(l4d2_detonation_force_immunity) + 1 == 3)
+		{
+			DamageEffect(target, RoundToNearest(power * GetConVarFloat(l4d2_detonation_scale_damage)));
+			SDKCall(sdkCallPushPlayer, target, resultingFling, 76, target, 1073741824);
+		}
+	}
+	else
+	{
+		if (GetClientTeam(target) == 3)
+		{
+			new var6;
+			if (GetConVarInt(l4d2_detonation_force_immunity) && GetConVarInt(l4d2_detonation_force_immunity) + 1 == 2)
+			{
+				DamageEffect(target, RoundToNearest(power * GetConVarFloat(l4d2_detonation_scale_damage)));
+				SDKCall(sdkCallPushPlayer, target, resultingFling, 2, target, 1073741824);
+			}
+		}
+	}
+	return 0;
+}
+
+public DamageEffect(target, damage)
+{
+	decl String:sDamage[12];
+	IntToString(damage, sDamage, 12);
+	new pointHurt = CreateEntityByName("point_hurt", -1);
+	DispatchKeyValue(target, "targetname", "hurtme");
+	DispatchKeyValue(pointHurt, "Damage", sDamage);
+	DispatchKeyValue(pointHurt, "DamageTarget", "hurtme");
+	DispatchKeyValue(pointHurt, "DamageType", "65536");
+	DispatchSpawn(pointHurt);
+	AcceptEntityInput(pointHurt, "Hurt", -1, -1, 0);
+	AcceptEntityInput(pointHurt, "Kill", -1, -1, 0);
+	DispatchKeyValue(target, "targetname", "cake");
+	return 0;
+}
+
+bool:IsVisibleTo(Float:position[3], Float:targetposition[3])
+{
+	decl Float:vAngles[3];
+	decl Float:vLookAt[3];
+	MakeVectorFromPoints(position, targetposition, vLookAt);
+	GetVectorAngles(vLookAt, vAngles);
+	new Handle:trace = TR_TraceRayFilterEx(position, vAngles, 16395, RayType:1, _TraceFilter, any:0);
+	new bool:isVisible;
+	if (TR_DidHit(trace))
+	{
+		decl Float:vStart[3];
+		TR_GetEndPosition(vStart, trace);
+		if (GetVectorDistance(position, vStart, false) + 25.0 >= GetVectorDistance(position, targetposition, false))
+		{
+			isVisible = true;
+		}
+	}
+	else
+	{
+		LogError("Tracer Bug: Player-Zombie Trace did not hit anything, WTF");
+		isVisible = true;
+	}
+	CloseHandle(trace);
+	return isVisible;
+}
+
+public bool:_TraceFilter(entity, contentsMask)
+{
+	new var1;
+	if (!entity || !IsValidEntity(entity))
+	{
+		return false;
+	}
+	return true;
+}
+

@@ -578,6 +578,8 @@
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
    - [Последний форк от BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2836700&postcount=27) не компилируется и не работает, если принудительно его скомпилировать.
+> [!WARNING]
+> Временно используется фикс от **3ipka\***
 2. [[L4D1 & L4D2] SI Doors Use (1.0.2) by Mart](https://forums.alliedmods.net/showthread.php?p=2774797)
 3. [[L4D1/L4D2] AI: Hard SI (2.5-2025/8/31) by Breezy & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/AI_HardSI)
    - Зависимости:
