@@ -1,0 +1,33 @@
+"Phrases"
+{
+	"waiting"
+	{
+		"en"		"There is free survivor bot, spectate the bot to takeover"
+		"chi"		"当前有空闲的生还者机器人，旁观该角色以进行接管"
+		"ru"		"Наблюдайте за свободным ботом, чтобы взять контроль над ним"
+	}
+	"can_takeover"
+	{
+		"en"		"Press \"USE\" button (E by default) once to takeover bot"
+		"chi"		"按一次\"使用\"键(默认E)接管当前旁观角色"
+		"ru"		"Нажимите E (\"Использовать\") чтобы взять контроль над ботом"
+	}
+	"game_over_can_not"
+	{
+		"en"		"Game is over, can't takeover bot"
+		"chi"		"当前游戏已结束，无法再接管生还者机器人"
+		"ru"		"Игра окончена, невозможно взять контроль"
+	}	
+	"done"
+	{
+		"en"		"Character selected"
+		"chi"		"已选择接管角色"
+		"ru"		"Персонаж выбран"
+	}
+	"no_free_bot"
+	{
+		"en"		"No free bot character to takeover for now"
+		"chi"		"暂无可供接管的空闲角色"
+		"ru"		"В данный момент нет доступных ботов для переключения"
+	}
+}
