@@ -545,13 +545,13 @@
      - **Votekick**
 
 #### Плагины L4L
-0. [SDK](https://github.com/Nodzimo/L4L-Server/tree/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l)
+0. [SDK](https://github.com/Nodzimo/L4L-Server/tree/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l)
    - Пакет зависимостей для сборки и компиляции всех плагинов L4L из этого списка
    - Содержит в себе следующие зависимости:
-     1. [constants.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/constants.inc)
-     2. [lifecycle.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/lifecycle.inc)
-     3. [utils.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/utils.inc)
-1. [Exec Server Config](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_exec_server_config.sp)
+     1. [constants.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/constants.inc)
+     2. [lifecycle.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/lifecycle.inc)
+     3. [utils.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/utils.inc)
+1. [Exec Server Config](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_exec_server_config.sp)
    - Исполняет специфический для сервера конфиг в зависимости от квары
    - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
    - Если установлена кастомная сложность, то выводит её название в имени сервера.
@@ -560,24 +560,24 @@
      - Плагин **Server namer**
      - Плагин **Vote difficulty**
      - Скрипты **Multi Colors** для компиляции плагина
-2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
+2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
    - Перезаписывает урон от огня по выжившим ботам, в соответствии с установленным значением в кваре.
-3. [Survivor Incap Spawn SI](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_incap_spawn_si.sp)
+3. [Survivor Incap Spawn SI](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_incap_spawn_si.sp)
    - Инкап спавнит особых
    - `l4l_spawn_si`
-4. [Car Alarm Spawn Tank](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_car_alarm_spawn_tank.sp)
+4. [Car Alarm Spawn Tank](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_car_alarm_spawn_tank.sp)
    - Сигналка может заспавнить танка
    - Зависимость: плагин **Left 4 DHooks Direct**
    - `l4l_spawn_tank`
-5. [Witch Scream Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_witch_scream_spawn_mob.sp)
+5. [Witch Scream Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_witch_scream_spawn_mob.sp)
    - Крик ведьмы спавнит орду
-6. [Survivor Death Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_death_spawn_mob.sp)
+6. [Survivor Death Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_death_spawn_mob.sp)
    - Смерть выжившего спавнит орду и ведьму
-7. [Director Spawn SI Limit](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_director_spawn_si_limit.sp)
+7. [Director Spawn SI Limit](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_director_spawn_si_limit.sp)
    - Контролирует лимит особых, которых спавнит режиссёр.
    - `l4l_si_limit`
-8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
-9. [Infected Drop Loot]()
+8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
+9. [Infected Drop Loot](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_infected_drop_loot.sp)
    - Танк и ведьма оставляют лут после смерти
    - Зависимость: плагин **Left 4 DHooks Direct**
 
@@ -716,7 +716,9 @@
 21. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
 22. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
-    - Требуется для **[Improved] Headshot Feedback Effect**
+    - Требуется для следующих аддонов:
+      - **Headshot Feedback Effect**
+      - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
 23. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
 24. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
@@ -730,6 +732,13 @@
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
 28. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
+29. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+    - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
+> [!CAUTION]
+> Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
+30. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+    - Фиксит распространение кислоты на пропсах
+    - Зависимость: аддон **Manacat Common Library**
 
 #### Неактуально
 - Заменён плагином **Votekick**
@@ -752,7 +761,7 @@
 - Заменены V-скриптом **Zero's Behavior Patches**
   - [Smoker insta-grab fix](https://steamcommunity.com/sharedfiles/filedetails/?id=2945656229)
   - [No Fall Stagger Cancel VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3313875830)
-- [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
+- [Common Infected Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_common_infected_damage.sp)
    - Перезаписывает урон от ударов обычных заражённых в соответствии с установленным значением в кваре
    - Зависимость: плагин **Left 4 DHooks Direct**
 > [!CAUTION]
