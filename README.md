@@ -385,6 +385,8 @@
       - **Explosive Cars**
       - **Incapped Weapons Patch**
       - **Tank Rock Bounces**
+      - **All4Dead**
+      - **Manual-Spawn Special Infected**
 15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -521,6 +523,20 @@
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
 44. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
     - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
+45. [All4Dead (3.9-2024/3/30) by James Richardson (grandwazir) & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/all4dead2)
+    - Добавляет в админку спавн оружия, предметов, зомби и запуск паник ивентов
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Manual-Spawn Special Infected**
+      - Скрипты **Multi Colors** для компиляции плагина
+    - Команды:
+      - `!a4d_force_panic`
+      - `!a4d_panic_forever`
+46. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
+    - API для спавна особых без ограничений режиссёра
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - Требуется для плагина **All4Dead**
+    - `!sm_mdzs`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
