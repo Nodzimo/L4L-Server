@@ -9,7 +9,7 @@ Platform/Windows/SteamCMD/**
 
 Keys
 Source/Maps
-Source/Test
+Source/Raw
 Setup/02. Shared/maps
 Client/**
 !Client/L4D2.bat
