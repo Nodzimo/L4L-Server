@@ -69,4 +69,17 @@ void Event_SurvivorDeath(Event event, const char[] name, bool dontBroadcast)
     if (g_iCvarDebug) PrintToChatAll("%s Event_SurvivorDeath \x04%s \x05%s", DEBUG_TAG, GetName(client), name);
 
     SpawnMob(client, g_iCvarDebug);
+    SpawnWitch(client, g_iCvarDebug);
+}
+
+void SpawnWitch(int client, int count = DEFAULT_SPAWN_COUNT)
+{
+    for (int i = 0; i < count; i++)
+    {
+        if (g_iCvarDebug) PrintToChatAll("%s SpawnWitch \x04%s", DEBUG_TAG, GetName(client));
+
+        char argument[MAX_ARGUMENT_LENGTH];
+        Format(argument, sizeof argument, "witch %s", SPAWN_ARGUMENT_AUTO);
+        ExecuteCheat(client, SPAWN_COMMAND_OLD, argument, g_iCvarDebug);
+    }
 }

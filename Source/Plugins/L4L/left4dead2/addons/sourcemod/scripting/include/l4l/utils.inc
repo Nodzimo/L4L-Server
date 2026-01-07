@@ -149,3 +149,13 @@ int GetInfectedLimit(int arguments, int g_iCvarInfectedLimit)
 
     return DEFAULT_SI_LIMIT;
 }
+
+int GetEventAttacker(Event event)
+{
+    return GetClientOfUserId(event.GetInt("attacker"));
+}
+
+bool IsClientAttacker(int client, int attacker)
+{
+    return client == attacker;
+}

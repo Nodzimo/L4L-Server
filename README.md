@@ -379,6 +379,7 @@
       - **VS Auto-spectate on AFK**
       - **L4L: Car Alarm Spawn Tank**
       - **L4L: Common Infected Damage**
+      - **L4L: Infected Drop Loot**
       - **AI: Hard SI**
       - **Explosive Cars**
       - **Incapped Weapons Patch**
@@ -585,11 +586,14 @@
 5. [Witch Scream Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_witch_scream_spawn_mob.sp)
    - Крик ведьмы спавнит орду
 6. [Survivor Death Spawn Mob](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_death_spawn_mob.sp)
-   - Смерть выжившего спавнит орду
+   - Смерть выжившего спавнит орду и ведьму
 7. [Director Spawn SI Limit](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_director_spawn_si_limit.sp)
    - Контролирует лимит особых, которых спавнит режиссёр.
    - `l4l_si_limit`
 8. [Hide Kill Feed](https://github.com/Nodzimo/L4L-Server/blob/main/Source/Plugins/L4L/left4dead2/addons/sourcemod/scripting/l4l_hide_kill_feed.sp)
+9. [Infected Drop Loot]()
+   - Танк и ведьма оставляют лут после смерти
+   - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
