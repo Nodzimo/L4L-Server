@@ -343,20 +343,18 @@
 >
 > Сейчас это происходит моментально, без возможности быстро перезайти на сервер при необходимости.
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
-7. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
-   - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
-8. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
+7. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
    - Смена режима во время игры: мутации, кооперативные и соревновательные режимы, и многие другие.
    - Опционально: плагин **Mission and Weapons - Info Editor** для загрузки корректной карты при смене режимов Survival/Scavenge
    - Опционально: клиентский V-скрипт **Rayman1103's Mutation Mod** - кастомные мутации, чтобы можно было переключаться на них во время игры
    - `sm_votemode`
-9. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
+8. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
-10. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
+9.  [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
     - Зависимость: плагин **ThirdPersonShoulder Detect**
-11. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
+10. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
     - Требуется для плагина **ThirdPersonShoulder Shotgun Sound Fix**
-12. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
+11. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
     - Оповестительные сообщения в чате при входе/выходе игроков
     - Для рядовых игроков показывается краткая информация: страна и причина отключения
     - Для админов выводятся подробности: страна, регион, город, причина отключения, Steam ID, IP.
@@ -364,7 +362,7 @@
       - Скрипты **Multi Colors** для компиляции плагина
       - База геоданных **GeoIP2 GeoLite2**
     - `sm_geolist`
-13. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
+12. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Библиотека с интеграцией **SteamWorks** для проверки подписки/прав игрока в Steam группе
     - Зависимость: расширение **SteamWorks**
     - `Failed to auto generate config for SWGM.smx, make sure the directory has write permission.`
@@ -373,7 +371,7 @@
     - Форкнул: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
 > [!IMPORTANT]
 > Надо написать плагин с приветственными/информационными сообщениями для игроков, которые не подписаны на группу.
-14. [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
+1.  [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
     - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
     - Требуется для следующих плагинов:
       - **Drop Secondary**
@@ -387,10 +385,10 @@
       - **Tank Rock Bounces**
       - **All4Dead**
       - **Manual-Spawn Special Infected**
-15. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
+2.  [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
-16. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
+3.  [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
     - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
     - Пока нет форка: стоит блокировка на дроп всего второстепенного оружия
 > [!IMPORTANT]
@@ -757,6 +755,9 @@
 > **Критический баг:** иногда удар зомби моментально убивает выжившего без ЧБ
 >
 > Точно [такой же баг происходит](https://forums.alliedmods.net/showthread.php?t=335442), если менять урон со спины нативной кварой.
+- Заменён V-скриптом **Item giver**
+  - [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
+    - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
