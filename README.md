@@ -350,7 +350,7 @@
    - `sm_votemode`
 8. [[L4D & L4D2] Mission and Weapons - Info Editor (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
-9.  [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
+9. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
     - Зависимость: плагин **ThirdPersonShoulder Detect**
 10. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
     - Требуется для плагина **ThirdPersonShoulder Shotgun Sound Fix**
@@ -371,7 +371,7 @@
     - Форкнул: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
 > [!IMPORTANT]
 > Надо написать плагин с приветственными/информационными сообщениями для игроков, которые не подписаны на группу.
-1.  [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
+13. [[L4D & L4D2] Left 4 DHooks Direct (1.159) by SilverShot](https://forums.alliedmods.net/showthread.php?t=321696)
     - Главная зависимость для подавляющего большинства других плагинов и разработки своих. Иногда из-за обновлений игры (даже в пару килобайт) этот плагин ломается, а вместе с ним отваливается половина других плагинов и всё сообщество ждёт от автора фикса.
     - Требуется для следующих плагинов:
       - **Drop Secondary**
@@ -385,10 +385,10 @@
       - **Tank Rock Bounces**
       - **All4Dead**
       - **Manual-Spawn Special Infected**
-2.  [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
+14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
-3.  [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
+15. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
     - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
     - Пока нет форка: стоит блокировка на дроп всего второстепенного оружия
 > [!IMPORTANT]
@@ -396,40 +396,40 @@
 
 > [!WARNING]
 > Временно используется форк со старого L4L
-17. [Server namer (3.2) by sheo](https://forums.alliedmods.net/showthread.php?p=2030557)
+16. [Server namer (3.2) by sheo](https://forums.alliedmods.net/showthread.php?p=2030557)
     - Динамически меняет имя сервера в зависимости от условий:
       1. Если сервер пустой, то в его имени выводится название, номер и сборка: `Vanilla`, `Legacy`, `LMBX`, `Test`, `Dev`.
       2. Если на сервере запущена игра, то в его имени выводится: название, номер, сборка, режим игры и сложность (если режим поддерживает разные уровни сложности).
     - Опционален для плагина **L4L: Exec Server Config**
-18. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
+17. [[ANY] Vote server restart (1.2) by Dragokas](https://forums.alliedmods.net/showthread.php?t=328812)
     - Голосование за рестарт сервера
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_restart`
-19. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
+18. [[L4D & L4D2] Survivor Shove (1.17) by SilverShot](https://forums.alliedmods.net/showthread.php?t=318694)
     - Даёт возможность прикладить выживших и настраивать права на это действие
     - `Shove + Use`
-20. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
+19. [[L4D2] UpgradePack Gives Ammo (1.0) by NoroHime](https://forums.alliedmods.net/showthread.php?p=2805168)
     - Апгрейды патронов полностью восполняют амуницию оружия (1 раз)
-21. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
+20. [[L4D1 & L4D2] SM Respawn Improved (3.9) by AtomicStryker & Ivailosp (Modified by Crasher, SilverShot), fork by Dragokas](https://forums.alliedmods.net/showthread.php?t=323220)
     - Добавляет в админку респавн персонажей по прицелу
 > [!CAUTION]
 > Если в коопе зареспавнить себя за сторону заразы, то сервер крашится, по крайней мере локальный на винде
-22. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
+21. [[L4D2] Shove Direction Fix by BHaType](https://forums.alliedmods.net/showthread.php?t=319988)
     - Кидает зомби в сторону удара прикладом
     - Зависимость: расширение **Actions**
-23. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
+22. [Warp survivor bots to current player survivor 1.2](https://forums.alliedmods.net/showthread.php?p=2834929)
     - Телепортирует всех ботов разом к игроку
     - `sm_warpbots`
-24. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
+23. [[L4D1/2] Admin Force Pause (1.7-2025/9/11) by pvtschlag, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/12dd7560433bf4a097826c98770e0c5e3685e354/l4d2pause)
     - Позволяет админу ставить онлайн-игру на паузу
     - Зависимость: **Multi Colors**
     - `sm_forcepause`
-25. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
+24. [[L4D & L4D2] Bot Healing Values (2.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=338889)
     - Контролирует использование медикаментов ботами
     - Зависимости:
       - Рекомендуемо: расширение **Source Scramble**
       - Опционально: расширение **Actions**
-26. [[L4D(2)] AFK and Join Team Commands Improved (5.5-2025/1/3) by MasterMe & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_afk_commands)
+25. [[L4D(2)] AFK and Join Team Commands Improved (5.5-2025/1/3) by MasterMe & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_afk_commands)
     - Мультикомбайн: всё (и не только), что связано с АФК, сменой команды и абьюзом бездействия.
     - Зависимости:
       - Расширение **Actions**
@@ -441,30 +441,30 @@
       - `sm_join`
       - `sm_zs`
         - Суицид выжившего, например: если он где-то застрянет в безвыходной ситуации.
-27. [[L4D1/2] VS Auto-spectate on AFK (2.6-2025/2/12) by djromero (SkyDavid, David Romero) & Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/L4DVSAutoSpectateOnAFK)
+26. [[L4D1/2] VS Auto-spectate on AFK (2.6-2025/2/12) by djromero (SkyDavid, David Romero) & Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/L4DVSAutoSpectateOnAFK)
     - Закидывает в наблюдателей игрока, который бездействует, а затем кикает его по истечению установленного времени.
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
       - Плагин **AFK and Join Team Commands Improved**, потому что без него будет закидывать в наблюдателей без возможности вернуться в игру, командой **sm_join**.
-28. [[L4D & L4D2] Witch fixes [Left 4 Fix]](https://forums.alliedmods.net/showthread.php?p=2647014)
+27. [[L4D & L4D2] Witch fixes [Left 4 Fix]](https://forums.alliedmods.net/showthread.php?p=2647014)
     - Набор фиксов ведьмы в одном комплекте, примеры: не теряет случайно цель, не теряет цель в убежище, не триггерится дважды и так далее.
-29. [Witch Pipebomb exploit fix & Death Optmizer (1.0) by Lux](https://forums.alliedmods.net/showthread.php?t=342000)
+28. [Witch Pipebomb exploit fix & Death Optmizer (1.0) by Lux](https://forums.alliedmods.net/showthread.php?t=342000)
     - Фикс бага, когда ведьма исчезает от взрыва пайпы в толпе обычных заражённых.
-30. [l4d witch realism door fix (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_realism_door_fix)
+29. [l4d witch realism door fix (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_realism_door_fix)
     - Фикс бага, когда ведьма не может разбить дверь
-31. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
+30. [[L4D2] Charger_Collision_Patch (2.0.1) by Lux](https://forums.alliedmods.net/showthread.php?t=315482)
     - Фикс бага, когда гром не может пробиться сквозь толпу выживших и останавливается из-за этого
     - Зависимость: расширение **Source Scramble**
-32. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
+31. [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
-33. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
-34. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
+32. [Simple Anti-Bunnyhop (0.5.1) by CanadaRox, ProdigySim, blodia, CircleSquared, robex, A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_nobhaps.sp)
+33. [Discord API (0.1.107) by Deathknife](https://github.com/Cruze03/sourcemod-discord)
     - Зависимости:
       - Расширение **SMJansson**
       - Расширение **SteamWorks**
     - Требуется для плагина **Discord Utilities**
-35. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
+34. [Discord Utilities (2.9.4-BETA) by Cruze](https://forums.alliedmods.net/showthread.php?t=326713)
     - Документация:
       - [Installation](https://github.com/Cruze03/discord-utilities/wiki/Installation)
       - [Collect Required Things](https://github.com/Cruze03/discord-utilities/wiki/Collect-Required-Things)
@@ -477,7 +477,7 @@
       - Расширение **SteamWorks**
     - Опционально: **SourceBans++**
     - `sm_viewid`
-36. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
+35. [SourceBans++ Main Plugin (1.8.5) by SourceBans Development Team, SourceBans++ Dev Team](https://sbpp.github.io)
     - [Quickstart](https://sbpp.github.io/docs/quickstart)
     - `[sbpp_main.smx] Verify Insert Query Failed: Column 'sid' cannot be null`
       - Прописать в конфиг сервера его ID из [веб-панели SourceBans++](https://bans.l4l.su)
@@ -494,34 +494,34 @@
       - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой:
         - `Fatal error encountered parsing translation file "basebans.phrases.txt"`
     - Опционально: плагин **SourceBans++ Discord Plugin** (заменён плагином **Discord Utilities**)
-37. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
+36. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
     - Голосование за смену сложности с возможностью добавления кастомных сложностей
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - Опционален для плагина **L4L: Exec Server Config**
     - `sm_vd`
 > [!IMPORTANT]
 > Используется мой форк, в котором исправлен сброс выбранной в меню кастомной сложности после смены карты.
-38. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
+37. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
     - Менеджер киков с оповещением админа, которого пытаются кикнуть.
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vk`
-39. [Bot Takeover (4.5) by little_froy](https://forums.alliedmods.net/showthread.php?t=346636)
+38. [Bot Takeover (4.5) by little_froy](https://forums.alliedmods.net/showthread.php?t=346636)
     - Позволяет после смерти взять свободного бота, нажатием кнопки действия: `E`
-40. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
+39. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
     - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
-41. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
-42. [[ANY] ConVars Anomaly Fixer (1.14 beta) by Dragokas](https://forums.alliedmods.net/showthread.php?t=307804)
+40. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
+41. [[ANY] ConVars Anomaly Fixer (1.14 beta) by Dragokas](https://forums.alliedmods.net/showthread.php?t=307804)
     - Фиксит баг на линукс-сервере с большим количеством конфигов, из-за которого переменные сбрасываются на свои дефолтные значения, не зависимо от установленных значений в конфигах.
     - Пример: у ванильного сервера одна установочная директория и много инстансов, которые ещё и на хардкорную сложность могут переключаться. Соответственно, в одной установочной директории появляется очень много конфигов, что *(на линуксе?)* приводит к *(рандомному?)* сбросу установленных значений кваров на их дефолт. Таким образом плагин **Restart Empty Server** игнорировал свой конфиг и моментально перезагружал пустой сервер, что в некоторых случаях заканчивалось крашем и некорректным сбросом карты.
     - Команды:
       - `sm_convar_anomaly_show`
       - `sm_convar_anomaly_fix`
-43. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
+42. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
     - Добавляет команду `sm_acvar`, которую можно использовать вместо `sm_cvar`, чтобы скрыть изменение кваров в игровом чате для всех.
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
-44. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
+43. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
     - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
-45. [All4Dead (3.9-2024/3/30) by James Richardson (grandwazir) & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/all4dead2)
+44. [All4Dead (3.9-2024/3/30) by James Richardson (grandwazir) & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/all4dead2)
     - Добавляет в админку спавн оружия, предметов, зомби и запуск паник ивентов
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
@@ -530,7 +530,7 @@
     - Команды:
       - `!a4d_force_panic`
       - `!a4d_panic_forever`
-46. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
+45. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
     - API для спавна особых без ограничений режиссёра
     - Зависимость: плагин **Left 4 DHooks Direct**
     - Требуется для плагина **All4Dead**
@@ -904,6 +904,6 @@
 - `An error occurred while attempting to download a file from the UGC server!`
    - Временная проблема на стороне Steam, обычно исправляют в течение нескольких дней
    - Некоторым помогают стандартные процедуры: чистка кэша загрузок в Steam, инвалидация/переустановка игры, сброс облачной синхронизации файлов игры и тому подобное.
-   - Также может помочь переключение Steam клиента с бета версии на стабильную, потому что эта ошибка обычно прилетает с обновлениями, которые сначала раскатывают на бета версию, а затем на стабильную. Словив ошибку на бета версии, можно переключиться на стабильную, на которой обновления с ошибкой ещё нет.  
+   - Также может помочь переключение Steam клиента с бета версии на стабильную, потому что эта ошибка обычно прилетает с обновлениями, которые сначала раскатывают на бета версию, а затем на стабильную. Словив ошибку на бета версии, можно переключиться на стабильную, на которой обновления с ошибкой ещё нет.
 - [Как передать управление группой](https://steamcommunity.com/discussions/forum/26/1291817837640449310)
 - **Branding image** в Steam-коллекции поддерживает следующие форматы: **JPEG**, **GIF**, **PNG**.
