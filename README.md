@@ -38,7 +38,7 @@
       - [Зависимости](#зависимости)
       - [Плагины L4L](#плагины-l4l)
       - [Хардкор](#хардкор)
-      - [Плагины для разработки и тестирования](#плагины-для-разработки-и-тестирования)
+      - [Плагины для разработки, отладки и тестирования](#плагины-для-разработки-отладки-и-тестирования)
       - [Сезонное](#сезонное)
       - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
       - [Репозитории плагинов](#репозитории-плагинов)
@@ -522,20 +522,6 @@
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
 43. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
     - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
-44. [All4Dead (3.9-2024/3/30) by James Richardson (grandwazir) & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/all4dead2)
-    - Добавляет в админку спавн оружия, предметов, зомби и запуск паник ивентов
-    - Зависимости:
-      - Плагин **Left 4 DHooks Direct**
-      - Плагин **Manual-Spawn Special Infected**
-      - Скрипты **Multi Colors** для компиляции плагина
-    - Команды:
-      - `!a4d_force_panic`
-      - `!a4d_panic_forever`
-45. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
-    - API для спавна особых без ограничений режиссёра
-    - Зависимость: плагин **Left 4 DHooks Direct**
-    - Требуется для плагина **All4Dead**
-    - `!sm_mdzs`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -622,11 +608,25 @@
    - Зомби прыгают как в **World War Z**
    - Зависимость: расширение **Actions**
 
-#### Плагины для разработки и тестирования
+#### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
 2. [[DEV] Autoreload plugins (1.16) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?p=2686825)
    - Горячая перезагрузка плагина при его добавлении/компиляции/удалении
+3. [All4Dead (3.9-2024/3/30) by James Richardson (grandwazir) & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/all4dead2)
+    - Добавляет в админку спавн оружия, предметов, зомби и запуск паник ивентов
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Manual-Spawn Special Infected**
+      - Скрипты **Multi Colors** для компиляции плагина
+    - Команды:
+      - `!a4d_force_panic`
+      - `!a4d_panic_forever`
+4. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
+    - API для спавна особых без ограничений режиссёра
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - Требуется для плагина **All4Dead**
+    - `!sm_mdzs`
 
 #### Сезонное
 - **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
