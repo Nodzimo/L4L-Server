@@ -534,6 +534,9 @@
     - [Solved CSGO Server crash / linux-gate.so!__kernel_vsyscall + 0x9](https://forums.alliedmods.net/showthread.php?t=318745)
 47. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
     - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7) с ошибкой `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
+    - Связанное:
+      - [Solved [L4D2] Crashes on L4D1 maps (UTIL_SetModel: not precached)](https://forums.alliedmods.net/showthread.php?t=336337)
+      - [[L4D2] Model Precacher](https://forums.alliedmods.net/showthread.php?t=129990)
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
