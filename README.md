@@ -522,6 +522,8 @@
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
 43. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
     - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
+44. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
+    - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -767,9 +769,6 @@
 > **Критический баг:** иногда удар зомби моментально убивает выжившего без ЧБ
 >
 > Точно [такой же баг происходит](https://forums.alliedmods.net/showthread.php?t=335442), если менять урон со спины нативной кварой.
-- Заменён V-скриптом **Item giver**
-  - [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
-    - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
 - [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
   - Крашит сервер: [KERNELBASE.dll!RaiseException + 0x64](https://crash.limetech.org/i23jvcx2jzb5)
   - Консоль: `CLagCompensationManager::StartLagCompensation with NULL CUserCmd!!!`
