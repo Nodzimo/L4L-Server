@@ -319,6 +319,9 @@
      - **Discord Utilities**
 6. [NEO cURL Extension (2.0.1)](https://forums.alliedmods.net/showthread.php?t=343355)
    - Позволяет SourceMod-плагинам делать запросы в интернет
+7. [CUtlRBTree overflow fix (0.3.1): Fix CUtlRBTree overflow](https://github.com/fdxx/cutlrbtreefix)
+   - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/xqtbyrgkbhyy) с ошибкой `CUtlRBTree overflow!`
+   - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
 
 ### SourceMod плагины
 [Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
@@ -831,10 +834,6 @@
 2. [The Ultimate Mod Testing and Reviewing Area - Main Files](https://steamcommunity.com/sharedfiles/filedetails/?id=469986973)
 
 ### Краши
-- [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/xqtbyrgkbhyy)
-  - `CUtlRBTree overflow!`
-    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
-    - [CUtlRBTree fix](https://github.com/fdxx/cutlrbtreefix)
   - `ED_Alloc: no free edicts`
     - [Solved [Help] L4D2 Linux server always auto crashed](https://forums.alliedmods.net/showthread.php?t=332505)
 - [linux-gate.so!__kernel_vsyscall + 0x9](https://crash.limetech.org/jlmme6wwlhrb)
