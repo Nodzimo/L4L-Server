@@ -378,14 +378,15 @@ public Action CheckVote(int client, char[] command, int args)
         GetCmdArg(1, s, sizeof(s));
         if (StrEqual(s, "ChangeDifficulty", false))
         {
-            if (args >= 2)
-            {
-                GetCmdArg(2, s, sizeof(s));
-                VoteDifficulty(client, s);
-            }
-            else {
+            // if (args >= 2)
+            // {
+                // GetCmdArg(2, s, sizeof(s));
+                // VoteDifficulty(client, s);
+            // }
+            // else {
                 Menu_Difficulty(client);
-            }
+            // }
+
             return Plugin_Stop;
         }
     }
