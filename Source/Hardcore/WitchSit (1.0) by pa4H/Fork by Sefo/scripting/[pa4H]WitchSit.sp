@@ -1,59 +1,90 @@
-#include <sourcemod>
+#include <l4l/utils>
+#include <l4l/lifecycle>
 #include <left4dhooks>
 
-float origin[3];
-float angles[3];
+float  origin[3];
+float  angles[3];
 
-public Plugin myinfo = 
+ConVar g_hCvarEnable;
+
+public Plugin myinfo =
 {
-	name = "WitchSit", 
-	author = "pa4H", 
-	description = "Witch sits down after kill", 
-	version = "1.0", 
-	url = "https://t.me/pa4H232"
-}
+    name        = "WitchSit",
+    author      = "pa4H",
+    description = "Witch sits down after kill",
+    version     = "1.0",
+    url         = "https://t.me/pa4H232"
+};
 
 public OnPluginStart()
 {
-	//RegConsoleCmd("sm_test", debb, "");
-	HookEvent("player_death", player_death);
+    g_hCvarEnable = CreateConVar("l4l_witch_stops_after_kill_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
+
+    CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
+    AutoExecConfig(true, "l4l_witch_stops_after_kill", "sourcemod/l4l_plugins");
+
+    g_hCvarEnable.AddChangeHook(CvarChanged_Enable);
 }
-stock Action debb(int client, int args) // DEBUG
+
+public void OnConfigsExecuted()
 {
-	return Plugin_Handled;
+    L4L_LC_OnConfigsExecuted(g_hCvarEnable.BoolValue);
 }
+
+void CvarChanged_Enable(ConVar cvar, const char[] oldValue, const char[] newValue)
+{
+    L4L_LC_OnEnableChanged(g_hCvarEnable.BoolValue);
+}
+
+void CvarChanged_Cvars(ConVar cvar, const char[] oldValue, const char[] newValue)
+{
+    L4L_LC_OnCvarsChanged();
+}
+
+void L4L_ReadCvars() {}
+
+void L4L_Hook()
+{
+    HookEvent(EVENT_PLAYER_DEATH, player_death);
+}
+
+void L4L_Unhook()
+{
+    UnhookEvent(EVENT_PLAYER_DEATH, player_death);
+}
+
 public Action player_death(Handle hEvent, char[] strName, bool DontBroadcast)
 {
-	int witch = GetEventInt(hEvent, "attackerentid");
-	int victim = GetClientOfUserId(GetEventInt(hEvent, "userid"));
-	if (IsWitch(witch) && victim > 0)
-	{
-		GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
-		GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
-		RemoveEdict(witch);
-		CreateTimer(0.1, RestoreWitch, _, TIMER_FLAG_NO_MAPCHANGE);
-	}
-	return Plugin_Continue;
+    int witch  = GetEventInt(hEvent, "attackerentid");
+    int victim = GetClientOfUserId(GetEventInt(hEvent, "userid"));
+
+    if (IsWitch(witch) && victim > 0)
+    {
+        GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
+        GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
+        RemoveEdict(witch);
+        CreateTimer(0.1, RestoreWitch, _, TIMER_FLAG_NO_MAPCHANGE);
+    }
+
+    return Plugin_Continue;
 }
+
 public Action RestoreWitch(Handle timer)
 {
-	L4D2_SpawnWitch(origin, angles);
-	return Plugin_Stop;
+    L4D2_SpawnWitch(origin, angles);
+
+    return Plugin_Stop;
 }
+
 bool IsWitch(entity)
 {
     if (entity > 0 && IsValidEntity(entity) && IsValidEdict(entity))
     {
         char strClassName[64];
         GetEdictClassname(entity, strClassName, sizeof(strClassName));
+
         return StrEqual(strClassName, "witch");
     }
+
     return false;
 }
-stock bool IsValidClient(client)
-{
-	if (client > 0 && client <= MaxClients && IsClientInGame(client) && IsClientConnected(client) && !IsFakeClient(client)) {
-		return true;
-	}
-	return false;
-} 

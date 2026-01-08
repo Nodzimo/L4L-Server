@@ -389,6 +389,7 @@
       - **Tank Rock Bounces**
       - **All4Dead**
       - **Manual-Spawn Special Infected**
+      - **WitchSit**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -623,6 +624,10 @@
    - Зомби прыгают как в **World War Z**
    - Зависимость: расширение **Actions**
 9. [WitchSit (1.0) by pa4H](https://github.com/pa4H/L4D2-pa4H-Plugins/tree/main/L4D2-Plugins/WitchSit)
+   - Ведьма успокаивается после убийства выжившего
+   - Зависимость: плагин **Left 4 DHooks Direct**
+> [!IMPORTANT]
+> Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
