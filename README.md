@@ -622,6 +622,7 @@
 8. [[L4D2] Common Infected Dynamic Jump (1.1) by BHaType](https://forums.alliedmods.net/showthread.php?t=343978)
    - Зомби прыгают как в **World War Z**
    - Зависимость: расширение **Actions**
+9. [WitchSit (1.0) by pa4H](https://github.com/pa4H/L4D2-pa4H-Plugins/tree/main/L4D2-Plugins/WitchSit)
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -690,6 +691,7 @@
 - [LuxLuma / Left-4-fix](https://github.com/LuxLuma/Left-4-fix)
   - Репозиторий с набором фиксов от сообщества
 - [NanakaNeko / l4d2_plugins_coop](https://github.com/NanakaNeko/l4d2_plugins_coop)
+- [pa4H / L4D2-pa4H-Plugins](https://github.com/pa4H/L4D2-pa4H-Plugins)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
