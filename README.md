@@ -538,6 +538,8 @@
     - Связанное:
       - [Solved [L4D2] Crashes on L4D1 maps (UTIL_SetModel: not precached)](https://forums.alliedmods.net/showthread.php?t=336337)
       - [[L4D2] Model Precacher](https://forums.alliedmods.net/showthread.php?t=129990)
+48. [[L4D2] Script Command Swap - Mem Leak Fix (1.0) by SilverShot (Timocop's idea)](https://forums.alliedmods.net/showthread.php?t=317128)
+    - Фиксит утечки памяти из-за системы V-скриптов
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
