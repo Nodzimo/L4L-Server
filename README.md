@@ -532,6 +532,8 @@
 46. [SendFile Exploit Fix (v3.3) (3.3) by backwards](https://forums.alliedmods.net/showthread.php?t=317120)
     - Фиксит краш [linux-gate.so!__kernel_vsyscall + 0x9](https://crash.limetech.org/jlmme6wwlhrb)
     - [Solved CSGO Server crash / linux-gate.so!__kernel_vsyscall + 0x9](https://forums.alliedmods.net/showthread.php?t=318745)
+47. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
+    - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7) с ошибкой `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -840,8 +842,6 @@
 - `ED_Alloc: no free edicts`
   - [Solved [Help] L4D2 Linux server always auto crashed](https://forums.alliedmods.net/showthread.php?t=332505)
 - [server_srv.so!CTerrorWeaponInfo::Reload() + 0x44](https://crash.limetech.org/g2mocvxlgujt)
-- [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7)
-  - `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
 
 ### Баги
 - После рестарта все мертвы или появляются "под землёй"
