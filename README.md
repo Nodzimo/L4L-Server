@@ -708,35 +708,34 @@
 13. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
 14. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 15. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
-16. [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
-17. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
-18. [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
-19. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
-20. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
-21. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+16. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
+17. [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
+18. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+19. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+20. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
-22. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+21. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для следующих аддонов:
       - **Headshot Feedback Effect**
       - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
-23. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
-24. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
-25. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+22. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
+23. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+24. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
-26. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+25. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-27. **Melee More Hitrays by Lombaxtard**
+26. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-28. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+27. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
-29. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+28. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-30. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+29. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
 
@@ -771,6 +770,9 @@
 - Заменён V-скриптом **Item giver**
   - [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
     - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
+- [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
+  - Крашит сервер: [KERNELBASE.dll!RaiseException + 0x64](https://crash.limetech.org/i23jvcx2jzb5)
+  - Консоль: `CLagCompensationManager::StartLagCompensation with NULL CUserCmd!!!`
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
