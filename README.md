@@ -524,6 +524,8 @@
     - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
 44. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
     - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
+45. [Weapon Give No Auto Switch (1.13) by little_froy](https://forums.alliedmods.net/showthread.php?t=341173)
+    - Второстепенная медицина не берётся автоматически в руки при передаче
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
