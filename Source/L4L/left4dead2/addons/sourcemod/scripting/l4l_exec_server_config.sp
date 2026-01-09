@@ -83,6 +83,13 @@ static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
         return;
     }
 
+    if (cvar == g_hCvarDifficultyEx
+        && StrEqual(newVal, IMPOSSIBLE_PLUS, false)
+        && !StrEqual(oldVal, IMPOSSIBLE_PLUS, false))
+    {
+        MarkCurrentPlayersAsSeen();
+    }
+
     char difficultyEx[32];
     g_hCvarDifficultyEx.GetString(difficultyEx, sizeof(difficultyEx));
 
@@ -124,10 +131,7 @@ public void OnClientPostAdminCheck(int client)
         return;
     }
 
-    char authId[MAX_AUTHID_LENGTH];
-    GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId));
-
-    if (!g_smSeenAuthIds.SetValue(authId, true, false))
+    if (!MarkClientAsSeen(client))
     {
         return;
     }
@@ -159,7 +163,34 @@ static void OnPlayerDisconnect(Event event, const char[] name, bool dontBroadcas
     if (client > 0)
     {
         char authId[MAX_AUTHID_LENGTH];
-        GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId));
-        g_smSeenAuthIds.Remove(authId);
+
+        if (GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId)))
+        {
+            g_smSeenAuthIds.Remove(authId);
+        }
+    }
+}
+
+static bool MarkClientAsSeen(int client)
+{
+    if (!IsClientInGame(client) || IsFakeClient(client))
+    {
+        return false;
+    }
+
+    char authId[MAX_AUTHID_LENGTH];
+    if (!GetClientAuthId(client, AuthId_Engine, authId, sizeof(authId)))
+    {
+        return false;
+    }
+
+    return g_smSeenAuthIds.SetValue(authId, true, false);
+}
+
+static void MarkCurrentPlayersAsSeen()
+{
+    for (int client = 1; client <= MaxClients; client++)
+    {
+        MarkClientAsSeen(client);
     }
 }
