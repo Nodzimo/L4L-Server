@@ -598,6 +598,11 @@
 9. [Infected Drop Loot](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_infected_drop_loot.sp)
    - Танк и ведьма оставляют лут после смерти
    - Зависимость: плагин **Left 4 DHooks Direct**
+10. [Upgrade Ammo Spawn Minigun]()
+    - Разложенные разрывные патроны ставят рядом с собой стационарный пулемёт, а зажигалки - миниган.
+    - Плагины-референсы:
+      - **Weapon/Zombie Spawner**
+      - [[L4D2] Upgrade Packs with Ammo](https://forums.alliedmods.net/showthread.php?t=322955)
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
