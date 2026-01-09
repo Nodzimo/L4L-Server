@@ -753,13 +753,11 @@
 26. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-27. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
-    - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
-28. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+27. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-29. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+28. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
 
@@ -794,6 +792,10 @@
 - [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
   - Крашит сервер: [KERNELBASE.dll!RaiseException + 0x64](https://crash.limetech.org/i23jvcx2jzb5)
   - Консоль: `CLagCompensationManager::StartLagCompensation with NULL CUserCmd!!!`
+- [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+  - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
+> [!CAUTION]
+> **Критический баг:** игрок *"застревает"* после поднятия инкапнутого, оставаясь с видом от третьего лица без возможности передвигаться.
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
