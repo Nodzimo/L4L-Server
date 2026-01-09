@@ -630,6 +630,11 @@
    - Зависимость: плагин **Left 4 DHooks Direct**
 > [!IMPORTANT]
 > Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
+> Также в форке исправлены следующие краши:
+>
+> Винда: [engine.dll + 0x2106ad](https://crash.limetech.org/brhm6hflxzdy)
+>
+> Линукс: [engine_srv.so!CM_GetCollideableTriggerTestBox(ICollideable*, Vector*, Vector*, bool) + 0x90](https://crash.limetech.org/cnfnvs4w26wr)
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

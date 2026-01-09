@@ -18,7 +18,13 @@ public Plugin myinfo =
 
 public OnPluginStart()
 {
-    g_hCvarEnable = CreateConVar("l4l_witch_stops_after_kill_enable", "0", "0 = Plugin off, 1 = Plugin on", CVAR_FLAGS, true, float(DISABLE), true, float(ENABLE));
+    g_hCvarEnable = CreateConVar(
+        "l4l_witch_stops_after_kill_enable",
+        "0",
+        "0 = Plugin off, 1 = Plugin on",
+        CVAR_FLAGS,
+        true, float(DISABLE),
+        true, float(ENABLE));
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
     AutoExecConfig(true, "l4l_witch_stops_after_kill", "sourcemod/l4l_plugins");
@@ -58,13 +64,15 @@ public Action player_death(Handle hEvent, char[] strName, bool DontBroadcast)
     int witch  = GetEventInt(hEvent, "attackerentid");
     int victim = GetClientOfUserId(GetEventInt(hEvent, "userid"));
 
-    if (IsWitch(witch) && victim > 0)
+    if (victim <= 0 || !IsWitch(witch))
     {
-        GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
-        GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
-        RemoveEdict(witch);
-        CreateTimer(0.1, RestoreWitch, _, TIMER_FLAG_NO_MAPCHANGE);
+        return Plugin_Continue;
     }
+
+    GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
+    GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
+    AcceptEntityInput(witch, "Kill");
+    CreateTimer(0.1, RestoreWitch, _, TIMER_FLAG_NO_MAPCHANGE);
 
     return Plugin_Continue;
 }
