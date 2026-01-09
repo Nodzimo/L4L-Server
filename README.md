@@ -642,6 +642,8 @@
 > Линукс: [engine_srv.so!CM_GetCollideableTriggerTestBox(ICollideable*, Vector*, Vector*, bool) + 0x90](https://crash.limetech.org/cnfnvs4w26wr)
 10. [[L4D2] Stumble - Grenade Launcher (2.4) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322063)
     - Граник станит заразу и выживших
+11. [[L4D2] Charger Actions (1.15) by SilverShot](https://forums.alliedmods.net/showthread.php?t=309321)
+    - Добавляет новые способности грому и расширяет существующие
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
