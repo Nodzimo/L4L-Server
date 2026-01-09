@@ -598,7 +598,7 @@
 9. [Infected Drop Loot](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_infected_drop_loot.sp)
    - Танк и ведьма оставляют лут после смерти
    - Зависимость: плагин **Left 4 DHooks Direct**
-10. [Upgrade Ammo Spawn Minigun]()
+10. [Upgrade Ammo Spawn Minigun](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_upgrade_ammo_spawn_minigun.sp)
     - Разложенные разрывные патроны ставят рядом с собой стационарный пулемёт, а зажигалки - миниган.
     - Плагины-референсы:
       - **Weapon/Zombie Spawner**
@@ -640,6 +640,8 @@
 > Винда: [engine.dll + 0x2106ad](https://crash.limetech.org/brhm6hflxzdy)
 >
 > Линукс: [engine_srv.so!CM_GetCollideableTriggerTestBox(ICollideable*, Vector*, Vector*, bool) + 0x90](https://crash.limetech.org/cnfnvs4w26wr)
+10. [[L4D2] Stumble - Grenade Launcher (2.4) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322063)
+    - Граник станит заразу и выживших
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
