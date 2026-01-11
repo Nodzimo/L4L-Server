@@ -747,31 +747,30 @@
 14. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 15. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
 16. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
-17. [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
-18. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
-19. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
-20. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+17. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+18. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+19. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
-21. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+20. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для следующих аддонов:
       - **Headshot Feedback Effect**
       - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
-22. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
-23. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
-24. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+21. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
+22. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+23. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
-25. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+24. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-26. **Melee More Hitrays by Lombaxtard**
+25. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-27. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+26. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-28. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+27. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
 
@@ -810,6 +809,35 @@
   - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 > [!CAUTION]
 > **Критический баг:** игрок *"застревает"* после поднятия инкапнутого, оставаясь с видом от третьего лица без возможности передвигаться.
+- [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
+  - **Выкидывает ошибки в рантайме!**
+  - Достаточно взять пилу и отприкладить ей выжившего бота, что сразу приводит к ошибке в консоли сервера:
+    ```
+    AN ERROR HAS OCCURED [the index 'GetModelName' does not exist]
+
+    CALLSTACK
+    *FUNCTION [OnGameEvent_entity_shoved()] scripts/vscripts/lethal_chainsaw_shoves_geeb.nut line [9]
+    *FUNCTION [__RunEventCallbacks()] unnamed line [211]
+    *FUNCTION [__RunGameEventCallbacks()] unnamed line [218]
+
+    LOCALS
+    [infected] NULL
+    [player] INSTANCE
+    [event] TABLE
+    [this] TABLE
+    [funcName] "OnGameEvent_entity_shoved"
+    [idx] 4
+    [useTable] TABLE
+    [bWarnIfMissing] true
+    [globalTableName] "GameEventCallbacks"
+    [prefix] "OnGameEvent_"
+    [params] TABLE
+    [event] "entity_shoved"
+    [this] TABLE
+    [params] TABLE
+    [event] "entity_shoved"
+    [this] TABLE
+    ```
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
