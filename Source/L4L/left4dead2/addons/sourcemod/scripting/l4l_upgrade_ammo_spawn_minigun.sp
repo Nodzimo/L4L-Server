@@ -24,7 +24,7 @@
 #define OFF_UP         0.0
 
 ConVar g_hCvarEnable, g_hCvarDebug;
-int    g_iCvarDebug;
+int    g_iCvarDebug, g_iPreviewRef[MAXPLAYERS + 1] = { INVALID_ENT_REFERENCE, ... };
 
 public Plugin myinfo =
 {
@@ -60,6 +60,14 @@ public void OnMapStart()
     }
 }
 
+public void OnMapEnd()
+{
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        DestroyPreview(i);
+    }
+}
+
 public void OnConfigsExecuted()
 {
     L4L_LC_OnConfigsExecuted(g_hCvarEnable.BoolValue);
@@ -68,6 +76,14 @@ public void OnConfigsExecuted()
 void CvarChanged_Enable(ConVar cvar, const char[] oldValue, const char[] newValue)
 {
     L4L_LC_OnEnableChanged(g_hCvarEnable.BoolValue);
+
+    if (!g_hCvarEnable.BoolValue)
+    {
+        for (int i = 1; i <= MaxClients; i++)
+        {
+            DestroyPreview(i);
+        }
+    }
 }
 
 void CvarChanged_Cvars(ConVar cvar, const char[] oldValue, const char[] newValue)
@@ -169,4 +185,120 @@ static void SpawnTurretNearPack(const char[] turretClass, const char[] turretMod
         PrintToChatAll("[L4L] Spawned %s (%s) at (%.1f %.1f %.1f) yaw=%.1f",
                        turretClass, turretModel, origin[0], origin[1], origin[2], ang[1]);
     }
+}
+
+static void DestroyPreview(int client)
+{
+    int ent = EntRefToEntIndex(g_iPreviewRef[client]);
+
+    if (ent > 0 && IsValidEdict(ent) && IsValidEntity(ent))
+    {
+        RemoveEntity(ent);
+    }
+
+    g_iPreviewRef[client] = INVALID_ENT_REFERENCE;
+}
+
+static void EnsurePreview(int client, const char[] model)
+{
+    int ent = EntRefToEntIndex(g_iPreviewRef[client]);
+
+    if (ent > 0 && IsValidEdict(ent) && IsValidEntity(ent))
+    {
+        return;
+    }
+
+    ent = CreateEntityByName("prop_dynamic_override");
+
+    if (ent <= 0)
+    {
+        return;
+    }
+
+    DispatchKeyValue(ent, "model", model);
+    DispatchKeyValue(ent, "solid", "0");
+    DispatchSpawn(ent);
+    ActivateEntity(ent);
+
+    SetEntityRenderMode(ent, RENDER_TRANSCOLOR);
+    SetEntityRenderColor(ent, 255, 255, 255, 200);
+
+    g_iPreviewRef[client] = EntIndexToEntRef(ent);
+}
+
+public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3], float angles[3],
+                      int& weapon, int& subtype, int& cmdnum, int& tickcount, int& seed, int mouse[2])
+{
+    if (!g_hCvarEnable.BoolValue)
+    {
+        return Plugin_Continue;
+    }
+
+    if (client <= 0 || client > MaxClients || !IsClientInGame(client) || !IsPlayerAlive(client))
+    {
+        return Plugin_Continue;
+    }
+
+    int wep = GetEntPropEnt(client, Prop_Send, "m_hActiveWeapon");
+
+    if (wep <= MaxClients || !IsValidEdict(wep) || !IsValidEntity(wep))
+    {
+        DestroyPreview(client);
+
+        return Plugin_Continue;
+    }
+
+    char wcls[64];
+    GetEdictClassname(wep, wcls, sizeof(wcls));
+
+    char model[128];
+    model[0] = '\0';
+
+    if (StrEqual(wcls, "weapon_upgradepack_incendiary", false))
+    {
+        strcopy(model, sizeof(model), MODEL_MINIGUN);
+    }
+    else if (StrEqual(wcls, "weapon_upgradepack_explosive", false))
+    {
+        strcopy(model, sizeof(model), MODEL_50CAL);
+    }
+    else
+    {
+        DestroyPreview(client);
+
+        return Plugin_Continue;
+    }
+
+    EnsurePreview(client, model);
+
+    int ent = EntRefToEntIndex(g_iPreviewRef[client]);
+
+    if (ent <= 0)
+    {
+        return Plugin_Continue;
+    }
+
+    float origin[3];
+    GetClientAbsOrigin(client, origin);
+
+    float ang[3];
+    GetClientEyeAngles(client, ang);
+    ang[0] = 0.0;
+    ang[2] = 0.0;
+
+    float fwd[3];
+    GetAngleVectors(ang, fwd, NULL_VECTOR, NULL_VECTOR);
+
+    origin[0] += fwd[0] * OFF_FWD;
+    origin[1] += fwd[1] * OFF_FWD;
+    origin[2] += OFF_UP;
+
+    TeleportEntity(ent, origin, ang, NULL_VECTOR);
+
+    return Plugin_Continue;
+}
+
+public void OnClientDisconnect(int client)
+{
+    DestroyPreview(client);
 }
