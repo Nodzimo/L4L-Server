@@ -101,7 +101,26 @@ void Event_TankDeath(Event event, const char[] name, bool dontBroadcast)
 
     if (IsLucky(g_iCvarLootMed)) DropLoot(client, ENTITY_MEDKIT);
 
-    if (IsLucky(g_iCvarLootSight)) DropLoot(client, ENTITY_SIGHT);
+    if (IsLucky(g_iCvarLootSight))
+    {
+        int roll = GetRandomInt(0, 2);
+
+        switch (roll)
+        {
+            case 0:
+            {
+                DropLoot(client, ENTITY_SIGHT);
+            }
+            case 1:
+            {
+                DropLoot(client, ENTITY_UPGRADE_INCENDIARY);
+            }
+            case 2:
+            {
+                DropLoot(client, ENTITY_UPGRADE_EXPLOSIVE);
+            }
+        }
+    }
 }
 
 void Event_WitchDeath(Event event, const char[] name, bool dontBroadcast)
@@ -137,6 +156,8 @@ void DropLoot(int client, int entity)
         case ENTITY_DEFIB: CreateEntity("weapon_defibrillator", offset);
         case ENTITY_ADREN: CreateEntity("weapon_adrenaline", offset);
         case ENTITY_JAR: CreateEntity("weapon_vomitjar", offset);
+        case ENTITY_UPGRADE_INCENDIARY: CreateEntity("weapon_upgradepack_incendiary", offset);
+        case ENTITY_UPGRADE_EXPLOSIVE: CreateEntity("weapon_upgradepack_explosive", offset);
         case ENTITY_SIGHT:
             if (GetGroundPos(offset, offset)) CreateSight(offset);
     }

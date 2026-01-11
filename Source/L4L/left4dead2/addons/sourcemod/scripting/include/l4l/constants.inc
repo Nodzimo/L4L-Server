@@ -42,6 +42,8 @@
 #define ENTITY_ADREN                3
 #define ENTITY_JAR                  4
 #define ENTITY_SIGHT                5
+#define ENTITY_UPGRADE_INCENDIARY   101
+#define ENTITY_UPGRADE_EXPLOSIVE    102
 #define ENTITY_ORIGIN               "origin"
 #define ENTITY_OFFSET               30.0
 #define ENTITY_OFFSET_Z_MIN         10.0
