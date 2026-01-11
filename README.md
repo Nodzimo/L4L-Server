@@ -755,6 +755,8 @@
 26. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
+27. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+  - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 
 #### Неактуально
 - Заменён плагином **Votekick**
@@ -787,8 +789,6 @@
 - [Item giver](https://steamcommunity.com/sharedfiles/filedetails/?id=3237016899)
   - Крашит сервер: [KERNELBASE.dll!RaiseException + 0x64](https://crash.limetech.org/i23jvcx2jzb5)
   - Консоль: `CLagCompensationManager::StartLagCompensation with NULL CUserCmd!!!`
-- [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
-  - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 - [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
   - **Выкидывает ошибки в рантайме!**
   - Достаточно взять пилу и отприкладить ей выжившего бота, что сразу приводит к ошибке в консоли сервера:
