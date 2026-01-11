@@ -3,11 +3,13 @@
 
 #include <l4l/utils>
 #include <multicolors>
+#include <sdktools>
 
 #define PLUGIN_VERSION  "0.0.1"
 #define EXPERT          "Expert"
 #define IMPOSSIBLE_PLUS "Impossible+"
 #define HARDCORE        "Hardcore"
+#define SOUND_HARDCORE  "UI/Pickup_Secret01.wav"
 
 ConVar    g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
 bool      g_bHostnameGuard;
@@ -57,6 +59,11 @@ public void OnConfigsExecuted()
     ExecDifficultyConfig();
 }
 
+public void OnMapStart()
+{
+    PrecacheSound(SOUND_HARDCORE);
+}
+
 static void ExecInstanceConfig()
 {
     char config[64];
@@ -88,6 +95,7 @@ static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
         && !StrEqual(oldVal, IMPOSSIBLE_PLUS, false))
     {
         MarkCurrentPlayersAsSeen();
+        PlaySoundForCurrentPlayers();
     }
 
     char difficultyEx[32];
@@ -151,6 +159,7 @@ static Action Timer_ShowInfo(Handle timer, int userId)
     {
         CPrintToChat(client, "%t", "Hardcore warning");
         CPrintToChat(client, "%t", "Hardcore info");
+        PlaySound(client, SOUND_HARDCORE);
     }
 
     return Plugin_Stop;
@@ -193,4 +202,20 @@ static void MarkCurrentPlayersAsSeen()
     {
         MarkClientAsSeen(client);
     }
+}
+
+static void PlaySoundForCurrentPlayers()
+{
+    for (int client = 1; client <= MaxClients; client++)
+    {
+        if (IsClientInGame(client) && !IsFakeClient(client))
+        {
+            PlaySound(client, SOUND_HARDCORE);
+        }
+    }
+}
+
+void PlaySound(int client, const char sound[32])
+{
+    EmitSoundToClient(client, sound, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NORMAL, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
 }
