@@ -32,18 +32,6 @@
   - [Хостинг](#хостинг)
   - [Документация](#документация)
     - [Установка сервера](#установка-сервера)
-    - [Моды](#моды)
-    - [SourceMod расширения](#sourcemod-расширения)
-    - [SourceMod плагины](#sourcemod-плагины)
-      - [Зависимости](#зависимости)
-      - [Плагины L4L](#плагины-l4l)
-      - [Хардкор](#хардкор)
-      - [Плагины для разработки, отладки и тестирования](#плагины-для-разработки-отладки-и-тестирования)
-      - [Сезонное](#сезонное)
-      - [L4D2 Survivor Bot AI Improver](#l4d2-survivor-bot-ai-improver)
-      - [Репозитории плагинов](#репозитории-плагинов)
-    - [V-скрипты](#v-скрипты)
-      - [Неактуально](#неактуально)
     - [Карты](#карты)
       - [Основные](#основные)
       - [Второстепенные](#второстепенные)
@@ -618,19 +606,14 @@
    - Зависимость: плагин **Left 4 DHooks Direct**
 > [!IMPORTANT]
 > Используется мой форк, в котором удалено оповещение в чате о вызове орды.
-5. [[L4D & L4D2] Incapped Weapons Patch (1.41) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322859)
-   - Позволяет использовать оружие и утилиты в инкапе
-   - Зависимость: плагин **Left 4 DHooks Direct**
-   - Рекомендуется: плагин [WeaponHandling API](https://forums.alliedmods.net/showthread.php?t=319947) для настройки скорострельности оружия в инкапе
-   - `sm_incap`
-6. [[L4D & L4D2] Tank Rock Bounces (1.1) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343303)
+5. [[L4D & L4D2] Tank Rock Bounces (1.1) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343303)
    - Рикошет камней танка
    - Зависимость: плагин **Left 4 DHooks Direct**
-7. **Tank rock staggering (1.5a) by 3ipka\***
-8. [[L4D2] Common Infected Dynamic Jump (1.1) by BHaType](https://forums.alliedmods.net/showthread.php?t=343978)
+6. **Tank rock staggering (1.5a) by 3ipka\***
+7. [[L4D2] Common Infected Dynamic Jump (1.1) by BHaType](https://forums.alliedmods.net/showthread.php?t=343978)
    - Зомби прыгают как в **World War Z**
    - Зависимость: расширение **Actions**
-9. [WitchSit (1.0) by pa4H](https://github.com/pa4H/L4D2-pa4H-Plugins/tree/main/L4D2-Plugins/WitchSit)
+8. [WitchSit (1.0) by pa4H](https://github.com/pa4H/L4D2-pa4H-Plugins/tree/main/L4D2-Plugins/WitchSit)
    - Ведьма успокаивается после убийства выжившего
    - Зависимость: плагин **Left 4 DHooks Direct**
 > [!IMPORTANT]
@@ -640,9 +623,9 @@
 > Винда: [engine.dll + 0x2106ad](https://crash.limetech.org/brhm6hflxzdy)
 >
 > Линукс: [engine_srv.so!CM_GetCollideableTriggerTestBox(ICollideable*, Vector*, Vector*, bool) + 0x90](https://crash.limetech.org/cnfnvs4w26wr)
-10. [[L4D2] Stumble - Grenade Launcher (2.4) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322063)
+9. [[L4D2] Stumble - Grenade Launcher (2.4) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322063)
     - Граник станит заразу и выживших
-11. [[L4D2] Charger Actions (1.15) by SilverShot](https://forums.alliedmods.net/showthread.php?t=309321)
+10. [[L4D2] Charger Actions (1.15) by SilverShot](https://forums.alliedmods.net/showthread.php?t=309321)
     - Добавляет новые способности грому и расширяет существующие
 
 #### Плагины для разработки, отладки и тестирования
@@ -806,8 +789,6 @@
   - Консоль: `CLagCompensationManager::StartLagCompensation with NULL CUserCmd!!!`
 - [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
   - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
-> [!CAUTION]
-> **Критический баг:** игрок *"застревает"* после поднятия инкапнутого, оставаясь с видом от третьего лица без возможности передвигаться.
 - [Lethal Chainsaw Shoves](https://steamcommunity.com/sharedfiles/filedetails/?id=3570114485)
   - **Выкидывает ошибки в рантайме!**
   - Достаточно взять пилу и отприкладить ей выжившего бота, что сразу приводит к ошибке в консоли сервера:
@@ -865,6 +846,31 @@
      [event] "player_hurt"
      [this] TABLE
      ```
+- [[L4D & L4D2] Incapped Weapons Patch (1.41) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322859)
+   - Позволяет использовать оружие и утилиты в инкапе
+   - Зависимость: плагин **Left 4 DHooks Direct**
+   - Рекомендуется: плагин [WeaponHandling API](https://forums.alliedmods.net/showthread.php?t=319947) для настройки скорострельности оружия в инкапе
+   - `sm_incap`
+> [!CAUTION]
+> **Критический баг:** игрок *"застревает"* после поднятия инкапнутого, оставаясь с видом от третьего лица без возможности передвигаться.
+>
+> Также выбрасывает ошибки в рантайме:
+```
+[SM] Exception reported: Game event "revive_success" has no active hook
+[SM] Blaming: l4d_incapped_weapons.smx
+[SM] Call stack trace:
+[SM]   [0] UnhookEvent
+[SM]   [1] Line 918, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d_incapped_weapons.sp::UnhookEvents
+[SM]   [2] Line 836, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d_incapped_weapons.sp::IsAllowed
+[SM]   [3] Line 753, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d_incapped_weapons.sp::ConVarChanged_Allow
+[SM]   [5] ConVar.SetString
+[SM]   [6] Line 156, /home/forums/content/files/2/5/4/6/8/0/208930.attach::changeConvar
+[SM]   [7] Line 44, /home/forums/content/files/2/5/4/6/8/0/208930.attach::ACvar
+[SM]   [9] ServerExecute
+[SM]   [10] Line 642, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::Handler_PostVoteAction
+[SM]   [11] Line 495, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::VoteDifficulty
+[SM]   [12] Line 431, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::MenuHandler_MenuDifficulty
+```
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
