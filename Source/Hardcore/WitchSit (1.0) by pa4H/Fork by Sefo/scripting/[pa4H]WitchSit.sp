@@ -2,9 +2,6 @@
 #include <l4l/lifecycle>
 #include <left4dhooks>
 
-float  origin[3];
-float  angles[3];
-
 ConVar g_hCvarEnable;
 
 public Plugin myinfo =
@@ -69,16 +66,28 @@ public Action player_death(Handle hEvent, char[] strName, bool DontBroadcast)
         return Plugin_Continue;
     }
 
-    GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
-    GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
-    AcceptEntityInput(witch, "Kill");
-    CreateTimer(0.1, RestoreWitch, _, TIMER_FLAG_NO_MAPCHANGE);
+    int iWitchRef = EntIndexToEntRef(witch);
+    CreateTimer(15.0, RestoreWitch, iWitchRef, TIMER_FLAG_NO_MAPCHANGE);
 
     return Plugin_Continue;
 }
 
-public Action RestoreWitch(Handle timer)
+public Action RestoreWitch(Handle timer, any iWitchRef)
 {
+    int witch = EntRefToEntIndex(iWitchRef);
+
+    if (witch <= 0 || !IsWitch(witch))
+    {
+        return Plugin_Stop;
+    }
+
+    float origin[3];
+    float angles[3];
+
+    GetEntPropVector(witch, Prop_Send, "m_vecOrigin", origin);
+    GetEntPropVector(witch, Prop_Send, "m_angRotation", angles);
+
+    AcceptEntityInput(witch, "Kill");
     L4D2_SpawnWitch(origin, angles);
 
     return Plugin_Stop;
