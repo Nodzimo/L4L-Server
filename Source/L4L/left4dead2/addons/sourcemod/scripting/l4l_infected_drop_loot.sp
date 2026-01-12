@@ -99,7 +99,7 @@ void Event_TankDeath(Event event, const char[] name, bool dontBroadcast)
 
     if (IsClientAttacker(client, attacker) || !IsClientConnected(client) || !IsClientInGame(client)) return;
 
-    if (IsLucky(g_iCvarLootMed)) DropLoot(client, ENTITY_MEDKIT);
+    if (IsLucky(g_iCvarLootMed)) DropLoot(client, GetRandomInt(0, 1) ? ENTITY_MEDKIT : ENTITY_DEFIB);
 
     if (IsLucky(g_iCvarLootSight))
     {
