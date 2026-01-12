@@ -6,6 +6,7 @@
 #include <sdktools>
 
 #define PLUGIN_VERSION "0.0.1"
+#define SOUND_SWITCH   "UI/Pickup_GuitarRiff10.wav"
 
 // Upgrade packs
 #define PACK_INC       "upgrade_ammo_incendiary"
@@ -25,6 +26,8 @@
 
 ConVar g_hCvarEnable, g_hCvarDebug;
 int    g_iCvarDebug, g_iPreviewRef[MAXPLAYERS + 1] = { INVALID_ENT_REFERENCE, ... };
+bool   g_bTurretMode[MAXPLAYERS + 1];
+float  g_fNextToggle[MAXPLAYERS + 1];
 
 public Plugin myinfo =
 {
@@ -49,6 +52,8 @@ public void OnPluginStart()
 
 public void OnMapStart()
 {
+    PrecacheSound(SOUND_SWITCH);
+
     if (!IsModelPrecached(MODEL_MINIGUN))
     {
         PrecacheModel(MODEL_MINIGUN, true);
@@ -143,7 +148,13 @@ public void Event_UpgradePackUsed(Event event, const char[] name, bool dontBroad
         return;
     }
 
+    if (!g_bTurretMode[client])
+    {
+        return;
+    }
+
     SpawnTurretNearPack(turretClass, turretModel, client, packEnt);
+    AcceptEntityInput(packEnt, "Kill");
 }
 
 static void SpawnTurretNearPack(const char[] turretClass, const char[] turretModel, int client, int packEnt)
@@ -153,15 +164,8 @@ static void SpawnTurretNearPack(const char[] turretClass, const char[] turretMod
 
     float ang[3];
     GetClientEyeAngles(client, ang);
-    ang[0] = 0.0;
-    ang[2] = 0.0;
-
-    float fwd[3];
-    GetAngleVectors(ang, fwd, NULL_VECTOR, NULL_VECTOR);
-
-    origin[0] += fwd[0] * OFF_FWD;
-    origin[1] += fwd[1] * OFF_FWD;
-    origin[2] += OFF_UP;
+    ang[0]  = 0.0;
+    ang[2]  = 0.0;
 
     int ent = CreateEntityByName(turretClass);
 
@@ -208,7 +212,7 @@ static void EnsurePreview(int client, const char[] model)
         return;
     }
 
-    ent = CreateEntityByName("prop_dynamic_override");
+    ent = CreateEntityByName("prop_dynamic");
 
     if (ent <= 0)
     {
@@ -252,17 +256,57 @@ public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3
     GetEdictClassname(wep, wcls, sizeof(wcls));
 
     char model[128];
-    model[0] = '\0';
+    model[0]          = '\0';
+
+    bool bHoldingPack = false;
 
     if (StrEqual(wcls, "weapon_upgradepack_incendiary", false))
     {
+        bHoldingPack = true;
         strcopy(model, sizeof(model), MODEL_MINIGUN);
     }
     else if (StrEqual(wcls, "weapon_upgradepack_explosive", false))
     {
+        bHoldingPack = true;
         strcopy(model, sizeof(model), MODEL_50CAL);
     }
     else
+    {
+        g_bTurretMode[client] = false;
+        g_fNextToggle[client] = 0.0;
+
+        DestroyPreview(client);
+
+        return Plugin_Continue;
+    }
+
+    if (bHoldingPack && (buttons & IN_RELOAD))
+    {
+        float now = GetGameTime();
+
+        if (now >= g_fNextToggle[client])
+        {
+            g_bTurretMode[client] = !g_bTurretMode[client];
+            g_fNextToggle[client] = now + 0.30;
+
+            if (g_iCvarDebug >= 1)
+            {
+                PrintToChat(client, "[L4L] Turret mode: %s", g_bTurretMode[client] ? "ON" : "OFF");
+            }
+
+            if (!g_bTurretMode[client])
+            {
+                DestroyPreview(client);
+            }
+
+            PlaySound(client, SOUND_SWITCH);
+            buttons &= ~IN_RELOAD;
+
+            return Plugin_Changed;
+        }
+    }
+
+    if (!g_bTurretMode[client])
     {
         DestroyPreview(client);
 
@@ -300,5 +344,13 @@ public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3
 
 public void OnClientDisconnect(int client)
 {
+    g_bTurretMode[client] = false;
+    g_fNextToggle[client] = 0.0;
+
     DestroyPreview(client);
+}
+
+void PlaySound(int client, const char sound[32])
+{
+    EmitSoundToClient(client, sound, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NORMAL, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
 }
