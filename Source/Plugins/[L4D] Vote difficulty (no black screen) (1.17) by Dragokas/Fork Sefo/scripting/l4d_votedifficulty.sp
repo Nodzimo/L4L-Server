@@ -189,6 +189,8 @@ public void OnPluginStart()
     g_hCvarAllowDifficultyMenu = FindConVar("sv_vote_issue_change_difficulty_allowed");
 
     RegConsoleCmd("sm_vd", CmdVoteMenu, "Show menu to vote for difficulty");
+    RegConsoleCmd("sm_hard", CmdVoteMenu, "Show menu to vote for difficulty");
+    RegConsoleCmd("sm_hardcore", CmdVoteMenu, "Show menu to vote for difficulty");
 
     RegAdminCmd("sm_veto", Command_Veto, ADMFLAG_VOTE, "Allow admin to veto current vote.");
     RegAdminCmd("sm_votepass", Command_Votepass, ADMFLAG_VOTE, "Allow admin to bypass current vote.");
