@@ -12,6 +12,7 @@
 #define DAMAGE_FIRE                 8
 #define DAMAGE_TYPE_PUNCH           128
 #define CVAR_FLAGS                  FCVAR_NOTIFY
+#define CRASH_COMMAND               "crash"
 #define SPAWN_COMMAND_OLD           "z_spawn_old"
 #define SPAWN_ARGUMENT_AUTO         "auto"
 #define EVENT_PLAYER_INCAP          "player_incapacitated"

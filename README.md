@@ -542,6 +542,7 @@
      - **AFK and Join Team Commands Improved**
      - **VS Auto-spectate on AFK**
      - **L4L: Exec Server Config**
+     - **L4L: Tools**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -595,6 +596,12 @@
     - Плагины-референсы:
       - **Weapon/Zombie Spawner**
       - [[L4D2] Upgrade Packs with Ammo](https://forums.alliedmods.net/showthread.php?t=322955)
+11. [Tools]()
+    - Плагин общего назначения с набором полезных инструментов и команд
+    - Команды:
+      - `l4l_stats`, `l4l_time`, `l4l_restarts`
+      - `l4l_crash`
+    - Зависимость: скрипты **Multi Colors** для компиляции плагина
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)

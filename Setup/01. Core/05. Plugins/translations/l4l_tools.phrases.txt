@@ -1,0 +1,13 @@
+"Phrases"
+{
+    "Mission duration"
+    {
+        "en"    "Total campaign time: {OLIVE}"
+        "ru"    "Общее время кампании: {OLIVE}"
+    }
+    "Mission wipes"
+    {
+        "en"    "Number of times restarted: {ORANGE}"
+        "ru"    "Количество перезапусков: {ORANGE}"
+    }
+}
