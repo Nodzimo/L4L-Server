@@ -945,6 +945,7 @@
 - `ED_Alloc: no free edicts`
   - [Solved [Help] L4D2 Linux server always auto crashed](https://forums.alliedmods.net/showthread.php?t=332505)
 - [server_srv.so!CTerrorWeaponInfo::Reload() + 0x44](https://crash.limetech.org/g2mocvxlgujt)
+  - [[L4D & L4D2] Mission and Weapons - Info Editor (1.27) [04-Jan-2026]](https://forums.alliedmods.net/showthread.php?t=310586&page=7)
 
 ### Баги
 - После рестарта все мертвы или появляются "под землёй"
