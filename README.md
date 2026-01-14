@@ -592,12 +592,13 @@
    - Танк и ведьма оставляют лут после смерти
    - Зависимость: плагин **Left 4 DHooks Direct**
 10. [Upgrade Ammo Spawn Minigun](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_upgrade_ammo_spawn_minigun.sp)
-    - Разложенные разрывные патроны ставят рядом с собой стационарный пулемёт, а зажигалки - миниган.
+    - Добавляет альтернативные режимы использования всех предметов четвёртого слота
     - Плагины-референсы:
       - **Weapon/Zombie Spawner**
       - [[L4D2] Upgrade Packs with Ammo](https://forums.alliedmods.net/showthread.php?t=322955)
 11. [Tools](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_tools.sp)
     - Плагин общего назначения с набором полезных инструментов и команд
+    - Референс: [[L4D2] Get mission (campaign) time and restart count stats](https://forums.alliedmods.net/showthread.php?t=351947)
     - Команды:
       - `l4l_stats`, `l4l_time`, `l4l_restarts`
       - `l4l_crash`

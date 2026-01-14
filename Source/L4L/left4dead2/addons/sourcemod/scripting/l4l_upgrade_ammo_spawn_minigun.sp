@@ -912,13 +912,6 @@ static Action HandleUpgradePack(int client, int& buttons, const char[] wcls)
         EnsurePackPreview(client, m0, m1, m2);
         UpdatePackPreview(client, m0, m1, m2);
 
-        if (buttons & (IN_ATTACK | IN_ATTACK2))
-        {
-            CanUseNow(client);
-
-            return Plugin_Continue;
-        }
-
         return Plugin_Continue;
     }
 
@@ -1210,7 +1203,7 @@ static void ClearDefibState(int client)
 
 static Action TryUseQuadAlt_Pills(int client, int& buttons)
 {
-    if (!(buttons & (IN_ATTACK | IN_ATTACK2)))
+    if (!(buttons & IN_ATTACK))
     {
         return Plugin_Continue;
     }
@@ -1227,14 +1220,13 @@ static Action TryUseQuadAlt_Pills(int client, int& buttons)
     }
 
     buttons &= ~IN_ATTACK;
-    buttons &= ~IN_ATTACK2;
 
     return Plugin_Changed;
 }
 
 static Action TryUseQuadAlt_Adren(int client, int& buttons)
 {
-    if (!(buttons & (IN_ATTACK | IN_ATTACK2)))
+    if (!(buttons & IN_ATTACK))
     {
         return Plugin_Continue;
     }
@@ -1251,14 +1243,13 @@ static Action TryUseQuadAlt_Adren(int client, int& buttons)
     }
 
     buttons &= ~IN_ATTACK;
-    buttons &= ~IN_ATTACK2;
 
     return Plugin_Changed;
 }
 
 static Action TryUseSingleAlt_Bile(int client, int& buttons)
 {
-    if (!(buttons & (IN_ATTACK | IN_ATTACK2)))
+    if (!(buttons & IN_ATTACK))
     {
         return Plugin_Continue;
     }
@@ -1275,7 +1266,6 @@ static Action TryUseSingleAlt_Bile(int client, int& buttons)
     }
 
     buttons &= ~IN_ATTACK;
-    buttons &= ~IN_ATTACK2;
 
     return Plugin_Changed;
 }
