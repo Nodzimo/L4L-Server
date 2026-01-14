@@ -596,7 +596,7 @@
     - Плагины-референсы:
       - **Weapon/Zombie Spawner**
       - [[L4D2] Upgrade Packs with Ammo](https://forums.alliedmods.net/showthread.php?t=322955)
-11. [Tools]()
+11. [Tools](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_tools.sp)
     - Плагин общего назначения с набором полезных инструментов и команд
     - Команды:
       - `l4l_stats`, `l4l_time`, `l4l_restarts`
@@ -950,6 +950,13 @@
 - После рестарта все мертвы или появляются "под землёй"
   - Демонстрация бага и варианта как из него выбраться админу (YouTube):
     - [![Как выбраться из бага под землёй в Left 4 Dead 2](https://img.youtube.com/vi/EtwajuX5iLo/0.jpg)](https://www.youtube.com/watch?v=EtwajuX5iLo)
+  - Связанное:
+    - [[L4D2] Transition Info Fix](https://forums.alliedmods.net/showthread.php?t=335117)
+    - [[L4D2] Proper Changelevel [Left 4 Fix] [17/11/2019]](https://forums.alliedmods.net/showthread.php?t=319156&page=3)
+    - [[L4D2] Server Event/Trigger issues](https://forums.alliedmods.net/showthread.php?t=329838)
+    - [[L4D1 & L4D2] Map changer with rating system](https://forums.alliedmods.net/showthread.php?t=311161&page=10)
+    - [[L4D2] Level change causing spawning issues](https://forums.alliedmods.net/showthread.php?t=328881)
+    - [Solved [L4D] How to force mission lost](https://forums.alliedmods.net/showthread.php?t=311472)
 
 ### Отладка
 - [Debugging under Linux](https://developer.valvesoftware.com/wiki/Debugging_under_Linux)
