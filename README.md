@@ -600,8 +600,9 @@
     - Плагин общего назначения с набором полезных инструментов и команд
     - Референс: [[L4D2] Get mission (campaign) time and restart count stats](https://forums.alliedmods.net/showthread.php?t=351947)
     - Команды:
-      - `l4l_stats`, `l4l_time`, `l4l_restarts`
+      - `l4l_stats`, `l4l_time`, `l4l_restarts`.
       - `l4l_crash`
+      - `l4l_restart`, `l4l_wipe`, `l4l_slay`, `l4l_kill`.
     - Зависимость: скрипты **Multi Colors** для компиляции плагина
 
 #### Хардкор

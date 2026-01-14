@@ -3,6 +3,7 @@
 
 #include <l4l/utils>
 #include <multicolors>
+#include <sdktools>
 
 #define PLUGIN_VERSION "0.0.1"
 
@@ -23,6 +24,11 @@ public void OnPluginStart()
     RegConsoleCmd("l4l_restarts", CommandPrintStats, "Show campaign stats in chat");
 
     RegAdminCmd("l4l_crash", CommandCrashServer, ADMFLAG_ROOT, "Crash server for test (example: check uploading Accelerator crash reports)");
+
+    RegAdminCmd("l4l_restart", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
+    RegAdminCmd("l4l_wipe", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
+    RegAdminCmd("l4l_slay", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
+    RegAdminCmd("l4l_kill", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
 }
 
 Action CommandPrintStats(int client, int arguments)
@@ -70,6 +76,26 @@ Action CommandCrashServer(int client, int arguments)
     LogError("CommandCrashServer %s", GetName(client));
     SetCommandFlags(CRASH_COMMAND, GetCommandFlags(CRASH_COMMAND) & ~FCVAR_CHEAT);
     ServerCommand(CRASH_COMMAND);
+
+    return Plugin_Handled;
+}
+
+Action CommandRestart(int client, int arguments)
+{
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsClientInGame(i) || !IsPlayerAlive(i))
+        {
+            continue;
+        }
+
+        if (!IsSurvivor)
+        {
+            continue;
+        }
+
+        ForcePlayerSuicide(i);
+    }
 
     return Plugin_Handled;
 }
