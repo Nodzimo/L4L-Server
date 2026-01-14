@@ -108,7 +108,7 @@ void Event_SurvivorIncap(Event event, const char[] name, bool dontBroadcast)
     SpawnRandomSI(client, g_iCvarSurvivorIncap);
 }
 
-public void Event_PlayerNowIt(Event event, const char[] name, bool dontBroadcast)
+void Event_PlayerNowIt(Event event, const char[] name, bool dontBroadcast)
 {
     if (!g_iCvarSurvivorVomit)
         return;
@@ -129,7 +129,7 @@ public void Event_PlayerNowIt(Event event, const char[] name, bool dontBroadcast
     SpawnRandomSI(client, g_iCvarSurvivorVomit);
 }
 
-public void Event_ChargerPummelStart(Event event, const char[] name, bool dontBroadcast)
+void Event_ChargerPummelStart(Event event, const char[] name, bool dontBroadcast)
 {
     if (!g_iCvarSurvivorPummel)
         return;
