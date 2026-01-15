@@ -537,6 +537,8 @@
       1. Ускоренное залезание по лестницам
       2. Отсутствие урона от падения при поднятии в полёте
       3. Буст здоровья с помощью лечения под водой
+51. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
+    - Фиксит баг с блокированием особых на лестницах
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -717,6 +719,7 @@
   - Репозиторий с набором фиксов от сообщества
 - [NanakaNeko / l4d2_plugins_coop](https://github.com/NanakaNeko/l4d2_plugins_coop)
 - [pa4H / L4D2-pa4H-Plugins](https://github.com/pa4H/L4D2-pa4H-Plugins)
+- [raziEiL / SourceMod](https://github.com/raziEiL/SourceMod)
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
