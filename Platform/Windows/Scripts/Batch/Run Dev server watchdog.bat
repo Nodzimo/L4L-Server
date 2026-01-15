@@ -12,8 +12,9 @@ set "BASE_DIR=%~dp0../.."
 :loop
 
 echo [%date% %time%] %name% server is up and running, GL ^& HF!
-start "" /wait "%BASE_DIR%/Servers/%name%/srcds" -console -game left4dead2 +map "c1m2_streets realism" -port 27020 +servercfgfile l4l/dev +sm_basepath addons/sourcemod_dev
+start "" /wait "%BASE_DIR%/Servers/%name%/srcds" -console -game left4dead2 +map "c1m2_streets realism" -port 27020 +servercfgfile l4l/dev +sm_basepath addons/sourcemod_dev +fps_max 1000
 @REM -dev
+@REM fps_max 1000 // 300
 
 echo(
 echo [%date% %time%] %name% server has stopped (crashed or shut down)
