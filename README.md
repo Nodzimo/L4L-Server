@@ -532,6 +532,11 @@
     - Фиксит утечки памяти из-за системы V-скриптов
 49. [[L4D1 & L4D2] Weapon Prop Give Fix (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?t=331053)
     - Фиксит баг, когда взрывоопасные пропсы не детонируют от урона после их спавна.
+50. [[L4D & L4D2] Engine Fix (1.1) by raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2662888&postcount=35)
+    - Фиксит баги:
+      1. Ускоренное залезание по лестницам
+      2. Отсутствие урона от падения при поднятии в полёте
+      3. Буст здоровья с помощью лечения под водой
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
