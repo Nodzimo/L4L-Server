@@ -4,7 +4,6 @@ CMD="l4l"
 
 SCREEN="screen -dmS"
 GAME="-game left4dead2"
-FPS="+fps_max 1000"
 MAP='+map "c8m1_apartment realism"'
 
 CFG_DIR="l4l/"
@@ -262,7 +261,7 @@ run_server() {
             CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR} ${SM_BASE}${SERVER_DIR}"
             
             log_start "$SESSION" "$PORT"
-            start_server "$SESSION" "$BIN" $GAME $FPS $TEST_MAP $PORT $PARAMS $DEBUG $CONFIG
+            start_server "$SESSION" "$BIN" $GAME $TEST_MAP $PORT $PARAMS $DEBUG $CONFIG
         ;;
         "$VANILLA_DIR")
             require_vanilla_instance "$instance" || return 1
@@ -272,14 +271,14 @@ run_server() {
             CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR}${instance} ${SM_BASE}${SERVER_DIR}${instance}"
             
             log_start "$SESSION" "$PORT"
-            start_server "$SESSION" "$BIN" $GAME $FPS $MAP $PORT $PARAMS $DEBUG $CONFIG
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
         ;;
         "$LEGACY_DIR")
             SESSION="$SERVER_DIR"
             PORT="-port 27041"
             
             log_start "$SESSION" "$PORT"
-            start_server "$SESSION" "$BIN" $GAME $FPS $MAP $PORT $PARAMS $DEBUG
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG
         ;;
         "$LMBX_DIR")
             SESSION="$SERVER_DIR"
@@ -287,7 +286,7 @@ run_server() {
             CONFIG="+servercfgfile ${CFG_DIR}${SERVER_DIR} ${SM_BASE}${SERVER_DIR}"
             
             log_start "$SESSION" "$PORT"
-            start_server "$SESSION" "$BIN" $GAME $FPS $MAP $PORT $PARAMS $DEBUG $CONFIG
+            start_server "$SESSION" "$BIN" $GAME $MAP $PORT $PARAMS $DEBUG $CONFIG
         ;;
         *)
             log "Cannot start unknown server type: $SERVER_DIR"
