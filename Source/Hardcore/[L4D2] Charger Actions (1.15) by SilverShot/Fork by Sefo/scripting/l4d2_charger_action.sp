@@ -138,7 +138,7 @@ static const char g_Sounds[3][] =
 
 ConVar g_hCvarAllow, g_hCvarBots, g_hCvarCharge, g_hCvarDamage, g_hCvarFinish, g_hCvarIncap, g_hCvarJump, g_hCvarJumps, g_hCvarPickup, g_hCvarPummel, g_hCvarPunch, g_hCvarRepeat, g_hCvarShove, g_hCvarInterval;
 int g_iCvarBots, g_iCvarCharge, g_iCvarDamage, g_iCvarFinish, g_iCvarIncap, g_iCvarJump, g_iCvarJumps, g_iCvarPickup, g_iCvarPummel, g_iCvarPunch, g_iCvarRepeat, g_iCvarShove, g_iCvarInterval;
-bool g_bCvarAllow;
+bool g_bCvarAllow, g_bJoinTeamListener, g_bEventsHooked;
 
 Handle g_hSDK_Throw, g_hSDK_QueuePummelVictim, g_hSDK_OnPummelEnded, g_hSDK_OnStartCarryingVictim;
 Handle g_hDetourCollision;
@@ -387,18 +387,22 @@ void IsAllowed()
 
 	if( g_bCvarAllow == false && bAllowCvar == true )
 	{
-		AddCommandListener(OnJoinTeam, "jointeam");
+		if( !g_bJoinTeamListener )
+		{
+			AddCommandListener(OnJoinTeam, "jointeam");
+			g_bJoinTeamListener = true;
+		}
 
-		HookEvents();
 		g_bCvarAllow = true;
+		HookEvents();
 		ToggleDetour();
 	}
 
 	else if( g_bCvarAllow == true && bAllowCvar == false )
 	{
-		RemoveCommandListener(OnJoinTeam, "jointeam");
+		// RemoveCommandListener(OnJoinTeam, "jointeam");
 
-		UnhookEvents();
+		// UnhookEvents();
 		g_bCvarAllow = false;
 		ToggleDetour();
 	}
@@ -437,6 +441,8 @@ void ToggleDetour()
 
 MRESReturn HandleCustomCollision(Handle hReturn, Handle hParams)
 {
+	if( !g_bCvarAllow ) return MRES_Ignored;
+
 	int victim = DHookGetParam(hParams, 1);
 
 	#if DEBUG
@@ -505,6 +511,8 @@ MRESReturn HandleCustomCollision(Handle hReturn, Handle hParams)
 // ====================================================================================================
 void HookEvents()
 {
+	if( g_bEventsHooked ) return;
+
 	HookEvent("round_start",				Event_RoundStart);
 	HookEvent("player_hurt",				Event_PlayerHurt);
 	HookEvent("player_shoved",				Event_PlayerShoved);
@@ -518,24 +526,26 @@ void HookEvents()
 	HookEvent("player_incapacitated",		Event_PlayerIncap);
 	HookEvent("charger_charge_start",		Event_ChargeStart);
 	HookEvent("player_bot_replace",			Event_Player_Replaced);
+
+	g_bEventsHooked = true;
 }
 
-void UnhookEvents()
-{
-	UnhookEvent("round_start",				Event_RoundStart);
-	UnhookEvent("player_hurt",				Event_PlayerHurt);
-	UnhookEvent("player_shoved",			Event_PlayerShoved);
-	UnhookEvent("player_spawn",				Event_PlayerSpawn);
-	UnhookEvent("revive_success",			Event_PlayerRevive);
-	UnhookEvent("charger_pummel_end",		Event_PummelEnd);
-	UnhookEvent("charger_carry_end",		Event_PummelEnd);
-	UnhookEvent("charger_carry_start",		Event_CarryStart);
-	UnhookEvent("charger_charge_end",		Event_ChargeStop);
-	UnhookEvent("charger_pummel_start",		Event_PummelStart);
-	UnhookEvent("player_incapacitated",		Event_PlayerIncap);
-	UnhookEvent("charger_charge_start",		Event_ChargeStart);
-	UnhookEvent("player_bot_replace",		Event_Player_Replaced);
-}
+// void UnhookEvents()
+// {
+// 	UnhookEvent("round_start",				Event_RoundStart);
+// 	UnhookEvent("player_hurt",				Event_PlayerHurt);
+// 	UnhookEvent("player_shoved",			Event_PlayerShoved);
+// 	UnhookEvent("player_spawn",				Event_PlayerSpawn);
+// 	UnhookEvent("revive_success",			Event_PlayerRevive);
+// 	UnhookEvent("charger_pummel_end",		Event_PummelEnd);
+// 	UnhookEvent("charger_carry_end",		Event_PummelEnd);
+// 	UnhookEvent("charger_carry_start",		Event_CarryStart);
+// 	UnhookEvent("charger_charge_end",		Event_ChargeStop);
+// 	UnhookEvent("charger_pummel_start",		Event_PummelStart);
+// 	UnhookEvent("player_incapacitated",		Event_PlayerIncap);
+// 	UnhookEvent("charger_charge_start",		Event_ChargeStart);
+// 	UnhookEvent("player_bot_replace",		Event_Player_Replaced);
+// }
 
 // Grab survivor victim
 void ResetPlugin()
@@ -553,11 +563,15 @@ void ResetPlugin()
 
 void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	ResetPlugin();
 }
 
 void Event_PlayerHurt(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	if( g_iCvarPickup )
 	{
 		if( event.GetInt("type") & DMG_CLUB )
@@ -649,6 +663,8 @@ Action TimerTeleportTarget(Handle timer, int client)
 // Fix team change freezing client
 Action OnJoinTeam(int client, const char[] command, int args)
 {
+	if( !g_bCvarAllow ) return Plugin_Continue;
+
 	if( client && IsClientInGame(client) && IsCharger(client) )
 	{
 		int target = GetEntPropEnt(client, Prop_Send, "m_pummelVictim");
@@ -674,6 +690,8 @@ Action OnJoinTeam(int client, const char[] command, int args)
 // Reset bools
 void Event_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int client = GetClientOfUserId(event.GetInt("userid"));
 	g_bIncapped[client] = false;
 	g_bCharging[client] = false;
@@ -681,12 +699,16 @@ void Event_PlayerSpawn(Event event, const char[] name, bool dontBroadcast)
 
 void Event_PlayerRevive(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int client = GetClientOfUserId(event.GetInt("subject"));
 	g_bIncapped[client] = false;
 }
 
 void Event_PummelEnd(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int client = GetClientOfUserId(event.GetInt("victim"));
 	if( g_bIncapped[client] )
 	{
@@ -697,6 +719,8 @@ void Event_PummelEnd(Event event, const char[] name, bool dontBroadcast)
 // Release charger victim
 void Event_PlayerShoved(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	if( g_iCvarShove )
 	{
 		int target = GetClientOfUserId(event.GetInt("userid")); // Was shoved
@@ -740,6 +764,8 @@ void Event_PlayerShoved(Event event, const char[] name, bool dontBroadcast)
 
 void Event_CarryStart(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	if( g_iCvarDamage )
 	{
 		int client = GetClientOfUserId(event.GetInt("userid"));
@@ -755,6 +781,8 @@ void Event_CarryStart(Event event, const char[] name, bool dontBroadcast)
 
 void Event_ChargeStop(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int client = GetClientOfUserId(event.GetInt("userid"));
 
 	#if DEBUG
@@ -769,6 +797,8 @@ void Event_ChargeStop(Event event, const char[] name, bool dontBroadcast)
 
 void Event_PummelStart(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	// DROP AFTER CHARGE
 	if( g_iCvarFinish & (1<<0) )
 	{
@@ -819,6 +849,8 @@ void Event_PummelStart(Event event, const char[] name, bool dontBroadcast)
 
 void Event_PlayerIncap(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	if( g_iCvarFinish & (1<<1) )
 	{
 		int target = GetClientOfUserId(event.GetInt("userid"));
@@ -842,6 +874,8 @@ void Event_PlayerIncap(Event event, const char[] name, bool dontBroadcast)
 // ====================================================================================================
 void Event_ChargeStart(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int userid = event.GetInt("userid");
 	int client = GetClientOfUserId(userid);
 	g_iJumped[client] = 0;
@@ -863,6 +897,8 @@ void Event_ChargeStart(Event event, const char[] name, bool dontBroadcast)
 
 Action TimerChargeIncap(Handle timer, any client)
 {
+	if( !g_bCvarAllow ) return Plugin_Stop;
+
 	client = GetClientOfUserId(client);
 	if( client && g_bCharging[client] && IsClientInGame(client) && GetEntPropEnt(client, Prop_Send, "m_carryVictim") == -1 && IsCharger(client) )
 	{
@@ -1074,6 +1110,8 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse)
 // ====================================================================================================
 void Event_Player_Replaced(Event event, const char[] name, bool dontBroadcast)
 {
+	if( !g_bCvarAllow ) return;
+
 	int client = GetClientOfUserId(event.GetInt("bot"));
 
 	if( client && IsClientInGame(client) && IsCharger(client) )
@@ -1164,6 +1202,8 @@ void DropVictim(int client, int target, int stagger = 3) // 1 = Charger, 2 = Sur
 
 Action TimerFixAnim(Handle timer, int target)
 {
+	if( !g_bCvarAllow ) return Plugin_Stop;
+
 	target = GetClientOfUserId(target);
 	if( target && IsPlayerAlive(target) )
 	{
