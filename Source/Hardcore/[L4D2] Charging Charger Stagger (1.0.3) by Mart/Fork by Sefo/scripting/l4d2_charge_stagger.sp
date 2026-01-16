@@ -282,35 +282,41 @@ public void OnClientDisconnect(int client)
 
 void HookEvents()
 {
-    if (g_bCvar_Enabled && !g_bEventsHooked)
-    {
-        g_bEventsHooked = true;
+    // if (g_bCvar_Enabled && !g_bEventsHooked)
+    // {
+        // g_bEventsHooked = true;
+
+        if (g_bEventsHooked) return;
 
         HookEvent("charger_charge_start", Event_ChargeStart);
         HookEvent("charger_charge_end", Event_ChargeEnd);
         HookEvent("player_bot_replace", Event_PlayerBotReplace);
         HookEvent("bot_player_replace", Event_BotPlayerReplace);
 
-        return;
-    }
+        g_bEventsHooked = true;
 
-    if (!g_bCvar_Enabled && g_bEventsHooked)
-    {
-        g_bEventsHooked = false;
+        // return;
+    // }
 
-        UnhookEvent("charger_charge_start", Event_ChargeStart);
-        UnhookEvent("charger_charge_end", Event_ChargeEnd);
-        UnhookEvent("player_bot_replace", Event_PlayerBotReplace);
-        UnhookEvent("bot_player_replace", Event_BotPlayerReplace);
+    // if (!g_bCvar_Enabled && g_bEventsHooked)
+    // {
+    //     g_bEventsHooked = false;
 
-        return;
-    }
+    //     UnhookEvent("charger_charge_start", Event_ChargeStart);
+    //     UnhookEvent("charger_charge_end", Event_ChargeEnd);
+    //     UnhookEvent("player_bot_replace", Event_PlayerBotReplace);
+    //     UnhookEvent("bot_player_replace", Event_BotPlayerReplace);
+
+    //     return;
+    // }
 }
 
 /****************************************************************************************************/
 
 void Event_ChargeStart(Event event, const char[] name, bool dontBroadcast)
 {
+    if (!g_bCvar_Enabled) return;
+
     int client = GetClientOfUserId(event.GetInt("userid"));
 
     if (client == 0)
@@ -328,6 +334,8 @@ void Event_ChargeStart(Event event, const char[] name, bool dontBroadcast)
 
 void Event_ChargeEnd(Event event, const char[] name, bool dontBroadcast)
 {
+    if (!g_bCvar_Enabled) return;
+
     int client = GetClientOfUserId(event.GetInt("userid"));
 
     if (client == 0)
@@ -345,6 +353,8 @@ void Event_ChargeEnd(Event event, const char[] name, bool dontBroadcast)
 
 void Event_PlayerBotReplace(Event event, const char[] name, bool dontBroadcast)
 {
+    if (!g_bCvar_Enabled) return;
+
     int player = GetClientOfUserId(event.GetInt("player"));
     int bot = GetClientOfUserId(event.GetInt("bot"));
 
@@ -358,6 +368,8 @@ void Event_PlayerBotReplace(Event event, const char[] name, bool dontBroadcast)
 
 void Event_BotPlayerReplace(Event event, const char[] name, bool dontBroadcast)
 {
+    if (!g_bCvar_Enabled) return;
+
     int player = GetClientOfUserId(event.GetInt("player"));
     int bot = GetClientOfUserId(event.GetInt("bot"));
 
@@ -374,6 +386,8 @@ float targetPosTimer[3];
 int targetTeamFlagTimer;
 Action TimerStagger(Handle timer)
 {
+    if (!g_bCvar_Enabled) return Plugin_Continue;
+    
     for (int client = 1; client <= MaxClients; client++)
     {
         if (!gc_bCharging[client])
