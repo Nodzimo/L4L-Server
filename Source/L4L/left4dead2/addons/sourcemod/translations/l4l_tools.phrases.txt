@@ -10,4 +10,19 @@
         "en"    "Number of times restarted: {ORANGE}"
         "ru"    "Количество перезапусков: {ORANGE}"
     }
+    "Server hostname"
+    {
+        "en"    "Left 4 Legend server: {OLIVE}"
+        "ru"    "Сервер Left 4 Legend: {OLIVE}"
+    }
+    "Group link"
+    {
+        "en"    "{LIGHTGREEN}steamcommunity.com/groups/Left4Legend"
+        "ru"    "{LIGHTGREEN}steamcommunity.com/groups/Left4Legend"
+    }
+    "Join group"
+    {
+        "en"    "{ORANGE}Join the group {DEFAULT}- servers will appear in the game's main menu"
+        "ru"    "{ORANGE}Присоединитесь к группе {DEFAULT}- серверы появятся в главном меню игры"
+    }
 }

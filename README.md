@@ -356,12 +356,11 @@
 12. [Steam Works Group Manager (1.9) by Someone](https://github.com/SomethingFromSomewhere/SWGM)
     - Библиотека с интеграцией **SteamWorks** для проверки подписки/прав игрока в Steam группе
     - Зависимость: расширение **SteamWorks**
+    - Требуется для плагина **L4L: Tools** 
     - `Failed to auto generate config for SWGM.smx, make sure the directory has write permission.`
          - Для автоматической генерации конфига нужно вручную создать для него конечную папку: `left4dead2/cfg/sourcemod/swgm`
          - Точный путь конфига можно узнать в исходнике: `AutoExecConfig(true, "swgm", "sourcemod/swgm");`
 > [!IMPORTANT]
-> Надо написать плагин с приветственными/информационными сообщениями для игроков, которые не подписаны на группу.
->
 > Форкнул: взял свежие исходники плагина из репозитория и скомпилировал их на базе последней версии **SteamWorks**
 >
 > В моём форке исправлен баг с некорректной проверкой Steam-группы при большом ID
@@ -617,7 +616,10 @@
       - `l4l_stats`, `l4l_time`, `l4l_restarts`.
       - `l4l_crash`
       - `l4l_restart`, `l4l_wipe`, `l4l_slay`, `l4l_kill`.
-    - Зависимость: скрипты **Multi Colors** для компиляции плагина
+      - `l4l_server`, `l4l_link`, `l4l_group`, `l4l_welcome`, `l4l_help`, `l4l_info`, `l4l_join`, `l4l_hostname`, 
+    - Зависимости:
+      - Скрипты **Multi Colors** для компиляции плагина
+      - Плагин **Steam Works Group Manager**
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
