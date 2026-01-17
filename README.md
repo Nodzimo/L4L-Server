@@ -682,8 +682,15 @@
 > [!IMPORTANT]
 > Используется мой форк, в котором исправлены ошибки из-за динамической смены сложности.
 >
-> Ошибки, и их воспроизведение, такие же как в плагине **Charger Actions**.
-
+> Ошибки, и их воспроизведение, такие же как в плагине **Charger Actions**:
+```
+[SM] Exception reported: Game event "player_bot_replace" has no active hook
+[SM] Blaming: l4d2_charge_stagger.smx
+[SM] Call stack trace:
+[SM] [0] UnhookEvent
+[SM] [1] Line 303, /home/forums/content/files/2/9/0/3/2/7/192255.attach::HookEvents
+[SM] [2] Line 244, /home/forums/content/files/2/9/0/3/2/7/192255.attach::Event_ConVarChanged
+```
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
