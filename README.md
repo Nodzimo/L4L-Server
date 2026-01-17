@@ -380,6 +380,7 @@
       - **WitchSit**
       - **Tank Rock Pops Explosives**
       - **Charging Charger Stagger**
+      - **Front Mob Direction**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -691,6 +692,10 @@
 [SM] [1] Line 303, /home/forums/content/files/2/9/0/3/2/7/192255.attach::HookEvents
 [SM] [2] Line 244, /home/forums/content/files/2/9/0/3/2/7/192255.attach::Event_ConVarChanged
 ```
+13. [[L4D2] Front Mob Direction (1.1) by Tighty-Whitey](https://forums.alliedmods.net/showthread.php?t=352002)
+    - Спавнит орду впереди, если кто-то рашит в одиночку далеко от команды.
+    - Зависимость: плагин **Left 4 DHooks Direct**
+
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
    - Набор отладочных команд, например: перезагрузка всех плагинов, управление ботами, рестарт раунда и многое другое.
