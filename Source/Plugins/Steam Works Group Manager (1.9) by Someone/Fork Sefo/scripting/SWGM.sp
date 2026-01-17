@@ -17,6 +17,14 @@ Handle 	g_hForward_OnLeaveCheck, 		g_hForward_OnJoinCheck, g_hTimer;
 int 		g_iGroupID, 					g_iAccountID[MAXPLAYERS+1];
 Status 	g_iPlayerStatus[MAXPLAYERS+1];
 
+int ReadConVarIntExact(ConVar cv)
+{
+    char s[64];
+    cv.GetString(s, sizeof(s));
+
+    return StringToInt(s);
+}
+
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] sError, int err_max)
 {
 	g_hForward_OnLeaveCheck = CreateGlobalForward("SWGM_OnLeaveGroup", 	ET_Ignore, Param_Cell);
@@ -38,8 +46,9 @@ public void OnPluginStart()
 	ConVar CVAR;
 
 	(CVAR = CreateConVar("sm_swgm_groupid",		"0",	"Steam Group ID.",						_, 		true, 		0.0)).AddChangeHook(OnGroupChange);
-	g_iGroupID = CVAR.IntValue;
-	
+	// g_iGroupID = CVAR.IntValue;
+	g_iGroupID = ReadConVarIntExact(CVAR);
+
 	(CVAR = CreateConVar("sm_swgm_timer",		"60.0",	"Interval beetwen steam group checks.",	_, 		true, 		0.0)).AddChangeHook(OnTimeChange);
 	g_hTimer = CreateTimer(CVAR.FloatValue, 		Check_Timer, 									_, 	TIMER_REPEAT		);
 	
@@ -50,7 +59,8 @@ public void OnPluginStart()
 
 public void OnGroupChange(ConVar convar, const char[] oldValue, const char[] newValue)
 {
-	g_iGroupID = convar.IntValue;
+	// g_iGroupID = convar.IntValue;
+	g_iGroupID = StringToInt(newValue);
 	
 	for(int i = 1; i <= MaxClients; ++i)	if(IsClientInGame(i) && !IsFakeClient(i))
 	{
@@ -72,6 +82,11 @@ public Action Check_Timer(Handle hTimer)
 
 public void OnConfigsExecuted()
 {
+	ConVar cv = FindConVar("sm_swgm_groupid");
+    
+	if (cv != null)
+		g_iGroupID = ReadConVarIntExact(cv);
+
 	if(g_iGroupID == 0)
 	{
 		LogError("[SWGM] Set yours Steam group ID. Group ID `0` is default value. Example: sm_swgm_groupid `ID`.");
