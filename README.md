@@ -652,12 +652,36 @@
     - Граник станит заразу и выживших
 10. [[L4D2] Charger Actions (1.15) by SilverShot](https://forums.alliedmods.net/showthread.php?t=309321)
     - Добавляет новые способности грому и расширяет существующие
+> [!IMPORTANT]
+> Используется мой форк, в котором исправлены ошибки из-за динамической смены сложности.
+>
+> Воспроизведение ошибок: сменить сложность на хардкор, а потом обратно на любую ванильную сложность. Или сменить сложность на хардкор, загрузить следующую карту, на новой карте сменить хардкор на любую ванильную сложность:
+```
+[SM] Exception reported: Game event "charger_pummel_start" has no active hook
+[SM] Blaming: l4d2_charger_action.smx
+[SM] Call stack trace:
+[SM]   [0] UnhookEvent
+[SM]   [1] Line 534, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d2_charger_action.sp::UnhookEvents
+[SM]   [2] Line 401, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d2_charger_action.sp::IsAllowed
+[SM]   [3] Line 356, C:\Servers\L4D2\left4dead2\addons\sourcemod\scripting\l4d2_charger_action.sp::ConVarChanged_Allow
+[SM]   [5] ConVar.SetString
+[SM]   [6] Line 156, /home/forums/content/files/2/5/4/6/8/0/208930.attach::changeConvar
+[SM]   [7] Line 44, /home/forums/content/files/2/5/4/6/8/0/208930.attach::ACvar
+[SM]   [9] ServerExecute
+[SM]   [10] Line 644, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::Handler_PostVoteAction
+[SM]   [11] Line 497, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::VoteDifficulty
+[SM]   [12] Line 433, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::MenuHandler_MenuDifficulty
+```
 11. [[L4D & L4D2] Tank Rock Pops Explosives (1.0) by SilverShot](https://forums.alliedmods.net/showthread.php?t=343302)
     - Взрывоопасные предметы детонируют при контакте с камнем танка
     - Зависимость: плагин **Left 4 DHooks Direct**
 12. [[L4D2] Charging Charger Stagger (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?p=2763046)
     - Чарж грома оглушает рядом стоящих выживших
     - Зависимость: плагин **Left 4 DHooks Direct**
+> [!IMPORTANT]
+> Используется мой форк, в котором исправлены ошибки из-за динамической смены сложности.
+>
+> Ошибки, и их воспроизведение, такие же как в плагине **Charger Actions**.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
