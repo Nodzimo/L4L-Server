@@ -330,9 +330,7 @@
 5. [[ANY] Restart Empty Server (or Map) (2.9) by Alex Dragokas](https://forums.alliedmods.net/showthread.php?t=315367)
    - Автоматический перезапуск пустого сервера, чтобы он не оставался с кастомной картой
 > [!IMPORTANT]
-> Нужно настроить время до рестарта сервера, после выхода с него последнего игрока.
->
-> Сейчас это происходит моментально, без возможности быстро перезайти на сервер при необходимости.
+> Используется мой форк, в котором исправлено залипание пустого сервера на кастомных картах и режимах игры, а также расширены логи.
 6. [L4D2 Keep Lasers (1.4) by dcx2 (assist Mr. Zero) - 2020 by SilverShot, 2021 by In1ernal Error](https://forums.alliedmods.net/showthread.php?t=173749)
 7. [[L4D & L4D2] Vote Mode (2.2) by SilverShot](https://forums.alliedmods.net/showthread.php?t=179279)
    - Смена режима во время игры: мутации, кооперативные и соревновательные режимы, и многие другие.

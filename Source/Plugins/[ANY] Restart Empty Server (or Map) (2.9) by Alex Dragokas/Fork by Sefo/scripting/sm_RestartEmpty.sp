@@ -365,11 +365,37 @@ void RestartServer()
 	switch( g_iCvarMethod )
 	{
 		case 1: {
-			LogToFileEx(g_sLogPath, "Sending '_restart'... Reason: %s", RealPlayerExist() ? "Scheduled time" : "Empty Server");
+			char map[64];
+			GetCurrentMap(map, sizeof(map));
+
+			// LogToFileEx(g_sLogPath, "Sending '_restart'... Reason: %s", RealPlayerExist() ? "Scheduled time" : "Empty Server");
+			LogToFileEx(
+				g_sLogPath,
+				"Sending '_restart'... Reason: %s map=%s method=%d delay=%.1f empty=%d",
+				RealPlayerExist() ? "Scheduled time" : "Empty Server",
+				map,
+				g_iCvarMethod,
+				g_fCvarDelay,
+				!RealPlayerExist()
+			);
+
 			ServerCommand("_restart");
 		}
 		case 2: {
-			LogToFileEx(g_sLogPath, "Sending 'crash'... Reason: %s", RealPlayerExist() ? "Scheduled time" : "Empty Server");
+			char map[64];
+			GetCurrentMap(map, sizeof(map));
+
+			// LogToFileEx(g_sLogPath, "Sending 'crash'... Reason: %s", RealPlayerExist() ? "Scheduled time" : "Empty Server");
+			LogToFileEx(
+				g_sLogPath,
+				"Sending 'crash'... Reason: %s map=%s method=%d delay=%.1f empty=%d",
+				RealPlayerExist() ? "Scheduled time" : "Empty Server",
+				map,
+				g_iCvarMethod,
+				g_fCvarDelay,
+				!RealPlayerExist()
+			);
+
 			SetCommandFlags("crash", GetCommandFlags("crash") &~ FCVAR_CHEAT);
 			ServerCommand("crash");
 		}
@@ -421,7 +447,20 @@ void ChangeMap(char[] reason)
 		LogError("Warning: no valid maps found in: %s", g_sMapListPath);
 	}
 	delete al;
-	LogToFileEx(g_sLogPath, "Changing map to: %s... Reason: %s", sMap, reason);
+
+	char curMap[64];
+	GetCurrentMap(curMap, sizeof(curMap));
+
+	// LogToFileEx(g_sLogPath, "Changing map to: %s... Reason: %s", sMap, reason);
+	LogToFileEx(
+		g_sLogPath,
+		"Changing map from=%s to=%s reason=%s method=%d",
+		curMap,
+		sMap,
+		reason,
+		g_iCvarMethod
+	);
+
 	if( CommandExists("sm_map") )
 	{
 		ServerCommand("sm_map %s", sMap);
@@ -519,7 +558,7 @@ bool RealPlayerExist(int iExclude = 0)
 {
 	for( int client = 1; client <= MaxClients; client++ )
 	{
-		if( client != iExclude && IsClientConnected(client) )
+		if( client != iExclude && IsClientInGame(client) )
 		{
 			if( !IsFakeClient(client) )
 			{
