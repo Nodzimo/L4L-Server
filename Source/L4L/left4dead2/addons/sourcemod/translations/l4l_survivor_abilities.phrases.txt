@@ -1,0 +1,18 @@
+"Phrases"
+{
+    "Cooldown"
+    {
+        "en"    "Cooldown, sec left: "
+        "ru"    "Перезарядка, осталось сек: "
+    }
+    "Already active"
+    {
+        "en"    "Ability is already active"
+        "ru"    "Способность уже действует"
+    }
+    "No item"
+    {
+        "en"    "Need pills/adrenaline"
+        "ru"    "Нужны таблетки/адреналин"
+    }
+}

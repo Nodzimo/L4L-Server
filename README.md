@@ -618,6 +618,13 @@
     - Зависимости:
       - Скрипты **Multi Colors** для компиляции плагина
       - Плагин **Steam Works Group Manager**
+12. [Survivor Abilities]()
+    - Добавляет выжившим команду для активации ульты в зависимости от текущего предмета в инвентаре
+    - Команды: `l4l_ability`, `l4l_ultimate`, `l4l_ult`.
+    - Плагины-референсы:
+      - [[L4D2] Zed Time with Highlight Kill System v1.6.1 [13-January-2023]](https://forums.alliedmods.net/showthread.php?t=335925)
+      - [[L4D2] Extended Survivor Sight](https://forums.alliedmods.net/showthread.php?t=233338)
+      - [[L4D & L4D2] Prototype Grenades (1.56) [04-Jan-2026]](https://forums.alliedmods.net/showthread.php?t=318965)
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
