@@ -7,4 +7,19 @@
 		"fr"		"[SWGM] En premier, rejoignez notre groupe Steam!"
 		"hu"		"[SWGM] Először csatlakozz a Steam-es csoportunkhoz!"
 	}
+    "Server"
+    {
+        "en"    "{OLIVE}Left 4 Legend {DEFAULT}server"
+        "ru"    "Сервер {OLIVE}Left 4 Legend"
+    }
+    "Join group"
+    {
+        "en"    "{ORANGE}Join the group {DEFAULT}to use exclusive server features:"
+        "ru"    "{ORANGE}Вступите в группу{DEFAULT}, чтобы пользоваться эксклюзивными фишками сервера:"
+    }
+    "Group link"
+    {
+        "en"    "{LIGHTGREEN}steamcommunity.com/groups/Left4Legend"
+        "ru"    "{LIGHTGREEN}steamcommunity.com/groups/Left4Legend"
+    }
 }

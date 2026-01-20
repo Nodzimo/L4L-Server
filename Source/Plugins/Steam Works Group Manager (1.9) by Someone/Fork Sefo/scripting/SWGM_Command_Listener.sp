@@ -3,6 +3,8 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#include <multicolors>
+
 public Plugin myinfo =
 {
 	name        = 	"[SWGM] Command Listener",
@@ -27,7 +29,12 @@ public Action Check(int iClient, const char[] sCommand, int iArgc)
 {
 	if(iClient != 0 && SWGM_IsPlayerValidated(iClient) && !SWGM_InGroup(iClient))
 	{
-		PrintToChat(iClient, "%t", "JoinSteam");
+		// PrintToChat(iClient, "%t", "JoinSteam");
+		CPrintToChat(iClient, "%t", "Server");
+		CPrintToChat(iClient, "%t", "Join group");
+		CPrintToChat(iClient, "%t", "Group link");
+		PrintToServer("[L4L] client: %d, command: %s, args: %d", iClient, sCommand, iArgc);
+
 		return Plugin_Stop;
 	}
 	return Plugin_Continue;
