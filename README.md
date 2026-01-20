@@ -618,7 +618,7 @@
     - Зависимости:
       - Скрипты **Multi Colors** для компиляции плагина
       - Плагин **Steam Works Group Manager**
-12. [Survivor Abilities]()
+12. [Survivor Abilities](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_abilities.sp)
     - Добавляет выжившим команду для активации ульты в зависимости от текущего предмета в инвентаре
     - Команды: `l4l_ability`, `l4l_ultimate`, `l4l_ult`.
     - Плагины-референсы:
@@ -724,7 +724,7 @@
     - API для спавна особых без ограничений режиссёра
     - Зависимость: плагин **Left 4 DHooks Direct**
     - Требуется для плагина **All4Dead**
-    - `!sm_mdzs`
+    - `sm_mdzs`
 
 #### Сезонное
 - **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
