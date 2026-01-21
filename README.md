@@ -728,6 +728,13 @@
 > Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
 >
 > Убран визуальный эффект броска камня, исправлены мелкие косяки и шанс танка бросить самого себя.
+15. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
+   - API для спавна особых без ограничений режиссёра
+   - Зависимость: плагин **Left 4 DHooks Direct**
+   - Требуется для следующих плагинов:
+     - **All4Dead**
+     - **Tanks throw special infected**
+   - `sm_mdzs`
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -743,13 +750,6 @@
     - Команды:
       - `!a4d_force_panic`
       - `!a4d_panic_forever`
-4. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
-   - API для спавна особых без ограничений режиссёра
-   - Зависимость: плагин **Left 4 DHooks Direct**
-   - Требуется для следующих плагинов:
-     - **All4Dead**
-     - **Tanks throw special infected**
-   - `sm_mdzs`
 
 #### Сезонное
 - **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
