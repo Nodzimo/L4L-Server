@@ -297,6 +297,7 @@
      - **AFK and Join Team Commands Improved**
      - **AI: Hard SI**
      - **Dynamic Common Infected Jump**
+     - **Tanks throw special infected**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
@@ -382,6 +383,7 @@
       - **Charging Charger Stagger**
       - **Front Mob Direction**
       - **Item hint**
+      - **Tanks throw special infected**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -564,6 +566,7 @@
      - **VS Auto-spectate on AFK**
      - **L4L: Exec Server Config**
      - **L4L: Tools**
+     - **Item hint**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -715,6 +718,12 @@
 13. [[L4D2] Front Mob Direction (1.1) by Tighty-Whitey](https://forums.alliedmods.net/showthread.php?t=352002)
     - Спавнит орду впереди, если кто-то рашит в одиночку далеко от команды.
     - Зависимость: плагин **Left 4 DHooks Direct**
+14. [Tanks throw special infected (2.5h-2024/8/27) by Pan Xiaohai & HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_tankhelper)
+    - Танк может бросать особых заражённых и другие предметы, вместо камней.
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Manual-Spawn Special Infected**
+      - Расширение **Actions**
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
@@ -731,10 +740,12 @@
       - `!a4d_force_panic`
       - `!a4d_panic_forever`
 4. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
-    - API для спавна особых без ограничений режиссёра
-    - Зависимость: плагин **Left 4 DHooks Direct**
-    - Требуется для плагина **All4Dead**
-    - `sm_mdzs`
+   - API для спавна особых без ограничений режиссёра
+   - Зависимость: плагин **Left 4 DHooks Direct**
+   - Требуется для следующих плагинов:
+     - **All4Dead**
+     - **Tanks throw special infected**
+   - `sm_mdzs`
 
 #### Сезонное
 - **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
