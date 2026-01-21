@@ -43,10 +43,10 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	return APLRes_Success; 
 }
 
-#define MAXENTITIES                   2048
-#define ENTITY_SAFE_LIMIT 2000 //don't spawn boxes when it's index is above this
+// #define MAXENTITIES                   2048
+// #define ENTITY_SAFE_LIMIT 2000 //don't spawn boxes when it's index is above this
 
-#define PARTICLE_ELECTRICAL	"electrical_arc_01_system"
+// #define PARTICLE_ELECTRICAL	"electrical_arc_01_system"
 
 #define SOUND_THROWN_MISSILE 		"player/tank/attack/thrown_missile_loop_1.wav"
 
@@ -76,7 +76,7 @@ ConVar l4d_tank_throw_si_ai, l4d_tank_throw_si_real, l4d_tank_throw_hunter, l4d_
 	l4d_tank_throw_tank_health, l4d_tank_throw_witch, l4d_tank_throw_witch_health, l4d_tank_throw_car, l4d_tank_car_time,
 	g_hWitchKillTime,
 	l4d_tank_throw_hunter_limit, l4d_tank_throw_smoker_limit, l4d_tank_throw_boomer_limit,l4d_tank_throw_charger_limit, l4d_tank_throw_spitter_limit,
-	l4d_tank_throw_jockey_limit,l4d_tank_throw_tank_limit,l4d_tank_throw_witch_limit;
+	l4d_tank_throw_jockey_limit,l4d_tank_throw_tank_limit,l4d_tank_throw_witch_limit, l4d_tank_throw_enable;
 
 ConVar z_tank_throw_force, z_max_player_zombies;
 int g_iCvarMaxZombiePlayers;
@@ -98,7 +98,7 @@ enum eChance
 
 bool g_bIsTraceRock[MAXENTITIES +1];
 int throw_tank_health, throw_witch_health, iThrowSILimit[9];
-bool g_bSpawnWitchBride;
+bool g_bSpawnWitchBride, g_bTankThrowEnable;
 float fl4d_tank_throw_si_ai, fl4d_tank_throw_si_real, fl4d_tank_throw_witch,
 	fThrowSIChance[eChance_Max], z_tank_throw_force_speed, g_fWitchKillTime, g_fCarKillTime;
 Handle g_hNextBotPointer, g_hGetLocomotion, g_hJump;
@@ -145,6 +145,7 @@ public void OnPluginStart()
 	l4d_tank_throw_witch_limit		= CreateConVar("l4d_tank_throw_witch_limit", 		"3",  		"Witch Limit on the field[1 ~ 10] (if limit reached, throw Tank self)", FCVAR_NOTIFY, true, 1.0, true, 10.0); 
 	l4d_tank_throw_car				= CreateConVar("l4d_tank_throw_car", 				"5.0",  	"Weight of Hittable Car[0.0, 10.0]", FCVAR_NOTIFY, true, 0.0,true, 10.0); 
 	l4d_tank_car_time				= CreateConVar("l4d_tank_throw_car_lifespan", 		"30.0",  	"Amount of seconds before a Hittable Car is removed (only remove hittable cars spawned by this plugin)", FCVAR_NOTIFY, true, 1.0); 
+	l4d_tank_throw_enable 			= CreateConVar("l4d_tank_throw_enable",				"0",		"Enable/disable plugin behavior (0=vanilla, 1=enabled)", FCVAR_NOTIFY, true, 0.0, true, 1.0);
 
 	AutoExecConfig(true, "l4d_tankhelper");
  
@@ -181,6 +182,7 @@ public void OnPluginStart()
 	l4d_tank_throw_witch_limit.AddChangeHook(ConVarChange);
 	l4d_tank_throw_car.AddChangeHook(ConVarChange);
 	l4d_tank_car_time.AddChangeHook(ConVarChange);
+	l4d_tank_throw_enable.AddChangeHook(ConVarChange);
 
 	HookEvent("bot_player_replace", Event_PlayerReplaceBot);
 
@@ -189,10 +191,10 @@ public void OnPluginStart()
 
 public void OnMapStart()
 { 
-	if(L4D2Version)
-	{ 
-		PrecacheParticle(PARTICLE_ELECTRICAL);
-	}
+	// if(L4D2Version)
+	// { 
+	// 	PrecacheParticle(PARTICLE_ELECTRICAL);
+	// }
 
 	g_bSpawnWitchBride = false;
 	char sMap[64];
@@ -256,6 +258,8 @@ void GetConVar()
 	fThrowSIChance[eChance_Car]=fThrowSIChance[eChance_Jockey]+l4d_tank_throw_car.FloatValue;
 
 	g_fCarKillTime = l4d_tank_car_time.FloatValue;
+
+	g_bTankThrowEnable = l4d_tank_throw_enable.BoolValue;
 }
 
 // Sourcemod API Forward-------------------------------
@@ -275,6 +279,12 @@ public void L4D_TankRock_OnRelease_Post(int tank, int rock, const float vecPos[3
 		return;
 	}
 
+	if (!g_bTankThrowEnable)
+	{
+    	return;
+	}
+
+
 	float random = GetRandomFloat(1.0, 100.0);
 	if( (IsFakeClient(tank) && random <= fl4d_tank_throw_si_ai) ||
 		(!IsFakeClient(tank) && random <= fl4d_tank_throw_si_real) )
@@ -291,7 +301,7 @@ public void L4D_TankRock_OnRelease_Post(int tank, int rock, const float vecPos[3
 			{
 				TeleportEntity(rock, g_99999Position);
 				RemoveEdict(rock);
-				if(L4D2Version) DisplayParticle(0, PARTICLE_ELECTRICAL, vecPos, NULL_VECTOR);    
+				// if(L4D2Version) DisplayParticle(0, PARTICLE_ELECTRICAL, vecPos, NULL_VECTOR);    
 				if(new_helper <= MaxClients) L4D_WarpToValidPositionIfStuck(new_helper);
 			}
 		}
@@ -311,6 +321,11 @@ public void L4D_OnTraceRockCreated(int tank, int rock)
 Action OnNormalSoundPlay(int Clients[64], int &NumClients, char StrSample[PLATFORM_MAX_PATH], int &entity, int &channel, float &volume, int &level,
 	int &pitch, int &flags, char soundEntry[PLATFORM_MAX_PATH], int &seed)
 {
+	if (!g_bTankThrowEnable)
+	{
+    	return Plugin_Continue;
+	}
+
 	if (StrEqual(StrSample, SOUND_THROWN_MISSILE, false)) {
 		NumClients = 0;
 		return Plugin_Changed;
@@ -729,6 +744,12 @@ stock int CreateSI(int thetank, const float pos[3], const float ang[3], const fl
 		
 		if (selected > 0) TeleportEntity(selected, pos, NULL_VECTOR, velocity);
 	}
+	else if (selected == thetank) // throw Tank self (real chance)
+	{
+    	TeleportEntity(selected, pos, NULL_VECTOR, velocity);
+
+    	return selected;
+	}
 	else
 	{
 		return -1;
@@ -740,62 +761,62 @@ stock int CreateSI(int thetank, const float pos[3], const float ang[3], const fl
  	return selected;
 }
 
-int DisplayParticle(int target, const char[] sParticle, const float vPos[3], const float vAng[3], float refire = 0.0)
-{
-	int entity = CreateEntityByName("info_particle_system");
-	if( CheckIfEntitySafe(entity) == false)
-	{
-		return 0;
-	}
+// int DisplayParticle(int target, const char[] sParticle, const float vPos[3], const float vAng[3], float refire = 0.0)
+// {
+// 	int entity = CreateEntityByName("info_particle_system");
+// 	if( CheckIfEntitySafe(entity) == false)
+// 	{
+// 		return 0;
+// 	}
 
-	DispatchKeyValue(entity, "effect_name", sParticle);
-	DispatchSpawn(entity);
-	ActivateEntity(entity);
-	AcceptEntityInput(entity, "start");
+// 	DispatchKeyValue(entity, "effect_name", sParticle);
+// 	DispatchSpawn(entity);
+// 	ActivateEntity(entity);
+// 	AcceptEntityInput(entity, "start");
 
-	// Attach
-	if( target )
-	{
-		SetVariantString("!activator");
-		AcceptEntityInput(entity, "SetParent", target);
-	}
+// 	// Attach
+// 	if( target )
+// 	{
+// 		SetVariantString("!activator");
+// 		AcceptEntityInput(entity, "SetParent", target);
+// 	}
 
-	TeleportEntity(entity, vPos, vAng, NULL_VECTOR);
+// 	TeleportEntity(entity, vPos, vAng, NULL_VECTOR);
 
-	// Refire
-	if( refire )
-	{
-		static char sTemp[64];
-		Format(sTemp, sizeof(sTemp), "OnUser1 !self:Stop::%f:-1", refire - 0.05);
-		SetVariantString(sTemp);
-		AcceptEntityInput(entity, "AddOutput");
-		Format(sTemp, sizeof(sTemp), "OnUser1 !self:FireUser2::%f:-1", refire);
-		SetVariantString(sTemp);
-		AcceptEntityInput(entity, "AddOutput");
-		AcceptEntityInput(entity, "FireUser1");
+// 	// Refire
+// 	if( refire )
+// 	{
+// 		static char sTemp[64];
+// 		Format(sTemp, sizeof(sTemp), "OnUser1 !self:Stop::%f:-1", refire - 0.05);
+// 		SetVariantString(sTemp);
+// 		AcceptEntityInput(entity, "AddOutput");
+// 		Format(sTemp, sizeof(sTemp), "OnUser1 !self:FireUser2::%f:-1", refire);
+// 		SetVariantString(sTemp);
+// 		AcceptEntityInput(entity, "AddOutput");
+// 		AcceptEntityInput(entity, "FireUser1");
 
-		SetVariantString("OnUser2 !self:Start::0:-1");
-		AcceptEntityInput(entity, "AddOutput");
-		SetVariantString("OnUser2 !self:FireUser1::0:-1");
-		AcceptEntityInput(entity, "AddOutput");
-	}
+// 		SetVariantString("OnUser2 !self:Start::0:-1");
+// 		AcceptEntityInput(entity, "AddOutput");
+// 		SetVariantString("OnUser2 !self:FireUser1::0:-1");
+// 		AcceptEntityInput(entity, "AddOutput");
+// 	}
 	
-	CreateTimer(3.0, DeleteParticles, EntIndexToEntRef(entity), TIMER_FLAG_NO_MAPCHANGE);
+// 	CreateTimer(3.0, DeleteParticles, EntIndexToEntRef(entity), TIMER_FLAG_NO_MAPCHANGE);
 
-	return entity;
-}
+// 	return entity;
+// }
 
-Action DeleteParticles(Handle timer, any particle)
-{
-	particle = EntRefToEntIndex(particle);
-	if (particle != INVALID_ENT_REFERENCE)
-	{
-		AcceptEntityInput(particle, "stop");
-		AcceptEntityInput(particle, "kill");
-	}
+// Action DeleteParticles(Handle timer, any particle)
+// {
+// 	particle = EntRefToEntIndex(particle);
+// 	if (particle != INVALID_ENT_REFERENCE)
+// 	{
+// 		AcceptEntityInput(particle, "stop");
+// 		AcceptEntityInput(particle, "kill");
+// 	}
 
-	return Plugin_Continue;
-}
+// 	return Plugin_Continue;
+// }
 
 bool TraceRayDontHitSelf(int entity, int mask, any data)
 {
@@ -806,25 +827,25 @@ bool TraceRayDontHitSelf(int entity, int mask, any data)
 	return true;
 }
  
-int PrecacheParticle(const char[] sEffectName)
-{
-	static int table = INVALID_STRING_TABLE;
-	if( table == INVALID_STRING_TABLE )
-	{
-		table = FindStringTable("ParticleEffectNames");
-	}
+// int PrecacheParticle(const char[] sEffectName)
+// {
+// 	static int table = INVALID_STRING_TABLE;
+// 	if( table == INVALID_STRING_TABLE )
+// 	{
+// 		table = FindStringTable("ParticleEffectNames");
+// 	}
 
-	int index = FindStringIndex(table, sEffectName);
-	if( index == INVALID_STRING_INDEX )
-	{
-		bool save = LockStringTables(false);
-		AddToStringTable(table, sEffectName);
-		LockStringTables(save);
-		index = FindStringIndex(table, sEffectName);
-	}
+// 	int index = FindStringIndex(table, sEffectName);
+// 	if( index == INVALID_STRING_INDEX )
+// 	{
+// 		bool save = LockStringTables(false);
+// 		AddToStringTable(table, sEffectName);
+// 		LockStringTables(save);
+// 		index = FindStringIndex(table, sEffectName);
+// 	}
 
-	return index;
-}
+// 	return index;
+// }
 
 Handle hGameConf;
 void GetGameData()
