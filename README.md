@@ -381,6 +381,7 @@
       - **Tank Rock Pops Explosives**
       - **Charging Charger Stagger**
       - **Front Mob Direction**
+      - **Item hint**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -543,6 +544,15 @@
       3. Буст здоровья с помощью лечения под водой
 51. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
     - Фиксит баг с блокированием особых на лестницах
+52. [L4D2 Item hint (4.1-2025/12/27) by BHaType, fdxx, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_item_hint)
+    - Подсвечивает ближайший предмет аурой следующими способами:
+      - Вокалайз `Look`
+      - `Shift` + `E`
+      - `sm_mark`
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Multi Colors**
+    - Опционально: плагин [Use Priority Patch](https://forums.alliedmods.net/showthread.php?t=327511) для совместимости с шапками и другими штуками, которые прикрепляются к игроку и могут блокировать функцию использования.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -619,7 +629,7 @@
       - Скрипты **Multi Colors** для компиляции плагина
       - Плагин **Steam Works Group Manager**
 12. [Survivor Abilities](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_abilities.sp)
-    - Добавляет выжившим команду для активации ульты в зависимости от текущего предмета в инвентаре
+    - Добавляет выжившим команды для активации ульты в зависимости от текущего предмета в пятом слоте
     - Команды: `l4l_ability`, `l4l_ultimate`, `l4l_ult`.
     - Плагины-референсы:
       - [[L4D2] Zed Time with Highlight Kill System v1.6.1 [13-January-2023]](https://forums.alliedmods.net/showthread.php?t=335925)
