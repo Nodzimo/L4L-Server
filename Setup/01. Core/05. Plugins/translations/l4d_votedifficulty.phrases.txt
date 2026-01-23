@@ -108,7 +108,7 @@
 	"vote_started"
 	{
 		"#format"	"{1:t}"
-		"en"		"{green}%N {orange} started a vote to change difficulty to {cyan}{1}"
+		"en"		"{green}%N {orange}started a vote to change difficulty to {cyan}{1}"
 		"ru"		"{green}%N {orange}начал голосование за смену сложности на {cyan}{1}"
 		"chi"		"{green}%N {orange}发起了一个{cyan}{1}{orange}难度的投票"
 	}
