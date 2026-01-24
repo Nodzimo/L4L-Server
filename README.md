@@ -384,6 +384,7 @@
       - **Front Mob Direction**
       - **Item hint**
       - **Tanks throw special infected**
+      - **L4L: Tank Jockeys**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -638,6 +639,12 @@
       - [[L4D2] Zed Time with Highlight Kill System v1.6.1 [13-January-2023]](https://forums.alliedmods.net/showthread.php?t=335925)
       - [[L4D2] Extended Survivor Sight](https://forums.alliedmods.net/showthread.php?t=233338)
       - [[L4D & L4D2] Prototype Grenades (1.56) [04-Jan-2026]](https://forums.alliedmods.net/showthread.php?t=318965)
+13. [Tank Jockeys](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_tank_jockeys.sp)
+    - Добавляет двух жокеев танку для синергии с плагином **Tanks throw special infected**
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - Плагины-референсы:
+      - [[L4D & L4D2] Spawn Special Infected on Survivor Death](https://forums.alliedmods.net/showthread.php?t=333589)
+      - [[L4D2] 360° Movable MiniGun](https://forums.alliedmods.net/showthread.php?t=225132)
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showthread.php?t=191247)
