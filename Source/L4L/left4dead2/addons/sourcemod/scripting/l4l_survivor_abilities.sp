@@ -9,10 +9,10 @@
 #define ABILITY_DURATION    10.0
 #define GLOBAL_COOLDOWN     60.0
 #define SLOT_PILLS          4
-#define GLOW_COLOR          38655    // Glow Mode color: GetColor("255 150 0");
+#define GLOW_COLOR_INFECTED 38655    // Glow Mode color: GetColor("255 150 0");
+#define GLOW_COLOR_SURVIVOR 255      // "255 0 0"
 
 // Sounds
-// #define SOUND_ABILITY_DENY  "Buttons/Button11.wav"
 #define SOUND_ABILITY_END   "UI/Menu_Horror01.wav"
 #define SOUND_ABILITY_PILLS "Player/Laser_On.wav"
 #define SOUND_ABILITY_ADREN "Plats/ChurchBell_End.wav"
@@ -98,6 +98,8 @@ void L4L_Hook()
     ResetGlobalState();
 
     HookEvent("player_death", Event_PlayerDeath);
+    HookEvent("round_start", Event_ResetOnNewRound);
+    HookEvent("mission_lost", Event_ResetOnRoundLost);
 }
 
 void L4L_Unhook()
@@ -106,14 +108,17 @@ void L4L_Unhook()
     ResetGlobalState();
 
     UnhookEvent("player_death", Event_PlayerDeath);
+    UnhookEvent("round_start", Event_ResetOnNewRound);
+    UnhookEvent("mission_lost", Event_ResetOnRoundLost);
 }
 
 public void OnMapStart()
 {
-    // PrecacheSound(SOUND_ABILITY_DENY);
     PrecacheSound(SOUND_ABILITY_END);
     PrecacheSound(SOUND_ABILITY_PILLS);
     PrecacheSound(SOUND_ABILITY_ADREN);
+
+    ResetGlobalState();
 }
 
 void PlaySound(int client, const char sound[32])
@@ -163,7 +168,6 @@ Action Cmd_SurvivorAbility(int client, int args)
 
     if (g_bAbilityActive)
     {
-        // PlaySound(client, SOUND_ABILITY_DENY);
         PrintHintText(client, "%T", "Already active", client);
 
         DebugLog(client, "Denied: ability active");
@@ -173,8 +177,6 @@ Action Cmd_SurvivorAbility(int client, int args)
 
     if (g_bCooldownActive)
     {
-        // PlaySound(client, SOUND_ABILITY_DENY);
-
         float left = g_flCooldownEndTime - GetEngineTime();
 
         if (left < 0.0)
@@ -194,7 +196,6 @@ Action Cmd_SurvivorAbility(int client, int args)
 
     if (itemType == Ability_None)
     {
-        // PlaySound(client, SOUND_ABILITY_DENY);
         PrintHintText(client, "%T", "No item", client);
 
         DebugLog(client, "Denied: no item in slot");
@@ -445,31 +446,123 @@ void StopTimescaler(int entity)
 }
 
 // Glow
-void ApplyGlow(int ent)
+void ApplyPillsGlow()
+{
+    // Clients
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsClientInGame(i))
+        {
+            continue;
+        }
+
+        int team = GetClientTeam(i);
+
+        // Infected (alive only)
+        if (team == 3)
+        {
+            if (IsPlayerAlive(i))
+            {
+                ApplyGlowColor(i, GLOW_COLOR_INFECTED);
+            }
+
+            continue;
+        }
+
+        // Survivors: highlight ONLY incapacitated/ledge-hang (alive), remove if got up
+        if (team == 2 && IsPlayerAlive(i))
+        {
+            bool down =
+                (GetEntProp(i, Prop_Send, "m_isIncapacitated") != 0) || (GetEntProp(i, Prop_Send, "m_isHangingFromLedge") != 0);
+
+            if (down)
+            {
+                ApplyGlowColor(i, GLOW_COLOR_SURVIVOR);
+            }
+            else
+            {
+                RemoveGlowColor(i, GLOW_COLOR_SURVIVOR);
+            }
+        }
+    }
+
+    // Witches
+    int ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "witch")) != -1)
+    {
+        ApplyGlowColor(ent, GLOW_COLOR_INFECTED);
+    }
+
+    // Dead survivor bodies (static models)
+    ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "survivor_death_model")) != -1)
+    {
+        ApplyGlowColor(ent, GLOW_COLOR_SURVIVOR);
+    }
+}
+
+void RemovePillsGlow()
+{
+    // Remove infected glow from SI clients
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (IsClientInGame(i))
+        {
+            if (GetClientTeam(i) == 3)
+            {
+                RemoveGlowColor(i, GLOW_COLOR_INFECTED);
+            }
+            else if (GetClientTeam(i) == 2)
+            {
+                RemoveGlowColor(i, GLOW_COLOR_SURVIVOR);
+            }
+        }
+    }
+
+    // Witches
+    int ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "witch")) != -1)
+    {
+        RemoveGlowColor(ent, GLOW_COLOR_INFECTED);
+    }
+
+    // Dead bodies
+    ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "survivor_death_model")) != -1)
+    {
+        RemoveGlowColor(ent, GLOW_COLOR_SURVIVOR);
+    }
+}
+
+void ApplyGlowColor(int ent, int color)
 {
     if (ent <= 0 || !IsValidEntity(ent))
     {
         return;
     }
 
-    if (GetEntProp(ent, Prop_Send, "m_glowColorOverride") == GLOW_COLOR)
+    if (GetEntProp(ent, Prop_Send, "m_glowColorOverride") == color)
     {
         return;
     }
 
     SetEntProp(ent, Prop_Send, "m_nGlowRange", 99999);
     SetEntProp(ent, Prop_Send, "m_iGlowType", 3);
-    SetEntProp(ent, Prop_Send, "m_glowColorOverride", GLOW_COLOR);
+    SetEntProp(ent, Prop_Send, "m_glowColorOverride", color);
 }
 
-void RemoveGlow(int ent)
+void RemoveGlowColor(int ent, int color)
 {
     if (ent <= 0 || !IsValidEntity(ent))
     {
         return;
     }
 
-    if (GetEntProp(ent, Prop_Send, "m_glowColorOverride") != GLOW_COLOR)
+    if (GetEntProp(ent, Prop_Send, "m_glowColorOverride") != color)
     {
         return;
     }
@@ -479,55 +572,24 @@ void RemoveGlow(int ent)
     SetEntProp(ent, Prop_Send, "m_glowColorOverride", 0);
 }
 
-void ApplyPillsGlow()
-{
-    for (int i = 1; i <= MaxClients; i++)
-    {
-        if (!IsClientInGame(i) || !IsPlayerAlive(i))
-        {
-            continue;
-        }
-
-        if (GetClientTeam(i) == 3)
-        {
-            ApplyGlow(i);
-        }
-    }
-
-    int ent = -1;
-
-    while ((ent = FindEntityByClassname(ent, "witch")) != -1)
-    {
-        ApplyGlow(ent);
-    }
-}
-
-void RemovePillsGlow()
-{
-    for (int i = 1; i <= MaxClients; i++)
-    {
-        if (IsClientInGame(i) && GetClientTeam(i) == 3)
-        {
-            RemoveGlow(i);
-        }
-    }
-
-    int ent = -1;
-
-    while ((ent = FindEntityByClassname(ent, "witch")) != -1)
-    {
-        RemoveGlow(ent);
-    }
-}
-
 void Event_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
     int client = GetClientOfUserId(event.GetInt("userid"));
 
     if (client > 0 && IsClientInGame(client) && GetClientTeam(client) == 3)
     {
-        RemoveGlow(client);
+        RemoveGlowColor(client, GLOW_COLOR_INFECTED);
     }
+}
+
+void Event_ResetOnNewRound(Event event, const char[] name, bool dontBroadcast)
+{
+    ResetGlobalState();
+}
+
+void Event_ResetOnRoundLost(Event event, const char[] name, bool dontBroadcast)
+{
+    ResetGlobalState();
 }
 
 public Action Timer_PillsGlowScan(Handle timer)

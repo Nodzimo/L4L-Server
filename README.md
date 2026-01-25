@@ -640,7 +640,7 @@
       - [[L4D2] Extended Survivor Sight](https://forums.alliedmods.net/showthread.php?t=233338)
       - [[L4D & L4D2] Prototype Grenades (1.56) [04-Jan-2026]](https://forums.alliedmods.net/showthread.php?t=318965)
 13. [Tank Jockeys](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_tank_jockeys.sp)
-    - Добавляет двух жокеев танку для синергии с плагином **Tanks throw special infected**
+    - Добавляет танку двух жокеев для синергии с плагином **Tanks throw special infected**
     - Зависимость: плагин **Left 4 DHooks Direct**
     - Плагины-референсы:
       - [[L4D & L4D2] Spawn Special Infected on Survivor Death](https://forums.alliedmods.net/showthread.php?t=333589)
