@@ -7,7 +7,6 @@
 #define TEAM_SURVIVORS  2
 #define TEAM_INFECTED   3
 #define CVAR_FLAGS      FCVAR_NOTIFY
-
 #define TRACE_TOLERANCE 25.0
 
 ConVar l4d2_detonation_force_enable;
@@ -39,12 +38,12 @@ public void OnPluginStart()
     CreateConVar("l4d2_detonation_force_version", PLUGIN_VERSION, "L4D2 Detonation Force Version", CVAR_FLAGS | FCVAR_SPONLY | FCVAR_DONTRECORD);
 
     l4d2_detonation_force_enable            = CreateConVar("l4d2_detonation_force_enable", "0", "Enable/Disable plugin", CVAR_FLAGS);
-    l4d2_bomb_detonation_force              = CreateConVar("l4d2_bomb_detonation_force", "250", "Sets bomb explosion power", CVAR_FLAGS);
+    l4d2_bomb_detonation_force              = CreateConVar("l4d2_bomb_detonation_force", "400", "Sets bomb explosion power", CVAR_FLAGS);
     l4d2_pipe_detonation_force              = CreateConVar("l4d2_pipe_detonation_force", "300", "Sets pipe bomb explosion power", CVAR_FLAGS);
-    l4d2_barrel_detonation_force            = CreateConVar("l4d2_barrel_detonation_force", "250", "Sets fuel barrel explosion power", CVAR_FLAGS);
-    l4d2_grenade_detonation_force           = CreateConVar("l4d2_grenade_detonation_force", "50", "Sets grenade launcher explosion power", CVAR_FLAGS);
+    l4d2_barrel_detonation_force            = CreateConVar("l4d2_barrel_detonation_force", "500", "Sets fuel barrel explosion power", CVAR_FLAGS);
+    l4d2_grenade_detonation_force           = CreateConVar("l4d2_grenade_detonation_force", "350", "Sets grenade launcher explosion power", CVAR_FLAGS);
     l4d2_detonation_scale_damage            = CreateConVar("l4d2_detonation_scale_damage", "0.0", "% force as damage", CVAR_FLAGS);
-    l4d2_detonation_force_immunity          = CreateConVar("l4d2_detonation_force_immunity", "1", "Entity immune to the explosion: 0 nobody, 1 survivors, 2 infected", CVAR_FLAGS);
+    l4d2_detonation_force_immunity          = CreateConVar("l4d2_detonation_force_immunity", "2", "Entity immune to the explosion: 0 nobody, 1 survivors, 2 infected", CVAR_FLAGS);
     l4d2_detonation_force_ghost_mode        = CreateConVar("l4d2_detonation_force_ghost_mode", "0", "Enable/Disable knock back in infected ghost", CVAR_FLAGS);
     l4d2_detonation_force_disable_gamemodes = CreateConVar("l4d2_detonation_force_disable_gamemodes", "empty", "Disable plugin in selected game modes", CVAR_FLAGS);
 
@@ -175,6 +174,15 @@ void Fly(int explosion, int target, float power)
 {
     if (target <= 0 || !IsValidEntity(target) || !IsValidEdict(target))
         return;
+
+    // Exclude Tank (infected player with zombieClass == 8)
+    if (GetClientTeam(target) == TEAM_INFECTED)
+    {
+        int zclass = GetEntProp(target, Prop_Send, "m_zombieClass");
+
+        if (zclass == 8)    // Tank
+            return;
+    }
 
     if (GetEntData(target, FindSendPropInfo("CTerrorPlayer", "m_isGhost"), 1) == 1)
     {
