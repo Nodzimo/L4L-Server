@@ -52,24 +52,40 @@ void L4L_ReadCvars()
 
 void L4L_Hook()
 {
-    HookEvent(EVENT_PLAYER_DEATH, Event_SurvivorDeath);
+    HookEvent(EVENT_PLAYER_DEATH, Event_PlayerDeath);
 }
 
 void L4L_Unhook()
 {
-    UnhookEvent(EVENT_PLAYER_DEATH, Event_SurvivorDeath);
+    UnhookEvent(EVENT_PLAYER_DEATH, Event_PlayerDeath);
 }
 
-void Event_SurvivorDeath(Event event, const char[] name, bool dontBroadcast)
+void Event_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
     int client = GetEventClient(event);
 
-    if (!IsValidSurvivor(client)) return;
+    if (IsValidSurvivor(client))
+    {
+        if (g_iCvarDebug) PrintToChatAll("%s Event_SurvivorDeath \x04%s \x05%s", DEBUG_TAG, GetName(client), name);
 
-    if (g_iCvarDebug) PrintToChatAll("%s Event_SurvivorDeath \x04%s \x05%s", DEBUG_TAG, GetName(client), name);
+        SpawnMob(client, g_iCvarDebug);
+        SpawnWitch(client);
 
-    SpawnMob(client, g_iCvarDebug);
-    SpawnWitch(client, g_iCvarDebug);
+        return;
+    }
+
+    if (IsTankClient(client))
+    {
+        int exec = GetAnySurvivorExecutor();
+
+        if (exec == 0) return;
+
+        if (g_iCvarDebug) PrintToChatAll("%s Event_TankDeath \x04%s \x05%s", DEBUG_TAG, GetName(client), name);
+
+        SpawnWitch(exec);
+
+        return;
+    }
 }
 
 void SpawnWitch(int client, int count = DEFAULT_SPAWN_COUNT)
@@ -82,4 +98,29 @@ void SpawnWitch(int client, int count = DEFAULT_SPAWN_COUNT)
         Format(argument, sizeof argument, "witch %s", SPAWN_ARGUMENT_AUTO);
         ExecuteCheat(client, SPAWN_COMMAND_OLD, argument, g_iCvarDebug);
     }
+}
+
+int GetAnySurvivorExecutor()
+{
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsClientInGame(i)) continue;
+
+        if (!IsValidSurvivor(i)) continue;
+
+        return i;
+    }
+
+    return 0;
+}
+
+bool IsTankClient(int client)
+{
+    if (client <= 0) return false;
+
+    if (!IsClientInGame(client)) return false;
+
+    if (!IsInfected(client)) return false;
+
+    return IsTank(client);
 }
