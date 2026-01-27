@@ -621,6 +621,8 @@
      - [[L4D2] CSO SupplyBox (v1.5, 2024-3-6)](https://forums.alliedmods.net/showthread.php?t=335862)
      - [[L4D2] Loots Popup v1.1 [17-April-2023]](https://forums.alliedmods.net/showthread.php?t=341113)
      - [[L4D1,2] Loot of Zombies 1.6](https://forums.alliedmods.net/showthread.php?t=115763)
+> [!CAUTION]
+> Баг: ведьма (и танк?) дропает 2 рюкзака с лутом, если убить её гранатомётом. Воспроизводилось на `c1m2_streets` с `sm_cvar z_witch_health 1`.
 10. [Upgrade Ammo Spawn Minigun](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_upgrade_ammo_spawn_minigun.sp)
     - Добавляет альтернативные режимы использования всех предметов четвёртого слота
     - Плагины-референсы:
@@ -844,6 +846,40 @@
 13. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 14. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
 15. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
+    - **Выкидывает ошибки в рантайме!**
+    - Воспроизведение: `c1m2_streets`, боты стреляют из убежища в зомби и попадают в ноги, что сразу приводит к ошибкам в консоли сервера:
+      ```
+      AN ERROR HAS OCCURED [Accessed null instance]
+
+      CALLSTACK
+      *FUNCTION [OnGameEvent_infected_hurt()] scripts/vscripts/LegShotStumble.nut line [49]
+      *FUNCTION [__RunEventCallbacks()] unnamed line [211]
+      *FUNCTION [__RunGameEventCallbacks()] unnamed line [218]
+
+      LOCALS
+      [location] INSTANCE
+      [damageChance] 5
+      [speedChance] 21.35870552063
+      [healthChance] 0
+      [health] 50
+      [velocityLength] 213.5870513916
+      [velocity] INSTANCE
+      [common] INSTANCE
+      [params] TABLE
+      [this] TABLE
+      [funcName] "OnGameEvent_infected_hurt"
+      [idx] 5
+      [useTable] TABLE
+      [bWarnIfMissing] true
+      [globalTableName] "GameEventCallbacks"
+      [prefix] "OnGameEvent_"
+      [params] TABLE
+      [event] "infected_hurt"
+      [this] TABLE
+      [params] TABLE
+      [event] "infected_hurt"
+      [this] TABLE
+      ```
 16. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
 17. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
 18. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
