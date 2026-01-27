@@ -5,7 +5,12 @@
 #include <l4l/lifecycle>
 #include <left4dhooks>
 
-#define PLUGIN_VERSION "0.0.1"
+#define PLUGIN_VERSION    "0.0.1"
+#define LOOTBOX_MODEL     "models/props_collectables/backpack.mdl"
+#define LOOTBOX_SOUND     "Items/ItemPickup.wav"
+#define LOOTBOX_MASS      "35"
+#define LOOTBOX_TAG_TANK  "l4l_lootbox_tank"
+#define LOOTBOX_TAG_WITCH "l4l_lootbox_witch"
 
 ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarTankLoot, g_hCvarLootMed, g_hCvarLootSight, g_hCvarLootAdren, g_hCvarWitchLoot, g_hCvarLootDefib, g_hCvarLootJar;
 int    g_iCvarDebug, g_iCvarLootMed, g_iCvarLootSight, g_iCvarLootAdren, g_iCvarLootDefib, g_iCvarLootJar;
@@ -44,6 +49,12 @@ public void OnPluginStart()
     g_hCvarWitchLoot.AddChangeHook(CvarChanged_Cvars);
     g_hCvarLootDefib.AddChangeHook(CvarChanged_Cvars);
     g_hCvarLootJar.AddChangeHook(CvarChanged_Cvars);
+}
+
+public void OnMapStart()
+{
+    PrecacheModel(LOOTBOX_MODEL, true);
+    PrecacheSound(LOOTBOX_SOUND, true);
 }
 
 public void OnConfigsExecuted()
@@ -99,28 +110,9 @@ void Event_TankDeath(Event event, const char[] name, bool dontBroadcast)
 
     if (IsClientAttacker(client, attacker) || !IsClientConnected(client) || !IsClientInGame(client)) return;
 
-    if (IsLucky(g_iCvarLootMed)) DropLoot(client, GetRandomInt(0, 1) ? ENTITY_MEDKIT : ENTITY_DEFIB);
-
-    if (IsLucky(g_iCvarLootSight))
-    {
-        int roll = GetRandomInt(0, 2);
-
-        switch (roll)
-        {
-            case 0:
-            {
-                DropLoot(client, ENTITY_SIGHT);
-            }
-            case 1:
-            {
-                DropLoot(client, ENTITY_UPGRADE_INCENDIARY);
-            }
-            case 2:
-            {
-                DropLoot(client, ENTITY_UPGRADE_EXPLOSIVE);
-            }
-        }
-    }
+    float origin[AXES_XYZ];
+    GetEntPropVector(client, PROP_SEND, VECTOR_ORIGIN, origin);
+    SpawnLootBox(origin, LOOTBOX_TAG_TANK);
 }
 
 void Event_WitchDeath(Event event, const char[] name, bool dontBroadcast)
@@ -129,38 +121,14 @@ void Event_WitchDeath(Event event, const char[] name, bool dontBroadcast)
 
     int client = event.GetInt("witchid");
 
+    if (!IsValidEntity(client))
+        return;
+
     if (g_iCvarDebug) PrintToChatAll("%s Event_WitchDeath \x04%d \x05%s", DEBUG_TAG, client, name);
-
-    if (IsLucky(g_iCvarLootDefib)) DropLoot(client, ENTITY_DEFIB);
-
-    if (IsLucky(g_iCvarLootJar)) DropLoot(client, ENTITY_JAR);
-
-    if (IsLucky(g_iCvarLootAdren)) DropLoot(client, ENTITY_ADREN);
-}
-
-void DropLoot(int client, int entity)
-{
-    if (!entity) return;
 
     float origin[AXES_XYZ];
     GetEntPropVector(client, PROP_SEND, VECTOR_ORIGIN, origin);
-
-    float offset[AXES_XYZ];
-    GetRandomOffset(origin, offset);
-
-    if (g_iCvarDebug) PrintToChatAll("%s DropLoot \x04%d", DEBUG_TAG, entity);
-
-    switch (entity)
-    {
-        case ENTITY_MEDKIT: CreateEntity("weapon_first_aid_kit", offset);
-        case ENTITY_DEFIB: CreateEntity("weapon_defibrillator", offset);
-        case ENTITY_ADREN: CreateEntity("weapon_adrenaline", offset);
-        case ENTITY_JAR: CreateEntity("weapon_vomitjar", offset);
-        case ENTITY_UPGRADE_INCENDIARY: CreateEntity("weapon_upgradepack_incendiary", offset);
-        case ENTITY_UPGRADE_EXPLOSIVE: CreateEntity("weapon_upgradepack_explosive", offset);
-        case ENTITY_SIGHT:
-            if (GetGroundPos(offset, offset)) CreateSight(offset);
-    }
+    SpawnLootBox(origin, LOOTBOX_TAG_WITCH);
 }
 
 int CreateEntity(const char[] name, const float origin[AXES_XYZ], int ammo = DISABLE)
@@ -224,4 +192,136 @@ bool GetGroundPos(const float vector[AXES_XYZ], float ground[AXES_XYZ])
 bool TR_FilterWorld(int entity, int mask)
 {
     return entity == ENTITY_WORLD;
+}
+
+int SpawnLootBox(const float origin[AXES_XYZ], const char[] targetname)
+{
+    int box = CreateEntityByName("prop_physics_override");
+
+    if (box == ENTITY_CREATION_FAILED)
+        return ENTITY_CREATION_FAILED;
+
+    DispatchKeyValue(box, "model", LOOTBOX_MODEL);
+    DispatchKeyValue(box, "targetname", targetname);
+    DispatchKeyValue(box, "massScale", LOOTBOX_MASS);
+
+    // Glow
+    DispatchKeyValue(box, "glowstate", "3");
+    DispatchKeyValue(box, "glowcolor", "195 195 0");
+    DispatchKeyValue(box, "glowrange", "600");
+
+    // To floor
+    float pos[AXES_XYZ];
+    pos[AXIS_X] = origin[AXIS_X];
+    pos[AXIS_Y] = origin[AXIS_Y];
+    pos[AXIS_Z] = origin[AXIS_Z] + 30.0;
+
+    float ground[AXES_XYZ];
+
+    if (GetGroundPos(pos, ground))
+        pos[AXIS_Z] = ground[AXIS_Z] + 5.0;
+
+    // Random angle
+    float ang[3];
+    ang[0] = 0.0;
+    ang[1] = GetRandomFloat(0.0, 359.0);
+    ang[2] = 0.0;
+
+    TeleportEntity(box, pos, ang, NULL_VECTOR);
+    DispatchSpawn(box);
+    ActivateEntity(box);
+    SDKHook(box, SDKHook_Use, LootBox_OnUse);
+
+    if (g_iCvarDebug)
+    {
+        float p[AXES_XYZ];
+        GetEntPropVector(box, Prop_Data, VECTOR_ORIGIN, p);
+        PrintToChatAll("%s SpawnLootBox %s -> ent=%d pos=%.1f %.1f %.1f",
+                       DEBUG_TAG, targetname, box, p[0], p[1], p[2]);
+    }
+
+    return box;
+}
+
+Action LootBox_OnUse(int box, int caller, int activator, UseType type, float value)
+{
+    if (!IsClient(activator) || !IsClientInGame(activator))
+        return Plugin_Continue;
+
+    char name[64];
+    GetEntPropString(box, Prop_Data, "m_iName", name, sizeof(name));
+
+    if (StrEqual(name, LOOTBOX_TAG_TANK))
+    {
+        OpenTankLootBox(box);
+    }
+    else if (StrEqual(name, LOOTBOX_TAG_WITCH))
+    {
+        OpenWitchLootBox(box);
+    }
+    else
+    {
+        return Plugin_Continue;
+    }
+
+    float vPos[AXES_XYZ];
+    GetEntPropVector(box, PROP_SEND, VECTOR_ORIGIN, vPos);
+    EmitAmbientSound(LOOTBOX_SOUND, vPos);
+
+    RemoveEntity(box);
+
+    return Plugin_Handled;
+}
+
+void DropLoot(const float origin[AXES_XYZ], int entity)
+{
+    if (!entity) return;
+
+    float offset[AXES_XYZ];
+    GetRandomOffset(origin, offset);
+
+    if (g_iCvarDebug) PrintToChatAll("%s DropLoot \x04%d", DEBUG_TAG, entity);
+
+    switch (entity)
+    {
+        case ENTITY_MEDKIT: CreateEntity("weapon_first_aid_kit", offset);
+        case ENTITY_DEFIB: CreateEntity("weapon_defibrillator", offset);
+        case ENTITY_ADREN: CreateEntity("weapon_adrenaline", offset);
+        case ENTITY_JAR: CreateEntity("weapon_vomitjar", offset);
+        case ENTITY_UPGRADE_INCENDIARY: CreateEntity("weapon_upgradepack_incendiary", offset);
+        case ENTITY_UPGRADE_EXPLOSIVE: CreateEntity("weapon_upgradepack_explosive", offset);
+        case ENTITY_SIGHT:
+            if (GetGroundPos(offset, offset)) CreateSight(offset);
+    }
+}
+
+void OpenTankLootBox(int box)
+{
+    float origin[AXES_XYZ];
+    GetEntPropVector(box, PROP_SEND, VECTOR_ORIGIN, origin);
+
+    if (IsLucky(g_iCvarLootMed))
+        DropLoot(origin, GetRandomInt(0, 1) ? ENTITY_MEDKIT : ENTITY_DEFIB);
+
+    if (IsLucky(g_iCvarLootSight))
+    {
+        int roll = GetRandomInt(0, 2);
+
+        switch (roll)
+        {
+            case 0: DropLoot(origin, ENTITY_SIGHT);
+            case 1: DropLoot(origin, ENTITY_UPGRADE_INCENDIARY);
+            case 2: DropLoot(origin, ENTITY_UPGRADE_EXPLOSIVE);
+        }
+    }
+}
+
+void OpenWitchLootBox(int box)
+{
+    float origin[AXES_XYZ];
+    GetEntPropVector(box, PROP_SEND, VECTOR_ORIGIN, origin);
+
+    if (IsLucky(g_iCvarLootDefib)) DropLoot(origin, ENTITY_DEFIB);
+    if (IsLucky(g_iCvarLootJar)) DropLoot(origin, ENTITY_JAR);
+    if (IsLucky(g_iCvarLootAdren)) DropLoot(origin, ENTITY_ADREN);
 }

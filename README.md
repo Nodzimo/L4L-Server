@@ -616,6 +616,11 @@
 9. [Infected Drop Loot](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_infected_drop_loot.sp)
    - Танк и ведьма оставляют лут после смерти
    - Зависимость: плагин **Left 4 DHooks Direct**
+   - Плагины-референсы:
+     - [[L4D & L4D2] Loot Boxes(v1.2)[03-Apr-2023]](https://forums.alliedmods.net/showthread.php?t=338173)
+     - [[L4D2] CSO SupplyBox (v1.5, 2024-3-6)](https://forums.alliedmods.net/showthread.php?t=335862)
+     - [[L4D2] Loots Popup v1.1 [17-April-2023]](https://forums.alliedmods.net/showthread.php?t=341113)
+     - [[L4D1,2] Loot of Zombies 1.6](https://forums.alliedmods.net/showthread.php?t=115763)
 10. [Upgrade Ammo Spawn Minigun](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_upgrade_ammo_spawn_minigun.sp)
     - Добавляет альтернативные режимы использования всех предметов четвёртого слота
     - Плагины-референсы:
