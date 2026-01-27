@@ -195,6 +195,10 @@ Action Event_PlayerDisconnect(Event event, const char[] name, bool dontBroadcast
 		{
 			if( IsRebootTimeAllowed() )
 			{
+				ServerCommand("sm_cvar sb_all_bot_game 1");
+				ServerExecute();
+				ServerCommand("sb_all_bot_game");
+
 				if( g_ConVarHibernate != null )
 				{
 					g_ConVarHibernate.SetInt(0);
