@@ -121,6 +121,21 @@ public void OnMapStart()
     ResetGlobalState();
 }
 
+public void OnMapEnd()
+{
+    g_hTmrAbility       = null;
+    g_hTmrCooldown      = null;
+    g_hTmrGlowScan      = null;
+    zeding              = null;
+
+    g_bAbilityActive    = false;
+    g_bCooldownActive   = false;
+    g_flCooldownEndTime = 0.0;
+
+    OnAbilityEnd();
+    ZedBack(null, -1);
+}
+
 void PlaySound(int client, const char sound[32])
 {
     EmitSoundToClient(client, sound, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NORMAL, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
@@ -226,7 +241,7 @@ void StartAbilityPhase(int client, AbilityItemType itemType)
     DebugLog(client, "Ability started");
 
     float abilityRealDuration = (itemType == Ability_Adrenaline) ? (ABILITY_DURATION * flTimescale) : ABILITY_DURATION;
-    g_hTmrAbility             = CreateTimer(abilityRealDuration, Timer_AbilityEnd, _, TIMER_FLAG_NO_MAPCHANGE);
+    g_hTmrAbility             = CreateTimer(abilityRealDuration, Timer_AbilityEnd);
 }
 
 public Action Timer_AbilityEnd(Handle timer)
@@ -242,7 +257,7 @@ public Action Timer_AbilityEnd(Handle timer)
     DebugLog(0, "Ability ended, cooldown started");
 
     g_flCooldownEndTime = GetEngineTime() + GLOBAL_COOLDOWN;
-    g_hTmrCooldown      = CreateTimer(GLOBAL_COOLDOWN, Timer_CooldownEnd, _, TIMER_FLAG_NO_MAPCHANGE);
+    g_hTmrCooldown      = CreateTimer(GLOBAL_COOLDOWN, Timer_CooldownEnd);
 
     return Plugin_Stop;
 }
@@ -310,7 +325,7 @@ void OnAbilityStart(AbilityItemType itemType)
             ApplyPillsGlow();
 
             KillTimerSafe(g_hTmrGlowScan);
-            g_hTmrGlowScan = CreateTimer(0.2, Timer_PillsGlowScan, _, TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+            g_hTmrGlowScan = CreateTimer(0.2, Timer_PillsGlowScan, _, TIMER_REPEAT);
 
             return;
         }
@@ -347,7 +362,10 @@ void KillTimerSafe(Handle &tmr)
 {
     if (tmr != null)
     {
-        KillTimer(tmr);
+        if (IsValidHandle(tmr))
+        {
+            KillTimer(tmr);
+        }
 
         tmr = null;
     }
@@ -373,9 +391,16 @@ void DebugLog(int client, const char[] msg)
 // Slowmo
 void ZedTime(float duration, float scale)
 {
-    if (zeding)
+    if (zeding != null)
     {
-        TriggerTimer(zeding);
+        if (IsValidHandle(zeding))
+        {
+            TriggerTimer(zeding);
+        }
+        else
+        {
+            zeding = null;
+        }
     }
 
     for (int client = 1; client <= MaxClients; client++)
