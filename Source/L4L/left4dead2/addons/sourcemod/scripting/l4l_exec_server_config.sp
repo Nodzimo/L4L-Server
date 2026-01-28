@@ -10,10 +10,19 @@
 #define IMPOSSIBLE_PLUS "Impossible+"
 #define HARDCORE        "Hardcore"
 #define SOUND_HARDCORE  "UI/Pickup_Secret01.wav"
+#define MUSIC_HARDCORE1 "music/infection/infection_09_01.wav"
+#define MUSIC_HARDCORE2 "music/infection/infection_10_01.wav"
+#define MUSIC_HARDCORE3 "music/infection/infection_11_01.wav"
 
-ConVar    g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
-bool      g_bHostnameGuard;
-StringMap g_smSeenAuthIds;
+ConVar            g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
+bool              g_bHostnameGuard;
+StringMap         g_smSeenAuthIds;
+
+static const char g_sHardcoreMusic[][] = {
+    MUSIC_HARDCORE1,
+    MUSIC_HARDCORE2,
+    MUSIC_HARDCORE3
+};
 
 public Plugin myinfo =
 {
@@ -62,6 +71,9 @@ public void OnConfigsExecuted()
 public void OnMapStart()
 {
     PrecacheSound(SOUND_HARDCORE);
+    PrecacheSound(MUSIC_HARDCORE1);
+    PrecacheSound(MUSIC_HARDCORE2);
+    PrecacheSound(MUSIC_HARDCORE3);
 }
 
 static void ExecInstanceConfig()
@@ -206,16 +218,21 @@ static void MarkCurrentPlayersAsSeen()
 
 static void PlaySoundForCurrentPlayers()
 {
+    int randomMusicId = GetRandomInt(0, sizeof(g_sHardcoreMusic) - 1);
+
+    PrintToServer("[L4L] Hardcore music: %s", g_sHardcoreMusic[randomMusicId]);
+
     for (int client = 1; client <= MaxClients; client++)
     {
         if (IsClientInGame(client) && !IsFakeClient(client))
         {
             PlaySound(client, SOUND_HARDCORE);
+            PlaySound(client, g_sHardcoreMusic[randomMusicId]);
         }
     }
 }
 
-void PlaySound(int client, const char sound[32])
+void PlaySound(int client, const char[] sound)
 {
     EmitSoundToClient(client, sound, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NORMAL, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
 }
