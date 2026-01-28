@@ -754,6 +754,8 @@
    - `sm_mdzs`
 16. [[L4D1+2] Weapon Remove (1.3.1_15.01.2023) by Rain_orel, Hanzolo, Dosergen, Grey83](https://forums.alliedmods.net/showpost.php?p=2797215&postcount=22)
     - Управляет количеством экземпляров оружия
+17. [[L4D1/2] Limited Ammo Piles (1.4) by Thraka, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_limited_ammo_pile)
+    - Патроны удаляются после того, как все выжившие взяли их по 1 разу.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
