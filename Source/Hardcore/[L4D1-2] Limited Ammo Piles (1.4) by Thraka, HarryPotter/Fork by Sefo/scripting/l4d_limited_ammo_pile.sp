@@ -13,8 +13,8 @@
 float lastSoundTime[MAXPLAYERS+1];
 Handle usedAmmos[MAXPLAYERS+1];
 
-ConVar g_hCvarDeniedSound, g_hCvarOneTime, g_hAnnounceType;
-bool g_bCvarDeniedSound, g_bCvarOneTime;
+ConVar g_hCvarEnable, g_hCvarDeniedSound, g_hCvarOneTime, g_hAnnounceType;
+bool g_bCvarEnable, g_bCvarDeniedSound, g_bCvarOneTime;
 int g_iAnnounceType;
 int g_iPickAmmoIndex[MAXPLAYERS+1];			// Player Ammo entity reference
 
@@ -54,11 +54,13 @@ public void OnPluginStart() {
 
 	ResetAllUsedAmmo();
 
+	g_hCvarEnable = CreateConVar("l4d_limited_ammo_pile_enable", "0", "0 = Plugin disabled, 1 = Enabled.", FCVAR_NOTIFY, true, 0.0, true, 1.0);
 	g_hCvarDeniedSound = CreateConVar("l4d_limited_ammo_pile_denied_sound", "1", "If 1, Play sound when ammo already used.", FCVAR_NOTIFY, true, 0.0, true, 1.0);
 	g_hCvarOneTime = CreateConVar("l4d_limited_ammo_pile_one_time", "1", "If 1, Each player has only one chance to pick up ammo from each ammo pile. (0=No limit until ammo pile removed)", FCVAR_NOTIFY, true, 0.0, true, 1.0);
-	g_hAnnounceType = CreateConVar("l4d_limited_ammo_pile_announce_type", "2", "Changes how message displays. (0: Disable, 1:In chat, 2: In Hint Box, 3: In center text)", FCVAR_NOTIFY, true, 0.0, true, 3.0);
+	g_hAnnounceType = CreateConVar("l4d_limited_ammo_pile_announce_type", "0", "Changes how message displays. (0: Disable, 1:In chat, 2: In Hint Box, 3: In center text)", FCVAR_NOTIFY, true, 0.0, true, 3.0);
 
 	GetCvars();
+	g_hCvarEnable.AddChangeHook(OnConVarChange);
 	g_hCvarDeniedSound.AddChangeHook(OnConVarChange);
 	g_hCvarOneTime.AddChangeHook(OnConVarChange);
 	g_hAnnounceType.AddChangeHook(OnConVarChange);
@@ -112,6 +114,7 @@ public void OnConVarChange(ConVar convar, char[] oldValue, char[] newValue) {
 
 void GetCvars()
 {
+	g_bCvarEnable     = g_hCvarEnable.BoolValue;
 	g_bCvarDeniedSound = g_hCvarDeniedSound.BoolValue;
 	g_bCvarOneTime = g_hCvarOneTime.BoolValue;
 	g_iAnnounceType = g_hAnnounceType.IntValue;
@@ -166,6 +169,9 @@ public void OnBotSwap(Event event, const char[] name, bool dontBroadcast)
 //player does picks up ammo from ammo pile
 public void Event_AmmoPickup(Event event, const char[] name, bool dontBroadcast)
 {
+	if (!g_bCvarEnable)
+	    return;
+
 	int client = GetClientOfUserId(event.GetInt("userid"));
 	
 	if (IsPlayerSurvivor(client))
@@ -183,9 +189,12 @@ public void Event_AmmoPickup(Event event, const char[] name, bool dontBroadcast)
 }
 
 public void OnEntityCreated(int entity, const char[] classname) {
-	
+
 	if (!IsValidEntityIndex(entity))
 		return;
+
+	if (!g_bCvarEnable)
+	    return;
 
 	switch (classname[0])
 	{
@@ -199,6 +208,9 @@ public void OnEntityCreated(int entity, const char[] classname) {
 
 public void OnNextFrame(int entityRef)
 {
+	if (!g_bCvarEnable)
+	    return;
+
 	int entity = EntRefToEntIndex(entityRef);
 
 	if (entity == INVALID_ENT_REFERENCE)
@@ -229,7 +241,9 @@ public void OnEntityDestroyed(int entity)
 }
 
 public Action OnAmmoUse(int entity, int activator, int caller, UseType type, float value) {
-	
+	if (!g_bCvarEnable)
+	    return Plugin_Continue;
+
 	int client = caller;
 	if (!IsPlayerAliveSurvivor(client)) return Plugin_Continue;
 
@@ -242,8 +256,13 @@ public Action OnAmmoUse(int entity, int activator, int caller, UseType type, flo
 
 		if(!g_bCvarOneTime) return Plugin_Continue;
 
-		if(!IsFakeClient(client)) PlayDeny(client);
-		
+		// if(!IsFakeClient(client)) PlayDeny(client);
+
+  		// Bots: never block, otherwise they get stuck at ammo pile
+    	if (IsFakeClient(client))
+        	return Plugin_Continue;
+
+		PlayDeny(client);
 		CheckKillAmmo(entity, client);
 		
 		return Plugin_Handled;
@@ -277,10 +296,13 @@ void PlayDeny(int client) {
 
 void CheckKillAmmo(int entity, int lastclient)
 {
+	if (!g_bCvarEnable)
+	    return;
+
 	bool bAllSurvivorPickUp = true;
 	for(int i =1; i <= MaxClients;++i)
 	{
-		if(IsPlayerSurvivor(i) && FindValueInArray(usedAmmos[i], entity) == -1) //still someone didn't pick up package
+		if(IsPlayerSurvivor(i) && !IsFakeClient(i) && FindValueInArray(usedAmmos[i], entity) == -1) //still someone didn't pick up package
 		{
 			bAllSurvivorPickUp = false;
 			break;

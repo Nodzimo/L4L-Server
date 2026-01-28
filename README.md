@@ -756,6 +756,8 @@
     - Управляет количеством экземпляров оружия
 17. [[L4D1/2] Limited Ammo Piles (1.4) by Thraka, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_limited_ammo_pile)
     - Патроны удаляются после того, как все выжившие взяли их по 1 разу.
+> [!IMPORTANT]
+> Используется мой форк, в котором исправлено некорректное поведение ботов с патронами и настроены квары под хардкор.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
