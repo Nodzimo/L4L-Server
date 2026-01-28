@@ -102,6 +102,8 @@ bool g_bEmptyMapCycleCustom;
 bool g_bMapStarted;
 bool g_iAsyncAwaitCount;
 bool g_bIsFinale;
+bool g_bIsReturnToLobbyVote;
+bool g_bCreditsArmed;
 
 StringMap g_hNameByMap;
 StringMap g_hNameByMapCustom;
@@ -260,7 +262,7 @@ public void OnPluginStart()
 	HookEvent("round_start", 			Event_RoundStart, 		EventHookMode_PostNoCopy);
 	HookEvent("finale_win", 			Event_FinaleWin, 		EventHookMode_PostNoCopy);
 	HookEvent("finale_vehicle_leaving",	Event_VehicleLeaving,	EventHookMode_PostNoCopy);
-	
+
 	BuildPath(Path_SM, g_sMapListPath, 		PLATFORM_MAX_PATH, "configs/%s", g_bLeft4Dead2 ? "MapChanger.l4d2.txt" : "MapChanger.l4d1.txt");
 	BuildPath(Path_SM, g_sMapInfoPath, 		PLATFORM_MAX_PATH, "configs/MapChanger_info.txt");
 	BuildPath(Path_SM, g_sVoteBlockPath, 	PLATFORM_MAX_PATH, "data/mapchanger_vote_block.txt");
@@ -283,6 +285,7 @@ public void OnPluginStart()
 	GetMissions();
 	
 	HookUserMessage(GetUserMessageId("DisconnectToLobby"), OnDisconnectToLobby, true);
+	HookUserMessage(GetUserMessageId("VoteFail"), OnVoteFail, false);
 }
 
 public void ConVarHook_NativeVotes(ConVar convar, const char[] oldValue, const char[] newValue)
@@ -408,6 +411,8 @@ void PrecachePhrasesKV_Frame(KeyValues kv)
 
 public void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
+	g_bIsReturnToLobbyVote = false;
+
 	if( g_hCvarServerPrintInfo.BoolValue )
 	{
 		PrintToServer("[MapChanger] Current map is: %s (new round)", g_sCurMap);
@@ -451,6 +456,11 @@ public Action OnCreditsScreen(UserMsg msg_id, BfRead hMsg, const int[] players, 
 {
 	UnhookUserMessage(StatsCrawlMsgId, OnCreditsScreen, false);
 	g_bUMHooked = false;
+	g_bCreditsArmed = true;
+
+    if (g_hCvarServerPrintInfo.BoolValue)
+        PrintToServer("[MapChanger] Credits START -> arm CreditsEnd change");
+
 	FinaleMapChange_Frame(); // walkaround for "Could not send a usermessage" in PrintToChat
 	return Plugin_Continue;
 }
@@ -464,10 +474,44 @@ public Action OnDisconnectToLobby(UserMsg msg_id, BfRead hMsg, const int[] playe
 {
 	if( g_hCvarFinaleChangeType.IntValue & FINALE_CHANGE_CREDITS_END )
 	{
-		GotoNextMap(true);
-		return Plugin_Handled;
+        if (g_bIsReturnToLobbyVote)
+        {
+            if (g_hCvarServerPrintInfo.BoolValue)
+                PrintToServer("[MapChanger] DisconnectToLobby ignored (ReturnToLobby vote)");
+
+            return Plugin_Continue;
+        }
+
+        if (!g_bCreditsArmed)
+        {
+            if (g_hCvarServerPrintInfo.BoolValue)
+                PrintToServer("[MapChanger] DisconnectToLobby ignored (no credits arm)");
+
+            return Plugin_Continue;
+        }
+
+        g_bCreditsArmed = false;
+
+        if (g_hCvarServerPrintInfo.BoolValue)
+            PrintToServer("[MapChanger] Credits END -> GotoNextMap");
+
+        GotoNextMap(true);
+        return Plugin_Handled;
 	}
 	return Plugin_Continue;
+}
+
+public Action OnVoteFail(UserMsg msg_id, BfRead bf, const int[] players, int playersNum, bool reliable, bool init)
+{
+	if (!g_bIsReturnToLobbyVote)
+        return Plugin_Continue;
+
+    g_bIsReturnToLobbyVote = false;
+
+    if (g_hCvarServerPrintInfo.BoolValue)
+        PrintToServer("[MapChanger] VoteFail: reset ReturnToLobby flag");
+
+    return Plugin_Continue;
 }
 
 void ReadFileToArrayList(char[] sPath, ArrayList list)
@@ -537,6 +581,7 @@ public void OnMapStart()
 	}
 	CreateTimer(5.0, Timer_ChangeHostName, _, TIMER_FLAG_NO_MAPCHANGE);
 	g_bUMHooked = false;
+	g_bCreditsArmed = false;
 	
 	g_bIsFinale = IsFinaleMap(g_sCurMap); // assume, database is already populated
 }
@@ -606,9 +651,19 @@ public Action CheckVote(int client, char[] command, int args)
 		else if( strcmp(s, "ReturnToLobby", false) == 0 ) {
 			if( !g_hCvarNativeVoteReturnLobbyAllow.BoolValue )
 			{
+				g_bIsReturnToLobbyVote = false;
+
+				if (g_hCvarServerPrintInfo.BoolValue)
+            		PrintToServer("[MapChanger] ReturnToLobby vote blocked (replaced by menu)");
+
 				Command_MapChoose(client, 0);
 				return Plugin_Stop;
 			}
+
+			g_bIsReturnToLobbyVote = true;
+
+			if (g_hCvarServerPrintInfo.BoolValue)
+				PrintToServer("[MapChanger] ReturnToLobby vote detected");
 		}
 	}
 	return Plugin_Continue;
