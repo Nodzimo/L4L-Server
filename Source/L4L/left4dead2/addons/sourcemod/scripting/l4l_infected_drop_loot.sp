@@ -8,7 +8,7 @@
 #define PLUGIN_VERSION    "0.0.1"
 #define LOOTBOX_MODEL     "models/props_collectables/backpack.mdl"
 #define LOOTBOX_SOUND     "Items/ItemPickup.wav"
-#define LOOTBOX_MASS      "35"
+#define LOOTBOX_MASS      "10"
 #define LOOTBOX_TAG_TANK  "l4l_lootbox_tank"
 #define LOOTBOX_TAG_WITCH "l4l_lootbox_witch"
 
@@ -219,7 +219,7 @@ int SpawnLootBox(const float origin[AXES_XYZ], const char[] targetname)
     float ground[AXES_XYZ];
 
     if (GetGroundPos(pos, ground))
-        pos[AXIS_Z] = ground[AXIS_Z] + 5.0;
+        pos[AXIS_Z] = ground[AXIS_Z] + 30.0;
 
     // Random angle
     float ang[3];
