@@ -752,6 +752,8 @@
      - **All4Dead**
      - **Tanks throw special infected**
    - `sm_mdzs`
+16. [[L4D1+2] Weapon Remove (1.3.1_15.01.2023) by Rain_orel, Hanzolo, Dosergen, Grey83](https://forums.alliedmods.net/showpost.php?p=2797215&postcount=22)
+    - Управляет количеством экземпляров оружия
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
