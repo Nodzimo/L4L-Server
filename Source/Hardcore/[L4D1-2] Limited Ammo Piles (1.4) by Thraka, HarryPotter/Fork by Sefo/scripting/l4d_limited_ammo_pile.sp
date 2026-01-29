@@ -109,7 +109,15 @@ public void OnConfigsExecuted()
 }
 
 public void OnConVarChange(ConVar convar, char[] oldValue, char[] newValue) {
+	bool wasEnabled = g_bCvarEnable;
+
 	GetCvars();
+
+	// Enable toggled live → apply immediately
+    if (convar == g_hCvarEnable && wasEnabled != g_bCvarEnable)
+    {
+        ApplyEnableStateRuntime();
+    }
 }
 
 void GetCvars()
@@ -118,6 +126,39 @@ void GetCvars()
 	g_bCvarDeniedSound = g_hCvarDeniedSound.BoolValue;
 	g_bCvarOneTime = g_hCvarOneTime.BoolValue;
 	g_iAnnounceType = g_hAnnounceType.IntValue;
+}
+
+void ApplyEnableStateRuntime()
+{
+    // Mode switch = always reset per-player usage state
+    ResetAllUsedAmmo();
+
+    int ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "weapon_ammo_spawn")) != INVALID_ENT_REFERENCE)
+    {
+        if (!IsValidEdict(ent) || !IsValidEntity(ent))
+        {
+            continue;
+        }
+
+        if (g_bCvarEnable)
+        {
+            // ENABLE → hook all existing piles
+            SDKHook(ent, SDKHook_Use, OnAmmoUse);
+        }
+        else
+        {
+            // DISABLE → unhook all existing piles
+            SDKUnhook(ent, SDKHook_Use, OnAmmoUse);
+        }
+    }
+
+    // Clear pending refs (safe)
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        g_iPickAmmoIndex[i] = 0;
+    }
 }
 
 public void OnClientPutInServer (int client) {
