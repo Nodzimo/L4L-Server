@@ -266,7 +266,7 @@ Action LootBox_OnUse(int box, int caller, int activator, UseType type, float val
 
     float vPos[AXES_XYZ];
     GetEntPropVector(box, PROP_SEND, VECTOR_ORIGIN, vPos);
-    EmitAmbientSound(LOOTBOX_SOUND, vPos);
+    EmitAmbientSound(LOOTBOX_SOUND, vPos, SOUND_FROM_WORLD, SNDLEVEL_GUNFIRE, SND_NOFLAGS, SNDATTN_IDLE);
 
     RemoveEntity(box);
 
