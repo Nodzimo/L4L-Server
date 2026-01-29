@@ -20,6 +20,7 @@
 ConVar g_hCvarEnable, g_hCvarDebug, cTimescale, cTriggerSilence, cTriggerSilenceFading;
 int    g_iCvarDebug;
 float  flTimescale, flTriggerSilence, flTriggerSilenceFading;
+bool   bBlockZedtime;
 Handle zeding;
 
 Handle g_hTmrAbility       = null;
@@ -98,8 +99,11 @@ void L4L_Hook()
     ResetGlobalState();
 
     HookEvent("player_death", Event_PlayerDeath);
-    HookEvent("round_start", Event_ResetOnNewRound);
-    HookEvent("mission_lost", Event_ResetOnRoundLost);
+    HookEvent("round_start", Event_RoundStart, EventHookMode_PostNoCopy);
+    HookEvent("mission_lost", Event_RoundEnd, EventHookMode_PostNoCopy);
+    HookEvent("round_end", Event_RoundEnd, EventHookMode_PostNoCopy);
+    HookEvent("map_transition", Event_RoundEnd, EventHookMode_PostNoCopy);
+    HookEvent("finale_vehicle_leaving", Event_RoundEnd, EventHookMode_PostNoCopy);
 }
 
 void L4L_Unhook()
@@ -108,8 +112,11 @@ void L4L_Unhook()
     ResetGlobalState();
 
     UnhookEvent("player_death", Event_PlayerDeath);
-    UnhookEvent("round_start", Event_ResetOnNewRound);
-    UnhookEvent("mission_lost", Event_ResetOnRoundLost);
+    UnhookEvent("round_start", Event_RoundStart, EventHookMode_PostNoCopy);
+    UnhookEvent("mission_lost", Event_RoundEnd, EventHookMode_PostNoCopy);
+    UnhookEvent("round_end", Event_RoundEnd, EventHookMode_PostNoCopy);
+    UnhookEvent("map_transition", Event_RoundEnd, EventHookMode_PostNoCopy);
+    UnhookEvent("finale_vehicle_leaving", Event_RoundEnd, EventHookMode_PostNoCopy);
 }
 
 public void OnMapStart()
@@ -123,6 +130,8 @@ public void OnMapStart()
 
 public void OnMapEnd()
 {
+    OnRoundChange();
+
     g_hTmrAbility       = null;
     g_hTmrCooldown      = null;
     g_hTmrGlowScan      = null;
@@ -133,7 +142,6 @@ public void OnMapEnd()
     g_flCooldownEndTime = 0.0;
 
     OnAbilityEnd();
-    ZedBack(null, -1);
 }
 
 void PlaySound(int client, const char sound[32])
@@ -177,6 +185,11 @@ Action Cmd_SurvivorAbility(int client, int args)
 
     // Dead spectators etc...
     if (!IsPlayerAlive(client))
+    {
+        return Plugin_Handled;
+    }
+
+    if (bBlockZedtime)
     {
         return Plugin_Handled;
     }
@@ -350,12 +363,14 @@ void ResetGlobalState()
     KillTimerSafe(g_hTmrAbility);
     KillTimerSafe(g_hTmrCooldown);
     KillTimerSafe(g_hTmrGlowScan);
-    KillTimerSafe(zeding);
-    ZedBack(null, -1);
+
+    OnAbilityEnd();
 
     g_bAbilityActive    = false;
     g_bCooldownActive   = false;
     g_flCooldownEndTime = 0.0;
+
+    OnRoundChange();
 }
 
 void KillTimerSafe(Handle &tmr)
@@ -391,6 +406,11 @@ void DebugLog(int client, const char[] msg)
 // Slowmo
 void ZedTime(float duration, float scale)
 {
+    if (bBlockZedtime)
+    {
+        return;
+    }
+
     if (zeding != null)
     {
         if (IsValidHandle(zeding))
@@ -607,14 +627,32 @@ void Event_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
     }
 }
 
-void Event_ResetOnNewRound(Event event, const char[] name, bool dontBroadcast)
+void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
+    bBlockZedtime = false;
+
     ResetGlobalState();
 }
 
-void Event_ResetOnRoundLost(Event event, const char[] name, bool dontBroadcast)
+void Event_RoundEnd(Event event, const char[] name, bool dontBroadcast)
 {
+    bBlockZedtime = true;
+
     ResetGlobalState();
+}
+
+void OnRoundChange()
+{
+    if (zeding)
+    {
+        TriggerTimer(zeding);
+
+        zeding = null;
+    }
+    else
+    {
+        ZedBack(null, -1);
+    }
 }
 
 public Action Timer_PillsGlowScan(Handle timer)
