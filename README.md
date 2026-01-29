@@ -857,68 +857,33 @@
 12. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
 13. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
 14. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
-15. [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
-    - **Выкидывает ошибки в рантайме!**
-    - Воспроизведение: `c1m2_streets`, боты стреляют из убежища в зомби и попадают в ноги, что сразу приводит к ошибкам в консоли сервера:
-      ```
-      AN ERROR HAS OCCURED [Accessed null instance]
-
-      CALLSTACK
-      *FUNCTION [OnGameEvent_infected_hurt()] scripts/vscripts/LegShotStumble.nut line [49]
-      *FUNCTION [__RunEventCallbacks()] unnamed line [211]
-      *FUNCTION [__RunGameEventCallbacks()] unnamed line [218]
-
-      LOCALS
-      [location] INSTANCE
-      [damageChance] 5
-      [speedChance] 21.35870552063
-      [healthChance] 0
-      [health] 50
-      [velocityLength] 213.5870513916
-      [velocity] INSTANCE
-      [common] INSTANCE
-      [params] TABLE
-      [this] TABLE
-      [funcName] "OnGameEvent_infected_hurt"
-      [idx] 5
-      [useTable] TABLE
-      [bWarnIfMissing] true
-      [globalTableName] "GameEventCallbacks"
-      [prefix] "OnGameEvent_"
-      [params] TABLE
-      [event] "infected_hurt"
-      [this] TABLE
-      [params] TABLE
-      [event] "infected_hurt"
-      [this] TABLE
-      ```
-16. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
-17. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
-18. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+15. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+16. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+17. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
-19. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+18. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для следующих аддонов:
       - **Headshot Feedback Effect**
       - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
-20. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
-21. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
-22. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+19. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
+20. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+21. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
-23. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+22. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-24. **Melee More Hitrays by Lombaxtard**
+23. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-25. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+24. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-26. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+25. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
-27. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+26. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 
 #### Неактуально
@@ -1034,6 +999,41 @@
 [SM]   [11] Line 495, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::VoteDifficulty
 [SM]   [12] Line 431, Servers\dev\left4dead2\addons\sourcemod_dev\scripting\l4d_votedifficulty.sp::MenuHandler_MenuDifficulty
 ```
+- [Leg shot stumble](https://steamcommunity.com/sharedfiles/filedetails/?id=3413451176)
+    - **Выкидывает ошибки в рантайме!**
+    - Воспроизведение: `c1m2_streets`, боты стреляют из убежища в зомби и попадают в ноги, что сразу приводит к ошибкам в консоли сервера:
+      ```
+      AN ERROR HAS OCCURED [Accessed null instance]
+
+      CALLSTACK
+      *FUNCTION [OnGameEvent_infected_hurt()] scripts/vscripts/LegShotStumble.nut line [49]
+      *FUNCTION [__RunEventCallbacks()] unnamed line [211]
+      *FUNCTION [__RunGameEventCallbacks()] unnamed line [218]
+
+      LOCALS
+      [location] INSTANCE
+      [damageChance] 5
+      [speedChance] 21.35870552063
+      [healthChance] 0
+      [health] 50
+      [velocityLength] 213.5870513916
+      [velocity] INSTANCE
+      [common] INSTANCE
+      [params] TABLE
+      [this] TABLE
+      [funcName] "OnGameEvent_infected_hurt"
+      [idx] 5
+      [useTable] TABLE
+      [bWarnIfMissing] true
+      [globalTableName] "GameEventCallbacks"
+      [prefix] "OnGameEvent_"
+      [params] TABLE
+      [event] "infected_hurt"
+      [this] TABLE
+      [params] TABLE
+      [event] "infected_hurt"
+      [this] TABLE
+      ```
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
