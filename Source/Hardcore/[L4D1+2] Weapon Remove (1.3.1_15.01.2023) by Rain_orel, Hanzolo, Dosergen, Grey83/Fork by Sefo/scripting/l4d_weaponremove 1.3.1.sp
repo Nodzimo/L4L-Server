@@ -99,23 +99,23 @@ public void OnPluginStart()
 	CreateConVar("l4d_weaponremove_version", PLUGIN_VERSION, "[L4D1+2] Weapon Remover defines how many times a weapon spawns", FCVAR_DONTRECORD|FCVAR_NOTIFY|FCVAR_SPONLY);
 
 	ConVar cvar;
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_enable", "1", "Enable or disable Weapon Remover plugin", _, true, _, true, 1.0)), CVarChange_Enable);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_enable", "0", "Enable or disable Weapon Remover plugin", _, true, _, true, 1.0)), CVarChange_Enable);
 	CVarChange_Enable(cvar, NULL_STRING, NULL_STRING);
 
 	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_all", "0", "Limits all weapons to this many pickups (0 = no limit)", _, true)), CVarChange_All);
 	limit[W_all] = cvar.IntValue;
 
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_autoshotgun", "1", "Limit for Autoshotguns (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Autoshotgun);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_autoshotgun", "4", "Limit for Autoshotguns (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Autoshotgun);
 	limit[W_autoshotgun] = cvar.IntValue;
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_rifle", "1", "Limit for M4s (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Rifle);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_rifle", "4", "Limit for M4s (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Rifle);
 	limit[W_rifle] = cvar.IntValue;
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_hunting_rifle", "1", "Limit for Sniper Rifles (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_HuntingRifle);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_hunting_rifle", "4", "Limit for Sniper Rifles (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_HuntingRifle);
 	limit[W_hunting_rifle] = cvar.IntValue;
 	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_pistol", "1", "Limit for Pistols (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Pistol);
 	limit[W_pistol] = cvar.IntValue;
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_pumpshotgun", "1", "Limit for Pumpshotguns (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Pumpshotgun);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_pumpshotgun", "4", "Limit for Pumpshotguns (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_Pumpshotgun);
 	limit[W_pumpshotgun] = cvar.IntValue;
-	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_smg", "1", "Limit for SMGs (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SMG);
+	HookConVarChange((cvar = CreateConVar("l4d_weaponremove_limit_smg", "4", "Limit for SMGs (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SMG);
 	limit[W_smg] = cvar.IntValue;
 
 	if(l4d2)
@@ -124,25 +124,25 @@ public void OnPluginStart()
 		limit[W_grenade_launcher] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_pistol_magnum", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_PistolMagnum);
 		limit[W_pistol_magnum] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_ak47", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleAK47);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_ak47", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleAK47);
 		limit[W_rifle_ak47] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_desert", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleDesert);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_desert", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleDesert);
 		limit[W_rifle_desert] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_m60", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleM60);
 		limit[W_rifle_m60] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_rifle_sg552", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_RifleSG552);
 		limit[W_rifle_sg552] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_shotgun_chrome", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_ShotgunChrome);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_shotgun_chrome", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_ShotgunChrome);
 		limit[W_shotgun_chrome] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_shotgun_spas", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_ShotgunSPAS);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_shotgun_spas", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_ShotgunSPAS);
 		limit[W_shotgun_spas] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_smg_mp5", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SMG_MP5);
 		limit[W_smg_mp5] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_smg_silenced", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SMG_Silenced);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_smg_silenced", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SMG_Silenced);
 		limit[W_smg_silenced] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_sniper_awp", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SniperAWP);
 		limit[W_sniper_awp] = cvar.IntValue;
-		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_sniper_military", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SniperMilitary);
+		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_sniper_military", "4", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SniperMilitary);
 		limit[W_sniper_military] = cvar.IntValue;
 		HookConVarChange((cvar = CreateConVar("l4d2_weaponremove_limit_sniper_scout", "1", "Limit for this weapon (0=infinite, -1=disable)", _, true, -1.0)), CVarChange_SniperScout);
 		limit[W_sniper_scout] = cvar.IntValue;
@@ -150,8 +150,8 @@ public void OnPluginStart()
 
 	AutoExecConfig(true, "l4d_weaponremove");
 
-	HookEvent("spawner_give_item", Event_Item);
-	HookEvent("round_start", Event_Start);
+	// HookEvent("spawner_give_item", Event_Item);
+	// HookEvent("round_start", Event_Start);
 }
 
 public void CVarChange_Enable(ConVar cvar, const char[] oldValue, const char[] newValue)
@@ -163,6 +163,9 @@ public void CVarChange_Enable(ConVar cvar, const char[] oldValue, const char[] n
 	{
 		HookEvent("spawner_give_item", Event_Item);
 		HookEvent("round_start", Event_Start);
+
+		// ENABLE toggled live -> apply immediately
+		OnMapStart();
 	}
 	else
 	{
@@ -289,11 +292,15 @@ public void OnMapStart()
 
 public void Event_Start(Event event, const char[] name, bool dontBroadcast)
 {
+	if(!enable) return;
+
 	OnMapStart();
 }
 
 public void Event_Item(Event event, const char[] name, bool dontBroadcast)
 {
+	if(!enable) return;
+
 	static int entid, count;
 	if((count = GetUseCount((entid = event.GetInt("spawner")))) == -1)
 	{
@@ -305,7 +312,8 @@ public void Event_Item(Event event, const char[] name, bool dontBroadcast)
 	if(bDebug) PrintToServer("	NewEntCounter: %i/%i", new_ent_counter, sizeof(ent_table));
 
 	SetUseCount(entid);
-	count++;
+	// count++;
+	count = GetUseCount(entid);
 
 	if(limit[W_all] && limit[W_all] >= count || CheckEntity(event, entid, count))
 #if SOURCEMOD_V_MAJOR < 2 && SOURCEMOD_V_MINOR < 10
