@@ -11,6 +11,7 @@
 #define SOUND_SWITCH_MODE_WEP "UI/Pickup_GuitarRiff10.wav"
 #define SOUND_SWITCH_MODE_MED "UI/Helpful_Event_1.wav"
 #define SOUND_USE_MODE_MED    "UI/Gift_Pickup.wav"
+#define SOUND_DENY            "Buttons/Button11.wav"
 
 // Upgrade packs (world entities from event)
 #define PACK_INC              "upgrade_ammo_incendiary"
@@ -91,6 +92,8 @@ int    g_iDefibMode[MAXPLAYERS + 1];     // 0 native, 1 adren quad, 2 bile
 float  g_fNextToggle[MAXPLAYERS + 1];
 float  g_fNextUse[MAXPLAYERS + 1];
 
+bool   g_bTurretDenyHold[MAXPLAYERS + 1];
+
 public Plugin myinfo =
 {
     name    = "L4L: Upgrade Ammo Spawn Minigun",
@@ -131,6 +134,7 @@ public void OnMapStart()
     PrecacheSound(SOUND_SWITCH_MODE_WEP);
     PrecacheSound(SOUND_SWITCH_MODE_MED);
     PrecacheSound(SOUND_USE_MODE_MED);
+    PrecacheSound(SOUND_DENY);
 
     EnsureModelPrecached(MODEL_MINIGUN);
     EnsureModelPrecached(MODEL_50CAL);
@@ -201,12 +205,13 @@ static void EnsureModelPrecached(const char[] model)
 
 static void ResetClientState(int client)
 {
-    g_iPackMode[client]   = MODE3_NATIVE;
-    g_iMedkitMode[client] = MODE2_NATIVE;
-    g_iDefibMode[client]  = MODE3_NATIVE;
+    g_iPackMode[client]       = MODE3_NATIVE;
+    g_iMedkitMode[client]     = MODE2_NATIVE;
+    g_iDefibMode[client]      = MODE3_NATIVE;
 
-    g_fNextToggle[client] = 0.0;
-    g_fNextUse[client]    = 0.0;
+    g_fNextToggle[client]     = 0.0;
+    g_fNextUse[client]        = 0.0;
+    g_bTurretDenyHold[client] = false;
 
     DestroyPreview(client);
     DestroyBilePreview(client);
@@ -291,7 +296,7 @@ public void Event_UpgradePackUsed(Event event, const char[] name, bool dontBroad
         SpawnTurretNearPack(turretClass, turretModel, client, packEnt);
         AcceptEntityInput(packEnt, "Kill");
 
-        // cleanup
+        // Cleanup
         g_iPackMode[client] = MODE3_NATIVE;
         DestroyPreview(client);
 
@@ -306,7 +311,7 @@ public void Event_UpgradePackUsed(Event event, const char[] name, bool dontBroad
 
     AcceptEntityInput(packEnt, "Kill");
 
-    // cleanup
+    // Cleanup
     g_iPackMode[client] = MODE3_NATIVE;
     DestroyPackPreview(client);
     DestroyPreview(client);
@@ -858,7 +863,7 @@ public Action OnPlayerRunCmd(int client, int& buttons, int& impulse, float vel[3
 
 static Action HandleUpgradePack(int client, int& buttons, const char[] wcls)
 {
-    // switching item -> reset other modes + previews
+    // Switching item -> reset other modes + previews
     ClearMedkitState(client);
     ClearDefibState(client);
 
@@ -868,7 +873,8 @@ static Action HandleUpgradePack(int client, int& buttons, const char[] wcls)
     {
         if (CanToggleNow(client))
         {
-            g_iPackMode[client] = (g_iPackMode[client] + 1) % 3;
+            g_iPackMode[client]       = (g_iPackMode[client] + 1) % 3;
+            g_bTurretDenyHold[client] = false;
 
             if (g_iCvarDebug >= 1)
             {
@@ -930,11 +936,59 @@ static Action HandleUpgradePack(int client, int& buttons, const char[] wcls)
 
     EnsurePreview(client, model);
 
-    int ent = GetSinglePreviewEnt(g_iPreviewRef[client]);
+    int  ent = GetSinglePreviewEnt(g_iPreviewRef[client]);
+    bool ok  = true;
 
     if (ent > 0)
     {
         UpdateSinglePreviewEnt(ent, client, model);
+
+        float pos[3];
+        GetEntPropVector(ent, Prop_Send, "m_vecOrigin", pos);
+
+        float test[3];
+        test[0] = pos[0];
+        test[1] = pos[1];
+        test[2] = pos[2] + 20.0;
+
+        float ground[3];
+        ok = false;
+
+        if (GetGroundPos(test, ground))
+        {
+            float dz = test[2] - ground[2];
+            ok       = (dz <= 40.0);
+        }
+
+        if (ok)
+        {
+            SetEntityRenderColor(ent, 0, 255, 0, 200);
+        }
+        else
+        {
+            SetEntityRenderColor(ent, 255, 0, 0, 200);
+        }
+    }
+
+    // Reset when player releases fire
+    if (!(buttons & IN_ATTACK))
+    {
+        g_bTurretDenyHold[client] = false;
+    }
+
+    // Deny only once per hold
+    if ((buttons & IN_ATTACK) && !ok)
+    {
+        if (!g_bTurretDenyHold[client])
+        {
+            PlaySound(client, SOUND_DENY);
+
+            g_bTurretDenyHold[client] = true;
+        }
+
+        buttons &= ~IN_ATTACK;
+
+        return Plugin_Changed;
     }
 
     return Plugin_Continue;
@@ -942,7 +996,7 @@ static Action HandleUpgradePack(int client, int& buttons, const char[] wcls)
 
 static Action HandleMedkit(int client, int& buttons)
 {
-    // switching item -> reset other modes + previews
+    // Switching item -> reset other modes + previews
     ClearPackState(client);
     ClearDefibState(client);
 
@@ -973,7 +1027,7 @@ static Action HandleMedkit(int client, int& buttons)
     {
         DestroyPillsPreview(client);
 
-        return Plugin_Continue;    // native medkit
+        return Plugin_Continue;    // Native medkit
     }
 
     EnsurePillsPreview(client);
@@ -984,7 +1038,7 @@ static Action HandleMedkit(int client, int& buttons)
 
 static Action HandleDefib(int client, int& buttons)
 {
-    // switching item -> reset other modes + previews
+    // Switching item -> reset other modes + previews
     ClearPackState(client);
     ClearMedkitState(client);
 
@@ -1022,7 +1076,7 @@ static Action HandleDefib(int client, int& buttons)
         DestroyAdrenPreview(client);
         DestroyBilePreview(client);
 
-        return Plugin_Continue;    // native defib
+        return Plugin_Continue;    // Native defib
     }
 
     // Mode 1: adrenaline quad
@@ -1268,4 +1322,26 @@ static Action TryUseSingleAlt_Bile(int client, int& buttons)
     buttons &= ~IN_ATTACK;
 
     return Plugin_Changed;
+}
+
+bool GetGroundPos(const float vector[AXES_XYZ], float ground[AXES_XYZ])
+{
+    Handle trace = TR_TraceRayFilterEx(vector, view_as<float>({ ANGLE_UP, ANGLE_HORIZONTAL, ANGLE_HORIZONTAL }), CONTENTS_SOLID, RayType_Infinite, TR_FilterWorld);
+
+    if (TR_DidHit(trace))
+    {
+        TR_GetEndPosition(ground, trace);
+        trace.Close();
+
+        return true;
+    }
+
+    trace.Close();
+
+    return false;
+}
+
+bool TR_FilterWorld(int entity, int mask)
+{
+    return entity == ENTITY_WORLD;
 }
