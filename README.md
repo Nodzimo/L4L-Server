@@ -389,6 +389,7 @@
       - **Item hint**
       - **Tanks throw special infected**
       - **L4L: Tank Jockeys**
+      - **Anti Rush**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -560,6 +561,9 @@
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
     - Опционально: плагин [Use Priority Patch](https://forums.alliedmods.net/showthread.php?t=327511) для совместимости с шапками и другими штуками, которые прикрепляются к игроку и могут блокировать функцию использования.
+53. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
+    - Анти-раш система
+    - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
