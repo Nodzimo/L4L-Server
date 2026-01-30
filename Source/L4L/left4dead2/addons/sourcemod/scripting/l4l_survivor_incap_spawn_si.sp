@@ -17,8 +17,8 @@ static const char g_sInfectedClasses[6][] = {
 
 static const int g_sInfectedClassesCount = sizeof g_sInfectedClasses - 1;
 
-ConVar           g_hCvarEnable, g_hCvarDebug, g_hCvarSurvivorIncap, g_hCvarSurvivorVomit, g_hCvarSurvivorPummel;
-int              g_iCvarDebug, g_iCvarSurvivorIncap, g_iCvarSurvivorVomit, g_iCvarSurvivorPummel;
+ConVar           g_hCvarEnable, g_hCvarDebug, g_hCvarSurvivorIncap, g_hCvarSurvivorVomit, g_hCvarSurvivorPummel, g_hCvarSurvivorChoke;
+int              g_iCvarDebug, g_iCvarSurvivorIncap, g_iCvarSurvivorVomit, g_iCvarSurvivorPummel, g_iCvarSurvivorChoke;
 
 public Plugin myinfo =
 {
@@ -36,6 +36,7 @@ public void OnPluginStart()
     g_hCvarSurvivorIncap  = CreateConVar("l4l_survivor_incap_spawn_si_count", "1", "0 = Off, Number of special infected spawned when a survivor is incapacitated", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
     g_hCvarSurvivorVomit  = CreateConVar("l4l_survivor_incap_spawn_si_vomit_count", "1", "0 = Off, Number of special infected spawned when a survivor is vomited ON", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
     g_hCvarSurvivorPummel = CreateConVar("l4l_survivor_incap_spawn_si_pummel_count", "1", "0 = Off, Number of special infected spawned when a survivor is pummeled by a charger", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
+    g_hCvarSurvivorChoke  = CreateConVar("l4l_survivor_incap_spawn_si_choke_count", "1", "0 = Off, Number of special infected spawned when a survivor is choked by a smoker", CVAR_FLAGS, true, float(DISABLE), true, float(MAX_SI));
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
     AutoExecConfig(true, "l4l_survivor_incap_spawn_si", "sourcemod/l4l_plugins");
@@ -45,6 +46,7 @@ public void OnPluginStart()
     g_hCvarSurvivorIncap.AddChangeHook(CvarChanged_Cvars);
     g_hCvarSurvivorVomit.AddChangeHook(CvarChanged_Cvars);
     g_hCvarSurvivorPummel.AddChangeHook(CvarChanged_Cvars);
+    g_hCvarSurvivorChoke.AddChangeHook(CvarChanged_Cvars);
 
     RegAdminCmd("l4l_spawn_si", CommandSpawnRandomSI, ADMFLAG_ROOT, "Spawns specified number of random special infected (1 by default)");
 }
@@ -70,6 +72,7 @@ void L4L_ReadCvars()
     g_iCvarSurvivorIncap  = g_hCvarSurvivorIncap.IntValue;
     g_iCvarSurvivorVomit  = g_hCvarSurvivorVomit.IntValue;
     g_iCvarSurvivorPummel = g_hCvarSurvivorPummel.IntValue;
+    g_iCvarSurvivorChoke  = g_hCvarSurvivorChoke.IntValue;
 }
 
 void L4L_Hook()
@@ -78,6 +81,7 @@ void L4L_Hook()
     HookEvent(EVENT_LEDGE_GRAB, Event_SurvivorIncap);
     HookEvent("player_now_it", Event_PlayerNowIt);
     HookEvent("charger_pummel_start", Event_ChargerPummelStart);
+    HookEvent("choke_start", Event_SmokerChokeStart);
 }
 
 void L4L_Unhook()
@@ -86,6 +90,7 @@ void L4L_Unhook()
     UnhookEvent(EVENT_LEDGE_GRAB, Event_SurvivorIncap);
     UnhookEvent("player_now_it", Event_PlayerNowIt);
     UnhookEvent("charger_pummel_start", Event_ChargerPummelStart);
+    UnhookEvent("choke_start", Event_SmokerChokeStart);
 }
 
 Action CommandSpawnRandomSI(int client, int arguments)
@@ -145,6 +150,24 @@ void Event_ChargerPummelStart(Event event, const char[] name, bool dontBroadcast
     }
 
     SpawnRandomSI(client, g_iCvarSurvivorPummel);
+}
+
+void Event_SmokerChokeStart(Event event, const char[] name, bool dontBroadcast)
+{
+    if (!g_iCvarSurvivorChoke)
+        return;
+
+    int client = GetClientOfUserId(event.GetInt("victim"));
+
+    if (!IsValidSurvivor(client))
+        return;
+
+    if (g_iCvarDebug)
+    {
+        PrintToChatAll("%s Event_SmokerChokeStart \x04%s \x05%s", DEBUG_TAG, GetName(client), name);
+    }
+
+    SpawnRandomSI(client, g_iCvarSurvivorChoke);
 }
 
 void SpawnRandomSI(int client, int count = DEFAULT_SPAWN_COUNT)
