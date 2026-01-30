@@ -621,9 +621,9 @@ void Event_PlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
     int client = GetClientOfUserId(event.GetInt("userid"));
 
-    if (client > 0 && IsClientInGame(client) && GetClientTeam(client) == 3)
+    if (client > 0 && IsClientInGame(client) && (GetClientTeam(client) == 3 || GetClientTeam(client) == 2))
     {
-        RemoveGlowColor(client, GLOW_COLOR_INFECTED);
+        RemoveGlowColor(client, (GetClientTeam(client) == 3) ? GLOW_COLOR_INFECTED : GLOW_COLOR_SURVIVOR);
     }
 }
 
