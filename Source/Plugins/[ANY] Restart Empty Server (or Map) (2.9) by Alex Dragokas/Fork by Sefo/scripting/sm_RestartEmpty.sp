@@ -46,11 +46,15 @@ int g_iCVarForceRebootHourEnd;
 int g_iHybernateInitial;
 float g_fCvarDeltaUTC;
 float g_fCvarDelay;
+float g_fFailsafeTick = 180.0; // 3 min.
+float g_fFailsafeConfirm = 90.0; // 1.5 min.
 int g_iPluginRunDate;
 char g_sMapListPath[PLATFORM_MAX_PATH];
 char g_sLogPath[PLATFORM_MAX_PATH];
 Handle hPluginMe;
 Handle g_hGraceTimer;
+Handle g_hFailsafeWatchdog;
+Handle g_hFailsafeConfirm;
 
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
 {
@@ -195,10 +199,6 @@ Action Event_PlayerDisconnect(Event event, const char[] name, bool dontBroadcast
 		{
 			if( IsRebootTimeAllowed() )
 			{
-				ServerCommand("sm_cvar sb_all_bot_game 1");
-				ServerExecute();
-				ServerCommand("sb_all_bot_game");
-
 				if( g_ConVarHibernate != null )
 				{
 					g_ConVarHibernate.SetInt(0);
@@ -562,7 +562,7 @@ bool RealPlayerExist(int iExclude = 0)
 {
 	for( int client = 1; client <= MaxClients; client++ )
 	{
-		if( client != iExclude && IsClientInGame(client) )
+		if( client != iExclude && IsClientConnected(client) )
 		{
 			if( !IsFakeClient(client) )
 			{
@@ -621,4 +621,87 @@ bool IsMapValidEx(char[] map)
 {
 	static char path[PLATFORM_MAX_PATH];
 	return FindMap(map, path, sizeof(path)) == FindMap_Found;
+}
+
+void FSLog(const char[] fmt, any ...)
+{
+	char buffer[256];
+	VFormat(buffer, sizeof(buffer), fmt, 2);
+
+	PrintToServer("[L4L] Restart: %s", buffer);
+	LogToFileEx(g_sLogPath, "[L4L] Restart: %s", buffer);
+}
+
+public void OnClientConnected(int client)
+{
+	if (client <= 0) return;
+
+	if (IsFakeClient(client)) return;
+
+	if (g_ConVarHibernate != null)
+	{
+		g_ConVarHibernate.SetInt(0);
+	}
+
+	ServerCommand("sm_cvar sb_all_bot_game 1");
+	ServerExecute();
+
+	FSLog("Server armed by early connect. Hibernate OFF. Starting watchdog");
+
+	if (g_hFailsafeWatchdog == null)
+	{
+		g_hFailsafeWatchdog = CreateTimer(
+			g_fFailsafeTick,
+			Timer_FailsafeWatchdog,
+			_,
+			TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE
+		);
+	}
+}
+
+Action Timer_FailsafeWatchdog(Handle timer)
+{
+	if (RealPlayerExist())
+	{
+		if (g_hFailsafeConfirm != null)
+		{
+			FSLog("Players returned. Cancel confirm timer");
+
+			delete g_hFailsafeConfirm;
+		}
+
+		return Plugin_Continue;
+	}
+
+	if (g_hFailsafeConfirm == null)
+	{
+		FSLog("Watchdog detected EMPTY server. Arming confirm in %.0f sec.", g_fFailsafeConfirm);
+
+		g_hFailsafeConfirm = CreateTimer(
+			g_fFailsafeConfirm,
+			Timer_FailsafeConfirm,
+			_,
+			TIMER_FLAG_NO_MAPCHANGE
+		);
+	}
+
+	return Plugin_Continue;
+}
+
+Action Timer_FailsafeConfirm(Handle timer)
+{
+	g_hFailsafeConfirm = null;
+
+	if (RealPlayerExist())
+	{
+		FSLog("Confirm fired, but players exist. No action");
+
+		return Plugin_Continue;
+	}
+
+	FSLog("Confirm fired: server still EMPTY. Triggering StartRebootSequence()");
+
+	StartRebootSequence();
+
+	return Plugin_Continue;
 }
