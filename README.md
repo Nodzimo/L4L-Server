@@ -765,6 +765,8 @@
 18. [[L4D/L4D2] Reserve Control (1.1) by Orin, Psykotikism [Signatures]](https://forums.alliedmods.net/showpost.php?p=2841981&postcount=21)
     - Контроль резервной амуниции оружия
     - `sm_rc_reload`, `sm_reversecontrol_reload`.
+> [!IMPORTANT]
+> Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)

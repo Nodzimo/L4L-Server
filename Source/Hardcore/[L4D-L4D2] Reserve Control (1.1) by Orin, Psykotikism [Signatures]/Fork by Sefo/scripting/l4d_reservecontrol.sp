@@ -45,6 +45,8 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 // ------------
 static StringMap g_smReserveData;
 static DynamicDetour g_dynAmmoDefMaxCarry;
+static ConVar g_hEnable;
+static bool g_bEnabled;
 
 public void OnPluginStart()
 {
@@ -52,6 +54,10 @@ public void OnPluginStart()
 	LoadConfigSMC();
 
 	CreateConVar("l4d_reservecontrol_version", PLUGIN_VERSION, "'Reserve Control' plugin's version", FCVAR_SPONLY|FCVAR_DONTRECORD|FCVAR_NOTIFY);
+	g_hEnable = CreateConVar("l4d_reservecontrol_enable", "0", "Enable Reserve Control (0=off, 1=on)", FCVAR_NOTIFY);
+	g_bEnabled = g_hEnable.BoolValue;
+	HookConVarChange(g_hEnable, CvarChanged_Enable);
+
 	RegAdminCmd("sm_reservecontrol_reload",	CmdReserveReload, ADMFLAG_ROOT, "Resets the reserve ammo data, then reload the config.");
 	RegAdminCmd("sm_rc_reload", 			CmdReserveReload, ADMFLAG_ROOT, "Resets the reserve ammo data, then reload the config.");
 
@@ -138,6 +144,10 @@ public Action CmdReserveReload(int client, int args)
 	g_smReserveData.Clear();
 	LoadConfigSMC();
 	ReplyToCommand(client, "\x05[Reserve Control] \x01Reloaded the config!");
+
+	if( g_bEnabled )
+		ApplyReserveToAllSurvivors();
+
 	return Plugin_Handled;
 }
 
@@ -147,6 +157,10 @@ public Action CmdReserveReload(int client, int args)
 #define MAX_INVENTORY_SLOTS 5
 public MRESReturn Detour_AmmoDefMaxCarry(DHookReturn hReturn, DHookParam hParams)
 {
+	if( !g_bEnabled )
+		return MRES_Ignored;
+
+
 	int ammoindex	= hParams.Get(1);
 	int client		= hParams.Get(2); // Its not like NPCs with guns exist in L4D
 
@@ -196,19 +210,24 @@ public MRESReturn Detour_TerrorGiveNamedItem(int pThis, DHookParam hParams)
 // CAmmoDef::MaxCarry does not change max reserve if its lower than the max, :L
 public void OnSDKWeaponEquipPost(int client, int weapon)
 {
-	char sWeapon[24];
-	GetEntityClassname(weapon, sWeapon, sizeof(sWeapon));
-	int iReserve = GetEntProp(weapon, Prop_Data, "m_iExtraPrimaryAmmo");
+	if( !g_bEnabled )
+		return;
 
-	int iConfigReserve;
-	if( g_smReserveData.GetValue(sWeapon, iConfigReserve) && iReserve > iConfigReserve )
-	{
-		SetEntProp(weapon, Prop_Send, "m_iExtraPrimaryAmmo", iConfigReserve);
+	ApplyReserveToWeapon(client, weapon);
 
-		#if DEBUG
-		PrintToChatAll("\x01%N got %s [%i] \x05(Fixed %i --> %i max reserve)", client, sWeapon, weapon, iReserve, iConfigReserve);
-		#endif
-	}
+	// char sWeapon[24];
+	// GetEntityClassname(weapon, sWeapon, sizeof(sWeapon));
+	// int iReserve = GetEntProp(weapon, Prop_Data, "m_iExtraPrimaryAmmo");
+
+	// int iConfigReserve;
+	// if( g_smReserveData.GetValue(sWeapon, iConfigReserve) && iReserve > iConfigReserve )
+	// {
+	// 	SetEntProp(weapon, Prop_Send, "m_iExtraPrimaryAmmo", iConfigReserve);
+
+	// 	#if DEBUG
+	// 	PrintToChatAll("\x01%N got %s [%i] \x05(Fixed %i --> %i max reserve)", client, sWeapon, weapon, iReserve, iConfigReserve);
+	// 	#endif
+	// }
 }
 
 // -----------
@@ -255,3 +274,54 @@ void LoadKeyValues()
 	delete kvReserveData;
 }
 */
+
+public void CvarChanged_Enable(ConVar convar, const char[] oldValue, const char[] newValue)
+{
+	bool bNew = convar.BoolValue;
+
+	if( bNew == g_bEnabled )
+		return;
+
+	g_bEnabled = bNew;
+
+	if( g_bEnabled )
+	{
+		ApplyReserveToAllSurvivors();
+	}
+}
+
+void ApplyReserveToAllSurvivors()
+{
+	for( int client = 1; client <= MaxClients; client++ )
+	{
+		if( !IsClientInGame(client) || !IsSurvivor(client) )
+			continue;
+
+		for( int slot = 0; slot < MAX_INVENTORY_SLOTS; slot++ )
+		{
+			int weapon = GetPlayerWeaponSlot(client, slot);
+
+			if( !IsValidEntity(weapon) )
+				continue;
+
+			ApplyReserveToWeapon(client, weapon);
+		}
+	}
+}
+
+void ApplyReserveToWeapon(int client, int weapon)
+{
+	char sWeapon[24];
+	GetEntityClassname(weapon, sWeapon, sizeof(sWeapon));
+	int iReserve = GetEntProp(weapon, Prop_Data, "m_iExtraPrimaryAmmo");
+
+	int iConfigReserve;
+	if( g_smReserveData.GetValue(sWeapon, iConfigReserve) && iReserve > iConfigReserve )
+	{
+		SetEntProp(weapon, Prop_Send, "m_iExtraPrimaryAmmo", iConfigReserve);
+
+		#if DEBUG
+		PrintToChatAll("\x01%N got %s [%i] \x05(Fixed %i --> %i max reserve)", client, sWeapon, weapon, iReserve, iConfigReserve);
+		#endif
+	}
+}
