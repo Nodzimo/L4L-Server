@@ -889,6 +889,7 @@
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 27. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
 28. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
+29. [[V-Script] E3 Style Upgrade Pickup Logic](https://steamcommunity.com/sharedfiles/filedetails/?id=3245285838)
 
 #### Неактуально
 - Заменён плагином **Votekick**
