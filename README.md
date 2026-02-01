@@ -888,6 +888,7 @@
 26. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
 27. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
+28. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
 
 #### Неактуально
 - Заменён плагином **Votekick**
