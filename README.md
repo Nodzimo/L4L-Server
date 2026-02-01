@@ -527,32 +527,30 @@
 42. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
     - Добавляет команду `sm_acvar`, которую можно использовать вместо `sm_cvar`, чтобы скрыть изменение кваров в игровом чате для всех.
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
-43. [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
-    - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
-44. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
+43. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
     - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
-45. [Weapon Give No Auto Switch (1.13) by little_froy](https://forums.alliedmods.net/showthread.php?t=341173)
+44. [Weapon Give No Auto Switch (1.13) by little_froy](https://forums.alliedmods.net/showthread.php?t=341173)
     - Второстепенная медицина не берётся автоматически в руки при передаче
-46. [SendFile Exploit Fix (v3.3) (3.3) by backwards](https://forums.alliedmods.net/showthread.php?t=317120)
+45. [SendFile Exploit Fix (v3.3) (3.3) by backwards](https://forums.alliedmods.net/showthread.php?t=317120)
     - Фиксит краш [linux-gate.so!__kernel_vsyscall + 0x9](https://crash.limetech.org/jlmme6wwlhrb)
     - [Solved CSGO Server crash / linux-gate.so!__kernel_vsyscall + 0x9](https://forums.alliedmods.net/showthread.php?t=318745)
-47. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
+46. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
     - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7) с ошибкой `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
     - Связанное:
       - [Solved [L4D2] Crashes on L4D1 maps (UTIL_SetModel: not precached)](https://forums.alliedmods.net/showthread.php?t=336337)
       - [[L4D2] Model Precacher](https://forums.alliedmods.net/showthread.php?t=129990)
-48. [[L4D2] Script Command Swap - Mem Leak Fix (1.0) by SilverShot (Timocop's idea)](https://forums.alliedmods.net/showthread.php?t=317128)
+47. [[L4D2] Script Command Swap - Mem Leak Fix (1.0) by SilverShot (Timocop's idea)](https://forums.alliedmods.net/showthread.php?t=317128)
     - Фиксит утечки памяти из-за системы V-скриптов
-49. [[L4D1 & L4D2] Weapon Prop Give Fix (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?t=331053)
+48. [[L4D1 & L4D2] Weapon Prop Give Fix (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?t=331053)
     - Фиксит баг, когда взрывоопасные пропсы не детонируют от урона после их спавна.
-50. [[L4D & L4D2] Engine Fix (1.1) by raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2662888&postcount=35)
+49. [[L4D & L4D2] Engine Fix (1.1) by raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2662888&postcount=35)
     - Фиксит баги:
       1. Ускоренное залезание по лестницам
       2. Отсутствие урона от падения при поднятии в полёте
       3. Буст здоровья с помощью лечения под водой
-51. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
+50. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
     - Фиксит баг с блокированием особых на лестницах
-52. [L4D2 Item hint (4.1-2025/12/27) by BHaType, fdxx, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_item_hint)
+51. [L4D2 Item hint (4.1-2025/12/27) by BHaType, fdxx, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_item_hint)
     - Подсвечивает ближайший предмет аурой следующими способами:
       - Вокалайз `Look`
       - `Shift` + `E`
@@ -561,7 +559,7 @@
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
     - Опционально: плагин [Use Priority Patch](https://forums.alliedmods.net/showthread.php?t=327511) для совместимости с шапками и другими штуками, которые прикрепляются к игроку и могут блокировать функцию использования.
-53. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
+52. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
     - Анти-раш система
     - Зависимость: плагин **Left 4 DHooks Direct**
 
@@ -1038,6 +1036,8 @@
       [event] "infected_hurt"
       [this] TABLE
       ```
+- [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
+  - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
