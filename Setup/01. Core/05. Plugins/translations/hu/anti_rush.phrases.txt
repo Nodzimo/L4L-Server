@@ -2,46 +2,46 @@
 {
 	"Rush_Slowdown"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Ne rohanj, {orange}túl messze vagy {green}a túlélőktől {orange}menj vissza {green}feléjük."
+		"hu"	"{green}Ne rohanj, {orange}túl messze vagy {green}a túlélőktől {orange}menj vissza {green}feléjük"
 	}
 
 	"Rush_Ahead"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Nagyon előre mentél {orange}a túlélőktől, {green}vissza teleportálunk."
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}vissza teleportálunk"
 	}
 
 	"Rush_Behind"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Túlságosan {orange}lemaradtál {green}a túlélőktől, oda teleportálunk."
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, oda teleportálunk"
 	}
 
 	"Rush_Health"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni."
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni"
 	}
 
 	"Warn_Slowdown"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}lelassítunk."
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}lelassítunk"
 	}
 
 	"Warn_Ahead"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}teleportálni fogunk."
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}teleportálni fogunk"
 	}
 
 	"Warn_Behind"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Túlságosan {orange}lemaradtál {green}a túlélőktől, {orange}igyekezz {green}vagy teleportálni fogunk."
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, {orange}igyekezz {green}vagy teleportálni fogunk"
 	}
 
 	"Warn_Health"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni."
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni"
 	}
 
 	"Warn_Health2"
 	{
-		"hu"	"{orange}[Anti Rush] {green}Túlságosan {orange}lemaradtál {green}a túlélőktől, igyekezz {orange}vagy {green}életerőt fogsz veszíteni."
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, igyekezz {orange}vagy {green}életerőt fogsz veszíteni"
 	}
 }
