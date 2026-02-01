@@ -887,6 +887,7 @@
     - Зависимость: аддон **Manacat Common Library**
 26. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
+27. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
 
 #### Неактуально
 - Заменён плагином **Votekick**
