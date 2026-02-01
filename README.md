@@ -768,6 +768,8 @@
     - `sm_rc_reload`, `sm_reversecontrol_reload`.
 > [!IMPORTANT]
 > Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
+19. [[L4D & L4D2] Unscope Sniper On Shoot (1.10) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322064)
+    - Сбрасывает зум после каждого выстрела из снайпы
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
