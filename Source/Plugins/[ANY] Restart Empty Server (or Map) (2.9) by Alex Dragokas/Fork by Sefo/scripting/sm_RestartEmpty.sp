@@ -643,7 +643,7 @@ public void OnClientConnected(int client)
 		g_ConVarHibernate.SetInt(0);
 	}
 
-	ServerCommand("sm_cvar sb_all_bot_game 1");
+	ServerCommand("sm_acvar sb_all_bot_game 1");
 	ServerExecute();
 
 	FSLog("Server armed by early connect. Hibernate OFF. Starting watchdog");
