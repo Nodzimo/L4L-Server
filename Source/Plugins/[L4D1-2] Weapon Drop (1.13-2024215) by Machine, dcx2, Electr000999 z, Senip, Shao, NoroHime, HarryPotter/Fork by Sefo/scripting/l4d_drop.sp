@@ -36,9 +36,13 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 ConVar BlockSecondaryDrop;
 ConVar BlockM60Drop;
 ConVar BlockDropMidAction;
+ConVar LedgeDropEnable;
+ConVar LedgeDropChance;
 bool g_bBlockSecondaryDrop;
 bool g_bBlockM60Drop;
+bool g_bLedgeDropEnable;
 int g_iBlockDropMidAction;
+int  g_iLedgeDropChance;
 
 GlobalForward OnWeaponDrop;
 
@@ -93,6 +97,21 @@ public void OnPluginStart()
 		BlockM60Drop.AddChangeHook(ConVarChanged_Cvars);
 	}
 	
+	Format(cmd_str, sizeof(cmd_str), "sm_%s_ledge_enable", PLUGIN_NAME_TECH);
+	LedgeDropEnable = CreateConVar(cmd_str, "0",
+		"Enable dropping all weapons when player grabs a ledge.",
+		FCVAR_NONE, true, 0.0, true, 1.0);
+
+	Format(cmd_str, sizeof(cmd_str), "sm_%s_ledge_chance", PLUGIN_NAME_TECH);
+	LedgeDropChance = CreateConVar(cmd_str, "50",
+		"Chance (0-100) to drop all weapons on ledge grab.",
+		FCVAR_NONE, true, 0.0, true, 100.0);
+
+	LedgeDropEnable.AddChangeHook(ConVarChanged_Cvars);
+	LedgeDropChance.AddChangeHook(ConVarChanged_Cvars);
+
+	HookEvent("player_ledge_grab", Event_PlayerLedgeGrab, EventHookMode_PostNoCopy);
+
 	AutoExecConfig(true, AUTOEXEC_CFG);
 	GetCvars();
 	
@@ -130,6 +149,10 @@ void GetCvars()
 	g_bBlockSecondaryDrop = BlockSecondaryDrop.BoolValue;
 	if (g_isSequel) { g_bBlockM60Drop = BlockM60Drop.BoolValue; }
 	g_iBlockDropMidAction = BlockDropMidAction.IntValue;
+
+	// Ledge punish feature
+	g_bLedgeDropEnable = LedgeDropEnable.BoolValue;
+	g_iLedgeDropChance = LedgeDropChance.IntValue;
 }
 
 Action Command_Drop(int client, int args)
@@ -185,10 +208,10 @@ Action Command_Drop(int client, int args)
 
 //#define tester_wep_slot 2
 
-void DropSlot(int client, int slot)
+void DropSlot(int client, int slot, bool allowLedge = false)
 {
-	if (!IsValidClient(client) || !IsSurvivor(client) || !IsPlayerAlive(client) || IsplayerIncap(client) || GetInfectedAttacker(client) != -1) return;
-	
+	if (!IsValidClient(client) || !IsSurvivor(client) || !IsPlayerAlive(client) || IsplayerIncap(client, allowLedge) || GetInfectedAttacker(client) != -1) return;
+
 	//static char classname[64];
 	//GetEntityClassname(GetPlayerWeaponSlot(client, tester_wep_slot), classname, sizeof(classname));
 	//PrintToChatAll("slot: %s", classname);
@@ -369,12 +392,17 @@ bool IsValidClient(int client, bool replaycheck = true)
 bool RealValidEntity(int entity)
 { return (entity > 0 && IsValidEntity(entity)); }
 
-bool IsplayerIncap(int client)
+bool IsplayerIncap(int client, bool allowLedge = false)
 {
-	if(GetEntProp(client, Prop_Send, "m_isHangingFromLedge") || GetEntProp(client, Prop_Send, "m_isIncapacitated"))
-		return true;
+	// if(GetEntProp(client, Prop_Send, "m_isHangingFromLedge") || GetEntProp(client, Prop_Send, "m_isIncapacitated"))
+	// 	return true;
 
-	return false;
+	// return false;
+
+	if (GetEntProp(client, Prop_Send, "m_isHangingFromLedge"))
+		return !allowLedge;
+
+	return GetEntProp(client, Prop_Send, "m_isIncapacitated") != 0;
 }
 
 int GetInfectedAttacker(int client)
@@ -418,4 +446,26 @@ int GetInfectedAttacker(int client)
 	}
 
 	return -1;
+}
+
+public void Event_PlayerLedgeGrab(Event event, const char[] name, bool dontBroadcast)
+{
+	if (!g_bLedgeDropEnable)
+		return;
+
+	int client = GetClientOfUserId(event.GetInt("userid"));
+
+	if (!IsValidClient(client) || !IsSurvivor(client) || !IsPlayerAlive(client))
+		return;
+
+	// Roll chance
+	if (GetRandomInt(0, 99) >= g_iLedgeDropChance)
+		return;
+
+	// Drop all standard inventory slots (1-based)
+	DropSlot(client, 1, true); // Primary
+	DropSlot(client, 2, true); // Secondary
+	DropSlot(client, 3, true); // Throwable
+	DropSlot(client, 4, true); // Medkit/Defib/Upgrade
+	DropSlot(client, 5, true); // Pills/Adrenaline
 }
