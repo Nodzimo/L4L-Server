@@ -391,6 +391,7 @@
       - **Tanks throw special infected**
       - **L4L: Tank Jockeys**
       - **Anti Rush**
+      - **Death Weapon Respawn Fix**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -565,6 +566,9 @@
     - Опционально: плагин [Use Priority Patch](https://forums.alliedmods.net/showthread.php?t=327511) для совместимости с шапками и другими штуками, которые прикрепляются к игроку и могут блокировать функцию использования.
 52. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
     - Анти-раш система
+    - Зависимость: плагин **Left 4 DHooks Direct**
+53. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
+    - Фиксит баги с оружием после респавна, пример: респавн с полным M60, если умереть с ним в предыдущем раунде.
     - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Зависимости
