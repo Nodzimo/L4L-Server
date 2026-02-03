@@ -781,6 +781,8 @@
 > Используется мой форк, в котором добавлена квара включения плагина, чтобы использовать его на хардкорной сложности.
 19. [[L4D & L4D2] Unscope Sniper On Shoot (1.10) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322064)
     - Сбрасывает зум после каждого выстрела из снайпы
+20. [[L4D] Vomit extinguishing special infected (1.0) by BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2830667&postcount=66)
+    - Байла и бумер тушат горящих особых
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
