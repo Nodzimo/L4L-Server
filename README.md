@@ -572,6 +572,8 @@
 53. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
     - Фиксит баги с оружием после респавна, пример: респавн с полным M60, если умереть с ним в предыдущем раунде.
     - Зависимость: плагин **Left 4 DHooks Direct**
+54. [[L4D & 2] Fix DeathFall Camera (1.7) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_fix_deathfall_cam)
+    - Фиксит баг с залипшей камерой после смерти от падения с высоты 
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
