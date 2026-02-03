@@ -7,9 +7,13 @@
 #define PLUGIN_VERSION "1.0"
 #define CVAR_FLAGS FCVAR_NOTIFY
 
-ConVar hVomitPluginEnabled, hVomitAdvMessageType;
+ConVar hVomitPluginEnabled, hVomitAdvMessageType, hVomitRange, hVomitDuration;
 int iVomitAdvMessageType = 0;
-bool bHooked = false, bVomited[MAXPLAYERS + 1] = {false, ...};
+bool bHooked = false;
+float g_fVomitRange = 0.0;
+float g_fVomitDuration = 0.0;
+float g_fSplashRadius = 200.0;
+Handle g_hVomitTimer[MAXPLAYERS + 1];
 
 public Plugin myinfo = 
 {
@@ -25,11 +29,26 @@ public Plugin myinfo =
 public void OnPluginStart()
 {
 	CreateConVar("l4d_vomit_extinguish_si_plugin_version", PLUGIN_VERSION, "Vomit Extinguishing  special infected plugin version", CVAR_FLAGS|FCVAR_DONTRECORD);
-	hVomitPluginEnabled = CreateConVar("l4d_vomit_extinguish_si_plugin_enabled", "1", " Enable/Disable plugin", CVAR_FLAGS, true, 0.0, true, 1.0);
-	hVomitAdvMessageType = CreateConVar("l4d_vomit_extinguish_si_advmessage_type", "1", "Message type(0 - disable, 1 - chat, 2 - hint, 3 - instructor hint)", CVAR_FLAGS, true, 0.0, true, 3.0);
+	hVomitPluginEnabled = CreateConVar("l4d_vomit_extinguish_si_plugin_enabled", "0", " Enable/Disable plugin", CVAR_FLAGS, true, 0.0, true, 1.0);
+	hVomitAdvMessageType = CreateConVar("l4d_vomit_extinguish_si_advmessage_type", "0", "Message type(0 - disable, 1 - chat, 2 - hint, 3 - instructor hint)", CVAR_FLAGS, true, 0.0, true, 3.0);
 
 	hVomitPluginEnabled.AddChangeHook(ConVarPluginOnChanged);
 	hVomitAdvMessageType.AddChangeHook(ConVarVomitMessageTypeChanged);
+
+	hVomitRange = FindConVar("z_vomit_range");
+	hVomitDuration = FindConVar("z_vomit_duration");
+
+	if (hVomitRange != null)
+	{
+	    g_fVomitRange = hVomitRange.FloatValue;
+	    hVomitRange.AddChangeHook(ConVarVomitRangeChanged);
+	}
+
+	if (hVomitDuration != null)
+	{
+	    g_fVomitDuration = hVomitDuration.FloatValue;
+	    hVomitDuration.AddChangeHook(ConVarVomitDurationChanged);
+	}
 
 	LoadTranslations("l4d_vomit_extinguish_si.phrases");
 	AutoExecConfig(true, "l4d_vomit_extinguishing_si");
@@ -50,31 +69,46 @@ void ConVarVomitMessageTypeChanged(ConVar convar, const char[] oldValue, const c
     iVomitAdvMessageType = hVomitAdvMessageType.IntValue;
 }
 
+void ConVarVomitRangeChanged(ConVar convar, const char[] oldValue, const char[] newValue)
+{
+    g_fVomitRange = convar.FloatValue;
+}
+
+void ConVarVomitDurationChanged(ConVar convar, const char[] oldValue, const char[] newValue)
+{
+    g_fVomitDuration = convar.FloatValue;
+}
+
 void IsAllowed()
 {
 	bool bPluginOn = hVomitPluginEnabled.BoolValue;
 	if(bPluginOn && !bHooked)
 	{
 		bHooked = true;
+
+		for (int i = 1; i <= MaxClients; i++)
+    		g_hVomitTimer[i] = null;
+
 		ConVarVomitMessageTypeChanged(null, "", "");
 		HookEvent("player_spawn", EventPlayerSpawn);
-		HookEvent("player_now_it", EventNowVomit);
-		HookEvent("player_no_longer_it", EventNoLongerVomit);
+		HookEvent("ability_use", EventAbilityUse);
+		HookEvent("player_death", EventPlayerDeath);
 	}
 	else if(!bPluginOn && bHooked)
 	{
 		bHooked = false;
 		UnhookEvent("player_spawn", EventPlayerSpawn);
-		UnhookEvent("player_now_it", EventNowVomit);
-		UnhookEvent("player_no_longer_it", EventNoLongerVomit);
-	}
-}
+		UnhookEvent("ability_use", EventAbilityUse);
+		UnhookEvent("player_death", EventPlayerDeath);
 
-public void OnClientPutInServer(int client)
-{
-	if (bHooked && client > 0)
-	{
-		SDKHook(client, SDKHook_OnTakeDamage, OnTakeDamage);
+		for (int i = 1; i <= MaxClients; i++)
+		{
+		    if (g_hVomitTimer[i] != null)
+		    {
+		        delete g_hVomitTimer[i];
+		        g_hVomitTimer[i] = null;
+		    }
+		}
 	}
 }
 
@@ -146,38 +180,107 @@ Action RemoveInstructorHint(Handle h_Timer, DataPack hPack)
 	return Plugin_Stop;
 }
 
-Action OnTakeDamage(int victim, int &attacker, int &inflictor, float &damage, int &damagetype) 
-{
-	if(IsValidInfected(victim) && bVomited[victim] && GetEntityFlags(victim) & FL_ONFIRE)
-	{
-		ExtinguishEntity(victim);
-	}
-	return Plugin_Continue;
-}
-
-void EventNowVomit(Event event, const char[] name, bool dontBroadcast)
-{
-	int iAttacker = GetClientOfUserId(event.GetInt("attacker")), iVictim = GetClientOfUserId(event.GetInt("userid"));
-	if (IsValidInfected(iAttacker) && IsValidInfected(iVictim) && GetEntityFlags(iVictim) & FL_ONFIRE)
-	{
-		bVomited[iVictim] = true;
-		if(event.GetBool("exploded") || event.GetBool("by_boomer"))
-		{
-			ExtinguishEntity(iVictim);
-		}
-	}
-}
-
-void EventNoLongerVomit(Event event, const char[] name, bool dontBroadcast)
-{
-	int iVictim = GetClientOfUserId(event.GetInt("userid"));
-	if (IsValidInfected(iVictim))
-	{
-		bVomited[iVictim] = false;
-	}
-}
-
 bool IsValidInfected(int iClient)
 {
 	return iClient > 0 && iClient <= MaxClients && IsClientInGame(iClient) && GetClientTeam(iClient) == 3 && IsPlayerAlive(iClient);
+}
+
+bool IsValidInfectedAnyState(int iClient)
+{
+    return iClient > 0 && iClient <= MaxClients
+        && IsClientInGame(iClient)
+        && GetClientTeam(iClient) == 3;
+}
+
+void EventAbilityUse(Event event, const char[] name, bool dontBroadcast)
+{
+    int client = GetClientOfUserId(event.GetInt("userid"));
+
+    if (!IsValidInfected(client)) return;
+
+    if (GetEntProp(client, Prop_Send, "m_zombieClass") != 2) return;
+
+    char ability[64];
+    event.GetString("ability", ability, sizeof(ability));
+
+    if (StrContains(ability, "vomit", false) == -1)
+        return;
+
+    if (g_fVomitRange <= 0.0 || g_fVomitDuration <= 0.0)
+        return;
+
+    if (g_hVomitTimer[client] != null)
+        return;
+
+    g_hVomitTimer[client] = CreateTimer(0.1, TimerVomitThink, client,
+        TIMER_REPEAT | TIMER_FLAG_NO_MAPCHANGE);
+
+    CreateTimer(g_fVomitDuration, TimerStopVomit, client,
+        TIMER_FLAG_NO_MAPCHANGE);
+}
+
+Action TimerVomitThink(Handle timer, any client)
+{
+    if (!IsValidInfected(client) || GetEntProp(client, Prop_Send, "m_zombieClass") != 2)
+    {
+        if (client > 0 && client <= MaxClients)
+            g_hVomitTimer[client] = null;
+
+        return Plugin_Stop;
+    }
+
+    int target = GetClientAimTarget(client, true);
+
+    if (!IsValidInfected(target))
+        return Plugin_Continue;
+
+    float a[3], b[3];
+    GetClientAbsOrigin(client, a);
+    GetClientAbsOrigin(target, b);
+
+    if (GetVectorDistance(a, b) <= g_fVomitRange)
+    {
+        ExtinguishEntity(target);
+    }
+
+    return Plugin_Continue;
+}
+
+Action TimerStopVomit(Handle timer, any client)
+{
+    if (client > 0 && client <= MaxClients)
+    {
+        if (g_hVomitTimer[client] != null)
+        {
+            delete g_hVomitTimer[client];
+            g_hVomitTimer[client] = null;
+        }
+    }
+
+    return Plugin_Stop;
+}
+
+void EventPlayerDeath(Event event, const char[] name, bool dontBroadcast)
+{
+    int victim = GetClientOfUserId(event.GetInt("userid"));
+
+	if (!IsValidInfectedAnyState(victim)) return;
+
+    if (GetEntProp(victim, Prop_Send, "m_zombieClass") != 2) return;
+
+    float boomerPos[3], targetPos[3];
+    GetClientAbsOrigin(victim, boomerPos);
+
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsValidInfected(i) || i == victim)
+            continue;
+
+        GetClientAbsOrigin(i, targetPos);
+
+        if (GetVectorDistance(boomerPos, targetPos) <= g_fSplashRadius)
+        {
+            ExtinguishEntity(i);
+        }
+    }
 }

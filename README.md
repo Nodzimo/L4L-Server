@@ -783,6 +783,8 @@
     - Сбрасывает зум после каждого выстрела из снайпы
 20. [[L4D] Vomit extinguishing special infected (1.0) by BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2830667&postcount=66)
     - Байла и бумер тушат горящих особых
+> [!IMPORTANT]
+> Используется мой форк (на основе последнего форка от BloodyBlade и [предпоследнего форка от raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2715357&postcount=64)), в котором исправлены все ошибки.
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
