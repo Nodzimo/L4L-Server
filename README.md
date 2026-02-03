@@ -574,6 +574,9 @@
     - Зависимость: плагин **Left 4 DHooks Direct**
 54. [[L4D & 2] Fix DeathFall Camera (1.7) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_fix_deathfall_cam)
     - Фиксит баг с залипшей камерой после смерти от падения с высоты 
+55. [[L4D1 & L4D2] Selfie Camera (1.0.1) by Mart](https://forums.alliedmods.net/showthread.php?t=332884)
+    - Добавляет команду включения режима селфи для камеры
+    - `sm_selfie`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
