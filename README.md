@@ -863,63 +863,62 @@
 
 [Коллекция серверных V-скриптов в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608129891)
 
-1. [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
-2. [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
-3. [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
-4. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
-5. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
-6. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
-7. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
-8. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
+1. [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
+2. [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
+3. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
+4. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
+5. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
+6. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
+7. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
-9. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
+8. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
     - [L4B2 commands](https://github.com/smilz0/Left4Bots/blob/main/COMMANDS.md)
     - [Настройки конфига](https://github.com/smilz0/Left4Bots/blob/main/root/scripts/vscripts/left4bots_settings.nut)
     - [Addon customization](https://steamcommunity.com/workshop/filedetails/discussion/3022416274/3825299103410056029)
     - Зависимости:
       - **Left 4 Lib**
       - **NavFixes**
-10. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
+9. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
     - Требуется для **Left 4 Bots 2**
-11. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
+10. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
     - Требуется для **Left 4 Bots 2**
-12. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
-13. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
-14. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
-15. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
-16. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
-17. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+11. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
+12. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
+13. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
+14. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+15. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+16. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
-18. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+17. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для следующих аддонов:
       - **Headshot Feedback Effect**
       - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
-19. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
-20. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
-21. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+18. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
+19. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+20. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
-22. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+21. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-23. **Melee More Hitrays by Lombaxtard**
+22. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-24. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+23. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-25. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+24. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
-26. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+25. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
-27. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
-28. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
-29. [[V-Script] E3 Style Upgrade Pickup Logic](https://steamcommunity.com/sharedfiles/filedetails/?id=3245285838)
+26. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
+27. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
+28. [[V-Script] E3 Style Upgrade Pickup Logic](https://steamcommunity.com/sharedfiles/filedetails/?id=3245285838)
 
 #### Неактуально
 - Заменён плагином **Votekick**
@@ -1071,6 +1070,9 @@
       ```
 - [Common Ragdoll Fast Extinguish (1.0) by little_froy](https://forums.alliedmods.net/showthread.php?p=2840822)
   - На зомби не отображается огонь от зажигалок, который перекрывает обзор.
+- [Carryable placer](https://steamcommunity.com/sharedfiles/filedetails/?id=3208147246)
+> [!CAUTION]
+> Моментально крашит сервер во время запуска (по крайней мере на винде), из-за несовместимости с плагином **VScript**.
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
