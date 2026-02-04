@@ -302,6 +302,7 @@
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
      - **Charger Collision Patch**
+     - **VScript**
 5. [SMJansson (2.6.0/1): JSON parser/writer](https://github.com/davenonymous/SMJansson)
    - Требуется для следующих плагинов:
      - **Discord API**
@@ -577,6 +578,9 @@
 55. [[L4D1 & L4D2] Selfie Camera (1.0.1) by Mart](https://forums.alliedmods.net/showthread.php?t=332884)
     - Добавляет команду включения режима селфи для камеры
     - `sm_selfie`
+56. [VScript (1.10.0.90) by 42](https://github.com/FortyTwoFortyTwo/VScript)
+    - Позволяет компилировать и исполнять V-скрипты из SourceMod
+    - Зависимость: расширение **Source Scramble**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -805,7 +809,7 @@
       - `!a4d_panic_forever`
 
 #### Сезонное
-- **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 февраля)
+- **Рождество** (<ins>ориентировочно</ins> с 1 декабря по 1 марта)
   1. [[L4D & L4D2] Christmas Tree (1.9) by SilverShot](https://forums.alliedmods.net/showthread.php?t=319552)
   2. [[L4D & L4D2] xMas (1.6) by raziEiL [disawar1], gratters by Electr000999](https://forums.alliedmods.net/showpost.php?p=2678402&postcount=31)
      - `/xmas Sefo "Merry Xmas"`
