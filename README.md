@@ -352,7 +352,9 @@
 9. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
     - Зависимость: плагин **ThirdPersonShoulder Detect**
 10. [ThirdPersonShoulder_Detect (1.5.3) by MasterMind420 & Lux](https://forums.alliedmods.net/showpost.php?p=2830180&postcount=32)
-    - Требуется для плагина **ThirdPersonShoulder Shotgun Sound Fix**
+    - Требуется для следующих плагинов:
+      - **ThirdPersonShoulder Shotgun Sound Fix**
+      - **Witch Guard**
 11. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
     - Оповестительные сообщения в чате при входе/выходе игроков
     - Для рядовых игроков показывается краткая информация: страна и причина отключения
@@ -398,6 +400,7 @@
       - **Death Weapon Respawn Fix**
       - **Boomer Puke Movement**
       - **team_lights Remake**
+      - **Witch Guard**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -601,6 +604,7 @@
      - **L4L: Tools**
      - **Item hint**
      - **team_lights Remake**
+     - **Witch Guard**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
