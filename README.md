@@ -397,6 +397,7 @@
       - **Anti Rush**
       - **Death Weapon Respawn Fix**
       - **Boomer Puke Movement**
+      - **team_lights Remake**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -599,6 +600,7 @@
      - **L4L: Exec Server Config**
      - **L4L: Tools**
      - **Item hint**
+     - **team_lights Remake**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -801,11 +803,17 @@
 > [!IMPORTANT]
 > Используется мой форк (на основе последнего форка от BloodyBlade и [предпоследнего форка от raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2715357&postcount=64)), в котором исправлены все ошибки.
 21. [[L4D1/2] Boomer Puke Movement (1.1-2024/4/22) by Forgetest, HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Boomer_Boomer/l4d_boomer_vomit_move)
-- Позволяет бумеру использовать способность во время движения
-- Зависимости:
-  - Расширение **Actions**
-  - Плагин **Left 4 DHooks Direct**
-- **Приватный плагин!**
+    - Позволяет бумеру использовать способность во время движения
+    - Зависимости:
+      - Расширение **Actions**
+      - Плагин **Left 4 DHooks Direct**
+    - **Приватный плагин!**
+22. [[L4D/L4D2] team_lights Remake (1.2h-2025/8/21) by Lux, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Real_Realism_%E7%9C%9F%E5%AF%AB%E5%AF%A6%E6%A8%A1%E5%BC%8F/l4d_team_flashlight_remake)
+    - Свет от фонарика виден другим игрокам
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Скрипты **Multi Colors** для компиляции плагина
+    - **Приватный плагин!**
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
