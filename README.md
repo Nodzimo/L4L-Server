@@ -584,6 +584,9 @@
     - Позволяет компилировать и исполнять V-скрипты из SourceMod
     - Зависимость: расширение **Source Scramble**
     - Требуется для плагина **L4L: Exec Server Config** 
+57. [[L4D/L4D2] Restore Tank Burn Sound (1.0-2025/10/12) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_tank_restore_burn_sound)
+    - Восстанавливает уникальные звуки горящего танка, которые перезаписывались регулярными звуками урона.
+    - **Приватный плагин!**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
