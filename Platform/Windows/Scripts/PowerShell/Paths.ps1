@@ -27,12 +27,18 @@ function Get-Paths {
     }
 
     $privateRoot = $repos.Private
+    $privateSetupRoot = "$privateRoot\Setup"
+
+    $privateSetup = [PSCustomObject]@{
+        Root       = $privateSetupRoot
+        All        = "$privateSetupRoot\01. All"
+        Specific   = "$privateSetupRoot\02. Specific"
+        SmBasePath = "$privateSetupRoot\03. sm_basepath"
+    }
 
     $private = [PSCustomObject]@{
-        Root       = $privateRoot
-        All        = "$privateRoot\01. All"
-        Specific   = "$privateRoot\02. Specific"
-        SmBasePath = "$privateRoot\03. sm_basepath"
+        Root  = $privateRoot
+        Setup = $privateSetup
     }
 
     $setupRoot = "$($repos.Server)\Setup"
@@ -162,5 +168,5 @@ function Get-PrivateSpecificPath {
     )
 
     $paths = Get-Paths
-    return "$($paths.Private.Specific)\$BuildName"
+    return "$($paths.Private.Setup.Specific)\$BuildName"
 }

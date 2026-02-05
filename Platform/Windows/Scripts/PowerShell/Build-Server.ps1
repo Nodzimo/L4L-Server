@@ -37,7 +37,7 @@ function Build-ServerBase {
         @{ Source = $paths.Setup.Core.AddonsConfigs; Destination = $server.Root }
         @{ Source = $setupSpecific; Destination = $server.Root }
 
-        @{ Source = $paths.Private.All; Destination = $server.Root }
+        @{ Source = $paths.Private.Setup.All; Destination = $server.Root }
         @{ Source = $privateSpecific; Destination = $server.Root }
     )
 
@@ -80,7 +80,7 @@ function Build-ServerInstance {
         @{ Source = $extsSource; Destination = $instance.SourceModInstanceRoot }
         @{ Source = $paths.Setup.Core.Plugins; Destination = $instance.SourceModInstanceRoot }
 
-        @{ Source = $paths.Private.SmBasePath; Destination = $instance.SourceModInstanceRoot }
+        @{ Source = $paths.Private.Setup.SmBasePath; Destination = $instance.SourceModInstanceRoot }
     )
 
     foreach ($step in $copyPlan) {
