@@ -298,6 +298,7 @@
      - **AI: Hard SI**
      - **Dynamic Common Infected Jump**
      - **Tanks throw special infected**
+     - **Boomer Puke Movement**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
@@ -395,6 +396,7 @@
       - **L4L: Tank Jockeys**
       - **Anti Rush**
       - **Death Weapon Respawn Fix**
+      - **Boomer Puke Movement**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -795,6 +797,12 @@
     - Байла и бумер тушат горящих особых
 > [!IMPORTANT]
 > Используется мой форк (на основе последнего форка от BloodyBlade и [предпоследнего форка от raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2715357&postcount=64)), в котором исправлены все ошибки.
+21. [[L4D1/2] Boomer Puke Movement (1.1-2024/4/22) by Forgetest, HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Boomer_Boomer/l4d_boomer_vomit_move)
+- Позволяет бумеру использовать способность во время движения
+- Зависимости:
+  - Расширение **Actions**
+  - Плагин **Left 4 DHooks Direct**
+- **Приватный плагин!**
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
