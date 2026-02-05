@@ -3,16 +3,18 @@
 
 #include <l4l/utils>
 #include <multicolors>
-#include <sdktools>
+#include <vscript>
 
-#define PLUGIN_VERSION  "0.0.1"
-#define EXPERT          "Expert"
-#define IMPOSSIBLE_PLUS "Impossible+"
-#define HARDCORE        "Hardcore"
-#define SOUND_HARDCORE  "UI/Pickup_Secret01.wav"
-#define MUSIC_HARDCORE1 "music/infection/infection_09_01.wav"
-#define MUSIC_HARDCORE2 "music/infection/infection_10_01.wav"
-#define MUSIC_HARDCORE3 "music/infection/infection_11_01.wav"
+#define PLUGIN_VERSION   "0.0.1"
+#define EXPERT           "Expert"
+#define IMPOSSIBLE_PLUS  "Impossible+"
+#define HARDCORE         "Hardcore"
+#define VSCRIPT_HARDCORE "hardcore"
+#define VSCRIPT_VANILLA  "vanilla"
+#define SOUND_HARDCORE   "UI/Pickup_Secret01.wav"
+#define MUSIC_HARDCORE1  "music/infection/infection_09_01.wav"
+#define MUSIC_HARDCORE2  "music/infection/infection_10_01.wav"
+#define MUSIC_HARDCORE3  "music/infection/infection_11_01.wav"
 
 ConVar            g_hCvarServerConfig, g_hCvarDifficultyEx, g_hCvarHostname;
 bool              g_bHostnameGuard;
@@ -66,6 +68,7 @@ public void OnConfigsExecuted()
 {
     ExecInstanceConfig();
     ExecDifficultyConfig();
+    RunVScriptFile(IsDifficultyHardcore() ? VSCRIPT_HARDCORE : VSCRIPT_VANILLA);
 }
 
 public void OnMapStart()
@@ -86,10 +89,7 @@ static void ExecInstanceConfig()
 
 static void ExecDifficultyConfig()
 {
-    char difficulty[32];
-    g_hCvarDifficultyEx.GetString(difficulty, sizeof(difficulty));
-
-    if (StrEqual(difficulty, IMPOSSIBLE_PLUS, false))
+    if (IsDifficultyHardcore())
     {
         ServerCommand("exec \"server_expert+.cfg\"");
     }
@@ -102,12 +102,21 @@ static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
         return;
     }
 
-    if (cvar == g_hCvarDifficultyEx
-        && StrEqual(newVal, IMPOSSIBLE_PLUS, false)
-        && !StrEqual(oldVal, IMPOSSIBLE_PLUS, false))
+    if (cvar == g_hCvarDifficultyEx)
     {
-        MarkCurrentPlayersAsSeen();
-        PlaySoundForCurrentPlayers();
+        bool oldHardcore = StrEqual(oldVal, IMPOSSIBLE_PLUS, false);
+        bool newHardcore = StrEqual(newVal, IMPOSSIBLE_PLUS, false);
+
+        if (oldHardcore != newHardcore)
+        {
+            if (newHardcore)
+            {
+                MarkCurrentPlayersAsSeen();
+                PlaySoundForCurrentPlayers();
+            }
+
+            RunVScriptFile(newHardcore ? VSCRIPT_HARDCORE : VSCRIPT_VANILLA);
+        }
     }
 
     char difficultyEx[32];
@@ -143,10 +152,7 @@ public void OnClientPostAdminCheck(int client)
         return;
     }
 
-    char difficultyEx[32];
-    g_hCvarDifficultyEx.GetString(difficultyEx, sizeof(difficultyEx));
-
-    if (!StrEqual(difficultyEx, IMPOSSIBLE_PLUS, false))
+    if (!IsDifficultyHardcore())
     {
         return;
     }
@@ -235,4 +241,86 @@ static void PlaySoundForCurrentPlayers()
 void PlaySound(int client, const char[] sound)
 {
     EmitSoundToClient(client, sound, SOUND_FROM_PLAYER, SNDCHAN_AUTO, SNDLEVEL_NORMAL, SND_NOFLAGS, SNDVOL_NORMAL, SNDPITCH_NORMAL, -1, NULL_VECTOR, NULL_VECTOR, true, 0.0);
+}
+
+static bool IsDifficultyHardcore()
+{
+    char difficulty[32];
+    g_hCvarDifficultyEx.GetString(difficulty, sizeof(difficulty));
+
+    return StrEqual(difficulty, IMPOSSIBLE_PLUS, false);
+}
+
+static bool RunVScriptFile(const char[] scriptBaseName)
+{
+    if (!VScript_IsScriptVMInitialized())
+    {
+        PrintToServer("[L4L] VScript VM not initialized");
+
+        return false;
+    }
+
+    char path[PLATFORM_MAX_PATH];
+    BuildPath(Path_SM, path, sizeof(path), "vscripts/l4l/%s.nut", scriptBaseName);
+
+    File file = OpenFile(path, "r");
+
+    if (file == null)
+    {
+        PrintToServer("[L4L] Cannot open VScript file: %s", path);
+
+        return false;
+    }
+
+    char code[16384];
+    code[0] = '\0';
+    char line[512];
+    bool truncated = false;
+
+    while (!file.EndOfFile())
+    {
+        file.ReadLine(line, sizeof(line));
+
+        if (strlen(code) + strlen(line) >= sizeof(code) - 1)
+        {
+            truncated = true;
+
+            break;
+        }
+
+        StrCat(code, sizeof(code), line);
+    }
+
+    if (truncated)
+    {
+        PrintToServer("[L4L] WARNING: VScript file too large, truncated: %s", path);
+    }
+
+    delete file;
+
+    if (code[0] == '\0')
+    {
+        PrintToServer("[L4L] Empty VScript file: %s", path);
+
+        return false;
+    }
+
+    HSCRIPT script = VScript_CompileScript(code);
+
+    if (!script)
+    {
+        PrintToServer("[L4L] VScript compile failed: %s", path);
+
+        return false;
+    }
+
+    VScriptExecute exec = new VScriptExecute(script);
+    exec.Execute();
+
+    PrintToServer("[L4L] VScript %s => return %d", scriptBaseName, exec.ReturnValue);
+
+    delete exec;
+    script.ReleaseScript();
+
+    return true;
 }

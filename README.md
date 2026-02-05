@@ -581,6 +581,7 @@
 56. [VScript (1.10.0.90) by 42](https://github.com/FortyTwoFortyTwo/VScript)
     - Позволяет компилировать и исполнять V-скрипты из SourceMod
     - Зависимость: расширение **Source Scramble**
+    - Требуется для плагина **L4L: Exec Server Config** 
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -617,9 +618,11 @@
    - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
    - Если установлена кастомная сложность, то выводит её название в имени сервера.
    - Если установлена кастомная сложность, то оповещает об этом игроков при подключении.
+   - Компилирует и исполняет кастомные V-скрипты в зависимости от установленной сложности
    - Зависимости:
      - Плагин **Server namer**
      - Плагин **Vote difficulty**
+     - Плагин **VScript**
      - Скрипты **Multi Colors** для компиляции плагина
 2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)
    - Перезаписывает урон от огня по выжившим ботам, в соответствии с установленным значением в кваре.
