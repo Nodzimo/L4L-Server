@@ -290,6 +290,7 @@
      - **Steam Works Group Manager**
      - **Discord API**
      - **Discord Utilities**
+     - **Get Game total time played**
 3. [Actions (3.9.2) by BHaType](https://forums.alliedmods.net/showthread.php?t=336374)
    - Требуется для плагинов:
      - **Shove Direction Fix**
@@ -591,6 +592,15 @@
 57. [[L4D/L4D2] Restore Tank Burn Sound (1.0-2025/10/12) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_tank_restore_burn_sound)
     - Восстанавливает уникальные звуки горящего танка, которые перезаписывались регулярными звуками урона.
     - **Приватный плагин!**
+58. [[Any Source Game] Get Game total time played (from Game Stats) (2.6-2025/12/5) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/Source_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/sm_PlayerTime)
+    - Выводит наигранное время (и другую инфу) в чат при подключении игрока к серверу
+    - Наигранное время берётся из [SteamDB](https://steamdb.info), независимо от настроек приватности Steam-профиля.
+    - Зависимости:
+      - Скрипты **Multi Colors** для компиляции плагина
+      - Расширение **SteamWorks**
+      - База геоданных **GeoIP2 GeoLite2**
+    - `sm_timedisplay`
+    - **Приватный плагин!**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -605,6 +615,7 @@
      - **Item hint**
      - **team_lights Remake**
      - **Witch Guard**
+     - **Get Game total time played**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -616,6 +627,7 @@
      - **Vote server restart**
      - **Vote difficulty**
      - **Votekick**
+     - **Get Game total time played**
 
 #### Плагины L4L
 0. [SDK](https://github.com/Nodzimo/L4L-Server/tree/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l)
