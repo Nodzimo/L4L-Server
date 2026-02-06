@@ -13,9 +13,7 @@ function LogState(prefix) {
 		" file_weapons_prefix=\"" + settings.file_weapons_prefix + "\"" +
 		" chat_hello_replies=\"" + settings.chat_hello_replies + "\"" +
 		" chat_hello_count=" + ::Left4Bots.ChatHelloReplies.len() +
-		" deploy_upgrades=" + settings.deploy_upgrades +
-		" team_max_chainsaws=" + settings.team_max_chainsaws +
-		" throw_vomitjar=" + settings.throw_vomitjar
+		" deploy_upgrades=" + settings.deploy_upgrades
 	);
 }
 
@@ -45,9 +43,7 @@ LogState("L4B settings before:");
 settings.chat_hello_replies = "Welcome to Hardcore";
 ApplyHelloReplies();
 
-settings.deploy_upgrades = 0;
-settings.team_max_chainsaws = 0;
-settings.throw_vomitjar = 0;
+settings.deploy_upgrades = 0; // 1
 
 settings.file_weapons_prefix = "left4bots2/cfg/weapons_hardcore/";
 ReloadWeapons();
