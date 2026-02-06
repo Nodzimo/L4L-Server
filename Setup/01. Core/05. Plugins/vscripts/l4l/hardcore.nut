@@ -10,19 +10,47 @@ local settings = ::Left4Bots.Settings;
 
 function LogState(prefix) {
 	printl(TAG + prefix +
+		" file_weapons_prefix=\"" + settings.file_weapons_prefix + "\"" +
 		" chat_hello_replies=\"" + settings.chat_hello_replies + "\"" +
+		" chat_hello_count=" + ::Left4Bots.ChatHelloReplies.len() +
 		" deploy_upgrades=" + settings.deploy_upgrades +
 		" team_max_chainsaws=" + settings.team_max_chainsaws +
 		" throw_vomitjar=" + settings.throw_vomitjar
 	);
 }
 
+function ApplyHelloReplies() {
+	if (settings.chat_hello_replies != "")
+		::Left4Bots.ChatHelloReplies = split(settings.chat_hello_replies, ",");
+	else
+		::Left4Bots.ChatHelloReplies = [];
+
+	::Left4Bots.ChatHelloAlreadyReplied = {};
+
+	printl(TAG + "ChatHelloReplies rebuilt, count=" + ::Left4Bots.ChatHelloReplies.len());
+}
+
+function ReloadWeapons() {
+	if ("Bots" in ::Left4Bots) {
+		foreach(bot in ::Left4Bots.Bots)::Left4Bots.LoadWeaponPreferences(bot, bot.GetScriptScope());
+	}
+
+	if ("L4D1Survivors" in ::Left4Bots) {
+		foreach(bot in ::Left4Bots.L4D1Survivors)::Left4Bots.LoadWeaponPreferences(bot, bot.GetScriptScope());
+	}
+}
+
 LogState("L4B settings before:");
 
 settings.chat_hello_replies = "Welcome to Hardcore";
+ApplyHelloReplies();
+
 settings.deploy_upgrades = 0;
 settings.team_max_chainsaws = 0;
 settings.throw_vomitjar = 0;
+
+settings.file_weapons_prefix = "left4bots2/cfg/weapons_hardcore/";
+ReloadWeapons();
 
 LogState("L4B settings after:");
 
