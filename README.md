@@ -837,6 +837,8 @@
     - **Приватный плагин!**
 23. [[L4D2] Spitter Acid Glow (1.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=330835)
     - Добавляет динамическое свечение кислоты
+24. [[L4D & L4D2] Infected Glow (1.13) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187933)
+    - Добавляет динамическое свечение горящей заразы
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
