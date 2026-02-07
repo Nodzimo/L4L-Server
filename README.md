@@ -835,6 +835,8 @@
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
     - **Приватный плагин!**
+23. [[L4D2] Spitter Acid Glow (1.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=330835)
+    - Добавляет динамическое свечение кислоты
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
