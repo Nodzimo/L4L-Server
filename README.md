@@ -845,6 +845,8 @@
 26. [[L4D2] Vomitjar Glow (1.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=344724)
     - Добавляет динамическое свечение байлы
     - Зависимость: плагин **Left 4 DHooks Direct**
+27. [EnhancedThrowables (1.3h-2024/12/19) by Timocop, Lux & HarryPotter](https://forums.alliedmods.net/showthread.php?t=281902)
+    - Добавляет динамическое свечение метательного оружия в полёте и в руках
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
