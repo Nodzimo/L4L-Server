@@ -402,6 +402,7 @@
       - **Boomer Puke Movement**
       - **team_lights Remake**
       - **Witch Guard**
+      - **Vomitjar Glow**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -841,6 +842,9 @@
     - Добавляет динамическое свечение горящей заразы
 25. [[L4D & L4D2] Fire Glow (1.8) by SilverShot](https://forums.alliedmods.net/showthread.php?t=186617)
     - Добавляет динамическое свечение огня (моло, канистры, фейерверк)
+26. [[L4D2] Vomitjar Glow (1.3) by SilverShot](https://forums.alliedmods.net/showthread.php?t=344724)
+    - Добавляет динамическое свечение байлы
+    - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
