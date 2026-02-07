@@ -703,6 +703,11 @@
     - Плагины-референсы:
       - [[L4D & L4D2] Spawn Special Infected on Survivor Death](https://forums.alliedmods.net/showthread.php?t=333589)
       - [[L4D2] 360° Movable MiniGun](https://forums.alliedmods.net/showthread.php?t=225132)
+14. [Fog](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_fog.sp)
+    - Добавляет туман как в мутации сообщества **Nightmare** (`Left 4 Dead 2/update/pak01_dir.vpk/scripts/gamemodes.txt` - `community4`)
+    - Референсы:
+      - Аддон [Customisable Map Fog](https://steamcommunity.com/sharedfiles/filedetails/?id=3404025698)
+      - Плагин [[L4D & L4D2] Weather Control (1.19) [01-Jul-2025]](https://forums.alliedmods.net/showthread.php?t=184890)
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showpost.php?p=2836700&postcount=27)
