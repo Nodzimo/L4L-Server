@@ -348,6 +348,8 @@
 8. [[L4D & L4D2] Mission and Weapons - Info Editor (1.27) by SilverShot](https://forums.alliedmods.net/showthread.php?t=310586)
    - Опционально: для плагина **Vote Mode**
    - `sm_info_reload`
+   - `sm_info_mission_list`
+   - `sm_info_weapons_list`
 > [!IMPORTANT]
 > Используется мой форк, в котором добавлена поддержка кастомных конфигов для хардкора.
 9. [[L4D/L4D2] Thirdpersonshoulder Shotgun Sound Fix (1.2) by MasterMind420, Lux, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_shotgun_sound_fix)
