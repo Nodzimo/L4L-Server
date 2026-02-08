@@ -32,12 +32,23 @@
 ========================================================================================
 	Change Log:
 
-1.29 (02-Feb-2026)
+1.29 (07-Feb-2026)
 	- Plugin now attempts to load "l4d_info_editor_mission.mode.difficulty.cfg" and "l4d_info_editor_weapons.mode.difficulty.cfg".
 	- They will be loaded if the related config file exists instead of loading the default or "mode" config.
 	- For example running "coop" on "normal" difficulty will load "l4d_info_editor_mission.coop.normal.cfg" if available.
 	- Valid difficulties are "easy", "normal", "hard" and "expert.
 	. Requested by "Mika Misori".
+
+	- Added cvar "l4d_info_editor_config_suffix" and plugin now creates "l4d_info_editor.cfg" cvar config in "cfgs/sourcemod" folder.
+	- This cvar allows specifying a config to load e.g. "l4d_info_editor_mission.<suffix>.cfg" and "l4d_info_editor_weapons.<suffix>.cfg".
+	- Initially coded by "Mika Misori".
+
+	- Config load order is as follows, when a config is detected to exist in this order, no other config will load:
+		1. Cvar suffix config e.g. "l4d_info_editor_mission.<suffix>.cfg"
+		2. Gamemode + difficulty config e.g. "l4d_info_mission.coop.normal.cfg"
+		3. Gamemode config e.g. "l4d_info_mission.coop.cfg"
+		4. Load normal config + load normal config gamemode specific sections
+	- Each config will load from the "all" section first and then from the "map" specific section.
 
 1.28 (25-Jan-2026)
 	- L4D2: Fixed the previous update skipping the last melee weapon type in the "meleeweapons" list.
@@ -184,6 +195,7 @@
 #include <sourcemod>
 #include <dhooks>
 
+#define CVAR_FLAGS				FCVAR_NOTIFY
 #define GAMEDATA				"l4d_info_editor"
 #define CONFIG_MISSION			"data/l4d_info_editor_mission.cfg"
 #define CONFIG_WEAPONS			"data/l4d_info_editor_weapons.cfg"
@@ -196,12 +208,12 @@
 bool g_bGameMode;
 ConVar g_hCvarMPGameMode;
 ConVar g_hCvarDifficulty;
-ConVar g_hCvarConfigSuffix;
+ConVar g_hCvarConfigLoad;
 char g_sGameMode[64];
 char g_sDifficulty[12];
 char g_sConfigMission[PLATFORM_MAX_PATH];
 char g_sConfigWeapons[PLATFORM_MAX_PATH];
-char g_sConfigSuffix[32];
+char g_sCvarConfigLoad[32];
 Handle g_hForwardOnGetMission;
 Handle g_hForwardOnGetWeapons;
 Handle SDK_KV_GetString;
@@ -332,19 +344,23 @@ public void OnPluginStart()
 {
 	CreateConVar("l4d_info_editor_version", PLUGIN_VERSION, "Mission and Weapons - Info Editor plugin version.", FCVAR_NOTIFY|FCVAR_DONTRECORD);
 
-	g_hCvarConfigSuffix = CreateConVar("l4d_info_editor_config_suffix", "", "Optional config suffix to load: l4d_info_editor_weapons.<suffix>.cfg and l4d_info_editor_mission.<suffix>.cfg", FCVAR_NOTIFY);
-	g_hCvarConfigSuffix.GetString(g_sConfigSuffix, sizeof(g_sConfigSuffix));
+	g_hCvarConfigLoad = CreateConVar("l4d_info_editor_config_suffix", "", "Optional config suffix to load: l4d_info_editor_weapons.<suffix>.cfg and l4d_info_editor_mission.<suffix>.cfg", CVAR_FLAGS);
+	AutoExecConfig(true, "l4d_info_editor");
+
 	g_hCvarMPGameMode = FindConVar("mp_gamemode");
 	g_hCvarDifficulty = FindConVar("z_difficulty");
 	g_hCvarMPGameMode.AddChangeHook(ConVarChanged_Mode);
 	g_hCvarDifficulty.AddChangeHook(ConVarChanged_Diff);
-	g_hCvarConfigSuffix.AddChangeHook(ConVarChanged_Suffix);
+	g_hCvarConfigLoad.AddChangeHook(ConVarChanged_Cvar);
 	ConVarChanged_Mode(null, "", "");
 	ConVarChanged_Diff(null, "", "");
+	ConVarChanged_Cvar(null, "", "");
 
-	// ====================================================================================================
+
+
+	// =========================
 	// SDKCalls
-	// ====================================================================================================
+	// =========================
 	char sPath[PLATFORM_MAX_PATH];
 	BuildPath(Path_SM, sPath, sizeof(sPath), "gamedata/%s.txt", GAMEDATA);
 	if( FileExists(sPath) == false ) SetFailState("\n==========\nMissing required file: \"%s\".\nRead installation instructions again.\n==========", sPath);
@@ -385,9 +401,9 @@ public void OnPluginStart()
 
 
 
-	// ====================================================================================================
+	// =========================
 	// Detours
-	// ====================================================================================================
+	// =========================
 	Handle hDetour;
 
 	// Mission Info
@@ -445,6 +461,12 @@ public void OnPluginStart()
 		SetCommandFlags("melee_reload_info_server", GetCommandFlags("melee_reload_info_server") & ~FCVAR_CHEAT);
 		AddCommandListener(CmdListenBlock, "melee_reload_info_server");
 	}
+
+
+
+	// =========================
+	// OTHER
+	// =========================
 
 	// Forwards
 	g_hForwardOnGetMission = CreateGlobalForward("OnGetMissionInfo", ET_Ignore, Param_Cell);
@@ -560,9 +582,9 @@ void ConVarChanged_Diff(Handle convar, const char[] oldValue, const char[] newVa
 	else if( strcmp(g_sDifficulty, "Impossible", false) == 0 )		g_sDifficulty = "expert";
 }
 
-void ConVarChanged_Suffix(Handle convar, const char[] oldValue, const char[] newValue)
+void ConVarChanged_Cvar(Handle convar, const char[] oldValue, const char[] newValue)
 {
-    g_hCvarConfigSuffix.GetString(g_sConfigSuffix, sizeof(g_sConfigSuffix));
+	g_hCvarConfigLoad.GetString(g_sCvarConfigLoad, sizeof(g_sCvarConfigLoad));
 }
 
 // ====================================================================================================
@@ -1273,29 +1295,50 @@ void OnStart()
 	ServerCommand("weapon_reparse_server; %s", g_bLeft4Dead2 ? "melee_reload_info_server" : "");
 }
 
-bool TrySuffixConfig(const char[] baseConfig, char[] outPath, int outLen)
+bool TrySuffixConfig(char[] fileName, int fileLen)
 {
-    if( g_sConfigSuffix[0] == 0 )
-        return false;
+	if( g_sCvarConfigLoad[0] == 0 )
+		return false;
 
-    int pos = StrContains(baseConfig, ".cfg");
+	int pos = StrContains(fileName, ".cfg");
 
-    if( pos == -1 )
-        return false;
+	fileName[pos] = 0;
+	Format(fileName, fileLen, "%s.%s.cfg", fileName, g_sCvarConfigLoad);
 
-    // baseConfig is already a full SM path, e.g. ".../data/l4d_info_editor_weapons.cfg"
-    strcopy(outPath, outLen, baseConfig);
-    outPath[pos] = 0;
-    Format(outPath, outLen, "%s.%s.cfg", outPath, g_sConfigSuffix);
+	return FileExists(fileName);
+}
 
-    return FileExists(outPath);
+bool TryModeDiffConfig(char[] fileName, int fileLen)
+{
+	int pos = StrContains(fileName, ".cfg");
+
+	if( pos == -1 )
+		return false;
+
+	fileName[pos] = 0;
+	Format(fileName, fileLen, "%s.%s.%s.cfg", fileName, g_sGameMode, g_sDifficulty);
+
+	return FileExists(fileName);
+}
+
+bool TryModeConfig(char[] fileName, int fileLen)
+{
+	int pos = StrContains(fileName, ".cfg");
+
+	if( pos == -1 )
+		return false;
+
+	fileName[pos] = 0;
+	Format(fileName, fileLen, "%s.%s.cfg", fileName, g_sGameMode);
+
+	return FileExists(fileName);
 }
 
 void LoadConfig()
 {
+	bool passed;
 	g_alMissionData = new ArrayList(ByteCountToCells(MAX_STRING_LENGTH));
 	g_alWeaponsData = new ArrayList();
-	int pos;
 
 
 
@@ -1303,121 +1346,117 @@ void LoadConfig()
 	// Mission config
 	// ==========
 	g_iSectionMission = 1;
+
+	// Optional cvar config suffix: "l4d_info_editor_mission.<suffix>.cfg"
 	BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
-	pos = StrContains(g_sConfigMission, ".cfg");
 
-	// Optional suffix config: l4d_info_editor_mission.<suffix>.cfg
-	char sBase[PLATFORM_MAX_PATH];
-	strcopy(sBase, sizeof(sBase), g_sConfigMission);
-
-	if( TrySuffixConfig(sBase, g_sConfigMission, sizeof(g_sConfigMission)) )
+	if( TrySuffixConfig(g_sConfigMission, sizeof(g_sConfigMission)) )
 	{
-    	ParseConfigFile(g_sConfigMission);
+		ParseConfigFile(g_sConfigMission);
+		passed = true;
 	}
-	else
+
+	// Optional gamemode + difficulty config: "l4d_info_editor_mission.<gamemode>.<difficulty>.cfg"
+	if( !passed )
 	{
-	    // Existing logic below stays exactly the same:
+		BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
 
-		// File gamemode + difficulty config
-		if( pos != -1 )
-		{
-			g_sConfigMission[pos] = 0;
-			Format(g_sConfigMission, sizeof(g_sConfigMission), "%s.%s.%s.cfg", g_sConfigMission, g_sGameMode, g_sDifficulty);
-		}
-
-		// Check for gamemode + difficulty config
-		if( FileExists(g_sConfigMission) )
+		// Check for config and load
+		if( TryModeDiffConfig(g_sConfigMission, sizeof(g_sConfigMission)) )
 		{
 			ParseConfigFile(g_sConfigMission);
+			passed = true;
 		}
-		else
+	}
+
+	// Optional gamemode config: "l4d_info_editor_mission.<gamemode>.cfg"
+	if( !passed )
+	{
+		BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
+
+		// Check for config and load
+		if( TryModeConfig(g_sConfigMission, sizeof(g_sConfigMission)) )
 		{
-			BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
-			pos = StrContains(g_sConfigMission, ".cfg");
-
-			if( pos != -1 )
-			{
-				g_sConfigMission[pos] = 0;
-				Format(g_sConfigMission, sizeof(g_sConfigMission), "%s.%s.cfg", g_sConfigMission, g_sGameMode);
-			}
-
-			// Check for gamemode config
-			if( FileExists(g_sConfigMission) )
-			{
-				ParseConfigFile(g_sConfigMission);
-			}
-			else
-			{
-				// Load normal config
-				BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
-				if( FileExists(g_sConfigMission) )
-				{
-					g_bGameMode = false;
-					ParseConfigFile(g_sConfigMission);
-
-					g_bGameMode = true;
-					ParseConfigFile(g_sConfigMission);
-
-					g_bGameMode = false;
-				}
-			}
+			ParseConfigFile(g_sConfigMission);
+			passed = true;
 		}
-	} // End suffix fallback for mission
+	}
+
+	// Standard config + config gamemode sections: "l4d_info_editor_mission.cfg"
+	if( !passed )
+	{
+		BuildPath(Path_SM, g_sConfigMission, sizeof(g_sConfigMission), CONFIG_MISSION);
+
+		// Load normal config
+		if( FileExists(g_sConfigMission) )
+		{
+			g_bGameMode = false;
+			ParseConfigFile(g_sConfigMission);
+
+			g_bGameMode = true;
+			ParseConfigFile(g_sConfigMission);
+
+			g_bGameMode = false;
+		}
+	}
+
+
 
 	// ==========
 	// Weapons config
 	// ==========
 	g_iSectionMission = 0;
 
+	// Optional cvar suffix config: "l4d_info_editor_weapons.<suffix>.cfg"
 	BuildPath(Path_SM, g_sConfigWeapons, sizeof(g_sConfigWeapons), CONFIG_WEAPONS);
-	pos = StrContains(g_sConfigWeapons, ".cfg");
 
-	// Optional suffix config: l4d_info_editor_weapons.<suffix>.cfg
-	strcopy(sBase, sizeof(sBase), g_sConfigWeapons);
-
-	if( TrySuffixConfig(sBase, g_sConfigWeapons, sizeof(g_sConfigWeapons)) )
+	if( TrySuffixConfig(g_sConfigWeapons, sizeof(g_sConfigWeapons)) )
 	{
-    	ParseConfigFile(g_sConfigWeapons);
-
-    	return;
+		ParseConfigFile(g_sConfigWeapons);
+		passed = true;
 	}
 
-	// File gamemode + difficulty config
-	if( pos != -1 )
-	{
-		g_sConfigWeapons[pos] = 0;
-		Format(g_sConfigWeapons, sizeof(g_sConfigWeapons), "%s.%s.%s.cfg", g_sConfigWeapons, g_sGameMode, g_sDifficulty);
-	}
-	else
+	// Optional gamemode + difficulty config: "l4d_info_editor_weapons.<gamemode>.<difficulty>.cfg"
+	if( !passed )
 	{
 		BuildPath(Path_SM, g_sConfigWeapons, sizeof(g_sConfigWeapons), CONFIG_WEAPONS);
-		pos = StrContains(g_sConfigWeapons, ".cfg");
 
-		if( pos != -1 )
-		{
-			g_sConfigWeapons[pos] = 0;
-			Format(g_sConfigWeapons, sizeof(g_sConfigWeapons), "%s.%s.cfg", g_sConfigWeapons, g_sGameMode);
-		}
-
-		// Check for gamemode config
-		if( FileExists(g_sConfigWeapons) )
+		// Check for config and load
+		if( TryModeDiffConfig(g_sConfigWeapons, sizeof(g_sConfigWeapons)) )
 		{
 			ParseConfigFile(g_sConfigWeapons);
+			passed = true;
 		}
-		else
+	}
+
+	// Optional gamemode config: "l4d_info_editor_weapons.<gamemode>.cfg"
+	if( !passed )
+	{
+		BuildPath(Path_SM, g_sConfigWeapons, sizeof(g_sConfigWeapons), CONFIG_WEAPONS);
+
+		// Check for config and load
+		if( TryModeConfig(g_sConfigWeapons, sizeof(g_sConfigWeapons)) )
 		{
-			// Load normal config
-			BuildPath(Path_SM, g_sConfigWeapons, sizeof(g_sConfigWeapons), CONFIG_WEAPONS);
-			if( FileExists(g_sConfigWeapons) )
-			{
-				g_bGameMode = false;
-				ParseConfigFile(g_sConfigWeapons);
+			ParseConfigFile(g_sConfigWeapons);
+			passed = true;
+		}
+	}
 
-				g_bGameMode = true;
-				ParseConfigFile(g_sConfigWeapons);
+	// Standard config + config gamemode sections: "l4d_info_editor_weapons.cfg"
+	if( !passed )
+	{
+		BuildPath(Path_SM, g_sConfigWeapons, sizeof(g_sConfigWeapons), CONFIG_WEAPONS);
 
-				g_bGameMode = false;
-			}
+		// Load normal config
+		if( FileExists(g_sConfigWeapons) )
+		{
+			g_bGameMode = false;
+			ParseConfigFile(g_sConfigWeapons);
+
+			g_bGameMode = true;
+			ParseConfigFile(g_sConfigWeapons);
+
+			g_bGameMode = false;
 		}
 	}
 }
