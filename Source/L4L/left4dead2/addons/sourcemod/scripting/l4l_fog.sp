@@ -8,9 +8,9 @@
 #define PLUGIN_VERSION      "0.0.1"
 #define MAX_FOG_CONTROLLERS 16
 
-ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarFogEnable, g_hCvarFogStart, g_hCvarFogEnd, g_hCvarSkyEnable, g_hCvarSkyStart, g_hCvarSkyEnd;
+ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarFogEnable, g_hCvarFogStart, g_hCvarFogEnd, g_hCvarSkyEnable, g_hCvarSkyStart, g_hCvarSkyEnd, g_hCvarFadeTime;
 int    g_iCvarDebug, g_iPresetFogEnable, g_iPresetSkyEnable;
-float  g_fPresetFogStart, g_fPresetFogEnd, g_fPresetSkyStart, g_fPresetSkyEnd;
+float  g_fPresetFogStart, g_fPresetFogEnd, g_fPresetSkyStart, g_fPresetSkyEnd, g_fPresetFadeTime;
 
 // Fog
 int    g_iFogCount;
@@ -26,6 +26,18 @@ float  g_fSkyFogStart;
 float  g_fSkyFogEnd;
 
 bool   g_bBaselineCaptured = false;
+
+// Fade
+bool   g_bFading           = false;
+bool   g_bFadeToPreset     = false;
+float  g_fFadeStartTime    = 0.0;
+float  g_fFadeDuration     = 0.0;
+
+float  g_fFadeFromStart[MAX_FOG_CONTROLLERS];
+float  g_fFadeFromEnd[MAX_FOG_CONTROLLERS];
+float  g_fFadeToStart[MAX_FOG_CONTROLLERS];
+float  g_fFadeToEnd[MAX_FOG_CONTROLLERS];
+int    g_iFadeFinalEnable[MAX_FOG_CONTROLLERS];
 
 public Plugin myinfo =
 {
@@ -44,6 +56,7 @@ public void OnPluginStart()
     g_hCvarFogEnable = CreateConVar("l4l_fog_preset_enable", "1", "Fog preset: 0/1 enable env_fog_controller fog.", CVAR_FLAGS, true, 0.0, true, 1.0);
     g_hCvarFogStart  = CreateConVar("l4l_fog_preset_start", "242", "Fog preset: fog start distance.", CVAR_FLAGS);
     g_hCvarFogEnd    = CreateConVar("l4l_fog_preset_end", "730", "Fog preset: fog end distance.", CVAR_FLAGS);
+    g_hCvarFadeTime  = CreateConVar("l4l_fog_fade_time", "3.0", "Fog transition duration (seconds). Used for fade in/out.", CVAR_FLAGS, true, 0.01, true, 30.0);
 
     g_hCvarSkyEnable = CreateConVar("l4l_fog_preset_sky_enable", "1", "Skybox fog preset: 0/1 enable skybox fog.", CVAR_FLAGS, true, 0.0, true, 1.0);
     g_hCvarSkyStart  = CreateConVar("l4l_fog_preset_sky_start", "-10000", "Skybox fog preset: start distance.", CVAR_FLAGS);
@@ -58,6 +71,7 @@ public void OnPluginStart()
     g_hCvarFogEnable.AddChangeHook(CvarChanged_Cvars);
     g_hCvarFogStart.AddChangeHook(CvarChanged_Cvars);
     g_hCvarFogEnd.AddChangeHook(CvarChanged_Cvars);
+    g_hCvarFadeTime.AddChangeHook(CvarChanged_Cvars);
 
     g_hCvarSkyEnable.AddChangeHook(CvarChanged_Cvars);
     g_hCvarSkyStart.AddChangeHook(CvarChanged_Cvars);
@@ -86,6 +100,7 @@ void L4L_ReadCvars()
     g_iPresetFogEnable = g_hCvarFogEnable.IntValue;
     g_fPresetFogStart  = g_hCvarFogStart.FloatValue;
     g_fPresetFogEnd    = g_hCvarFogEnd.FloatValue;
+    g_fPresetFadeTime  = g_hCvarFadeTime.FloatValue;
 
     g_iPresetSkyEnable = g_hCvarSkyEnable.IntValue;
     g_fPresetSkyStart  = g_hCvarSkyStart.FloatValue;
@@ -96,18 +111,21 @@ void L4L_Hook()
 {
     if (g_bBaselineCaptured)
     {
-        ApplyFog();
+        StartFogFade(true);
 
         return;
     }
 
     CaptureBaseline();
-    ApplyFog();
+    StartFogFade(true);
 }
 
 void L4L_Unhook()
 {
-    RestoreBaseline();
+    if (!g_bBaselineCaptured)
+        return;
+
+    StartFogFade(false);
 }
 
 public void OnMapStart()
@@ -162,40 +180,10 @@ void CaptureBaseline()
     g_bBaselineCaptured = true;
 }
 
-void RestoreBaseline()
-{
-    if (!g_bBaselineCaptured)
-        return;
-
-    for (int i = 0; i < g_iFogCount; i++)
-    {
-        int ref = g_iFogRefs[i];
-
-        if (ref == INVALID_ENT_REFERENCE)
-            continue;
-
-        int ent = EntRefToEntIndex(ref);
-
-        if (ent <= MaxClients || !IsValidEntity(ent))
-            continue;
-
-        SetEntProp(ent, Prop_Send, "m_fog.enable", g_iFogEnable[i]);
-        SetEntPropFloat(ent, Prop_Send, "m_fog.start", g_fFogStart[i]);
-        SetEntPropFloat(ent, Prop_Send, "m_fog.end", g_fFogEnd[i]);
-    }
-
-    int sky = EntRefToEntIndex(g_iSkyRef);
-
-    if (sky > 0 && IsValidEntity(sky))
-    {
-        SetEntProp(sky, Prop_Send, "m_skyboxData.fog.enable", g_iSkyFogEnable);
-        SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.start", g_fSkyFogStart);
-        SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.end", g_fSkyFogEnd);
-    }
-}
-
 void ResetBaseline()
 {
+    CancelFogFade();
+
     g_bBaselineCaptured = false;
     g_iFogCount         = 0;
 
@@ -213,8 +201,28 @@ void ResetBaseline()
     g_fSkyFogEnd    = 0.0;
 }
 
-void ApplyFog()
+void CancelFogFade()
 {
+    g_bFading = false;
+}
+
+void StartFogFade(bool toPreset)
+{
+    if (g_iFogCount <= 0)
+        return;
+
+    if (!g_bBaselineCaptured)
+        CaptureBaseline();
+
+    CancelFogFade();
+
+    g_bFadeToPreset  = toPreset;
+    g_fFadeStartTime = GetGameTime();
+    g_fFadeDuration  = g_fPresetFadeTime;
+
+    if (g_fFadeDuration < 0.01)
+        g_fFadeDuration = 0.01;
+
     for (int i = 0; i < g_iFogCount; i++)
     {
         int ref = g_iFogRefs[i];
@@ -227,17 +235,95 @@ void ApplyFog()
         if (ent <= MaxClients || !IsValidEntity(ent))
             continue;
 
-        SetEntProp(ent, Prop_Send, "m_fog.enable", g_iPresetFogEnable);
-        SetEntPropFloat(ent, Prop_Send, "m_fog.start", g_fPresetFogStart);
-        SetEntPropFloat(ent, Prop_Send, "m_fog.end", g_fPresetFogEnd);
+        g_fFadeFromStart[i] = GetEntPropFloat(ent, Prop_Send, "m_fog.start");
+        g_fFadeFromEnd[i]   = GetEntPropFloat(ent, Prop_Send, "m_fog.end");
+
+        if (toPreset)
+        {
+            g_fFadeToStart[i] = g_fPresetFogStart;
+            g_fFadeToEnd[i]   = g_fPresetFogEnd;
+
+            SetEntProp(ent, Prop_Send, "m_fog.enable", g_iPresetFogEnable);
+            g_iFadeFinalEnable[i] = g_iPresetFogEnable;
+        }
+        else
+        {
+            g_fFadeToStart[i] = g_fFogStart[i];
+            g_fFadeToEnd[i]   = g_fFogEnd[i];
+
+            SetEntProp(ent, Prop_Send, "m_fog.enable", 1);
+            g_iFadeFinalEnable[i] = g_iFogEnable[i];
+        }
     }
 
-    int sky = EntRefToEntIndex(g_iSkyRef);
+    g_bFading = true;
+}
 
-    if (sky > 0 && IsValidEntity(sky))
+public void OnGameFrame()
+{
+    if (!g_bBaselineCaptured)
     {
-        SetEntProp(sky, Prop_Send, "m_skyboxData.fog.enable", g_iPresetSkyEnable);
-        SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.start", g_fPresetSkyStart);
-        SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.end", g_fPresetSkyEnd);
+        g_bFading = false;
+
+        return;
+    }
+
+    if (!g_bFading)
+        return;
+
+    float now  = GetGameTime();
+    float time = (now - g_fFadeStartTime) / g_fFadeDuration;
+
+    if (time < 0.0) time = 0.0;
+
+    if (time > 1.0) time = 1.0;
+
+    for (int i = 0; i < g_iFogCount; i++)
+    {
+        int ref = g_iFogRefs[i];
+
+        if (ref == INVALID_ENT_REFERENCE)
+            continue;
+
+        int ent = EntRefToEntIndex(ref);
+
+        if (ent <= MaxClients || !IsValidEntity(ent))
+            continue;
+
+        float start = g_fFadeFromStart[i] + (g_fFadeToStart[i] - g_fFadeFromStart[i]) * time;
+        float end   = g_fFadeFromEnd[i] + (g_fFadeToEnd[i] - g_fFadeFromEnd[i]) * time;
+
+        SetEntPropFloat(ent, Prop_Send, "m_fog.start", start);
+        SetEntPropFloat(ent, Prop_Send, "m_fog.end", end);
+
+        if (time >= 1.0)
+        {
+            SetEntPropFloat(ent, Prop_Send, "m_fog.start", g_fFadeToStart[i]);
+            SetEntPropFloat(ent, Prop_Send, "m_fog.end", g_fFadeToEnd[i]);
+            SetEntProp(ent, Prop_Send, "m_fog.enable", g_iFadeFinalEnable[i]);
+        }
+    }
+
+    if (time >= 1.0)
+    {
+        int sky = EntRefToEntIndex(g_iSkyRef);
+
+        if (sky > 0 && IsValidEntity(sky))
+        {
+            if (g_bFadeToPreset)
+            {
+                SetEntProp(sky, Prop_Send, "m_skyboxData.fog.enable", g_iPresetSkyEnable);
+                SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.start", g_fPresetSkyStart);
+                SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.end", g_fPresetSkyEnd);
+            }
+            else
+            {
+                SetEntProp(sky, Prop_Send, "m_skyboxData.fog.enable", g_iSkyFogEnable);
+                SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.start", g_fSkyFogStart);
+                SetEntPropFloat(sky, Prop_Send, "m_skyboxData.fog.end", g_fSkyFogEnd);
+            }
+        }
+
+        g_bFading = false;
     }
 }
