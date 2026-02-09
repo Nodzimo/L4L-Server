@@ -825,6 +825,10 @@
     - Сбрасывает зум после каждого выстрела из снайпы
 20. [[L4D] Vomit extinguishing special infected (1.0) by BloodyBlade](https://forums.alliedmods.net/showpost.php?p=2830667&postcount=66)
     - Байла и бумер тушат горящих особых
+    - Плагины-референсы для форка:
+      - **Stumble - Grenade Launcher**
+      - [[L4D2] Spitter Acid Damage (1.13) [20-Sep-2022]](https://forums.alliedmods.net/showthread.php?t=319526)
+      - [L4D2 Bile the World](https://github.com/fbef0102/L4D1_2-Plugins/blob/master/l4d2_biletheworld/scripting/l4d2_biletheworld.sp)
 > [!IMPORTANT]
 > Используется мой форк (на основе последнего форка от BloodyBlade и [предпоследнего форка от raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2715357&postcount=64)), в котором исправлены все ошибки.
 21. [[L4D1/2] Boomer Puke Movement (1.1-2024/4/22) by Forgetest, HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Boomer_Boomer/l4d_boomer_vomit_move)

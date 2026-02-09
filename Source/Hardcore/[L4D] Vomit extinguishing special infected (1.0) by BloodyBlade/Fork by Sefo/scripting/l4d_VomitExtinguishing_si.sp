@@ -6,13 +6,17 @@
 
 #define PLUGIN_VERSION "1.0"
 #define CVAR_FLAGS FCVAR_NOTIFY
+#define CLASSNAME_VOMITJAR "vomitjar_projectile"
 
 ConVar hVomitPluginEnabled, hVomitAdvMessageType, hVomitRange, hVomitDuration;
 int iVomitAdvMessageType = 0;
+static int g_iVomitJarOwnerUserId[2049];
 bool bHooked = false;
 float g_fVomitRange = 0.0;
 float g_fVomitDuration = 0.0;
 float g_fSplashRadius = 200.0;
+float g_fBileRadius = 150.0;
+float g_fBileZFix = 70.0;
 Handle g_hVomitTimer[MAXPLAYERS + 1];
 
 public Plugin myinfo = 
@@ -82,24 +86,36 @@ void ConVarVomitDurationChanged(ConVar convar, const char[] oldValue, const char
 void IsAllowed()
 {
 	bool bPluginOn = hVomitPluginEnabled.BoolValue;
+
 	if(bPluginOn && !bHooked)
 	{
 		bHooked = true;
 
+		for (int e = MaxClients + 1; e < 2049; e++)
+    		g_iVomitJarOwnerUserId[e] = 0;
+
 		for (int i = 1; i <= MaxClients; i++)
+		{
     		g_hVomitTimer[i] = null;
+
+			if (IsClientInGame(i))
+        		HookClientDamageIfTank(i);
+		}
 
 		ConVarVomitMessageTypeChanged(null, "", "");
 		HookEvent("player_spawn", EventPlayerSpawn);
 		HookEvent("ability_use", EventAbilityUse);
 		HookEvent("player_death", EventPlayerDeath);
+		HookEvent("round_start", Event_RoundStart);
 	}
 	else if(!bPluginOn && bHooked)
 	{
 		bHooked = false;
+
 		UnhookEvent("player_spawn", EventPlayerSpawn);
 		UnhookEvent("ability_use", EventAbilityUse);
 		UnhookEvent("player_death", EventPlayerDeath);
+		UnhookEvent("round_start", Event_RoundStart);
 
 		for (int i = 1; i <= MaxClients; i++)
 		{
@@ -108,6 +124,9 @@ void IsAllowed()
 		        delete g_hVomitTimer[i];
 		        g_hVomitTimer[i] = null;
 		    }
+
+		    if (IsClientInGame(i))
+		        SDKUnhook(i, SDKHook_OnTakeDamageAlive, OnTakeDamageAlive);
 		}
 	}
 }
@@ -115,6 +134,9 @@ void IsAllowed()
 Action EventPlayerSpawn(Event h_Event, const char[] s_Name, bool b_DontBroadcast)
 {
 	int iClient = GetClientOfUserId(h_Event.GetInt("userid"));
+
+	if (iClient) HookClientDamageIfTank(iClient);
+
 	if (IsValidInfected(iClient) && !IsFakeClient(iClient) && GetEntProp(iClient, Prop_Send, "m_zombieClass") == 2)
 	{
 		switch(iVomitAdvMessageType)
@@ -135,6 +157,7 @@ Action EventPlayerSpawn(Event h_Event, const char[] s_Name, bool b_DontBroadcast
 			}
 		}
 	}
+
 	return Plugin_Continue;
 }
 
@@ -264,6 +287,8 @@ void EventPlayerDeath(Event event, const char[] name, bool dontBroadcast)
 {
     int victim = GetClientOfUserId(event.GetInt("userid"));
 
+	if (victim) SDKUnhook(victim, SDKHook_OnTakeDamageAlive, OnTakeDamageAlive);
+
 	if (!IsValidInfectedAnyState(victim)) return;
 
     if (GetEntProp(victim, Prop_Send, "m_zombieClass") != 2) return;
@@ -281,6 +306,121 @@ void EventPlayerDeath(Event event, const char[] name, bool dontBroadcast)
         if (GetVectorDistance(boomerPos, targetPos) <= g_fSplashRadius)
         {
             ExtinguishEntity(i);
+        }
+    }
+}
+
+bool IsTank(int client)
+{
+    return IsValidInfectedAnyState(client) && GetEntProp(client, Prop_Send, "m_zombieClass") == 8;
+}
+
+void HookClientDamageIfTank(int client)
+{
+    if (!bHooked) return;
+
+    if (!IsTank(client)) return;
+
+    SDKUnhook(client, SDKHook_OnTakeDamageAlive, OnTakeDamageAlive);
+    SDKHook(client, SDKHook_OnTakeDamageAlive, OnTakeDamageAlive);
+}
+
+Action OnTakeDamageAlive(int victim, int &attacker, int &inflictor, float &damage, int &damagetype)
+{
+    if (!IsTank(victim))
+        return Plugin_Continue;
+
+    if (!(GetEntityFlags(victim) & FL_ONFIRE))
+        return Plugin_Continue;
+
+    if (inflictor > MaxClients && IsValidEntity(inflictor))
+    {
+        char classname[32];
+        GetEdictClassname(inflictor, classname, sizeof(classname));
+
+		if (strcmp(classname, "grenade_launcher_projectile") == 0 || strcmp(classname, "grenade_launcher") == 0)
+        {
+            ExtinguishEntity(victim);
+        }
+    }
+
+    return Plugin_Continue;
+}
+
+public void OnEntityCreated(int entity, const char[] classname)
+{
+    if (!bHooked) return;
+
+    if (entity <= MaxClients || entity >= 2049) return;
+
+    if (strcmp(classname, CLASSNAME_VOMITJAR) == 0)
+    {
+        SDKHook(entity, SDKHook_SpawnPost, OnVomitJarSpawnPost);
+    }
+}
+
+public void OnEntityDestroyed(int entity)
+{
+    if (!bHooked) return;
+
+    if (entity <= MaxClients || entity >= 2049) return;
+
+    if (!IsValidEdict(entity)) return;
+
+    char classname[32];
+    GetEdictClassname(entity, classname, sizeof(classname));
+
+    if (strcmp(classname, CLASSNAME_VOMITJAR) != 0)
+        return;
+
+    float pos[3];
+    GetEntPropVector(entity, Prop_Send, "m_vecOrigin", pos);
+    pos[2] += g_fBileZFix;
+
+    ExtinguishTanksInRadius(pos, g_fBileRadius);
+}
+
+void OnVomitJarSpawnPost(int entity)
+{
+    if (!IsValidEntity(entity)) return;
+
+    int owner = GetEntPropEnt(entity, Prop_Send, "m_hOwnerEntity");
+
+    if (owner > 0 && owner <= MaxClients && IsClientInGame(owner))
+        g_iVomitJarOwnerUserId[entity] = GetClientUserId(owner);
+    else
+        g_iVomitJarOwnerUserId[entity] = 0;
+}
+
+void ExtinguishTanksInRadius(const float pos[3], float radius)
+{
+    float tpos[3];
+
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsTank(i) || !IsPlayerAlive(i))
+            continue;
+
+        if (!(GetEntityFlags(i) & FL_ONFIRE))
+            continue;
+
+        GetClientAbsOrigin(i, tpos);
+
+        if (GetVectorDistance(pos, tpos) <= radius)
+        {
+            ExtinguishEntity(i);
+        }
+    }
+}
+
+void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
+{
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (IsClientInGame(i) && GetClientTeam(i) == 3)
+        {
+            SDKUnhook(i, SDKHook_OnTakeDamageAlive, OnTakeDamageAlive);
+            HookClientDamageIfTank(i);
         }
     }
 }
