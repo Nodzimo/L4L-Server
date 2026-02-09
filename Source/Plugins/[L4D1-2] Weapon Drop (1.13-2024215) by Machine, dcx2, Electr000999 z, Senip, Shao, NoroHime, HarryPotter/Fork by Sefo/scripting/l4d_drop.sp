@@ -43,6 +43,7 @@ bool g_bBlockM60Drop;
 bool g_bLedgeDropEnable;
 int g_iBlockDropMidAction;
 int  g_iLedgeDropChance;
+static const float VEC_DROP_DOWN[3] = { 0.0, 0.0, -600.0 };
 
 GlobalForward OnWeaponDrop;
 
@@ -220,7 +221,7 @@ void DropSlot(int client, int slot, bool allowLedge = false)
 	int weapon = GetPlayerWeaponSlot(client, slot);
 	if (RealValidEntity(weapon) && DropBlocker(client, weapon))
 	{
-		DropWeapon(client, weapon);
+		DropWeapon(client, weapon, allowLedge);
 	}
 }
 
@@ -263,7 +264,7 @@ int DropBlocker(int client, int weapon)
 	return true;
 }
 
-void DropWeapon(int client, int weapon)
+void DropWeapon(int client, int weapon, bool isLedge = false)
 {
 	if ((g_iBlockDropMidAction == 1 ||
 	(g_iBlockDropMidAction > 1 && GetPlayerWeaponSlot(client, 2) == weapon)) && 
@@ -313,7 +314,16 @@ void DropWeapon(int client, int weapon)
 
 		DispatchSpawn(single_pistol);
 		EquipPlayerWeapon(client, single_pistol);
-		SDKHooks_DropWeapon(client, single_pistol);
+
+		if (isLedge)
+		{
+		    SDKHooks_DropWeapon(client, single_pistol, NULL_VECTOR, VEC_DROP_DOWN, true);
+		}
+		else
+		{
+		    SDKHooks_DropWeapon(client, single_pistol);
+		}
+
 		SetEntProp(single_pistol, Prop_Send, "m_iClip1", clip);
 
 		single_pistol = CreateEntityByName("weapon_pistol");
@@ -328,7 +338,16 @@ void DropWeapon(int client, int weapon)
 	
 	int ammo = GetPlayerReserveAmmo(client, weapon);
 	bool isSecondary = weapon == GetPlayerWeaponSlot(client, 1);
-	SDKHooks_DropWeapon(client, weapon);
+
+	if (isLedge)
+	{
+    	SDKHooks_DropWeapon(client, weapon, NULL_VECTOR, VEC_DROP_DOWN, true);
+	}
+	else
+	{
+    	SDKHooks_DropWeapon(client, weapon);
+	}
+
 	SetPlayerReserveAmmo(client, weapon, 0);
 	SetEntProp(weapon, Prop_Send, "m_iExtraPrimaryAmmo", ammo);
 
