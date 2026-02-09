@@ -5,12 +5,18 @@
 #include <l4l/lifecycle>
 #include <sdktools>
 
-#define PLUGIN_VERSION      "0.0.1"
-#define MAX_FOG_CONTROLLERS 16
+#define PLUGIN_VERSION             "0.0.1"
+#define MAX_FOG_CONTROLLERS        16
+#define FOG_NAME_LEN               64
+#define WORLD_BOUNDS_CENTER_FACTOR 0.5
 
-ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarFogEnable, g_hCvarFogStart, g_hCvarFogEnd, g_hCvarSkyEnable, g_hCvarSkyStart, g_hCvarSkyEnd, g_hCvarFadeTime;
-int    g_iCvarDebug, g_iPresetFogEnable, g_iPresetSkyEnable;
+ConVar g_hCvarEnable, g_hCvarDebug, g_hCvarFogEnable, g_hCvarFogStart, g_hCvarFogEnd, g_hCvarSkyEnable, g_hCvarSkyStart, g_hCvarSkyEnd, g_hCvarFadeTime, g_hCvarAshEnable;
+int    g_iCvarDebug, g_iPresetFogEnable, g_iPresetSkyEnable, g_iPresetAshEnable;
 float  g_fPresetFogStart, g_fPresetFogEnd, g_fPresetSkyStart, g_fPresetSkyEnd, g_fPresetFadeTime;
+
+bool   g_bRoundStartHooked = false;
+bool   g_bBaselineCaptured = false;
+int    g_iAshRef           = INVALID_ENT_REFERENCE;
 
 // Fog
 int    g_iFogCount;
@@ -18,6 +24,7 @@ int    g_iFogRefs[MAX_FOG_CONTROLLERS];
 int    g_iFogEnable[MAX_FOG_CONTROLLERS];
 float  g_fFogStart[MAX_FOG_CONTROLLERS];
 float  g_fFogEnd[MAX_FOG_CONTROLLERS];
+char   g_sFogName[MAX_FOG_CONTROLLERS][FOG_NAME_LEN];
 
 // Skybox fog
 int    g_iSkyRef = INVALID_ENT_REFERENCE;
@@ -25,13 +32,11 @@ int    g_iSkyFogEnable;
 float  g_fSkyFogStart;
 float  g_fSkyFogEnd;
 
-bool   g_bBaselineCaptured = false;
-
 // Fade
-bool   g_bFading           = false;
-bool   g_bFadeToPreset     = false;
-float  g_fFadeStartTime    = 0.0;
-float  g_fFadeDuration     = 0.0;
+bool   g_bFading        = false;
+bool   g_bFadeToPreset  = false;
+float  g_fFadeStartTime = 0.0;
+float  g_fFadeDuration  = 0.0;
 
 float  g_fFadeFromStart[MAX_FOG_CONTROLLERS];
 float  g_fFadeFromEnd[MAX_FOG_CONTROLLERS];
@@ -61,6 +66,7 @@ public void OnPluginStart()
     g_hCvarSkyEnable = CreateConVar("l4l_fog_preset_sky_enable", "1", "Skybox fog preset: 0/1 enable skybox fog.", CVAR_FLAGS, true, 0.0, true, 1.0);
     g_hCvarSkyStart  = CreateConVar("l4l_fog_preset_sky_start", "-10000", "Skybox fog preset: start distance.", CVAR_FLAGS);
     g_hCvarSkyEnd    = CreateConVar("l4l_fog_preset_sky_end", "-10000", "Skybox fog preset: end distance.", CVAR_FLAGS);
+    g_hCvarAshEnable = CreateConVar("l4l_fog_ash_enable", "1", "0 = off, 1 = spawn ash precipitation when fog preset is active", CVAR_FLAGS, true, 0.0, true, 1.0);
 
     CreateDirectory("cfg/sourcemod/l4l_plugins", 511, true);
     AutoExecConfig(true, "l4l_fog", "sourcemod/l4l_plugins");
@@ -76,6 +82,7 @@ public void OnPluginStart()
     g_hCvarSkyEnable.AddChangeHook(CvarChanged_Cvars);
     g_hCvarSkyStart.AddChangeHook(CvarChanged_Cvars);
     g_hCvarSkyEnd.AddChangeHook(CvarChanged_Cvars);
+    g_hCvarAshEnable.AddChangeHook(CvarChanged_Cvars);
 }
 
 public void OnConfigsExecuted()
@@ -105,10 +112,18 @@ void L4L_ReadCvars()
     g_iPresetSkyEnable = g_hCvarSkyEnable.IntValue;
     g_fPresetSkyStart  = g_hCvarSkyStart.FloatValue;
     g_fPresetSkyEnd    = g_hCvarSkyEnd.FloatValue;
+    g_iPresetAshEnable = g_hCvarAshEnable.IntValue;
 }
 
 void L4L_Hook()
 {
+    if (!g_bRoundStartHooked)
+    {
+        HookEvent("round_start", Event_RoundStart, EventHookMode_PostNoCopy);
+
+        g_bRoundStartHooked = true;
+    }
+
     if (g_bBaselineCaptured)
     {
         StartFogFade(true);
@@ -118,6 +133,35 @@ void L4L_Hook()
 
     CaptureBaseline();
     StartFogFade(true);
+}
+
+public void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
+{
+    CreateTimer(1.0, Timer_RoundReapply, _, TIMER_FLAG_NO_MAPCHANGE);
+}
+
+public Action Timer_RoundReapply(Handle timer)
+{
+    if (!g_bBaselineCaptured)
+        return Plugin_Stop;
+
+    RefreshRefsOnly();
+
+    if (!g_hCvarEnable.BoolValue)
+    {
+        KillAsh();
+
+        return Plugin_Stop;
+    }
+
+    StartFogFade(true);
+
+    if (g_iPresetAshEnable)
+        CreateAsh();
+    else
+        KillAsh();
+
+    return Plugin_Stop;
 }
 
 void L4L_Unhook()
@@ -159,6 +203,8 @@ void CaptureBaseline()
         if (ent <= MaxClients || !IsValidEntity(ent))
             continue;
 
+        GetEntPropString(ent, Prop_Data, "m_iName", g_sFogName[g_iFogCount], FOG_NAME_LEN);
+
         g_iFogRefs[g_iFogCount]   = EntIndexToEntRef(ent);
         g_iFogEnable[g_iFogCount] = GetEntProp(ent, Prop_Send, "m_fog.enable");
         g_fFogStart[g_iFogCount]  = GetEntPropFloat(ent, Prop_Send, "m_fog.start");
@@ -182,6 +228,7 @@ void CaptureBaseline()
 
 void ResetBaseline()
 {
+    KillAsh();
     CancelFogFade();
 
     g_bBaselineCaptured = false;
@@ -199,6 +246,11 @@ void ResetBaseline()
     g_iSkyFogEnable = 0;
     g_fSkyFogStart  = 0.0;
     g_fSkyFogEnd    = 0.0;
+
+    for (int i = 0; i < MAX_FOG_CONTROLLERS; i++)
+    {
+        g_sFogName[i][0] = '\0';
+    }
 }
 
 void CancelFogFade()
@@ -208,11 +260,11 @@ void CancelFogFade()
 
 void StartFogFade(bool toPreset)
 {
-    if (g_iFogCount <= 0)
-        return;
-
     if (!g_bBaselineCaptured)
         CaptureBaseline();
+
+    if (g_iFogCount <= 0)
+        return;
 
     CancelFogFade();
 
@@ -324,6 +376,144 @@ public void OnGameFrame()
             }
         }
 
+        if (g_bFadeToPreset)
+        {
+            if (g_iPresetAshEnable)
+                CreateAsh();
+            else
+                KillAsh();
+        }
+        else
+        {
+            KillAsh();
+        }
+
         g_bFading = false;
     }
+}
+
+void KillAsh()
+{
+    int ent = EntRefToEntIndex(g_iAshRef);
+
+    if (ent > 0 && IsValidEntity(ent))
+    {
+        AcceptEntityInput(ent, "Kill");
+    }
+
+    g_iAshRef = INVALID_ENT_REFERENCE;
+}
+
+void CreateAsh()
+{
+    int existing = EntRefToEntIndex(g_iAshRef);
+
+    if (existing > 0 && IsValidEntity(existing))
+        return;
+
+    int ent = CreateEntityByName("func_precipitation");
+
+    if (ent == -1)
+        return;
+
+    char map[64];
+    GetCurrentMap(map, sizeof(map));
+    Format(map, sizeof(map), "maps/%s.bsp", map);
+    PrecacheModel(map, true);
+
+    DispatchKeyValue(ent, "model", map);
+    DispatchKeyValue(ent, "preciptype", "3");
+
+    float vMins[3], vMax[3], vCenter[3];
+    GetEntPropVector(0, Prop_Data, "m_WorldMins", vMins);
+    GetEntPropVector(0, Prop_Data, "m_WorldMaxs", vMax);
+
+    SetEntPropVector(ent, Prop_Send, "m_vecMins", vMins);
+    SetEntPropVector(ent, Prop_Send, "m_vecMaxs", vMax);
+
+    vCenter[0] = (vMins[0] + vMax[0]) * WORLD_BOUNDS_CENTER_FACTOR;
+    vCenter[1] = (vMins[1] + vMax[1]) * WORLD_BOUNDS_CENTER_FACTOR;
+    vCenter[2] = (vMins[2] + vMax[2]) * WORLD_BOUNDS_CENTER_FACTOR;
+
+    TeleportEntity(ent, vCenter, NULL_VECTOR, NULL_VECTOR);
+    DispatchSpawn(ent);
+
+    if (!IsValidEntity(ent))
+        return;
+
+    ActivateEntity(ent);
+
+    g_iAshRef = EntIndexToEntRef(ent);
+}
+
+void RefreshRefsOnly()
+{
+    for (int i = 0; i < g_iFogCount; i++)
+        g_iFogRefs[i] = INVALID_ENT_REFERENCE;
+
+    bool usedSlot[MAX_FOG_CONTROLLERS];
+
+    for (int i = 0; i < MAX_FOG_CONTROLLERS; i++)
+        usedSlot[i] = false;
+
+    int ent = -1;
+
+    while ((ent = FindEntityByClassname(ent, "env_fog_controller")) != -1)
+    {
+        if (ent <= MaxClients || !IsValidEntity(ent))
+            continue;
+
+        char name[FOG_NAME_LEN];
+        GetEntPropString(ent, Prop_Data, "m_iName", name, sizeof(name));
+
+        int slot = -1;
+
+        if (name[0] != '\0')
+        {
+            for (int i = 0; i < g_iFogCount; i++)
+            {
+                if (!usedSlot[i] && StrEqual(name, g_sFogName[i], false))
+                {
+                    slot = i;
+
+                    break;
+                }
+            }
+        }
+
+        if (slot == -1)
+        {
+            for (int i = 0; i < g_iFogCount; i++)
+            {
+                if (!usedSlot[i] && g_sFogName[i][0] == '\0')
+                {
+                    slot = i;
+
+                    break;
+                }
+            }
+        }
+
+        if (slot == -1)
+        {
+            for (int i = 0; i < g_iFogCount; i++)
+            {
+                if (!usedSlot[i])
+                {
+                    slot = i;
+
+                    break;
+                }
+            }
+        }
+
+        if (slot != -1)
+        {
+            usedSlot[slot]   = true;
+            g_iFogRefs[slot] = EntIndexToEntRef(ent);
+        }
+    }
+
+    int sky   = FindEntityByClassname(-1, "sky_camera");
+    g_iSkyRef = (sky > 0 && IsValidEntity(sky)) ? EntIndexToEntRef(sky) : INVALID_ENT_REFERENCE;
 }

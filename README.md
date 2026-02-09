@@ -711,6 +711,7 @@
     - Референсы:
       - Аддон [Customisable Map Fog](https://steamcommunity.com/sharedfiles/filedetails/?id=3404025698)
       - Плагин [[L4D & L4D2] Weather Control (1.19) [01-Jul-2025]](https://forums.alliedmods.net/showthread.php?t=184890)
+      - Плагин **xMas**
 
 #### Хардкор
 1. [L4D2 Detonation Force (1.6) by OIRV](https://forums.alliedmods.net/showpost.php?p=2836700&postcount=27)
