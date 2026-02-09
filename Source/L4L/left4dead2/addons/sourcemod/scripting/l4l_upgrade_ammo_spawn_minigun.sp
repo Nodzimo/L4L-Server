@@ -293,7 +293,19 @@ public void Event_UpgradePackUsed(Event event, const char[] name, bool dontBroad
             strcopy(turretModel, sizeof(turretModel), MODEL_50CAL);
         }
 
-        SpawnTurretNearPack(turretClass, turretModel, client, packEnt);
+        float origin[3];
+        int   preview = GetSinglePreviewEnt(g_iPreviewRef[client]);
+
+        if (preview > 0)
+        {
+            GetEntPropVector(preview, Prop_Send, "m_vecOrigin", origin);
+        }
+        else
+        {
+            GetEntPropVector(packEnt, Prop_Send, "m_vecOrigin", origin);
+        }
+
+        SpawnTurretNearPack(turretClass, turretModel, client, origin);
         AcceptEntityInput(packEnt, "Kill");
 
         // Cleanup
@@ -317,11 +329,8 @@ public void Event_UpgradePackUsed(Event event, const char[] name, bool dontBroad
     DestroyPreview(client);
 }
 
-static void SpawnTurretNearPack(const char[] turretClass, const char[] turretModel, int client, int packEnt)
+static void SpawnTurretNearPack(const char[] turretClass, const char[] turretModel, int client, const float origin[3])
 {
-    float origin[3];
-    GetEntPropVector(packEnt, Prop_Send, "m_vecOrigin", origin);
-
     float ang[3];
     GetClientEyeAngles(client, ang);
     ang[0]  = 0.0;
