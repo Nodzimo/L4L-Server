@@ -614,6 +614,8 @@
 63. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/bot_kick_drop_secondary)
     - Кикнутые выжившие боты дропают второстепенное оружие
     - Зависимость: плагин **Left 4 DHooks Direct**
+64. [[L4D & L4D2] Revive Reload Interrupt (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_revive_reload_interrupt)
+    - Фиксит баг с перезарядкой, прерванной поднятием инкапнутого, после которой оружие заклинивает.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
