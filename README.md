@@ -407,6 +407,7 @@
       - **Vomitjar Glow**
       - **Fix Changelevel**
       - **Chainsaw Refuelling**
+      - **(Bot Kick) Drop Secondary**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -610,6 +611,9 @@
     - Устанавливает задержку между выстрелами пистолетов
 62. [rescue_glow (1.0h-2024/8/15) by little_froy, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/rescue_glow)
 - Фиксит баг, когда выжившие запертые в помещении не подсвечиваются аурой.
+63. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/bot_kick_drop_secondary)
+    - Кикнутые выжившие боты дропают второстепенное оружие
+    - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
