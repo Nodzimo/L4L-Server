@@ -410,6 +410,7 @@
       - **Fix Changelevel**
       - **Chainsaw Refuelling**
       - **(Bot Kick) Drop Secondary**
+      - **L4L: Tools**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -708,15 +709,19 @@
       - [[L4D2] Upgrade Packs with Ammo](https://forums.alliedmods.net/showthread.php?t=322955)
 11. [Tools](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_tools.sp)
     - Плагин общего назначения с набором полезных инструментов и команд
-    - Референс: [[L4D2] Get mission (campaign) time and restart count stats](https://forums.alliedmods.net/showthread.php?t=351947)
+    - Плагины-референсы:
+      - [[L4D2] Get mission (campaign) time and restart count stats](https://forums.alliedmods.net/showthread.php?t=351947)
+      - [[L4D1/2] Survivor Progress (2.5-2025/9/11) by CanadaRox, Visor, harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_current_survivor_progress)
     - Команды:
       - `l4l_stats`, `l4l_time`, `l4l_restarts`.
       - `l4l_crash`
       - `l4l_restart`, `l4l_wipe`, `l4l_slay`, `l4l_kill`.
-      - `l4l_server`, `l4l_link`, `l4l_group`, `l4l_welcome`, `l4l_help`, `l4l_info`, `l4l_join`, `l4l_hostname`, 
+      - `l4l_server`, `l4l_link`, `l4l_group`, `l4l_welcome`, `l4l_help`, `l4l_info`, `l4l_join`, `l4l_hostname`.
+      - `l4l_progress`
     - Зависимости:
       - Скрипты **Multi Colors** для компиляции плагина
       - Плагин **Steam Works Group Manager**
+      - Плагин **Left 4 DHooks Direct**
 12. [Survivor Abilities](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_abilities.sp)
     - Добавляет выжившим команды для активации ульты в зависимости от текущего предмета в пятом слоте
     - Команды: `l4l_ability`, `l4l_ultimate`, `l4l_ult`.

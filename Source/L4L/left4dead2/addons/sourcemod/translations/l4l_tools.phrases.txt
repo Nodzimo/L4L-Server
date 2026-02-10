@@ -25,4 +25,9 @@
         "en"    "{ORANGE}Join the group {DEFAULT}- servers will appear in the game's main menu"
         "ru"    "{ORANGE}Присоединитесь к группе {DEFAULT}- серверы появятся в главном меню игры"
     }
+    "Map progress"
+    {
+        "en"    "Current map progress: {LIGHTGREEN}"
+        "ru"    "Текущий прогресс карты: {LIGHTGREEN}"
+    }
 }

@@ -5,12 +5,14 @@
 #include <multicolors>
 #include <sdktools>
 #include <swgm>
+#include <left4dhooks>
 
 #define PLUGIN_VERSION        "0.0.1"
 #define GROUP_REMIND_INTERVAL 300.0    // 5 min.
 
-ConVar g_hCvarHostname;
+ConVar g_hCvarHostname, g_hBossBuffer;
 Handle g_hGroupReminderTimer = null;
+int    g_iSurCurrent         = 0;
 
 public Plugin myinfo =
 {
@@ -25,6 +27,7 @@ public void OnPluginStart()
     LoadTranslations("l4l_tools.phrases");
 
     g_hCvarHostname = FindConVar("hostname");
+    g_hBossBuffer   = FindConVar("versus_boss_buffer");
 
     RegConsoleCmd("l4l_stats", CommandPrintStats, "Show campaign stats in chat");
     RegConsoleCmd("l4l_time", CommandPrintStats, "Show campaign stats in chat");
@@ -38,6 +41,9 @@ public void OnPluginStart()
     RegConsoleCmd("l4l_info", CommandPrintServer, "Show server info in chat");
     RegConsoleCmd("l4l_join", CommandPrintServer, "Show server info in chat");
     RegConsoleCmd("l4l_hostname", CommandPrintServer, "Show server info in chat");
+    RegConsoleCmd("l4l_progress", CurrentCmd);
+    // RegConsoleCmd("sm_cur", CurrentCmd);
+    // RegConsoleCmd("sm_current", CurrentCmd);
 
     RegAdminCmd("l4l_crash", CommandCrashServer, ADMFLAG_ROOT, "Crash server for test (example: check uploading Accelerator crash reports)");
 
@@ -46,6 +52,7 @@ public void OnPluginStart()
     RegAdminCmd("l4l_slay", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
     RegAdminCmd("l4l_kill", CommandRestart, ADMFLAG_ROOT, "Kill all alive survivors (players and bots)");
 
+    HookEvent("round_start", RoundStartEvent, EventHookMode_PostNoCopy);
     StartGroupReminderTimer();
 }
 
@@ -100,6 +107,7 @@ void PrintStats()
 
         CPrintToChatAll("%t%s", "Mission duration", timeStr);
         CPrintToChatAll("%t%d", "Mission wipes", GetEntProp(ent, Prop_Send, "m_missionWipes"));
+        CPrintToChatAll("%t%d%", "Map progress", GetMaxSurvivorCompletion());
     }
 }
 
@@ -219,4 +227,92 @@ void FormatMissionTime(int totalSeconds, char[] buffer, int maxlen)
         int totalMins = totalSeconds / 60;
         Format(buffer, maxlen, "%d:%02d", totalMins, secs);
     }
+}
+
+// [L4D1/2] Survivor Progress (2.5-2025/9/11) by CanadaRox, Visor, harry
+// https://github.com/fbef0102/L4D1_2-Plugins/blob/master/l4d_current_survivor_progress/scripting/l4d_current_survivor_progress.sp
+// #define MAX(%0,%1) (((%0) > (%1)) ? (%0) : (%1))
+
+Action CurrentCmd(int client, int args)
+{
+    if (client == 0) return Plugin_Handled;
+
+    RequestFrame(OnNextFrame_CurrentCmd, GetClientUserId(client));
+
+    return Plugin_Handled;
+}
+
+void OnNextFrame_CurrentCmd(int client)
+{
+    client = GetClientOfUserId(client);
+
+    if (!client || !IsClientInGame(client)) return;
+
+    g_iSurCurrent = GetMaxSurvivorCompletion();
+    CPrintToChat(client, "%t%d%", "Map progress", g_iSurCurrent);
+    // CPrintToChat(client, "{default}[{olive}TS{default}] {blue}Current{default}: {green}%d%%", g_iSurCurrent);
+}
+
+void RoundStartEvent(Event event, const char[] name, bool dontBroadcast)
+{
+    g_iSurCurrent = 0;
+}
+
+// public void L4D_OnFirstSurvivorLeftSafeArea_Post(int client)
+// {
+//     CPrintToChatAll("{default}[{olive}TS{default}] {blue}Current{default}: {green}%d%%", GetMaxSurvivorCompletion());
+// }
+
+int GetMaxSurvivorCompletion()
+{
+    float flow = 0.0, tmp_flow = 0.0;
+
+    if (L4D_IsVersusMode())
+    {
+        Address pNavArea;
+
+        for (int i = 1; i <= MaxClients; i++)
+        {
+            if (IsClientInGame(i) && GetClientTeam(i) == 2 && IsPlayerAlive(i))
+            {
+                pNavArea = L4D_GetLastKnownArea(i);
+
+                if (pNavArea != Address_Null)
+                {
+                    tmp_flow = L4D2Direct_GetTerrorNavAreaFlow(pNavArea);
+                    flow     = (flow > tmp_flow) ? flow : tmp_flow;
+                }
+            }
+        }
+
+        flow = (flow / L4D2Direct_GetMapMaxFlowDistance()) + (g_hBossBuffer.FloatValue / L4D2Direct_GetMapMaxFlowDistance());
+    }
+    else
+    {
+        Address pNavArea;
+
+        for (int i = 1; i <= MaxClients; i++)
+        {
+            if (IsClientInGame(i) && GetClientTeam(i) == 2 && IsPlayerAlive(i))
+            {
+                pNavArea = L4D_GetLastKnownArea(i);
+
+                if (pNavArea != Address_Null)
+                {
+                    tmp_flow = L4D2Direct_GetTerrorNavAreaFlow(pNavArea);
+                    flow     = (flow > tmp_flow) ? flow : tmp_flow;
+                }
+            }
+        }
+
+        flow = flow / L4D2Direct_GetMapMaxFlowDistance();
+    }
+
+    // PrintToChatAll("%.2f - %d -%.2f", flow, g_iSurCurrent, (g_hBossBuffer.FloatValue / L4D2Direct_GetMapMaxFlowDistance()));
+    flow = flow * 100;
+
+    if (flow <= 1.0) flow = g_iSurCurrent * 1.0;
+    else if (flow > 100.0) flow = 100.0;
+
+    return RoundToNearest(flow);
 }
