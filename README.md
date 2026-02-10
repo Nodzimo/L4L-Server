@@ -405,20 +405,14 @@
       - **team_lights Remake**
       - **Witch Guard**
       - **Vomitjar Glow**
+      - **Fix Changelevel**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
 15. [[L4D1/2] Weapon Drop (1.13-2024/2/15) by Machine, dcx2, Electr000999 /z, Senip, Shao, NoroHime, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_drop)
     - Дроп текущего оружия/предмета командой `sm_drop` или `sm_g`
-    - Пока нет форка: стоит блокировка на дроп всего второстепенного оружия
 > [!IMPORTANT]
-> Надо форкать, потому что плагин позволяет выкидывать все предметы, оставляя игрока в А-позе, либо блокирует возможность выбрасывать всё второстепенное оружие.
-
-> [!WARNING]
-> Временно используется форк со старого L4L
-
-> [!IMPORTANT]
-> Используется мой форк (на основе форка со старого L4L), в котором добавлен дроп всего инвентаря при свисании выжившего с края.
+> Используется мой форк (на основе форка со старого L4L), в котором добавлен дроп всего инвентаря при свисании выжившего с края и исправлена недоработка с дропом всего инвентаря, что оставляло игрока в А-позе.
 16. [Server namer (3.2) by sheo](https://forums.alliedmods.net/showthread.php?p=2030557)
     - Динамически меняет имя сервера в зависимости от условий:
       1. Если сервер пустой, то в его имени выводится название, номер и сборка: `Vanilla`, `Legacy`, `LMBX`, `Test`, `Dev`.
@@ -604,6 +598,13 @@
       - База геоданных **GeoIP2 GeoLite2**
     - `sm_timedisplay`
     - **Приватный плагин!**
+59. [[L4D2] Fix Changelevel (1.1) by Lux (for l4d2_changelevel), Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d2_fix_changelevel)
+    - Фиксит баги при смене карты
+    - Требуется для плагина **Transition Info Fix**
+    - Зависимость: плагин **Left 4 DHooks Direct**
+60. [Transition Info Fix (1.0.2-2024/12/30) by IA/NanaNana](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_transition_info_fix)
+    - Фиксит баги после перехода на следующую карту, например: появление за пределами карты после рестарта раунда.
+    - Зависимость: плагин **Fix Changelevel**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
