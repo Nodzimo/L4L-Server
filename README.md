@@ -608,6 +608,8 @@
     - Зависимость: плагин **Fix Changelevel**
 61. [L4D2 pistol delay (1.3) by A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_pistol_delay.sp)
     - Устанавливает задержку между выстрелами пистолетов
+62. [rescue_glow (1.0h-2024/8/15) by little_froy, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/rescue_glow)
+- Фиксит баг, когда выжившие запертые в помещении не подсвечиваются аурой.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
