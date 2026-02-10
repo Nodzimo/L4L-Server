@@ -230,7 +230,7 @@ void FormatMissionTime(int totalSeconds, char[] buffer, int maxlen)
 }
 
 // [L4D1/2] Survivor Progress (2.5-2025/9/11) by CanadaRox, Visor, harry
-// https://github.com/fbef0102/L4D1_2-Plugins/blob/master/l4d_current_survivor_progress/scripting/l4d_current_survivor_progress.sp
+// https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_current_survivor_progress
 // #define MAX(%0,%1) (((%0) > (%1)) ? (%0) : (%1))
 
 Action CurrentCmd(int client, int args)
