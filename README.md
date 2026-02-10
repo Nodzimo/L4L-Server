@@ -406,6 +406,7 @@
       - **Witch Guard**
       - **Vomitjar Glow**
       - **Fix Changelevel**
+      - **Chainsaw Refuelling**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -620,6 +621,7 @@
      - **team_lights Remake**
      - **Witch Guard**
      - **Get Game total time played**
+     - **Chainsaw Refuelling**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -855,6 +857,11 @@
     - Зависимость: плагин **Left 4 DHooks Direct**
 27. [EnhancedThrowables (1.3h-2024/12/19) by Timocop, Lux & HarryPotter](https://forums.alliedmods.net/showthread.php?t=281902)
     - Добавляет динамическое свечение метательного оружия в полёте и в руках
+28. [Chainsaw Refuelling (1.1h-2024/12/9) by DJ_WEST, Lossy (Round Start Fix), Shao (downstate support), HarryPotter (Improve)](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_chainsaw_refuelling)
+    - Позволяет заправлять бензопилу канистрами
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Скрипты **Multi Colors** для компиляции плагина
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
