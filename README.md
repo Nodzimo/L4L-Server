@@ -616,6 +616,8 @@
     - Зависимость: плагин **Left 4 DHooks Direct**
 64. [[L4D & L4D2] Revive Reload Interrupt (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_revive_reload_interrupt)
     - Фиксит баг с перезарядкой, прерванной поднятием инкапнутого, после которой оружие заклинивает.
+65. [[L4D1/2] l4d_minigun_fly_fix (1.0-2025/9/24) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_minigun_fly_fix)
+    - Фиксит баг, когда игрок с зажатым прыжком дважды использует миниган и с огромной скоростью отлетает от него.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
