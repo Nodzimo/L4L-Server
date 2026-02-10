@@ -956,60 +956,59 @@
 
 1. [Unreachable item spawns fixes (100+)](https://steamcommunity.com/sharedfiles/filedetails/?id=2493132849)
 2. [[VSCRIPT] No Friendly Fire on Charger Carry](https://steamcommunity.com/sharedfiles/filedetails/?id=3432580793)
-3. [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
-4. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
-5. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
-6. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
-7. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
+3. [No Camera Shake When Bots Shoot You [VScript]](https://steamcommunity.com/sharedfiles/filedetails/?id=3233665119)
+4. [Full Clip On Mag Insert VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=3339719078)
+5. [C1M3 Instant Horde Remover](https://steamcommunity.com/sharedfiles/filedetails/?id=3356940910)
+6. [Automatic Guns/Autofire VScript](https://steamcommunity.com/sharedfiles/filedetails/?id=2949667423)
 > [!CAUTION]
 > Проверить: не работает в соревновательных режимах?
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
-8. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
+7. [Left 4 Bots 2](https://steamcommunity.com/sharedfiles/filedetails/?id=3022416274)
     - [L4B2 commands](https://github.com/smilz0/Left4Bots/blob/main/COMMANDS.md)
     - [Настройки конфига](https://github.com/smilz0/Left4Bots/blob/main/root/scripts/vscripts/left4bots_settings.nut)
     - [Addon customization](https://steamcommunity.com/workshop/filedetails/discussion/3022416274/3825299103410056029)
     - Зависимости:
       - **Left 4 Lib**
       - **NavFixes**
-9. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
+8. [Left 4 Lib](https://steamcommunity.com/workshop/filedetails/?id=2634208272)
     - Требуется для **Left 4 Bots 2**
-10. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
+9. [NavFixes](https://steamcommunity.com/workshop/filedetails/?id=3226661388)
     - Требуется для **Left 4 Bots 2**
-11. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
-12. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
-13. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
-14. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
-15. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
-16. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
+10. [Zero's Behavior Patches](https://steamcommunity.com/sharedfiles/filedetails/?id=3417724055)
+11. [Worker Infected Boomer Bile Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3347447993)
+12. [Explosive Ammo Deals Double Damage to Tank [Commission]](https://steamcommunity.com/sharedfiles/filedetails/?id=3575571984)
+13. [Common Infected Gib on Shove Kill](https://steamcommunity.com/sharedfiles/filedetails/?id=3368655362)
+14. [Common Infected Goomba Stomp Feedback](https://steamcommunity.com/sharedfiles/filedetails/?id=3362814416)
+15. [[Improved] Headshot Feedback Effect](https://steamcommunity.com/sharedfiles/filedetails/?id=2582265366)
     - Зависимость: **Manacat Common Library** 
-17. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
+16. [Manacat Common Library](https://steamcommunity.com/workshop/filedetails/?id=213445426)
     - Требуется для следующих аддонов:
       - **Headshot Feedback Effect**
       - **Improved Acid Spread**
     - Опционально: аддон **Disable Manacat Weapon Skin RNG**
-18. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
-19. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
-20. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
+17. [Incendiary Ammo Triggers Car Alarm](https://steamcommunity.com/sharedfiles/filedetails/?id=3161832134)
+18. [Pipe Bomb Car Alarm Bug Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3620048167)
+19. [Disable Manacat Weapon Skin RNG](https://steamcommunity.com/sharedfiles/filedetails/?id=3512270023)
     - Отключает рандомные TLS-скины, зашитые в **Manacat Common Library**
     - Зависимость: аддон **Manacat Common Library**
-21. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
+20. [[V-Script] Smoker Antic Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3238400366)
     - Фиксит отсутствие анимации притягивания у смокера на высоком уровне сложности, из-за разницы в таймингах.
-22. **Melee More Hitrays by Lombaxtard**
+21. **Melee More Hitrays by Lombaxtard**
     - Увеличивает количество лучей у милишек
     - Включить показ лучей для теста: `sv_cheats 1; melee_show_swing 1`
-23. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
+22. [[Server Addon] Potential stutter fix on custom maps](https://steamcommunity.com/sharedfiles/filedetails/?id=2998356463)
     - Потенциально фиксит лаги, дёргающихся зомби и высокий пинг на некоторых кастомных картах.
 > [!CAUTION]
 > Проверить: кастомные карты, у которых есть соответствующее предупреждение о лагах.
-24. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
+23. [[Hard-Mode] Improved Acid Spread](https://steamcommunity.com/sharedfiles/filedetails/?id=3132874203)
     - Фиксит распространение кислоты на пропсах
     - Зависимость: аддон **Manacat Common Library**
-25. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
+24. [Revive Animation Interrupt Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3602546946)
     - Фиксит сброс анимации поднятия инкапнутого выжившего при смене оружия
-26. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
-27. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
-28. [[V-Script] E3 Style Upgrade Pickup Logic](https://steamcommunity.com/sharedfiles/filedetails/?id=3245285838)
+25. [[V-Script] Dual Pistol Pick-up Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=3123991322)
+26. [[V-Script] Draw Animation on Upgrade Pickup](https://steamcommunity.com/sharedfiles/filedetails/?id=3403019578)
+27. [[V-Script] E3 Style Upgrade Pickup Logic](https://steamcommunity.com/sharedfiles/filedetails/?id=3245285838)
 
 #### Неактуально
 - Заменён плагином **Votekick**
@@ -1167,6 +1166,8 @@
 - Заменён плагином **l4d_minigun_fly_fix**
   - [[L4D/2] Minigun fix (1.2.2) by SMAC, Kyle Sanderson, Dosergen](https://github.com/Dosergen/Stuff/blob/main/minigun_fix.sp)
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
+- Заменён плагином **l4d_witch_bash_wandering**
+  - [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
