@@ -606,6 +606,8 @@
 60. [Transition Info Fix (1.0.2-2024/12/30) by IA/NanaNana](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_transition_info_fix)
     - Фиксит баги после перехода на следующую карту, например: появление за пределами карты после рестарта раунда.
     - Зависимость: плагин **Fix Changelevel**
+61. [L4D2 pistol delay (1.3) by A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_pistol_delay.sp)
+    - Устанавливает задержку между выстрелами пистолетов
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
