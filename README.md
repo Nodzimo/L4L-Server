@@ -300,6 +300,8 @@
      - **Dynamic Common Infected Jump**
      - **Tanks throw special infected**
      - **Boomer Puke Movement**
+     - **l4d_witch_bash_wandering**
+     - **Change Witch Victim**
 4. [Source Scramble (0.8.1): Tools for working with memory](https://forums.alliedmods.net/showthread.php?t=317175)
    - Требуется для следующих плагинов:
      - **Bot Healing Values**
@@ -616,6 +618,15 @@
     - Фиксит баг с перезарядкой, прерванной поднятием инкапнутого, после которой оружие заклинивает.
 64. [[L4D1/2] l4d_minigun_fly_fix (1.0-2025/9/24) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_minigun_fly_fix)
     - Фиксит баг, когда игрок с зажатым прыжком дважды использует миниган и с огромной скоростью отлетает от него.
+65. [l4d_witch_bash_wandering (1.0-2025/12/31) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_bash_wandering)
+    - Фиксит баг, когда ходячая ведьма не реагирует на удар прикладом.
+    - Зависимости:
+      - Плагин **Change Witch Victim**
+      - Расширение **Actions**
+66. [[L4D & 2] Change Witch Victim (2.0.1) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_change_witch_victim)
+    - Предоставляет другим плагинам API функционал смены цели ведьмы
+    - Требуется для плагина **l4d_witch_bash_wandering**
+    - Зависимость: расширение **Actions**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
