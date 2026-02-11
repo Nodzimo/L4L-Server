@@ -636,6 +636,10 @@
     - Автоматическая стрельба с зажатой ЛКМ (даже после перезарядки оружия)
     - Зависимость: плагин **Left 4 DHooks Direct**
     - **Приватный плагин!**
+68. [[L4D1/2] Heartbeat (Revive & BW Fix) (1.2h-2025/12/4) by SilverShot, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_heartbeat)
+    - Фиксит некорректное ЧБ-состояние, когда значение квары `survivor_max_incapacitated_count` не равно дефолту `2`.
+    - Предоставляет API для получения корректного количества поднятий выжившего
+    - Требуется для плагина **l4d2_afk_saveweapons**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
