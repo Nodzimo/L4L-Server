@@ -318,7 +318,7 @@
    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
 8. [Builtin Votes (0.7.0): API to do votes using the L4D, L4D2, and Orange Box Valve game in-game vote interface](https://github.com/fbef0102/Game-Private_Plugin/releases/tag/builtinvotes)
    - Позволяет плагинам использовать нативный интерфейс голосования
-   - Требуется для плагина **l4d2_custom_difficulty**
+   - Требуется для плагина **Custom Difficulty**
 
 ### SourceMod плагины
 [Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
@@ -423,6 +423,7 @@
       - **Kill Combo**
       - **Spitter Supergirl**
       - **Multiple Equipment**
+      - **Custom Difficulty**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -657,6 +658,13 @@
       - Плагин **Heartbeat (Revive & BW Fix)**
       - Скрипты **Multi Colors** для компиляции плагина
     - **Приватный плагин!**
+70. [[L4D1/2] Custom Difficulty (1.3-2024/8/16) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/l4d2_custom_difficulty)
+    - Добавляет кастомные сложности и голосование с нативным интерфейсом
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Расширение **Builtin Votes**
+      - Скрипты **Multi Colors** для компиляции плагина
+    - **Приватный плагин!**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -680,6 +688,7 @@
      - **Kill Combo**
      - **Spitter Supergirl**
      - **Multiple Equipment**
+     - **Custom Difficulty**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
