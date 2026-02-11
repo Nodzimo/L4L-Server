@@ -664,6 +664,10 @@
       - Плагин **Left 4 DHooks Direct**
       - Расширение **Builtin Votes**
       - Скрипты **Multi Colors** для компиляции плагина
+    - Команды:
+      - `sm_difficultyvote`, `sm_dvote`.
+      - `sm_vp`
+      - `sm_vc`
     - **Приватный плагин!**
 
 #### Зависимости
