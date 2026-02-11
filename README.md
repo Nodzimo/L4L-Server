@@ -316,6 +316,9 @@
 7. [CUtlRBTree overflow fix (0.3.1): Fix CUtlRBTree overflow](https://github.com/fdxx/cutlrbtreefix)
    - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/xqtbyrgkbhyy) с ошибкой `CUtlRBTree overflow!`
    - [[l4d2] dedicated server crash need help "CUtlRBTree overflow!"](https://forums.alliedmods.net/showthread.php?t=336626)
+8. [Builtin Votes (0.7.0): API to do votes using the L4D, L4D2, and Orange Box Valve game in-game vote interface](https://github.com/fbef0102/Game-Private_Plugin/releases/tag/builtinvotes)
+   - Позволяет плагинам использовать нативный интерфейс голосования
+   - Требуется для плагина **l4d2_custom_difficulty**
 
 ### SourceMod плагины
 [Поиск SourceMod-плагинов для L4D](https://www.sourcemod.net/plugins.php?cat=0&mod=6&title=&author=&description=&search=1)
