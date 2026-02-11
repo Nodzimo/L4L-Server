@@ -669,6 +669,7 @@
      - **AFK Save Weapons**
      - **Tank Roar**
      - **Melee Shock**
+     - **HeadShot Reward Sound**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -970,6 +971,8 @@
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
+4. [[L4D 1/2] HeadShot Reward Sound (1.4-2024/7/21) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_headshot_reward_sound)
+    - Зависимость: скрипты **Multi Colors** для компиляции плагина
 
 #### Репозитории плагинов
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
