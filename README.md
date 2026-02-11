@@ -414,6 +414,7 @@
       - **Dynamic Muzzle Flash**
       - **Automatic Weapon Shoot**
       - **AFK Save Weapons**
+      - **Tank Roar**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -665,6 +666,7 @@
      - **Get Game total time played**
      - **Chainsaw Refuelling**
      - **AFK Save Weapons**
+     - **Tank Roar**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -950,6 +952,12 @@
 - [Репозиторий форка](https://github.com/Emana202/L4D2-Survivor-Bot-AI-Improver)
    - Обновляется гораздо чаще оригинала и медленно, но верно поддерживается. Изменения из форка, время от времени, вливаются в оригинальный репозиторий и наоборот.
    - [Тема на форуме](https://forums.alliedmods.net/showthread.php?t=342872)
+
+#### Приватное
+1. [Tank Roar (1.1h-2025/9/29) by Karma, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Tank_%E5%9D%A6%E5%85%8B/l4d_tank_roar)
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Скрипты **Multi Colors** для компиляции плагина
 
 #### Репозитории плагинов
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
