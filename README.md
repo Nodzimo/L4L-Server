@@ -413,6 +413,7 @@
       - **L4L: Tools**
       - **Dynamic Muzzle Flash**
       - **Automatic Weapon Shoot**
+      - **AFK Save Weapons**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -639,7 +640,14 @@
 68. [[L4D1/2] Heartbeat (Revive & BW Fix) (1.2h-2025/12/4) by SilverShot, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_heartbeat)
     - Фиксит некорректное ЧБ-состояние, когда значение квары `survivor_max_incapacitated_count` не равно дефолту `2`.
     - Предоставляет API для получения корректного количества поднятий выжившего
-    - Требуется для плагина **l4d2_afk_saveweapons**
+    - Требуется для плагина **AFK Save Weapons**
+69. [[L4D2] AFK Save Weapons (1.7-2026/2/1) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Survivor_%E4%BA%BA%E9%A1%9E/l4d2_afk_saveweapons)
+    - Сохраняет весь инвентарь игрока во время бездействия, переподключения к серверу или краша игры, оставляя бота с дефолтным оружием. Восстанавливает всё обратно при возвращении игрока.
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Плагин **Heartbeat (Revive & BW Fix)**
+      - Скрипты **Multi Colors** для компиляции плагина
+    - **Приватный плагин!**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -656,6 +664,7 @@
      - **Witch Guard**
      - **Get Game total time played**
      - **Chainsaw Refuelling**
+     - **AFK Save Weapons**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
