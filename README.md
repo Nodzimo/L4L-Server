@@ -411,6 +411,7 @@
       - **Chainsaw Refuelling**
       - **(Bot Kick) Drop Secondary**
       - **L4L: Tools**
+      - **Dynamic Muzzle Flash**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -888,6 +889,10 @@
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
+29. [[L4D & L4D2] Dynamic Muzzle Flash (1.0h) by SilverShot, sereky, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Real_Realism_%E7%9C%9F%E5%AF%AB%E5%AF%A6%E6%A8%A1%E5%BC%8F/l4d_dynamic_muzzle_flash)
+    - Добавляет динамическое свечение выстрелам
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - **Приватный плагин!**
 
 #### Плагины для разработки, отладки и тестирования
 1. [[ANY] Dev Cmds (1.52) by SilverShot](https://forums.alliedmods.net/showthread.php?t=187566)
