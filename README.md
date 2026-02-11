@@ -417,6 +417,7 @@
       - **Tank Roar**
       - **Melee Shock**
       - **Kill Combo**
+      - **Spitter Supergirl**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -672,6 +673,7 @@
      - **Melee Shock**
      - **HeadShot Reward Sound**
      - **Kill Combo**
+     - **Spitter Supergirl**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -974,9 +976,15 @@
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
 4. [[L4D 1/2] HeadShot Reward Sound (1.4-2024/7/21) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_headshot_reward_sound)
-    - Зависимость: скрипты **Multi Colors** для компиляции плагина
+   - Зависимость: скрипты **Multi Colors** для компиляции плагина
+   - `sm_headshot`
 5. [[L4D1/2] Kill Combo (1.3-2024/11/21) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Survivor_%E4%BA%BA%E9%A1%9E/l4d_kill_combo)
-    - Зависимости:
+   - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Скрипты **Multi Colors** для компиляции плагина
+   - `sm_kc`
+6. [[L4D2] Spitter Supergirl (1.1h) by Mortiegama & HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Spitter_Spitter/L4D2_Spitter_Supergirl)
+   - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
 
