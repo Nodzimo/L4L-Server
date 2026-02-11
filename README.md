@@ -415,6 +415,7 @@
       - **Automatic Weapon Shoot**
       - **AFK Save Weapons**
       - **Tank Roar**
+      - **Melee Shock**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -667,6 +668,7 @@
      - **Chainsaw Refuelling**
      - **AFK Save Weapons**
      - **Tank Roar**
+     - **Melee Shock**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -961,6 +963,10 @@
      - Скрипты **Multi Colors** для компиляции плагина
    - `sm_witchview`
 2. [Tank Roar (1.1h-2025/9/29) by Karma, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Tank_%E5%9D%A6%E5%85%8B/l4d_tank_roar)
+    - Зависимости:
+      - Плагин **Left 4 DHooks Direct**
+      - Скрипты **Multi Colors** для компиляции плагина
+3. [[L4D2] Melee Shock (1.0-2024/11/13) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Melee_%E8%BF%91%E6%88%B0%E6%AD%A6%E5%99%A8/l4d2_melee_shock)
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
