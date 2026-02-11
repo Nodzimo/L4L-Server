@@ -412,6 +412,7 @@
       - **(Bot Kick) Drop Secondary**
       - **L4L: Tools**
       - **Dynamic Muzzle Flash**
+      - **Automatic Weapon Shoot**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -631,6 +632,10 @@
     - Предоставляет другим плагинам API функционал смены цели ведьмы
     - Требуется для плагина **l4d_witch_bash_wandering**
     - Зависимость: расширение **Actions**
+67. [[L4D1/2] Automatic Weapon Shoot (1.3h-2025/3/19) by Coder:Timocop, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Weapons_%E6%AD%A6%E5%99%A8/l4d_weapon_auto_shoot)
+    - Автоматическая стрельба с зажатой ЛКМ (даже после перезарядки оружия)
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - **Приватный плагин!**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
