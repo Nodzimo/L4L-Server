@@ -954,7 +954,13 @@
    - [Тема на форуме](https://forums.alliedmods.net/showthread.php?t=342872)
 
 #### Приватное
-1. [Tank Roar (1.1h-2025/9/29) by Karma, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Tank_%E5%9D%A6%E5%85%8B/l4d_tank_roar)
+1. [Witch Guard (1.2h-2023/9/30) by Pan XiaoHai (fork by Dragokas & Mart), HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Witch_%E5%A5%B3%E5%B7%AB/l4d_witch_guard)
+   - Зависимости:
+     - Плагин **Left 4 DHooks Direct**
+     - Плагин **ThirdPersonShoulder_Detect**
+     - Скрипты **Multi Colors** для компиляции плагина
+   - `sm_witchview`
+2. [Tank Roar (1.1h-2025/9/29) by Karma, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Tank_%E5%9D%A6%E5%85%8B/l4d_tank_roar)
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
