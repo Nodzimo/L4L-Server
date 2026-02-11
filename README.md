@@ -360,6 +360,7 @@
     - Требуется для следующих плагинов:
       - **ThirdPersonShoulder Shotgun Sound Fix**
       - **Witch Guard**
+      - **Multiple Equipment**
 11. [Connect Announce (1.9) by Arg!](https://forums.alliedmods.net/showthread.php?t=77306)
     - Оповестительные сообщения в чате при входе/выходе игроков
     - Для рядовых игроков показывается краткая информация: страна и причина отключения
@@ -418,6 +419,7 @@
       - **Melee Shock**
       - **Kill Combo**
       - **Spitter Supergirl**
+      - **Multiple Equipment**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -674,6 +676,7 @@
      - **HeadShot Reward Sound**
      - **Kill Combo**
      - **Spitter Supergirl**
+     - **Multiple Equipment**
 2. [GeoIP2 GeoLite2](https://github.com/P3TERX/GeoLite.mmdb)
    - База геоданных для определения страны, региона, города и тому подобного.
    - В свежих версиях SourceMod поставляется в комплекте
@@ -987,6 +990,16 @@
    - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Скрипты **Multi Colors** для компиляции плагина
+7. [Multiple Equipment (2.5h-2025/10/12) by MasterMind42 & Pan Xiaohai & HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Nothing_Impossible_%E7%84%A1%E7%90%86%E6%94%B9%E9%80%A0%E7%89%88/l4d_multiple_equipment)
+   - Зависимости:
+     - Плагины:
+       - **Left 4 DHooks Direct**
+       - **ThirdPersonShoulder_Detect**
+       - [l4d_save_weapon_ammo](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_save_weapon_ammo)
+     - Скрипты для компиляции плагина:
+       - **Multi Colors**
+       - [l4d2_weapons.inc](https://github.com/fbef0102/Game-Private_Plugin/blob/main/L4D_%E6%8F%92%E4%BB%B6/Require_%E6%AA%94%E6%A1%88/scripting/include/l4d2_weapons.inc)
+   - `sm_switchweapons`, `sm_sw`.
 
 #### Репозитории плагинов
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
