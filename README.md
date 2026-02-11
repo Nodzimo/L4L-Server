@@ -581,8 +581,10 @@
 52. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
     - Фиксит баги с оружием после респавна, пример: респавн с полным M60, если умереть с ним в предыдущем раунде.
     - Зависимость: плагин **Left 4 DHooks Direct**
-53. [[L4D & 2] Fix DeathFall Camera (1.7) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_fix_deathfall_cam)
-    - Фиксит баг с залипшей камерой после смерти от падения с высоты 
+53. [[L4D1/2] Remove Deathfall Camera (1.0-2024/7/15) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Entity_%E5%AF%A6%E9%AB%94%E7%89%A9%E4%BB%B6/remove_deathfall_camera)
+    - Удаляет на карте все камеры смерти от падения с высоты
+    -  `sm_rmdeathcamera`
+    - **Приватный плагин!**
 54. [[L4D1 & L4D2] Selfie Camera (1.0.1) by Mart](https://forums.alliedmods.net/showthread.php?t=332884)
     - Добавляет команду включения режима селфи для камеры
     - `sm_selfie`
@@ -1178,6 +1180,9 @@
     - Фикс бага, когда игрок с огромной скоростью улетает, отпуская миниган под определённым углом.
 - Заменён плагином **l4d_witch_bash_wandering**
   - [Wandering Witch Shove Fix](https://steamcommunity.com/sharedfiles/filedetails/?id=3359130948)
+- Заменён плагином **Remove Deathfall Camera**
+  - [[L4D & 2] Fix DeathFall Camera (1.7) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_fix_deathfall_cam)
+    - Фиксит баг с залипшей камерой после смерти от падения с высоты 
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
