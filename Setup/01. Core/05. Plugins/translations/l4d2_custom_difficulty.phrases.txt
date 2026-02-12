@@ -8,13 +8,13 @@
 	}
 	"Same"
 	{
-		"en"		"You the same custom difficultt!"
+		"en"		"You the same custom difficulty!"
 		"zho"		"你所投票的難度與當前一樣!"
 		"chi"		"你所投票的难度与当前一样!"
 	}
 	"Can't Create Vote"
 	{
-		"en"		"Can't call vote at this moment, tryt again later!"
+		"en"		"Can't call vote at this moment, try again later!"
 		"zho"		"目前無法建立投票，請稍後再試!"
 		"chi"		"目前无法建立投票，请稍后再试!"
 	}
@@ -27,7 +27,7 @@
 	"Not Enough Players"
 	{
 		"#format"		"{1:d}"
-		"en"		"You need at least {green}{1}{default} players to start difficulty vote."
+		"en"		"You need at least {green}{1}{default} players to start difficulty vote"
 		"zho"		"至少要 {green}{1}{default} 位以上的倖存者/特感玩家在場，才能發起投票"
 		"chi"		"至少要 {green}{1}{default} 位以上的幸存者/特感玩家在场，才能发起投票"
 	}
@@ -59,16 +59,16 @@
 	}
 	"Current"
 	{
-		"en"		"(Current)"
-		"zho"		"(目前)"
-		"chi"		"(目前)"
+		"en"		"[★]"
+		"zho"		"[★]"
+		"chi"		"[★]"
 	}
 	
 	"forces to pass (C)"
 	{
-		"en"		"[{olive}TS{default}] {lightgreen}%N{default} Admin forced to pass the vote"
-		"zho"		"[{olive}TS{default}] {lightgreen}%N{default} 管理員強制通過目前投票項目"
-		"chi"		"[{olive}TS{default}] {lightgreen}%N{default} 管理员一票强制通过"
+		"en"		"{lightgreen}%N{default} Admin forced to pass the vote"
+		"zho"		"{lightgreen}%N{default} 管理員強制通過目前投票項目"
+		"chi"		"{lightgreen}%N{default} 管理员一票强制通过"
 	}
 	"forces to pass"
 	{
@@ -78,8 +78,8 @@
 	}
 	"forces to cancel (C)"
 	{
-		"en"		"[{olive}TS{default}] {lightgreen}%N{default} Admin forced to cancel the vote"
-		"zho"		"[{olive}TS{default}] {lightgreen}%N{default} 管理員強制否决目前投票項目"
-		"chi"		"[{olive}TS{default}] {lightgreen}%N{default} 管理员一票强制否决"
+		"en"		"{lightgreen}%N{default} Admin forced to cancel the vote"
+		"zho"		"{lightgreen}%N{default} 管理員強制否决目前投票項目"
+		"chi"		"{lightgreen}%N{default} 管理员一票强制否决"
 	}
 }
