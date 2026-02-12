@@ -669,6 +669,7 @@
       - `sm_difficultyvote`, `sm_dvote`.
       - `sm_vp`
       - `sm_vc`
+      - `sm_vd`, `sm_votedifficulty`, `sm_difficulty`, `sm_hard`, `sm_hardcore`.
     - **Приватный плагин!**
 
 #### Зависимости
