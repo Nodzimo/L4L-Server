@@ -664,6 +664,7 @@
       - Плагин **Left 4 DHooks Direct**
       - Расширение **Builtin Votes**
       - Скрипты **Multi Colors** для компиляции плагина
+    - Требуется для плагина **L4L: Exec Server Config** 
     - Команды:
       - `sm_difficultyvote`, `sm_dvote`.
       - `sm_vp`
@@ -721,7 +722,7 @@
    - Компилирует и исполняет кастомные V-скрипты в зависимости от установленной сложности
    - Зависимости:
      - Плагин **Server namer**
-     - Плагин **Vote difficulty**
+     - Плагин **Custom Difficulty**
      - Плагин **VScript**
      - Скрипты **Multi Colors** для компиляции плагина
 2. [Survivor Bots Fire Damage](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_survivor_bots_fire_damage.sp)

@@ -1,13 +1,14 @@
 "Phrases"
 {
-    "Hardcore warning"
+    "Difficulty warning"
     {
-        "en"    "{ORANGE}Warning! {DEFAULT}Custom difficulty enabled: {LIGHTGREEN}Hardcore\n{DEFAULT}Change difficulty by vote: {OLIVE}!vd"
-        "ru"    "{ORANGE}Внимание! {DEFAULT}Включена кастомная сложность: {LIGHTGREEN}Хардкор\n{DEFAULT}Сложность можно сменить голосованием: {OLIVE}!vd"
+        "#format"   "{1:s}"
+        "en"        "{ORANGE}Warning! {DEFAULT}Custom difficulty enabled: {LIGHTGREEN}{1}\n{DEFAULT}Change difficulty by vote: {OLIVE}!vd"
+        "ru"        "{ORANGE}Внимание! {DEFAULT}Включена кастомная сложность: {LIGHTGREEN}{1}\n{DEFAULT}Сложность можно сменить голосованием: {OLIVE}!vd"
     }
-    "Hardcore info"
+    "Difficulty info"
     {
-        "en"    "More info about server and difficulty on site: {LIGHTGREEN}L4L.su\n{DEFAULT}Or in group: {OLIVE}steamcommunity.com/groups/Left4Legend"
-        "ru"    "Подробнее о сервере и сложности на сайте: {LIGHTGREEN}L4L.su\n{DEFAULT}Или в группе: {OLIVE}steamcommunity.com/groups/Left4Legend"
+        "en"        "More info about server and difficulty on site: {LIGHTGREEN}L4L.su\n{DEFAULT}Or in group: {OLIVE}steamcommunity.com/groups/Left4Legend"
+        "ru"        "Подробнее о сервере и сложности на сайте: {LIGHTGREEN}L4L.su\n{DEFAULT}Или в группе: {OLIVE}steamcommunity.com/groups/Left4Legend"
     }
 }
