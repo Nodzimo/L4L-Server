@@ -6,30 +6,29 @@
 #include <vscript>
 #include <l4d2_custom_difficulty>
 
-#define PLUGIN_VERSION            "0.0.1"
-#define ALL_CLIENTS               0
-#define CUSTOM_DIFFICULTY_MAX_LEN 80
+#define PLUGIN_VERSION      "0.0.1"
+#define ALL_CLIENTS         0
 
-#define INDEX_VANILLA_MIN         1
-#define INDEX_VANILLA_MAX         4
-#define INDEX_HARDCORE_ALL        5
-#define INDEX_FOG                 6
-#define INDEX_HARDCORE_LITE       7
+#define INDEX_VANILLA_MIN   1
+#define INDEX_VANILLA_MAX   4
+#define INDEX_HARDCORE_ALL  5
+#define INDEX_FOG           6
+#define INDEX_HARDCORE_LITE 7
 
-#define VSCRIPT_HARDCORE          "hardcore"
-#define VSCRIPT_VANILLA           "vanilla"
+#define VSCRIPT_HARDCORE    "hardcore"
+#define VSCRIPT_VANILLA     "vanilla"
 
-#define SOUND_HARDCORE            "UI/Pickup_Secret01.wav"
-#define MUSIC_HARDCORE1           "music/infection/infection_09_01.wav"
-#define MUSIC_HARDCORE2           "music/infection/infection_10_01.wav"
-#define MUSIC_HARDCORE3           "music/infection/infection_11_01.wav"
+#define SOUND_HARDCORE      "UI/Pickup_Secret01.wav"
+#define MUSIC_HARDCORE1     "music/infection/infection_09_01.wav"
+#define MUSIC_HARDCORE2     "music/infection/infection_10_01.wav"
+#define MUSIC_HARDCORE3     "music/infection/infection_11_01.wav"
 
-#define SOUND_FOG                 "Ambient/Alarms/Perimeter_Alarm.wav"
-#define SOUND_FOG_DURATION        2.0
+#define SOUND_FOG           "Ambient/Alarms/Perimeter_Alarm.wav"
+#define SOUND_FOG_DURATION  2.0
 
 ConVar            g_hCvarServerConfig, g_hCvarHostname;
 bool              g_bHostnameGuard;
-char              g_sLastSuffix[MAX_NAME_LENGTH];
+char              g_sLastCustomDifficulty[MAX_NAME_LENGTH];
 StringMap         g_smSeenAuthIds;
 
 static const char g_sHardcoreMusic[][] = {
@@ -56,8 +55,8 @@ public void OnPluginStart()
         "",
         "Server instance config name (without .cfg), executed from cfg/sourcemod/l4l/");
 
-    g_smSeenAuthIds  = new StringMap();
-    g_sLastSuffix[0] = '\0';
+    g_smSeenAuthIds            = new StringMap();
+    g_sLastCustomDifficulty[0] = '\0';
 
     HookEvent("player_disconnect", OnPlayerDisconnect, EventHookMode_PostNoCopy);
 }
@@ -91,8 +90,11 @@ public void OnMapStart()
 
 static void ExecInstanceConfig()
 {
-    char config[64];
+    char config[MAX_NAME_LENGTH];
     g_hCvarServerConfig.GetString(config, sizeof(config));
+
+    if (config[0] == '\0')
+        return;
 
     ServerCommand("exec \"sourcemod/l4l/%s.cfg\"", config);
 }
@@ -128,7 +130,7 @@ static Action Timer_ShowInfo(Handle timer, int userId)
     if (IsValidClient(client))
     {
         int  index = GetCurrentDifficultyIndex();
-        char customDifficulty[CUSTOM_DIFFICULTY_MAX_LEN];
+        char customDifficulty[MAX_NAME_LENGTH];
         GetCustomSuffixByIndex(index, customDifficulty, sizeof(customDifficulty));
 
         CPrintToChat(client, "%t", "Difficulty warning", customDifficulty);
@@ -296,7 +298,7 @@ static int GetCurrentDifficultyIndex()
     return GetCurCustomDifficultyIndex();
 }
 
-// // For custom difficulties only: return suffix to append
+// For custom difficulties only: return suffix to append
 static void GetCustomSuffixByIndex(int index, char[] buffer, int maxlen)
 {
     buffer[0] = '\0';
@@ -317,58 +319,61 @@ static void ApplyCurrentDifficultyState(bool isInitial)
     }
 
     ApplyVScriptByDifficultyIndex(index);
-    UpdateHostnameSuffix(index);
+    UpdateHostname();
 }
 
-static void UpdateHostnameSuffix(int index)
+static void UpdateHostname()
 {
-    char hostname[MAX_NAME_LENGTH];
+    char currentCustomDifficulty[MAX_NAME_LENGTH];
+
+    if (!GetCurrentCustomName(currentCustomDifficulty, sizeof(currentCustomDifficulty)))
+        return;
+
+    char hostname[PLATFORM_MAX_PATH];
     g_hCvarHostname.GetString(hostname, sizeof(hostname));
 
-    // Strip previous suffix if it's still present
-    if (g_sLastSuffix[0] != '\0')
+    if (g_sLastCustomDifficulty[0] != '\0' && !StrEqual(g_sLastCustomDifficulty, currentCustomDifficulty, false))
     {
-        int hostnameLen = strlen(hostname);
-        int suffixLen   = strlen(g_sLastSuffix);
+        char oldTail[MAX_NAME_LENGTH + 2];
+        char newTail[MAX_NAME_LENGTH + 2];
 
-        if (hostnameLen >= suffixLen && StrEqual(hostname[hostnameLen - suffixLen], g_sLastSuffix, false))
+        FormatEx(oldTail, sizeof(oldTail), " %s", g_sLastCustomDifficulty);
+        FormatEx(newTail, sizeof(newTail), " %s", currentCustomDifficulty);
+
+        if (ReplaceString(hostname, sizeof(hostname), oldTail, newTail, false) > 0)
         {
-            hostname[hostnameLen - suffixLen] = '\0';
+            strcopy(g_sLastCustomDifficulty, sizeof(g_sLastCustomDifficulty), currentCustomDifficulty);
+            SetHostname(hostname);
+
+            return;
         }
     }
 
-    // Build new suffix (only for custom index >= 5)
-    char suffixText[96];
-    suffixText[0] = '\0';
+    char tail[MAX_NAME_LENGTH + 2];
+    FormatEx(tail, sizeof(tail), " %s", currentCustomDifficulty);
 
-    if (IsCustomIndex(index))
+    int hostnameLen = strlen(hostname);
+    int tailLen     = strlen(tail);
+
+    if (hostnameLen >= tailLen && StrEqual(hostname[hostnameLen - tailLen], tail, false))
     {
-        char customDifficulty[CUSTOM_DIFFICULTY_MAX_LEN];
-        GetCustomSuffixByIndex(index, customDifficulty, sizeof(customDifficulty));
+        strcopy(g_sLastCustomDifficulty, sizeof(g_sLastCustomDifficulty), currentCustomDifficulty);
 
-        if (customDifficulty[0] != '\0')
-        {
-            FormatEx(suffixText, sizeof(suffixText), " %s", customDifficulty);
-        }
+        return;
     }
 
-    // Apply if changed
-    if (!StrEqual(g_sLastSuffix, suffixText, false))
-    {
-        strcopy(g_sLastSuffix, sizeof(g_sLastSuffix), suffixText);
-
-        if (suffixText[0] != '\0')
-        {
-            StrCat(hostname, sizeof(hostname), suffixText);
-        }
-
-        g_bHostnameGuard = true;
-        g_hCvarHostname.SetString(hostname, false, false);
-        g_bHostnameGuard = false;
-    }
+    StrCat(hostname, sizeof(hostname), tail);
+    strcopy(g_sLastCustomDifficulty, sizeof(g_sLastCustomDifficulty), currentCustomDifficulty);
+    SetHostname(hostname);
 }
 
-// Re-apply suffix if someone changes hostname manually
+static void SetHostname(const char[] hostname)
+{
+    g_bHostnameGuard = true;
+    g_hCvarHostname.SetString(hostname, false, false);
+    g_bHostnameGuard = false;
+}
+
 static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
 {
     if (g_bHostnameGuard)
@@ -376,7 +381,7 @@ static void PatchHostname(ConVar cvar, const char[] oldVal, const char[] newVal)
         return;
     }
 
-    ApplyCurrentDifficultyState(true);
+    UpdateHostname();
 }
 
 // Forward from l4d2_custom_difficulty.inc
@@ -453,4 +458,22 @@ static Action Timer_StopSound(Handle timer, int userId)
     StopSound(client, SNDCHAN_AUTO, SOUND_FOG);
 
     return Plugin_Stop;
+}
+
+static bool GetCurrentCustomName(char[] out, int maxlen)
+{
+    out[0]    = '\0';
+    int index = GetCurrentDifficultyIndex();
+
+    if (!IsCustomIndex(index))
+        return false;
+
+    if (!GetCustomDifficultyNameByIndex(index, out, maxlen))
+    {
+        out[0] = '\0';
+
+        return false;
+    }
+
+    return (out[0] != '\0');
 }
