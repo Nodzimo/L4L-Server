@@ -527,58 +527,49 @@
       - После установки **SourceBans++** можно удалить стандартный SourceMod-плагин **Basic Ban Commands** за его ненадобностью, но нельзя удалять его текстовые файлы с переводами, иначе **SourceBans++** будет падать с ошибкой:
         - `Fatal error encountered parsing translation file "basebans.phrases.txt"`
     - Опционально: плагин **SourceBans++ Discord Plugin** (заменён плагином **Discord Utilities**)
-35. [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
-    - Голосование за смену сложности с возможностью добавления кастомных сложностей
-    - Зависимость: база геоданных **GeoIP2 GeoLite2**
-    - Опционален для плагина **L4L: Exec Server Config**
-    - `sm_vd`
-> [!IMPORTANT]
-> Используется мой форк, в котором исправлен сброс выбранной в меню кастомной сложности после смены карты, а нативное голосование открывает меню плагина, вместо запуска голосования.
->
-> Также добавлены дополнительные команды для открытия меню: `sm_hard`, `sm_hardcore`
-36. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
+35. [[L4D] Votekick (Coop & Versus) (5.1) by alliedfront](https://forums.alliedmods.net/showthread.php?t=349341)
     - Менеджер киков с оповещением админа, которого пытаются кикнуть.
     - Зависимость: база геоданных **GeoIP2 GeoLite2**
     - `sm_vk`
-37. [Bot Takeover (4.5) by little_froy](https://forums.alliedmods.net/showthread.php?t=346636)
+36. [Bot Takeover (4.5) by little_froy](https://forums.alliedmods.net/showthread.php?t=346636)
     - Позволяет после смерти взять свободного бота, нажатием кнопки действия: `E`
-38. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
+37. [[ANY] Command and ConVar - Buffer Overflow Fixer (2.9) by SilverShot and Peace-Maker](https://forums.alliedmods.net/showthread.php?t=309656)
     - Фиксит ошибку `Cbuf_AddText: buffer overflow`, из-за которой сбрасываются установленные значения квар.
-39. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
+38. [L4D2 Black and White Notifier (2.0.2) by Lux](https://github.com/Hatsune-Imagine/l4d2-plugins/tree/main/l4d2_black_and_white_notifier)
     - Добавляет ауру ЧБ-выжившему, которая начинает пульсировать при критическом уровне здоровья.
-40. [[ANY] ConVars Anomaly Fixer (1.14 beta) by Dragokas](https://forums.alliedmods.net/showthread.php?t=307804)
+39. [[ANY] ConVars Anomaly Fixer (1.14 beta) by Dragokas](https://forums.alliedmods.net/showthread.php?t=307804)
     - Фиксит баг на линукс-сервере с большим количеством конфигов, из-за которого переменные сбрасываются на свои дефолтные значения, не зависимо от установленных значений в конфигах.
     - Пример: у ванильного сервера одна установочная директория и много инстансов, которые ещё и на хардкорную сложность могут переключаться. Соответственно, в одной установочной директории появляется очень много конфигов, что *(на линуксе?)* приводит к *(рандомному?)* сбросу установленных значений кваров на их дефолт. Таким образом плагин **Restart Empty Server** игнорировал свой конфиг и моментально перезагружал пустой сервер, что в некоторых случаях заканчивалось крашем и некорректным сбросом карты.
     - Команды:
       - `sm_convar_anomaly_show`
       - `sm_convar_anomaly_fix`
-41. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
+40. [Advanced and silent CVAR change. (1.1.1) by Axel Juan Nieves](https://forums.alliedmods.net/showthread.php?p=2661102)
     - Добавляет команду `sm_acvar`, которую можно использовать вместо `sm_cvar`, чтобы скрыть изменение кваров в игровом чате для всех.
     - Используется в конфигах плагина **Vote difficulty** для *"тихой"* смены сложности
-42. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
+41. [[L4D & L4D2] Gear Transfer (2.36) by SilverShot](https://forums.alliedmods.net/showthread.php?t=137616)
     - Опционально: плагин **Bot Healing Values**, чтобы боты передавали медикаменты только ЧБ-персонажам.
-43. [Weapon Give No Auto Switch (1.13) by little_froy](https://forums.alliedmods.net/showthread.php?t=341173)
+42. [Weapon Give No Auto Switch (1.13) by little_froy](https://forums.alliedmods.net/showthread.php?t=341173)
     - Второстепенная медицина не берётся автоматически в руки при передаче
-44. [SendFile Exploit Fix (v3.3) (3.3) by backwards](https://forums.alliedmods.net/showthread.php?t=317120)
+43. [SendFile Exploit Fix (v3.3) (3.3) by backwards](https://forums.alliedmods.net/showthread.php?t=317120)
     - Фиксит краш [linux-gate.so!__kernel_vsyscall + 0x9](https://crash.limetech.org/jlmme6wwlhrb)
     - [Solved CSGO Server crash / linux-gate.so!__kernel_vsyscall + 0x9](https://forums.alliedmods.net/showthread.php?t=318745)
-45. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
+44. [[L4D & L4D2] Late Model Precacher (1.0) by Psyk0tik](https://forums.alliedmods.net/showthread.php?t=337273)
     - Фиксит краш [engine_srv.so!Sys_Error_Internal(bool, char const*, char*) + 0x129](https://crash.limetech.org/aupyujnkjow7) с ошибкой `1/ - player: UTIL_SetModel: not precached: models/survivors/survivor_gambler.mdl`
     - Связанное:
       - [Solved [L4D2] Crashes on L4D1 maps (UTIL_SetModel: not precached)](https://forums.alliedmods.net/showthread.php?t=336337)
       - [[L4D2] Model Precacher](https://forums.alliedmods.net/showthread.php?t=129990)
-46. [[L4D2] Script Command Swap - Mem Leak Fix (1.0) by SilverShot (Timocop's idea)](https://forums.alliedmods.net/showthread.php?t=317128)
+45. [[L4D2] Script Command Swap - Mem Leak Fix (1.0) by SilverShot (Timocop's idea)](https://forums.alliedmods.net/showthread.php?t=317128)
     - Фиксит утечки памяти из-за системы V-скриптов
-47. [[L4D1 & L4D2] Weapon Prop Give Fix (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?t=331053)
+46. [[L4D1 & L4D2] Weapon Prop Give Fix (1.0.3) by Mart](https://forums.alliedmods.net/showthread.php?t=331053)
     - Фиксит баг, когда взрывоопасные пропсы не детонируют от урона после их спавна.
-48. [[L4D & L4D2] Engine Fix (1.1) by raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2662888&postcount=35)
+47. [[L4D & L4D2] Engine Fix (1.1) by raziEiL [disawar1]](https://forums.alliedmods.net/showpost.php?p=2662888&postcount=35)
     - Фиксит баги:
       1. Ускоренное залезание по лестницам
       2. Отсутствие урона от падения при поднятии в полёте
       3. Буст здоровья с помощью лечения под водой
-49. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
+48. [[L4D/L4D2] Ladder Troll Prevention (1.3) by raziEiL [disawar1], Dosergen](https://forums.alliedmods.net/showpost.php?p=2682262&postcount=14)
     - Фиксит баг с блокированием особых на лестницах
-50. [L4D2 Item hint (4.1-2025/12/27) by BHaType, fdxx, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_item_hint)
+49. [L4D2 Item hint (4.1-2025/12/27) by BHaType, fdxx, HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_item_hint)
     - Подсвечивает ближайший предмет аурой следующими способами:
       - Вокалайз `Look`
       - `Shift` + `E`
@@ -587,27 +578,27 @@
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Multi Colors**
     - Опционально: плагин [Use Priority Patch](https://forums.alliedmods.net/showthread.php?t=327511) для совместимости с шапками и другими штуками, которые прикрепляются к игроку и могут блокировать функцию использования.
-51. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
+50. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
     - Анти-раш система
     - Зависимость: плагин **Left 4 DHooks Direct**
-52. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
+51. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
     - Фиксит баги с оружием после респавна, пример: респавн с полным M60, если умереть с ним в предыдущем раунде.
     - Зависимость: плагин **Left 4 DHooks Direct**
-53. [[L4D1/2] Remove Deathfall Camera (1.0-2024/7/15) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Entity_%E5%AF%A6%E9%AB%94%E7%89%A9%E4%BB%B6/remove_deathfall_camera)
+52. [[L4D1/2] Remove Deathfall Camera (1.0-2024/7/15) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Entity_%E5%AF%A6%E9%AB%94%E7%89%A9%E4%BB%B6/remove_deathfall_camera)
     - Удаляет на карте все камеры смерти от падения с высоты
     -  `sm_rmdeathcamera`
     - **Приватный плагин!**
-54. [[L4D1 & L4D2] Selfie Camera (1.0.1) by Mart](https://forums.alliedmods.net/showthread.php?t=332884)
+53. [[L4D1 & L4D2] Selfie Camera (1.0.1) by Mart](https://forums.alliedmods.net/showthread.php?t=332884)
     - Добавляет команду включения режима селфи для камеры
     - `sm_selfie`
-55. [VScript (1.10.0.90) by 42](https://github.com/FortyTwoFortyTwo/VScript)
+54. [VScript (1.10.0.90) by 42](https://github.com/FortyTwoFortyTwo/VScript)
     - Позволяет компилировать и исполнять V-скрипты из SourceMod
     - Зависимость: расширение **Source Scramble**
     - Требуется для плагина **L4L: Exec Server Config** 
-56. [[L4D/L4D2] Restore Tank Burn Sound (1.0-2025/10/12) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_tank_restore_burn_sound)
+55. [[L4D/L4D2] Restore Tank Burn Sound (1.0-2025/10/12) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Sound_%E9%9F%B3%E6%95%88/l4d_tank_restore_burn_sound)
     - Восстанавливает уникальные звуки горящего танка, которые перезаписывались регулярными звуками урона.
     - **Приватный плагин!**
-57. [[Any Source Game] Get Game total time played (from Game Stats) (2.6-2025/12/5) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/Source_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/sm_PlayerTime)
+56. [[Any Source Game] Get Game total time played (from Game Stats) (2.6-2025/12/5) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/Source_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/sm_PlayerTime)
     - Выводит наигранное время (и другую инфу) в чат при подключении игрока к серверу
     - Наигранное время берётся из [SteamDB](https://steamdb.info), независимо от настроек приватности Steam-профиля.
     - Зависимости:
@@ -616,49 +607,49 @@
       - База геоданных **GeoIP2 GeoLite2**
     - `sm_timedisplay`
     - **Приватный плагин!**
-58. [[L4D2] Fix Changelevel (1.1) by Lux (for l4d2_changelevel), Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d2_fix_changelevel)
+57. [[L4D2] Fix Changelevel (1.1) by Lux (for l4d2_changelevel), Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d2_fix_changelevel)
     - Фиксит баги при смене карты
     - Требуется для плагина **Transition Info Fix**
     - Зависимость: плагин **Left 4 DHooks Direct**
-59. [Transition Info Fix (1.0.2-2024/12/30) by IA/NanaNana](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_transition_info_fix)
+58. [Transition Info Fix (1.0.2-2024/12/30) by IA/NanaNana](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d2_transition_info_fix)
     - Фиксит баги после перехода на следующую карту, например: появление за пределами карты после рестарта раунда.
     - Зависимость: плагин **Fix Changelevel**
-60. [L4D2 pistol delay (1.3) by A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_pistol_delay.sp)
+59. [L4D2 pistol delay (1.3) by A1m`](https://github.com/SirPlease/L4D2-Competitive-Rework/blob/master/addons/sourcemod/scripting/l4d2_pistol_delay.sp)
     - Устанавливает задержку между выстрелами пистолетов
-61. [rescue_glow (1.0h-2024/8/15) by little_froy, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/rescue_glow)
-- Фиксит баг, когда выжившие запертые в помещении не подсвечиваются аурой.
-62. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/bot_kick_drop_secondary)
+60. [rescue_glow (1.0h-2024/8/15) by little_froy, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/rescue_glow)
+    - Фиксит баг, когда выжившие запертые в помещении не подсвечиваются аурой.
+61. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/bot_kick_drop_secondary)
     - Кикнутые выжившие боты дропают второстепенное оружие
     - Зависимость: плагин **Left 4 DHooks Direct**
-63. [[L4D & L4D2] Revive Reload Interrupt (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_revive_reload_interrupt)
+62. [[L4D & L4D2] Revive Reload Interrupt (1.0) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_revive_reload_interrupt)
     - Фиксит баг с перезарядкой, прерванной поднятием инкапнутого, после которой оружие заклинивает.
-64. [[L4D1/2] l4d_minigun_fly_fix (1.0-2025/9/24) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_minigun_fly_fix)
+63. [[L4D1/2] l4d_minigun_fly_fix (1.0-2025/9/24) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_minigun_fly_fix)
     - Фиксит баг, когда игрок с зажатым прыжком дважды использует миниган и с огромной скоростью отлетает от него.
-65. [l4d_witch_bash_wandering (1.0-2025/12/31) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_bash_wandering)
+64. [l4d_witch_bash_wandering (1.0-2025/12/31) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_witch_bash_wandering)
     - Фиксит баг, когда ходячая ведьма не реагирует на удар прикладом.
     - Зависимости:
       - Плагин **Change Witch Victim**
       - Расширение **Actions**
-66. [[L4D & 2] Change Witch Victim (2.0.1) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_change_witch_victim)
+65. [[L4D & 2] Change Witch Victim (2.0.1) by Forgetest](https://github.com/Target5150/MoYu_Server_Stupid_Plugins/tree/master/The%20Last%20Stand/l4d_change_witch_victim)
     - Предоставляет другим плагинам API функционал смены цели ведьмы
     - Требуется для плагина **l4d_witch_bash_wandering**
     - Зависимость: расширение **Actions**
-67. [[L4D1/2] Automatic Weapon Shoot (1.3h-2025/3/19) by Coder:Timocop, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Weapons_%E6%AD%A6%E5%99%A8/l4d_weapon_auto_shoot)
+66. [[L4D1/2] Automatic Weapon Shoot (1.3h-2025/3/19) by Coder:Timocop, Harry](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Weapons_%E6%AD%A6%E5%99%A8/l4d_weapon_auto_shoot)
     - Автоматическая стрельба с зажатой ЛКМ (даже после перезарядки оружия)
     - Зависимость: плагин **Left 4 DHooks Direct**
     - **Приватный плагин!**
-68. [[L4D1/2] Heartbeat (Revive & BW Fix) (1.2h-2025/12/4) by SilverShot, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_heartbeat)
+67. [[L4D1/2] Heartbeat (Revive & BW Fix) (1.2h-2025/12/4) by SilverShot, Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_heartbeat)
     - Фиксит некорректное ЧБ-состояние, когда значение квары `survivor_max_incapacitated_count` не равно дефолту `2`.
     - Предоставляет API для получения корректного количества поднятий выжившего
     - Требуется для плагина **AFK Save Weapons**
-69. [[L4D2] AFK Save Weapons (1.7-2026/2/1) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Survivor_%E4%BA%BA%E9%A1%9E/l4d2_afk_saveweapons)
+68. [[L4D2] AFK Save Weapons (1.7-2026/2/1) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Survivor_%E4%BA%BA%E9%A1%9E/l4d2_afk_saveweapons)
     - Сохраняет весь инвентарь игрока во время бездействия, переподключения к серверу или краша игры, оставляя бота с дефолтным оружием. Восстанавливает всё обратно при возвращении игрока.
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
       - Плагин **Heartbeat (Revive & BW Fix)**
       - Скрипты **Multi Colors** для компиляции плагина
     - **Приватный плагин!**
-70. [[L4D1/2] Custom Difficulty (1.3-2024/8/16) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/l4d2_custom_difficulty)
+69. [[L4D1/2] Custom Difficulty (1.3-2024/8/16) by HarryPotter](https://github.com/fbef0102/Game-Private_Plugin/tree/main/L4D_%E6%8F%92%E4%BB%B6/Server_%E4%BC%BA%E6%9C%8D%E5%99%A8/l4d2_custom_difficulty)
     - Добавляет кастомные сложности и голосование с нативным интерфейсом
     - Зависимости:
       - Плагин **Left 4 DHooks Direct**
@@ -1270,6 +1261,16 @@
 > Проверить: не работает в соревновательных режимах?
 >
 > Проверить: клипается ли звук выстрелов с дефолтных пистолетов?
+- Заменён плагином **Custom Difficulty**
+  - [[L4D] Vote difficulty (no black screen) (1.17) by Dragokas](https://forums.alliedmods.net/showthread.php?t=317257)
+    - Голосование за смену сложности с возможностью добавления кастомных сложностей
+    - Зависимость: база геоданных **GeoIP2 GeoLite2**
+    - Опционален для плагина **L4L: Exec Server Config**
+    - `sm_vd`
+> [!IMPORTANT]
+> Используется мой форк, в котором исправлен сброс выбранной в меню кастомной сложности после смены карты, а нативное голосование открывает меню плагина, вместо запуска голосования.
+>
+> Также добавлены дополнительные команды для открытия меню: `sm_hard`, `sm_hardcore`
 
 ### Карты
 [Коллекция всех карт в мастерской](https://steamcommunity.com/sharedfiles/filedetails/?id=3608021337)
