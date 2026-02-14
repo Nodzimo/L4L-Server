@@ -117,7 +117,7 @@ public void OnClientPostAdminCheck(int client)
     }
 
     CreateTimer(
-        5.0,
+        30.0,
         Timer_ShowInfo,
         GetClientUserId(client),
         TIMER_FLAG_NO_MAPCHANGE);
@@ -135,6 +135,7 @@ static Action Timer_ShowInfo(Handle timer, int userId)
 
         CPrintToChat(client, "%t", "Difficulty warning", customDifficulty);
         CPrintToChat(client, "%t", "Difficulty info");
+        PrintToServer("[L4L] Difficulty info: %s", GetName(client));
         PlayEntryEffectsForDifficultyIndex(index, client);
     }
 
