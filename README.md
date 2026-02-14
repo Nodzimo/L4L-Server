@@ -662,6 +662,8 @@
       - `sm_vc`
       - `sm_vd`, `sm_votedifficulty`, `sm_difficulty`, `sm_hard`, `sm_hardcore`.
     - **Приватный плагин!**
+> [!IMPORTANT]
+> Используется мой форк, в котором исправлены все ошибки, расширен функционал и добавлена вся проделанная работа из форка плагина **Vote difficulty**.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
@@ -708,7 +710,6 @@
      3. [utils.inc](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/include/l4l/utils.inc)
 1. [Exec Server Config](https://github.com/Nodzimo/L4L-Server/blob/main/Source/L4L/left4dead2/addons/sourcemod/scripting/l4l_exec_server_config.sp)
    - Исполняет специфический для сервера конфиг в зависимости от квары
-   - Если ранее была выбрана кастомная сложность **Impossible+**, то исполняет соответствующий ей конфиг: `server_expert+.cfg`.
    - Если установлена кастомная сложность, то выводит её название в имени сервера.
    - Если установлена кастомная сложность, то оповещает об этом игроков при подключении.
    - Компилирует и исполняет кастомные V-скрипты в зависимости от установленной сложности
