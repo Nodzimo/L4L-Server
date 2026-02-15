@@ -670,6 +670,8 @@
     - Зависимость: плагин **Left 4 DHooks Direct**
 > [!IMPORTANT]
 > Используется мой форк, в котором отключена камера от третьего лица у выжившего, которого кормят.
+71. [[L4D2] Block No Steam Logon (1.2.3) by blueblur](https://github.com/blueblur0730/modified-plugins/tree/main/source/l4d2_block_no_steam_logon)
+    - Перехватывает Steam-валидацию и блокирует кик: `No Steam logon`
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
