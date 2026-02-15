@@ -582,6 +582,8 @@
 50. [[L4D & L4D2] Anti Rush (1.26) by SilverShot](https://forums.alliedmods.net/showthread.php?t=322392)
     - Анти-раш система
     - Зависимость: плагин **Left 4 DHooks Direct**
+> [!IMPORTANT]
+> Используется мой форк, в котором не учитываются боты и исправлен баг с проверкой иммунитета клиента.
 51. [[L4D/L4D2] Death Weapon Respawn Fix (1.1) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/l4d_death_weapon_respawn_fix)
     - Фиксит баги с оружием после респавна, пример: респавн с полным M60, если умереть с ним в предыдущем раунде.
     - Зависимость: плагин **Left 4 DHooks Direct**

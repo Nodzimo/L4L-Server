@@ -749,10 +749,10 @@ Action TimerTest(Handle timer)
 	// Check valid survivors, count incapped
 	for( int i = 1; i <= MaxClients; i++ )
 	{
-		if( IsClientInGame(i) && GetClientTeam(i) == 2 && IsPlayerAlive(i) )
+		if( IsClientInGame(i) && !IsFakeClient(i) && GetClientTeam(i) == 2 && IsPlayerAlive(i) )
 		{
 			// Immune players - ignore from flow calculations
-			if( g_iCvarFlags != 0 && g_iCvarIgnore == 0 && CheckCommandAccess(client, "", g_iCvarFlags, true) )
+			if( g_iCvarFlags != 0 && g_iCvarIgnore == 0 && CheckCommandAccess(i, "", g_iCvarFlags, true) )
 			{
 				continue;
 			}
