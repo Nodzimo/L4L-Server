@@ -1,0 +1,47 @@
+"Phrases"
+{
+	"Rush_Slowdown"
+	{
+		"chi"	"{green}放慢脚步, 领先{orange}生还者队伍{green}太远, {orange}请回退{green}队伍"
+	}
+
+	"Rush_Ahead"
+	{
+		"chi"	"{green}你领先{orange}生还者队伍{green}太远, 已传送遣返"
+	}
+
+	"Rush_Behind"
+	{
+		"chi"	"{green}你落后{orange}生还者队伍{green}太远, 已传送"
+	}
+
+	"Rush_Health"
+	{
+		"chi"	"{green}你落后{orange}生还者队伍{green}太远, {orange}请回退, {green}否则将失去血量"
+	}
+
+	"Warn_Slowdown"
+	{
+		"chi"	"{green}你领先{orange}生还者队伍{green}太远, {orange}请回退, {green}否则将限速"
+	}
+
+	"Warn_Ahead"
+	{
+		"chi"	"{green}你领先{orange}生还者队伍{green}太远, {orange}请回退 ,{green}否则将被传送遣返"
+	}
+
+	"Warn_Behind"
+	{
+		"chi"	"{green}你落后{orange}生还者队伍{green}太远, {orange}请前进, {green}否则将被传送"
+	}
+
+	"Warn_Health"
+	{
+		"chi"	"{green}你领先{orange}生还者队伍{green}太远, {orange}请回退, {green}否则将失去血量"
+	}
+
+	"Warn_Health2"
+	{
+		"chi"	"{green}你落后{orange}生还者队伍{green}太远, {orange}请前进, {green}否则将失去血量"
+	}
+}

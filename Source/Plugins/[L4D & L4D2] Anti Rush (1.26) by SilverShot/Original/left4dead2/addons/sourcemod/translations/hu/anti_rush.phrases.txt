@@ -1,0 +1,47 @@
+"Phrases"
+{
+	"Rush_Slowdown"
+	{
+		"hu"	"{green}Ne rohanj, {orange}túl messze vagy {green}a túlélőktől {orange}menj vissza {green}feléjük"
+	}
+
+	"Rush_Ahead"
+	{
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}vissza teleportálunk"
+	}
+
+	"Rush_Behind"
+	{
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, oda teleportálunk"
+	}
+
+	"Rush_Health"
+	{
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni"
+	}
+
+	"Warn_Slowdown"
+	{
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}lelassítunk"
+	}
+
+	"Warn_Ahead"
+	{
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}teleportálni fogunk"
+	}
+
+	"Warn_Behind"
+	{
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, {orange}igyekezz {green}vagy teleportálni fogunk"
+	}
+
+	"Warn_Health"
+	{
+		"hu"	"{green}Nagyon előre mentél {orange}a túlélőktől, {green}menj vissza {orange}vagy {green}életerőt fogsz veszíteni"
+	}
+
+	"Warn_Health2"
+	{
+		"hu"	"{green}Túlságosan {orange}lemaradtál {green}a túlélőktől, igyekezz {orange}vagy {green}életerőt fogsz veszíteni"
+	}
+}
