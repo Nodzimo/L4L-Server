@@ -668,6 +668,8 @@
 70. [[L4D & L4D2] Feeding Medicines (1.3) by NoroHime](https://forums.alliedmods.net/showthread.php?t=336862)
     - Позволяет кормить выживших таблетками/адреналином
     - Зависимость: плагин **Left 4 DHooks Direct**
+> [!IMPORTANT]
+> Используется мой форк, в котором отключена камера от третьего лица у выжившего, которого кормят.
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)

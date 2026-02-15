@@ -269,7 +269,8 @@ void StartFeeding(int provider, int receiver) {
 		SetupProgressBar(provider, flUseDuration, 1, receiver, provider);
 
 	if (iProgressTargets & Receiver)
-		SetupProgressBar(receiver, flUseDuration, 1, provider, receiver);
+		SetupProgressBar(receiver, flUseDuration, 1, -1, -1);
+		// SetupProgressBar(receiver, flUseDuration, 1, provider, receiver);
 
 	iFeedingTarget[provider] = receiver;
 
