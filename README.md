@@ -1,6 +1,6 @@
 # Left 4 Legend <sup>v2 release candidate</sub>
-> [!WARNING]
-> В работе!
+> [!IMPORTANT]
+> Статус: **готово к релизу**
 >
 > Кодовое название: **2.0 Rebuild**
 
