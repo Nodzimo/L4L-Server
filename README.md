@@ -424,6 +424,7 @@
       - **Spitter Supergirl**
       - **Multiple Equipment**
       - **Custom Difficulty**
+      - **Feeding Medicines**
 14. [L4D1/2 Drop Secondary (2.7-2025/11/8) by HarryPotter](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/drop_secondary)
     - Дроп второстепенного оружия после смерти: все пистолеты и милишки, включая бензопилу.
     - Зависимость: плагин **Left 4 DHooks Direct**
@@ -664,6 +665,9 @@
     - **Приватный плагин!**
 > [!IMPORTANT]
 > Используется мой форк, в котором исправлены все ошибки, расширен функционал и добавлена вся проделанная работа из форка плагина **Vote difficulty**.
+70. [[L4D & L4D2] Feeding Medicines (1.3) by NoroHime](https://forums.alliedmods.net/showthread.php?t=336862)
+    - Позволяет кормить выживших таблетками/адреналином
+    - Зависимость: плагин **Left 4 DHooks Direct**
 
 #### Зависимости
 1. [Multi Colors 2.1.2](https://github.com/Bara/Multi-Colors)
