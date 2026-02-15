@@ -68,6 +68,7 @@ public void OnPluginStart()
     RegConsoleCmd("l4l_ability", Cmd_SurvivorAbility);
     RegConsoleCmd("l4l_ultimate", Cmd_SurvivorAbility);
     RegConsoleCmd("l4l_ult", Cmd_SurvivorAbility);
+    RegConsoleCmd("l4l_ult_bypass", Cmd_SurvivorAbility);
 }
 
 public void OnConfigsExecuted()
@@ -395,7 +396,7 @@ void DebugLog(int client, const char[] msg)
 
     if (client > 0)
     {
-        PrintToServer("[L4L] Ability: (client %d) %s", client, msg);
+        PrintToServer("[L4L] Ability: %s - %s", GetName(client), msg);
     }
     else
     {
