@@ -29,11 +29,14 @@ public Action Check(int iClient, const char[] sCommand, int iArgc)
 {
 	if(iClient != 0 && SWGM_IsPlayerValidated(iClient) && !SWGM_InGroup(iClient))
 	{
+		char name[MAX_NAME_LENGTH];
+		GetClientName(iClient, name, sizeof name);
+
 		// PrintToChat(iClient, "%t", "JoinSteam");
 		CPrintToChat(iClient, "%t", "Server");
 		CPrintToChat(iClient, "%t", "Join group");
 		CPrintToChat(iClient, "%t", "Group link");
-		PrintToServer("[L4L] client: %d, command: %s, args: %d", iClient, sCommand, iArgc);
+		PrintToServer("[L4L] client: %s, command: %s, args: %d", name, sCommand, iArgc);
 
 		return Plugin_Stop;
 	}
