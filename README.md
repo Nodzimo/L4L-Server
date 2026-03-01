@@ -884,12 +884,12 @@
 >
 > Убран визуальный эффект броска камня, исправлены мелкие косяки и шанс танка бросить самого себя.
 15. [[L4D1/2] Manual-Spawn Special Infected (1.3h-2024/3/15) by Shadowysn, ProdigySim (Major Windows Fix), Harry](https://github.com/fbef0102/L4D1_2-Plugins/tree/master/spawn_infected_nolimit)
-   - API для спавна особых без ограничений режиссёра
-   - Зависимость: плагин **Left 4 DHooks Direct**
-   - Требуется для следующих плагинов:
-     - **All4Dead**
-     - **Tanks throw special infected**
-   - `sm_mdzs`
+    - API для спавна особых без ограничений режиссёра
+    - Зависимость: плагин **Left 4 DHooks Direct**
+    - Требуется для следующих плагинов:
+      - **All4Dead**
+      - **Tanks throw special infected**
+    - `sm_mdzs`
 16. [[L4D1+2] Weapon Remove (1.3.1_15.01.2023) by Rain_orel, Hanzolo, Dosergen, Grey83](https://forums.alliedmods.net/showpost.php?p=2797215&postcount=22)
     - Управляет количеством экземпляров оружия
 > [!IMPORTANT]
@@ -1022,6 +1022,7 @@
    - `sm_switchweapons`, `sm_sw`.
 
 #### Репозитории плагинов
+[Избранное GitHub-пользователя **4512369781**](https://github.com/4512369781?tab=stars), в котором можно найти много интересных L4D-репозиториев.
 - [Jackzmc / sourcemod-plugins](https://github.com/Jackzmc/sourcemod-plugins)
 - [fbef0102 / L4D1_2-Plugins](https://github.com/fbef0102/L4D1_2-Plugins), [fbef0102 / Sourcemod-Plugins](https://github.com/fbef0102/Sourcemod-Plugins)
    - Один из самых активных разработчиков в сообществе: самостоятельно пишет плагины, публичные и приватные за деньги, реворкает/ремейкает чужие и заброшенные. Выкладывает всё в свой репозиторий и хорошо поддерживает его.
@@ -1030,7 +1031,7 @@
 - [A1oneR / L4D2_DRDK_Plugins](https://github.com/A1oneR/L4D2_DRDK_Plugins)
 - [Dosergen / Stuff](https://github.com/Dosergen/Stuff)
    - Активный админ кастомных L4D1-2 серверов: берёт оригинальные плагины, фиксит, что может, подгоняет их под свои нужды и добавляет поддержку первой Left 4 Dead.
-- [garamond13 SourcePawn repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
+- [garamond13 / SourcePawn Repositories](https://github.com/garamond13?tab=repositories&language=sourcepawn)
 - [Hatsune-Imagine / l4d2-plugins](https://github.com/Hatsune-Imagine/l4d2-plugins)
   - Фиксы популярных плагинов
 - [PaaNChaN / L4D2_Plugins](https://github.com/PaaNChaN/L4D2_Plugins)
@@ -1043,11 +1044,17 @@
 - [Dreasye791 / my-multi-Infected-plugins](https://github.com/Dreasye791/my-multi-Infected-plugins)
 - [rikka0w0 / rikkal4d2](https://github.com/rikka0w0/rikkal4d2)
 - [devilesk / rl4d2l-plugins](https://github.com/devilesk/rl4d2l-plugins)
+- [LuxLuma / Repositories](https://github.com/LuxLuma?tab=repositories)
 - [LuxLuma / Left-4-fix](https://github.com/LuxLuma/Left-4-fix)
   - Репозиторий с набором фиксов от сообщества
 - [NanakaNeko / l4d2_plugins_coop](https://github.com/NanakaNeko/l4d2_plugins_coop)
 - [pa4H / L4D2-pa4H-Plugins](https://github.com/pa4H/L4D2-pa4H-Plugins)
 - [raziEiL / SourceMod](https://github.com/raziEiL/SourceMod)
+- [GlowingTree880 / L4D2_LittlePlugins](https://github.com/GlowingTree880/L4D2_LittlePlugins)
+- [Earendil-89 / Repositories](https://github.com/Earendil-89?tab=repositories)
+- [neburaii / l4d2-plugins](https://github.com/neburaii/l4d2-plugins)
+- [blueblur0730 / modified-plugins](https://github.com/blueblur0730/modified-plugins)
+  - Репозиторий с продвинутыми модификациями плагинов
 
 ### V-скрипты
 [Мастерская Left 4 Dead 2](https://steamcommunity.com/app/550/workshop)
